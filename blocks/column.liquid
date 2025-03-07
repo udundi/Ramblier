@@ -1,0 +1,161 @@
+<style>
+  .column-padding-{{ block.id }} {
+    padding: {{ block.settings.mobile-padding-top }}rem {{ block.settings.mobile-padding-right }}rem {{ block.settings.mobile-padding-bottom }}rem {{ block.settings.mobile-padding-left }}rem;
+  }
+  @media screen and (min-width: 768px) {
+    .column-padding-{{ block.id }} {
+      padding: {{ block.settings.padding-top }}rem {{ block.settings.padding-right }}rem {{ block.settings.padding-bottom }}rem {{ block.settings.padding-left }}rem;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    .column-border-{{ block.id }}::after {
+      content: "";
+      position: absolute;
+      top: 25%;
+      right: 0;
+      height: 50%;
+      width: 2px;
+      background-color: #DEDEDE;
+    }
+  }
+</style>
+
+{% if section.settings.opt_link != blank %}
+  <a
+    href="{{ section.settings.opt_link }}"
+    class="tw-w-full tw-h-full md:tw-max-w-1/2 tw-max-w-none tw-flex tw-flex-col tw-gap-4 {% if block.settings.align == 'center' %} tw-items-center {% elsif block.settings.align == 'end' %} tw-items-end {% elsif block.settings.align == 'start' %} tw-items-start {% endif %} tw-text-center column-padding-{{ block.id }} tw-relative{% if block.settings.gap-border %} column-border-{{ block.id }}{% endif %}"
+    {% if block.settings.background_color %}
+      style="background-color: {{ block.settings.background_color }};"
+    {% endif %}
+  >
+{% else %}
+  <div
+    class="tw-w-full tw-h-full md:tw-max-w-1/2 tw-max-w-none tw-flex tw-flex-col tw-gap-4 {% if block.settings.align == 'center' %} tw-items-center {% elsif block.settings.align == 'end' %} tw-items-end {% elsif block.settings.align == 'start' %} tw-items-start {% endif %} tw-text-center column-padding-{{ block.id }} tw-relative{% if block.settings.gap-border %} column-border-{{ block.id }}{% endif %}"
+    {% if block.settings.background_color %}
+      style="background-color: {{ block.settings.background_color }};"
+    {% endif %}
+  >
+{% endif %}
+
+{% content_for 'blocks' %}
+
+{% if section.settings.opt_link != blank %}
+  </a>
+{% else %}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Column",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "gap-border",
+      "label": "Add Gap Border",
+      "default": false
+    },
+    {
+      "type": "url",
+      "id": "opt_link",
+      "label": "Optional Link"
+    },
+    {
+      "type": "select",
+      "id": "align",
+      "label": "Alignment",
+      "options": [
+        { "value": "start", "label": "Start" },
+        { "value": "center", "label": "Center" },
+        { "value": "end", "label": "End" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "padding-left",
+      "label": "padding left",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding-right",
+      "label": "padding right",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding-top",
+      "label": "padding top",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding-bottom",
+      "label": "padding bottom",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "mobile-padding-left",
+      "label": "mobile padding left",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "mobile-padding-right",
+      "label": "mobile padding right",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "mobile-padding-top",
+      "label": "mobile padding top",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "mobile-padding-bottom",
+      "label": "mobile padding bottom",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "transparent"
+    }
+  ],
+  "blocks": [{ "type": "@theme" }],
+  "presets": [
+    {
+      "name": "Column",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

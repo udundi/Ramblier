@@ -1,0 +1,63 @@
+<!-- Outer Containers -->
+<div class="tw-flex tw-relative tw-flex-col tw-center tw-w-full tw-gap-4">
+  <!-- Component -->
+  <!-- Hero Image -->
+  <div class="tw-h-96 tw-w-full">
+    {% if block.settings.image != blank %}
+      {{
+        block.settings.image
+        | image_url: width: 4000
+        | image_tag: class: 'tw-block tw-h-full tw-w-full tw-object-cover'
+      }}
+    {% else %}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'tw-w-full tw-h-96 tw-object-cover' }}
+    {% endif %}
+  </div>
+  <!-- Header -->
+  {% if block.settings.title != blank %}
+    {% render 'ud-text', text: block.settings.title, type: 'header', align: 'center', size: 'small', color: 'black' %}
+  {% endif %}
+  <!-- Blocks Flex Container -->
+  <div class="tw-flex md:tw-row tw-col tw-flex-wrap tw-justify-center md:tw-gap-4 tw-gap-8">
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Button Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Header"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "button"
+    },
+    {
+      "type": "column"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Button Hero",
+      "settings": {
+        "title": "Lorem ipsum dolor sit amet."
+      },
+      "blocks": [
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

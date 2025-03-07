@@ -1,0 +1,144 @@
+<div class="tw-p-2 tw-relative tw-max-w-screen-3xl tw-overflow-hidden tw-w-screen tw-flex sm:tw-flex-row tw-flex-col tw-items-center sm:tw-gap-4">
+  <!-- Desktop Prev Button -->
+  <button
+    class="tw-bg-grey-light tw-m-4 tw-size-12 tw-aspect-square tw-rounded-full tw-border-none tw-hidden sm:tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-relative"
+    id="featured-swiper-prev"
+  >
+    <i class="fas fa-chevron-left"></i>
+  </button>
+  <!-- Swiper Container -->
+  <div class="tw-w-full swiper tw-h-fit block-{{ block.id }}">
+    <div class="swiper-wrapper tw-h-fit">
+      {% for product in block.settings.collection.products %}
+        <div class="swiper-slide tw-h-fit tw-flex tw-items-center tw-justify-center">
+          {% render 'ud-product-card',
+            product: product,
+            button_style: block.settings.button_style,
+            product_reviews: 5,
+            video_aspect: true
+          %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="tw-flex tw-justify-center tw-gap-8">
+    <!-- Mobile Prev Button -->
+    <button
+      class="sm:tw-hidden tw-bg-grey-light tw-mx-4 tw-size-12 tw-aspect-square tw-rounded-full tw-border-none tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-relative"
+      id="featured-swiper-prev"
+    >
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <!-- Next Button -->
+    <button
+      class="tw-bg-grey-light tw-aspect-square tw-size-12 tw-mx-4 tw-rounded-full tw-border-none tw-flex tw-items-center tw-justify-center tw-cursor-pointer"
+      id="featured-swiper-next"
+    >
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+</div>
+
+<script>
+  var swiper = new Swiper('.block-{{ block.id }}', {
+    slidesPerView: 1,
+    slidesPerGroup: 1,
+    loop: true,
+    preventClicks: true,
+    breakpoints: {
+      450: {
+        slidesPerView: 1.3,
+        spaceBetween: 50,
+      },
+      900: {
+        slidesPerView: 2.3,
+        spaceBetween: 50,
+      },
+      1440: {
+        slidesPerView: 3.3,
+        spaceBetween: 50,
+      },
+    },
+
+    navigation: {
+      nextEl: '#featured-swiper-next',
+      prevEl: '#featured-swiper-prev',
+    },
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Collection Slider",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Desktop",
+      "min": 0,
+      "max": 5,
+      "default": 2,
+      "unit": "rem"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Desktop",
+      "min": 0,
+      "max": 5,
+      "default": 2,
+      "unit": "rem"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Padding Mobile",
+      "min": 0,
+      "max": 5,
+      "default": 2,
+      "unit": "rem"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Padding Mobile",
+      "min": 0,
+      "max": 5,
+      "default": 2,
+      "unit": "rem"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_height",
+      "label": "Images Full Height",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "outline",
+          "label": "Outline"
+        }
+      ],
+      "label": "Button style",
+      "default": "solid"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Slider"
+    }
+  ]
+}
+{% endschema %}

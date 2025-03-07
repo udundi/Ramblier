@@ -1,0 +1,98 @@
+<style>
+  .border-width-{{ block.id }} {
+      border-width: {{ block.settings.border_radius }}px;
+  }
+  .border-color-{{ block.id }} {
+      border-color: {{ block.settings.border_color }};
+  }
+</style>
+
+<div class="tw-w-full {% if block.settings.fullsize %} tw-h-full {% else %} tw-h-auto {% endif %} flex justify-center">
+  {% if block.settings.image != blank %}
+    <img
+      src="{{ block.settings.image | img_url: '500x500' }}"
+      alt="{{ block.settings.alt_text }}"
+      height="100%"
+      width="100%"
+      class="
+        tw-w-full
+        {% if block.settings.shape == 'circle' %}
+          tw-rounded-full tw-max-w-32
+        {% elsif block.settings.shape == 'contained' %}
+          tw-max-w-[300px]
+        {% elsif block.settings.shape == 'contained_circle' %}
+          tw-rounded-full tw-max-w-[300px]
+        {% else %}
+          tw-max-w-32
+        {% endif %}
+        {% if block.settings.border %}
+          tw-border border-color-{{ block.id }} border-width-{{ block.id }}
+        {% endif %}
+      "
+    >
+  {% else %}
+    {{ 'product-1' | placeholder_svg_tag: 'tw-w-full tw-h-full tw-object-contain' }}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "alt_text",
+      "label": "Alt Text",
+      "default": "Image description"
+    },
+    {
+      "type": "checkbox",
+      "id": "border",
+      "label": "Add Border",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "shape",
+      "label": "Image Shape",
+      "options": [
+        { "value": "default", "label": "Default (Square)" },
+        { "value": "circle", "label": "Circle" },
+        { "value": "contained_circle", "label": "Contained Circle (Max Width)" },
+        { "value": "contained", "label": "Contained (Max Width)" }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "checkbox",
+      "id": "fullsize",
+      "label": "Full Size",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image"
+    }
+  ]
+}
+{% endschema %}

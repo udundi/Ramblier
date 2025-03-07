@@ -1,0 +1,117 @@
+<div class="video-block tw-w-full">
+  {% assign video_source = block.settings.video_source %}
+  {% assign autoplay = block.settings.autoplay | default: false %}
+  {% assign loop = block.settings.loop | default: false %}
+  {% assign muted = block.settings.muted | default: false %}
+  {% assign controls = block.settings.controls | default: true %}
+  {% assign aspect_ratio = block.settings.aspect_ratio | default: "16:9" %}
+  {% assign video_size = block.settings.video_size | default: "100%" %}
+   {% assign allow_attributes = "" %}
+  {% if autoplay %} {% assign allow_attributes = allow_attributes | append: "autoplay; " %} {% endif %}
+  {% if controls %} {% assign allow_attributes = allow_attributes | append: "encrypted-media; " %} {% endif %}
+  {% if loop %} {% assign allow_attributes = allow_attributes | append: "loop; " %} {% endif %}
+  {% if muted %} {% assign allow_attributes = allow_attributes | append: "mute; " %} {% endif %}
+  {% assign allow_attributes = allow_attributes | append: "accelerometer; clipboard-write; gyroscope; picture-in-picture; web-share" %}
+
+
+  <div 
+    class="video-wrapper tw-w-full"
+    style="
+      height: {{ video_size }};
+      aspect-ratio: {{ aspect_ratio }};
+      overflow: hidden;
+      max-width: 100%;"
+  >
+    {% if video_source == "url" and block.settings.video_url != blank %}
+      <iframe 
+        src="{{ block.settings.video_url }}"
+        title="Video player"
+        frameborder="0"
+        allow="{{ allow_attributes }}"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="width: 100%; height: 100%;"
+      ></iframe>
+    {% elsif video_source == "shopify_file" and block.settings.shopify_video != blank %}
+      <div style="width: 100%; height: 100%;">
+        {{ block.settings.shopify_video | video_tag: controls: block.settings.controls, loop: block.settings.loop, autoplay: block.settings.autoplay, muted: block.settings.muted, width: "100%", height: "100%" }}
+      </div>
+    {% else %}
+      <p>Your browser does not support the video tag.</p>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Video Block",
+  "class": "tw-w-full",
+  "settings": [
+    {
+      "type": "select",
+      "id": "video_source",
+      "label": "Video Source",
+      "options": [
+        { "value": "url", "label": "URL" },
+        { "value": "shopify_file", "label": "Shopify File" }
+      ],
+      "default": "url"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video URL",
+      "info": "Add the URL of the video (YouTube, Vimeo, or direct link). Only used if Video Source is set to URL."
+    },
+    {
+      "type": "video",
+      "id": "shopify_video",
+      "label": "Shopify File",
+      "info": "Upload a video file. Only used if Video Source is set to Shopify File."
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "muted",
+      "label": "Muted",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "controls",
+      "label": "Show Controls",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "aspect_ratio",
+      "label": "Aspect Ratio",
+      "default": "16/9",
+      "info": "Enter aspect ratio in the format 'width/height' (e.g., '16/9', '4/3')."
+    },
+    {
+      "type": "text",
+      "id": "video_size",
+      "label": "Video Size",
+      "default": "100%",
+      "info": "Set the video width (e.g., '100%', '600px')."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default Video"
+    }
+  ]
+}
+{% endschema %}

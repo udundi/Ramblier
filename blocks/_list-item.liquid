@@ -1,0 +1,28 @@
+<style>
+  .column-padding-{{ block.id }} {
+    padding: {{ block.settings.padding-top }}rem {{ block.settings.padding-right }}rem {{ settings.padding-bottom }}rem {{ settings.padding-left }}rem;
+  }
+</style>
+
+<li class="">
+  {{ block.settings.text }}
+</li>
+
+{% schema %}
+{
+  "name": "List",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Lorem ipsum dolor sit amet."
+    },
+  ],
+  "presets": [
+    {
+        "name": "List Item"
+    }
+  ]
+}
+{% endschema %}
