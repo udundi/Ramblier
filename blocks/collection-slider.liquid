@@ -1,4 +1,20 @@
-<div class="tw-p-2 tw-relative tw-max-w-screen-3xl tw-overflow-hidden tw-w-screen tw-flex sm:tw-flex-row tw-flex-col tw-items-center sm:tw-gap-4">
+{% style %}
+  .block-{{ block.id }} {
+    padding-top: {{ block.settings.padding_top }}rem;
+    padding-bottom: {{ block.settings.padding_bottom }}rem;
+    margin-left: {{ block.settings.padding_left }}rem;
+    margin-right: {{ block.settings.padding_right }}rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .block-{{ block.id }} {
+      padding-top: {{ block.settings.mobile_padding_top }}rem;
+      padding-bottom: {{ block.settings.mobile_padding_bottom }}rem;
+    }
+  }
+{% endstyle %}
+
+<div class="block-{{ block.id }} tw-p-2 tw-relative tw-max-w-screen-3xl tw-overflow-hidden tw-w-screen tw-flex sm:tw-flex-row tw-flex-col tw-items-center sm:tw-gap-4">
   <!-- Desktop Prev Button -->
   <button
     class="tw-bg-grey-light tw-m-4 tw-size-12 tw-aspect-square tw-rounded-full tw-border-none tw-hidden sm:tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-relative"
@@ -74,38 +90,62 @@
     {
       "type": "range",
       "id": "padding_top",
-      "label": "Padding Desktop",
       "min": 0,
-      "max": 5,
-      "default": 2,
-      "unit": "rem"
+      "max": 40,
+      "step": 0.5,
+      "unit": "rem",
+      "label": "Desktop Padding Top",
+      "default": 4
     },
     {
       "type": "range",
-      "id": "padding_bottom",
-      "label": "Padding Desktop",
       "min": 0,
-      "max": 5,
-      "default": 2,
-      "unit": "rem"
+      "max": 40,
+      "step": 0.5,
+      "unit": "rem",
+      "id": "padding_bottom",
+      "label": "Desktop Padding Bottom",
+      "default": 4
     },
     {
       "type": "range",
       "id": "mobile_padding_top",
-      "label": "Padding Mobile",
       "min": 0,
-      "max": 5,
-      "default": 2,
-      "unit": "rem"
+      "max": 40,
+      "step": 0.5,
+      "unit": "rem",
+      "label": "Mobile Padding Top",
+      "default": 4
     },
     {
       "type": "range",
-      "id": "mobile_padding_bottom",
-      "label": "Padding Mobile",
       "min": 0,
-      "max": 5,
-      "default": 2,
-      "unit": "rem"
+      "max": 40,
+      "step": 0.5,
+      "unit": "rem",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile Padding Bottom",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "min": 0,
+      "max": 40,
+      "step": 0.5,
+      "unit": "rem",
+      "id": "padding_left",
+      "label": "Padding Left",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "min": 0,
+      "max": 40,
+      "step": 0.5,
+      "unit": "rem",
+      "id": "padding_right",
+      "label": "Padding Right",
+      "default": 2
     },
     {
       "type": "collection",
