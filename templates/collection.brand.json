@@ -31,11 +31,11 @@
       ],
       "settings": {
         "padding_top": 4,
-        "padding_bottom": 4,
+        "padding_bottom": 2,
         "mobile_padding_top": 4,
         "mobile_padding_bottom": 4,
         "padding_left": 4,
-        "padding_right": 2,
+        "padding_right": 4,
         "background_color": "#ffffff",
         "flex_direction": "column",
         "tablet_flex_direction": "column",
