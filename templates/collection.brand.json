@@ -78,8 +78,8 @@
     }
   },
   "order": [
-    "ud_universal_flexbox_ThgaLk",
     "banner",
+    "ud_universal_flexbox_ThgaLk",
     "product-grid"
   ]
 }
