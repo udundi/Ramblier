@@ -740,6 +740,10 @@ video {
   gap: 2rem;
 }
 
+.tw-gap-1 {
+  gap: 0.25rem;
+}
+
 .tw-gap-x-10 {
   -moz-column-gap: 2.5rem;
        column-gap: 2.5rem;
@@ -823,6 +827,11 @@ video {
 .tw-bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.tw-bg-brand-navy {
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 33 77 / var(--tw-bg-opacity, 1));
 }
 
 .tw-object-contain {

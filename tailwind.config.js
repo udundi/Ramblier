@@ -13,7 +13,9 @@ module.exports = {
     colors: {
       white: '#FFFFFF',
       black: '#000000',
-      brand: {},
+      brand: {
+        navy: '#0F214D',
+      },
     },
     fontSize: {
       8: '0.5rem', // 8px
