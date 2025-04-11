@@ -15,6 +15,8 @@ module.exports = {
       black: '#000000',
       brand: {
         navy: '#0F214D',
+        forest: '#283f22',
+        Beige: '#edeae4',
       },
     },
     fontSize: {

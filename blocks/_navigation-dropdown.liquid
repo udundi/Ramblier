@@ -1,0 +1,31 @@
+
+  
+<button class="group-hover:tw-bg-brand-navy tw-w-full tw-p-4 tw-px-8">{{ block.settings.text }}</button>
+<div class="tw-absolute group-hover:tw-block tw-hidden tw-top-full tw-border-b-2 tw-border-black tw-left-0 tw-w-screen">
+  {% content_for 'blocks' %}
+</div>
+  
+
+{% schema %}
+  {
+    "name": "Navigation Dropdown",
+    "settings": [
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text",
+        "default": "Link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "@theme"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Navigation Dropdown"
+      }
+    ]
+  }
+{% endschema %}
