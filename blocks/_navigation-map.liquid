@@ -1,0 +1,34 @@
+<!-- Selector Button -->
+<button class="tw-w-full tw-p-4 tw-px-12">{{ block.settings.text }}</button>
+<!-- Dropdown -->
+<div class="tw-absolute tw-z-10 group-hover:tw-block group-focus:tw-block group-focus-within:tw-block  tw-block tw-top-full tw-border-y-2 tw-border-black tw-left-0 tw-w-screen tw-bg-white">
+  <!-- Left Map -->
+  <div class="tw-p-12">
+    {% render 'map-links' %}
+  </div>
+  <!-- Right Locations -->
+  <div></div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Navigation Map Selector",
+    "tag": "div",
+    "class": "tw-group",
+
+    "settings": [
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text",
+        "default": "Link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Navigation Map Selector"
+      }
+    ]
+  }
+{% endschema %}

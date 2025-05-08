@@ -3,10 +3,21 @@
   <!-- Top Row Container -->
   <div class="tw-flex-row tw-gap-[2px] tw-flex tw-justify-center tw-align-middle">
     <!-- Site Icon -->
-    <div class="tw-bg-white tw-p-4 tw-px-12">Icon</div>
+    <a href="{{ shop.url }}" class="tw-bg-white tw-p-4 tw-px-12">
+      <img
+      src="{{ section.settings.logo | img_url: '500x500' }}"
+      alt="Ramblier Site Logo"
+      height="100%"
+      width="100%"
+      class="tw-w-full"
+    >
+    </a>
     <!-- Search Bar -->
-    <div default="Enter Search Term" class="tw-bg-white tw-grow tw-py-4 tw-px-12">
-      Enter Search Term
+    <div default="Enter Search Term" class="tw-bg-white tw-grow tw-p-2 tw-relative">
+      <div class="tw-absolute tw-top-1/2 -tw-translate-y-1/2 tw-fill-brand-navy tw-left-8">
+        {%  render 'icon-search' %}
+      </div>
+      <input placeholder="Enter Search term" class="tw-pr-12 tw-pl-20 tw-w-full tw-h-full"/>
     </div>
     <!-- Account Button -->
     <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="tw-bg-white tw-flex tw-p-4 tw-px-8 tw-items-center tw-stroke-black tw-fill-white">
@@ -20,7 +31,7 @@
   <!-- Bottom Row Container -->
   <div class="tw-bg-white tw-flex tw-justify-between tw-items-center tw-text-14 tw-font-medium tw-uppercase tw-relative">
     <!-- Left Links -->
-    <div class="tw-flex tw-gap-4 tw-px-12 tw-group">
+    <div class="tw-flex tw-gap-4 tw-px-12">
       {% content_for 'blocks' %}
     </div>
     <!-- Right Become a Partner Button -->
@@ -36,6 +47,11 @@
       "groups": ["header"]
     },
     "settings": [
+      {
+        "type": "image_picker",
+        "label": "Site Logo",
+        "id": "logo"
+      },
       {
         "type": "header",
         "content": "t:sections.all.spacing"
@@ -76,6 +92,9 @@
       }
     ],
     "blocks": [
+      {
+        "type": "_navigation-map"
+      },
       {
         "type": "_navigation-dropdown"
       }

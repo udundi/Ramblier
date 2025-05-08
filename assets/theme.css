@@ -574,6 +574,18 @@ video {
   top: 100%;
 }
 
+.tw-top-1\/2 {
+  top: 50%;
+}
+
+.tw-left-8 {
+  left: 2rem;
+}
+
+.tw-z-10 {
+  z-index: 10;
+}
+
 .tw-m-4 {
   margin: 1rem;
 }
@@ -586,6 +598,11 @@ video {
 .tw-mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.tw-my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .tw-mb-2 {
@@ -702,6 +719,11 @@ video {
 
 .tw-grow {
   flex-grow: 1;
+}
+
+.-tw-translate-y-1\/2 {
+  --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .tw-cursor-pointer {
@@ -825,6 +847,11 @@ video {
   border-width: 2px;
 }
 
+.tw-border-y-2 {
+  border-top-width: 2px;
+  border-bottom-width: 2px;
+}
+
 .tw-border-b-2 {
   border-bottom-width: 2px;
 }
@@ -861,6 +888,18 @@ video {
   fill: #FFFFFF;
 }
 
+.tw-fill-brand-navy {
+  fill: #0F214D;
+}
+
+.tw-fill-brand-Beige {
+  fill: #edeae4;
+}
+
+.tw-fill-brand-forest {
+  fill: #283f22;
+}
+
 .tw-stroke-black {
   stroke: #000000;
 }
@@ -881,6 +920,18 @@ video {
 
 .tw-p-4 {
   padding: 1rem;
+}
+
+.tw-p-1 {
+  padding: 0.25rem;
+}
+
+.tw-p-8 {
+  padding: 2rem;
+}
+
+.tw-p-12 {
+  padding: 3rem;
 }
 
 .tw-px-10 {
@@ -916,6 +967,14 @@ video {
 .tw-py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.tw-pl-20 {
+  padding-left: 5rem;
+}
+
+.tw-pr-12 {
+  padding-right: 3rem;
 }
 
 .tw-text-center {
@@ -980,6 +1039,10 @@ video {
 
 .tw-text-48 {
   font-size: 3rem;
+}
+
+.tw-text-80 {
+  font-size: 5rem;
 }
 
 .tw-font-bold {
@@ -1051,6 +1114,18 @@ video {
   --tw-bg-opacity: 0.2;
 }
 
+.hover\:tw-fill-brand-forest:hover {
+  fill: #283f22;
+}
+
+.hover\:tw-fill-brand-navy:hover {
+  fill: #0F214D;
+}
+
+.tw-group:focus-within .group-focus-within\:tw-block {
+  display: block;
+}
+
 .tw-group:hover .group-hover\:tw-block {
   display: block;
 }
@@ -1058,6 +1133,34 @@ video {
 .tw-group:hover .group-hover\:tw-bg-brand-navy {
   --tw-bg-opacity: 1;
   background-color: rgb(15 33 77 / var(--tw-bg-opacity, 1));
+}
+
+.tw-group:focus .group-focus\:tw-block {
+  display: block;
+}
+
+.tw-peer\/southwest:hover ~ .peer-hover\/southwest\:tw-fill-white {
+  fill: #FFFFFF;
+}
+
+.tw-peer\/midwest:hover ~ .peer-hover\/midwest\:tw-fill-white {
+  fill: #FFFFFF;
+}
+
+.tw-peer\/rockies:hover ~ .peer-hover\/rockies\:tw-fill-white {
+  fill: #FFFFFF;
+}
+
+.tw-peer\/pacific:hover ~ .peer-hover\/pacific\:tw-fill-white {
+  fill: #FFFFFF;
+}
+
+.tw-peer\/southeast:hover ~ .peer-hover\/southeast\:tw-fill-white {
+  fill: #FFFFFF;
+}
+
+.tw-peer\/northeast:hover ~ .peer-hover\/northeast\:tw-fill-white {
+  fill: #FFFFFF;
 }
 
 @media (min-width: 640px) {

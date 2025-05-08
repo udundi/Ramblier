@@ -1,9 +1,9 @@
 <style>
   .border-width-{{ block.id }} {
-      border-width: {{ block.settings.border_radius }}px;
+    border-width: {{ block.settings.border_radius }}px;
   }
   .border-color-{{ block.id }} {
-      border-color: {{ block.settings.border_color }};
+    border-color: {{ block.settings.border_color }};
   }
 </style>
 
@@ -28,71 +28,82 @@
         {% if block.settings.border %}
           tw-border border-color-{{ block.id }} border-width-{{ block.id }}
         {% endif %}
-      "
-    >
+      ">
   {% else %}
     {{ 'product-1' | placeholder_svg_tag: 'tw-w-full tw-h-full tw-object-contain' }}
   {% endif %}
 </div>
 
 {% schema %}
-{
-  "name": "Image",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image"
-    },
-    {
-      "type": "text",
-      "id": "alt_text",
-      "label": "Alt Text",
-      "default": "Image description"
-    },
-    {
-      "type": "checkbox",
-      "id": "border",
-      "label": "Add Border",
-      "default": false
-    },
-    {
-      "type": "color",
-      "id": "border_color",
-      "label": "Border Color"
-    },
-    {
-      "type": "range",
-      "id": "border_radius",
-      "label": "Border Radius",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "default": 0
-    },
-    {
-      "type": "select",
-      "id": "shape",
-      "label": "Image Shape",
-      "options": [
-        { "value": "default", "label": "Default (Square)" },
-        { "value": "circle", "label": "Circle" },
-        { "value": "contained_circle", "label": "Contained Circle (Max Width)" },
-        { "value": "contained", "label": "Contained (Max Width)" }
-      ],
-      "default": "default"
-    },
-    {
-      "type": "checkbox",
-      "id": "fullsize",
-      "label": "Full Size",
-      "default": false
-    }
-  ],
-  "presets": [
-    {
-      "name": "Image"
-    }
-  ]
-}
+  {
+    "name": "Old Image",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "alt_text",
+        "label": "Alt Text",
+        "default": "Image description"
+      },
+      {
+        "type": "checkbox",
+        "id": "border",
+        "label": "Add Border",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "border_color",
+        "label": "Border Color"
+      },
+      {
+        "type": "range",
+        "id": "border_radius",
+        "label": "Border Radius",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "default": 0
+      },
+      {
+        "type": "select",
+        "id": "shape",
+        "label": "Image Shape",
+        "options": [
+          {
+            "value": "default",
+            "label": "Default (Square)"
+          },
+          {
+            "value": "circle",
+            "label": "Circle"
+          },
+          {
+            "value": "contained_circle",
+            "label": "Contained Circle (Max Width)"
+          },
+          {
+            "value": "contained",
+            "label": "Contained (Max Width)"
+          }
+        ],
+        "default": "default"
+      },
+      {
+        "type": "checkbox",
+        "id": "fullsize",
+        "label": "Full Size",
+        "default": false
+      }
+    ],
+    "presets": [
+      {
+        "name": "Old Image"
+      }
+    ]
+  }
 {% endschema %}
