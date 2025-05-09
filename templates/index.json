@@ -206,26 +206,34 @@
     "ud_custom_city_list_rDqYax": {
       "type": "ud-custom-city-list",
       "blocks": {
-        "city_9i8DkK": {
+        "city_qNqTpN": {
           "type": "city",
           "settings": {
-            "image": "shopify://shop_images/NOT.png",
-            "title": "City, State",
+            "title": "{{ metaobjects.location[\"los-angeles\"].city.value }}, {{ metaobjects.location[\"los-angeles\"].state.value }}",
             "link_name": "Shop City",
-            "link_url": "shopify://collections/frontpage"
+            "link_url": ""
+          }
+        },
+        "city_9i8DkK": {
+          "type": "city",
+          "source": "{{ metaobjects.location[\"los-angeles\"] }}",
+          "settings": {
+            "title": "{{ metaobjects.location[\"los-angeles\"].city.value }}, {{ metaobjects.location[\"los-angeles\"].state.value }}",
+            "link_name": ""
           }
         },
         "city_jDnAzi": {
           "type": "city",
+          "source": "{{ metaobjects.location.chicago }}",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_7.jpg",
-            "title": "City, State",
-            "link_name": "Shop City",
-            "link_url": "shopify://collections/pacific"
+            "image": "{{ metaobjects.location.chicago.location_image.value }}",
+            "title": "{{ metaobjects.location.chicago.city.value }}, {{ metaobjects.location.chicago.state.value }}",
+            "link_name": "Shop City"
           }
         }
       },
       "block_order": [
+        "city_qNqTpN",
         "city_9i8DkK",
         "city_jDnAzi"
       ],
