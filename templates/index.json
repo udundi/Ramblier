@@ -173,7 +173,7 @@
         "column_cdKKn3": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/NOT.png",
+            "image": "shopify://shop_images/vintage-shopping.jpg",
             "link_text": "Featured Title",
             "link_url": ""
           }
@@ -181,7 +181,7 @@
         "column_rreA8F": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/NOT.png",
+            "image": "shopify://shop_images/tall-white-building-with-rust-colored-water-in-front.jpg",
             "link_text": "Featured Title",
             "link_url": ""
           }
@@ -189,7 +189,7 @@
         "column_cJTnYQ": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/NOT.png",
+            "image": "shopify://shop_images/chinese-lanterns-glow-on-storefront.jpg",
             "link_text": "Featured Title",
             "link_url": ""
           }
