@@ -1,9 +1,9 @@
-{% comment %}
-  Custom City List Section
-  - Each block: image, title, link name, link url
-  - Section settings: padding (desktop/mobile), background color
-  - Tailwind for all classes
-  - On hover: show image, link, and borders
+{% comment %} 
+                  Custom City List Section 
+                  - Each block: image, title, link name, link url 
+                  - Section settings: padding (desktop/mobile), background color 
+                  - Tailwind for all classes 
+                  - On hover: show image, link, and borders 
 {% endcomment %}
 
 {% style %}
@@ -26,11 +26,17 @@
   <div class="tw-w-full tw-max-w-screen-xl tw-mx-auto">
     <div class="tw-flex tw-flex-col">
       {% for block in section.blocks %}
-        <div class="tw-grid tw-grid-cols-3 tw-items-center tw-cursor-pointer tw-group hover:tw-border-t-2 hover:tw-border-b-2 hover:tw-border-black">
+        <div class="tw-grid tw-grid-cols-3 tw-items-center tw-cursor-pointer tw-group tw-border-y-2 tw-border-black/0 hover:tw-border-black/100 tw-transition-all">
           <!-- Left: Image column -->
           <div class="tw-justify-self-start tw-flex tw-items-stretch tw-w-40 tw-h-full">
             {% if block.settings.image != blank %}
-              <img src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.title }}" class="tw-object-cover tw-w-40 tw-h-full tw-bg-gray-100 tw-opacity-0 group-hover:tw-opacity-100 tw-pointer-events-none group-hover:tw-pointer-events-auto tw-transition-all tw-duration-300" loading="lazy">
+              <div class="tw-p-4">
+                <img
+                  src="{{ block.settings.image | image_url: width: 400 }}"
+                  alt="{{ block.settings.title }}"
+                  class="tw-object-cover tw-w-40 tw-h-full tw-bg-gray-100 tw-opacity-0 group-hover:tw-opacity-100 tw-pointer-events-none group-hover:tw-pointer-events-auto  tw-duration-300 tw-aspect-square"
+                  loading="lazy">
+              </div>
             {% endif %}
           </div>
           <!-- Center: Title column -->
@@ -39,8 +45,11 @@
           </div>
           <!-- Right: Link column -->
           <div class="tw-justify-self-end tw-text-left tw-pr-4 tw-flex tw-items-center">
-            {% if block.settings.link_url != blank and block.settings.link_name != blank %}
-              <a href="{{ block.settings.link_url }}" class="tw-font-semibold tw-tracking-wide tw-underline tw-underline-offset-4 tw-text-black tw-opacity-0 group-hover:tw-opacity-100 tw-pointer-events-none group-hover:tw-pointer-events-auto tw-transition-all tw-duration-300" tabindex="-1">{{ block.settings.link_name }}</a>
+            {% if block.settings.collection != blank and block.settings.link_name != blank %}
+              <a
+                href="{{ block.settings.collection.url }}"
+                class="tw-font-semibold tw-tracking-wide tw-underline tw-underline-offset-4 tw-text-black tw-opacity-0 group-hover:tw-opacity-100 tw-pointer-events-none group-hover:tw-pointer-events-auto tw-transition-all tw-duration-300"
+                tabindex="-1">{{ block.settings.link_name }}</a>
             {% endif %}
           </div>
         </div>
@@ -50,34 +59,111 @@
 </div>
 
 {% schema %}
-{
-  "name": "Custom City List",
-  "settings": [
-    { "type": "range", "id": "padding_top", "min": 0, "max": 40, "step": 0.5, "unit": "rem", "label": "Desktop Padding Top", "default": 4 },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 40, "step": 0.5, "unit": "rem", "label": "Desktop Padding Bottom", "default": 4 },
-    { "type": "range", "id": "padding_left", "min": 0, "max": 40, "step": 0.5, "unit": "rem", "label": "Padding Left", "default": 2 },
-    { "type": "range", "id": "padding_right", "min": 0, "max": 40, "step": 0.5, "unit": "rem", "label": "Padding Right", "default": 2 },
-    { "type": "range", "id": "mobile_padding_top", "min": 0, "max": 40, "step": 0.5, "unit": "rem", "label": "Mobile Padding Top", "default": 4 },
-    { "type": "range", "id": "mobile_padding_bottom", "min": 0, "max": 40, "step": 0.5, "unit": "rem", "label": "Mobile Padding Bottom", "default": 4 },
-    { "type": "color", "id": "background_color", "label": "Background Color", "default": "#ffffff" }
-  ],
-  "blocks": [
-    {
-      "type": "city",
-      "name": "City Item",
-      "settings": [
-        { "type": "image_picker", "id": "image", "label": "City Image" },
-        { "type": "text", "id": "title", "label": "City Title", "default": "City, State" },
-        { "type": "text", "id": "link_name", "label": "Link Name", "default": "Shop City" },
-        { "type": "url", "id": "link_url", "label": "Link URL" }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Custom City List",
-      "category": "Custom"
-    }
-  ]
-}
+  {
+    "name": "Custom City List",
+    "settings": [
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 40,
+        "step": 0.5,
+        "unit": "rem",
+        "label": "Desktop Padding Top",
+        "default": 4
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 40,
+        "step": 0.5,
+        "unit": "rem",
+        "label": "Desktop Padding Bottom",
+        "default": 4
+      },
+      {
+        "type": "range",
+        "id": "padding_left",
+        "min": 0,
+        "max": 40,
+        "step": 0.5,
+        "unit": "rem",
+        "label": "Padding Left",
+        "default": 2
+      },
+      {
+        "type": "range",
+        "id": "padding_right",
+        "min": 0,
+        "max": 40,
+        "step": 0.5,
+        "unit": "rem",
+        "label": "Padding Right",
+        "default": 2
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding_top",
+        "min": 0,
+        "max": 40,
+        "step": 0.5,
+        "unit": "rem",
+        "label": "Mobile Padding Top",
+        "default": 4
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding_bottom",
+        "min": 0,
+        "max": 40,
+        "step": 0.5,
+        "unit": "rem",
+        "label": "Mobile Padding Bottom",
+        "default": 4
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#ffffff"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "city",
+        "name": "City Item",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "City Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "City Title",
+            "default": "City, State"
+          },
+          {
+            "type": "text",
+            "id": "link_name",
+            "label": "Link Name",
+            "default": "Shop City"
+          },
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom City List",
+        "category": "Custom"
+      }
+    ]
+  }
 {% endschema %}
