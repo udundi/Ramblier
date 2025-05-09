@@ -1,0 +1,99 @@
+{% comment %}
+  Endless Scrolling Text Section
+  - Uses Slick carousel for infinite auto-scrolling
+  - Background color, border color (top/bottom), and vertical padding are editable
+  - Each text is a block, separated by a dash
+{% endcomment %}
+
+<section
+  class="ud-endless-scrolling-text-section"
+  style="background: {{ section.settings.bg_color }}; border-top: 2px solid {{ section.settings.border_top }}; border-bottom: 2px solid {{ section.settings.border_bottom }}; padding-top: {{ section.settings.pt }}px; padding-bottom: {{ section.settings.pb }}px;"
+>
+  <div class="slick-endless-{{ section.id }} tw-flex tw-items-center">
+    {% for block in section.blocks %}
+      <div class="tw-inline-block tw-px-4 tw-whitespace-nowrap tw-font-cursive tw-text-lg">
+        {{ block.settings.text }}
+      </div>
+      {% unless forloop.last %}
+        <span class="tw-inline-block tw-px-2">-</span>
+      {% endunless %}
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    $('.slick-endless-{{ section.id }}').slick({
+      speed: 4000,
+      autoplay: true,
+      autoplaySpeed: 0,
+      cssEase: 'linear',
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      infinite: true,
+      arrows: false,
+      dots: false,
+      variableWidth: true,
+      pauseOnHover: false,
+      pauseOnFocus: false,
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Endless Scrolling Text",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ecebe5"
+    },
+    {
+      "type": "color",
+      "id": "border_top",
+      "label": "Top Border Color",
+      "default": "#222"
+    },
+    {
+      "type": "color",
+      "id": "border_bottom",
+      "label": "Bottom Border Color",
+      "default": "#222"
+    },
+    {
+      "type": "number",
+      "id": "pt",
+      "label": "Padding Top (px)",
+      "default": 12
+    },
+    {
+      "type": "number",
+      "id": "pb",
+      "label": "Padding Bottom (px)",
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Text Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Endless Scrolling Text",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

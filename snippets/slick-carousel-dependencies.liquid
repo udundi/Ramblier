@@ -1,0 +1,20 @@
+{% comment %}
+  Slick Carousel Dependencies
+  - Include this snippet to load Slick Carousel resources
+  - Ensures all necessary dependencies are loaded only once
+  - Requires jQuery
+{% endcomment %}
+
+{%- unless slick_resources_loaded -%}
+  {% assign slick_resources_loaded = true %}
+  
+  <!-- jQuery (required by Slick) -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+  
+  <!-- Slick CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+  
+  <!-- Slick JS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" defer></script>
+{%- endunless -%}

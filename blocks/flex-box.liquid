@@ -2,6 +2,13 @@
   .block-{{ block.id }} {
     margin: 0 auto;
     display: flex;
+    {%  if block.settings.absolute_position == true %}
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+    {% endif %}
     background-color: {{ block.settings.background_color }};
     padding-top: {{ block.settings.padding_top }}rem;
     padding-bottom: {{ block.settings.padding_bottom }}rem;
@@ -251,6 +258,12 @@
         { "value": "scroll", "label": "Horizontal Scroll" }
       ],
       "default": "fit"
+    },
+    {
+      "type": "checkbox",
+      "id": "absolute_position",
+      "label": "Absolute Position",
+      "default": false
     }
   ],
   "blocks": [{ "type": "@theme" }],

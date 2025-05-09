@@ -23,13 +23,13 @@
           }}
         </picture>
       {% else %}
-        <div class="tw-border tw-border-black tw-size-full">
-          {{ 'product-1' | placeholder_svg_tag: 'tw-w-full tw-max-w-[450px] tw-mx-auto tw-object-cover' }}
+        <div class="tw-border tw-border-black tw-overflow-hidden tw-size-full">
+          {{ 'product-1' | placeholder_svg_tag: 'tw-w-full tw-mx-auto tw-object-cover tw-object' }}
         </div>
       {% endif %}
     </div>
   </a>
-  <div class="tw-flex tw-w-full tw-justify-between tw-gap-x-10 tw-gap-y-5 tw-items-start">
+  <div class="tw-flex tw-flex-col tw-w-full tw-justify-between tw-gap-x-10 tw-gap-y-5 tw-items-start">
     <div>
       <div class="tw-flex tw-flex-wrap tw-gap-3 tw-items-center">
         <a href="{{ product.url | default: "/" }}">
@@ -76,12 +76,6 @@
     >
       Add to Cart
     </button>
-    <div
-      class="tw-bg-black hover:tw-bg-offblack hover:tw-border-offblack tw-border-black tw-text-white tw-w-fit tw-flex tw-justify-center tw-border-2 tw-py-3 tw-px-10 tw-transition-button duration-200 ease-in-out tw-font-semibold tw-font-montserrat hover:tw-scale-[102%]"
-      v-if="addingToCart"
-    >
-      <i class="fal fa-spin fa-spinner"></i>
-    </div>
   </div>
 </div>
 
