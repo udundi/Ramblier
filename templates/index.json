@@ -213,7 +213,7 @@
             "image": "{{ metaobjects.location.chicago.location_image.value }}",
             "title": "{{ metaobjects.location.chicago.city.value }}, {{ metaobjects.location.chicago.state.value }}",
             "link_name": "Shop City",
-            "link_url": "shopify://collections/chicago"
+            "collection": "{{ metaobjects.location.chicago.collection.value }}"
           }
         },
         "city_ACXKVD": {
@@ -222,7 +222,8 @@
           "settings": {
             "image": "{{ metaobjects.location[\"los-angeles\"].location_image.value }}",
             "title": "{{ metaobjects.location[\"los-angeles\"].city.value }}, {{ metaobjects.location[\"los-angeles\"].state.value }}",
-            "link_name": "Shop City"
+            "link_name": "Shop City",
+            "collection": "{{ metaobjects.location[\"los-angeles\"].collection.value }}"
           }
         }
       },
