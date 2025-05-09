@@ -16,10 +16,10 @@
           "type": "carousel_item",
           "settings": {
             "cursive_word": "Venues",
-            "left_image": "shopify://shop_images/Rectangle_7.jpg",
+            "left_image": "shopify://shop_images/purchased-favorite-coffee.jpg",
             "left_button_text": "",
             "left_button_link": "",
-            "right_image": "shopify://shop_images/NOT.png",
+            "right_image": "shopify://shop_images/woman-shopping-for-clothes.jpg",
             "right_button_text": "",
             "right_button_link": ""
           }
@@ -28,10 +28,10 @@
           "type": "carousel_item",
           "settings": {
             "cursive_word": "Stores",
-            "left_image": "shopify://shop_images/NOT.png",
+            "left_image": "shopify://shop_images/welcome-to-my-business.jpg",
             "left_button_text": "",
             "left_button_link": "",
-            "right_image": "shopify://shop_images/Rectangle_7.jpg",
+            "right_image": "shopify://shop_images/man-browsing-at-a-guitar-shop.jpg",
             "right_button_text": "",
             "right_button_link": ""
           }
@@ -94,73 +94,6 @@
         "background_color": "#ffffff"
       }
     },
-    "rich_text": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
-    "ud_custom_city_list_rDqYax": {
-      "type": "ud-custom-city-list",
-      "blocks": {
-        "city_9i8DkK": {
-          "type": "city",
-          "settings": {
-            "image": "shopify://shop_images/NOT.png",
-            "title": "City, State",
-            "link_name": "Shop City",
-            "link_url": "shopify://collections/frontpage"
-          }
-        },
-        "city_jDnAzi": {
-          "type": "city",
-          "settings": {
-            "image": "shopify://shop_images/Rectangle_7.jpg",
-            "title": "City, State",
-            "link_name": "Shop City",
-            "link_url": "shopify://collections/pacific"
-          }
-        }
-      },
-      "block_order": [
-        "city_9i8DkK",
-        "city_jDnAzi"
-      ],
-      "name": "Custom City List",
-      "settings": {
-        "padding_top": 4,
-        "padding_bottom": 4,
-        "padding_left": 0,
-        "padding_right": 0,
-        "mobile_padding_top": 4,
-        "mobile_padding_bottom": 4,
-        "background_color": "#ffffff"
-      }
-    },
     "ud_endless_scrolling_text_UaY7Dh": {
       "type": "ud-endless-scrolling-text",
       "blocks": {
@@ -204,6 +137,36 @@
         "pb": 12
       }
     },
+    "rich_text": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Talk about your brand",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
     "ud_featured_grid_qtfKcd": {
       "type": "ud-featured-grid",
       "blocks": {
@@ -239,6 +202,43 @@
       ],
       "name": "Featured Grid",
       "settings": {}
+    },
+    "ud_custom_city_list_rDqYax": {
+      "type": "ud-custom-city-list",
+      "blocks": {
+        "city_9i8DkK": {
+          "type": "city",
+          "settings": {
+            "image": "shopify://shop_images/NOT.png",
+            "title": "City, State",
+            "link_name": "Shop City",
+            "link_url": "shopify://collections/frontpage"
+          }
+        },
+        "city_jDnAzi": {
+          "type": "city",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_7.jpg",
+            "title": "City, State",
+            "link_name": "Shop City",
+            "link_url": "shopify://collections/pacific"
+          }
+        }
+      },
+      "block_order": [
+        "city_9i8DkK",
+        "city_jDnAzi"
+      ],
+      "name": "Custom City List",
+      "settings": {
+        "padding_top": 4,
+        "padding_bottom": 4,
+        "padding_left": 0,
+        "padding_right": 0,
+        "mobile_padding_top": 4,
+        "mobile_padding_bottom": 4,
+        "background_color": "#ffffff"
+      }
     }
   },
   "order": [
