@@ -61,9 +61,71 @@
         "navigation_dropdown_YcDK7t": {
           "type": "_navigation-dropdown",
           "settings": {
-            "text": "Link"
+            "text": "Featured"
           },
-          "blocks": {}
+          "blocks": {
+            "flex_box_pBynpq": {
+              "type": "flex-box",
+              "name": "Flexbox",
+              "settings": {
+                "optional_link": "",
+                "padding_top": 0,
+                "padding_bottom": 0,
+                "mobile_padding_top": 0,
+                "mobile_padding_bottom": 0,
+                "padding_left": 0,
+                "padding_right": 0,
+                "background_color": "#ffffff",
+                "flex_direction": "row",
+                "tablet_flex_direction": "row",
+                "mobile_flex_direction": "row",
+                "x_gap": 4,
+                "y_gap": 4,
+                "justify_content": "center",
+                "align_items": "center",
+                "container_width": "full_width",
+                "content_overflow": "fit",
+                "absolute_position": false
+              },
+              "blocks": {
+                "basic_image_BW7UqM": {
+                  "type": "basic-image",
+                  "name": "Base Image",
+                  "settings": {
+                    "image": "shopify://shop_images/Rectangle_7.jpg",
+                    "aspect_ratio": "square",
+                    "mobile_aspect_ratio": "square",
+                    "rounded": "none",
+                    "max_width": 320,
+                    "mobile_max_width": 320,
+                    "border": 0,
+                    "border_color": "",
+                    "lazy_load": true,
+                    "alt_text": ""
+                  },
+                  "blocks": {}
+                },
+                "rich_text_cfaamE": {
+                  "type": "rich-text",
+                  "name": "Rich Text",
+                  "settings": {
+                    "text": "<p>Lorem ipsum dolor sit amet.</p>",
+                    "align": "center",
+                    "color": "#000000",
+                    "max_width": 600
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "basic_image_BW7UqM",
+                "rich_text_cfaamE"
+              ]
+            }
+          },
+          "block_order": [
+            "flex_box_pBynpq"
+          ]
         },
         "navigation_map_FtmjVn": {
           "type": "_navigation-map",
