@@ -16,6 +16,56 @@
         "padding_bottom": 36
       }
     },
+    "ud_endless_scrolling_text_QXQhEE": {
+      "type": "ud-endless-scrolling-text",
+      "blocks": {
+        "text_block_egzrgF": {
+          "type": "text_block",
+          "settings": {
+            "text": "{{ metaobjects.brand[\"fake-brand\"].name.value }}"
+          }
+        },
+        "text_block_bhMxpX": {
+          "type": "text_block",
+          "settings": {
+            "text": "{{ metaobjects.brand[\"fake-brand\"].name.value }}"
+          }
+        },
+        "text_block_8ACqwk": {
+          "type": "text_block",
+          "settings": {
+            "text": "{{ metaobjects.brand[\"fake-brand\"].name.value }}"
+          }
+        },
+        "text_block_ci6LVp": {
+          "type": "text_block",
+          "settings": {
+            "text": "{{ metaobjects.brand[\"fake-brand\"].name.value }}"
+          }
+        },
+        "text_block_Utfq8a": {
+          "type": "text_block",
+          "settings": {
+            "text": "{{ metaobjects.brand[\"fake-brand\"].name.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_egzrgF",
+        "text_block_bhMxpX",
+        "text_block_8ACqwk",
+        "text_block_ci6LVp",
+        "text_block_Utfq8a"
+      ],
+      "name": "Endless Scrolling Text",
+      "settings": {
+        "bg_color": "#ecebe5",
+        "border_top": "#222",
+        "border_bottom": "#222",
+        "pt": 12,
+        "pb": 12
+      }
+    },
     "ud_universal_flexbox_aAVbAU": {
       "type": "ud-universal-flexbox",
       "blocks": {
@@ -284,6 +334,7 @@
   },
   "order": [
     "main",
+    "ud_endless_scrolling_text_QXQhEE",
     "ud_universal_flexbox_aAVbAU",
     "ud_carousel_RK78W9"
   ]
