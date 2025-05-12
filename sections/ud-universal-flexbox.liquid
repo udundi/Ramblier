@@ -168,7 +168,7 @@
       "step": 0.5,
       "unit": "rem",
       "label": "Horizontal Gap Between Blocks",
-      "default": 4
+      "default": 2
     },
     {
       "type": "range",
@@ -178,7 +178,7 @@
       "step": 0.5,
       "unit": "rem",
       "label": "Vertical Gap Between Blocks",
-      "default": 4
+      "default": 2
     },
     {
       "type": "select",
@@ -238,6 +238,116 @@
   "presets": [
     {
       "name": "Base Flexbox"
+    },
+    {
+      "name": "Checkered Images",
+      "settings": {
+        "y_gap": 0
+      },
+      "blocks": [
+        {
+          "type": "image-text-pair",
+          "settings": {
+            "image_position": "left"
+          }, 
+          "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "text": "Lorem ipsum dolor sit amet",
+            "weight": "tw-font-bold",
+            "type": "header",
+            "align": "center"
+          }
+        },
+        {
+          "type": "rich-text",
+          "settings": {
+            "text": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>",
+            "align": "center"
+          }
+        },
+        {
+          "type": "button",
+          "settings": {
+            "text": "Get Started",
+            "url": "#",
+            "fullwidth": false,
+            "type": "outlinedBlack",
+            "align": "center"
+          }
+        }
+      ]
+        },
+        {
+          "type": "image-text-pair",
+          "settings": {
+            "image_position": "right"
+          },
+          "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "text": "Lorem ipsum dolor sit amet",
+            "type": "header",
+            "weight": "tw-font-bold",
+            "align": "center"
+          }
+        },
+        {
+          "type": "rich-text",
+          "settings": {
+            "text": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>",
+            "align": "center"
+          }
+        },
+        {
+          "type": "button",
+          "settings": {
+            "text": "Get Started",
+            "url": "#",
+            "fullwidth": false,
+            "type": "outlinedBlack",
+            "align": "center"
+          }
+        }
+      ]
+        },
+        {
+          "type": "image-text-pair",
+          "settings": {
+            "image_position": "left"
+          },
+          "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "text": "Lorem ipsum dolor sit amet",
+            "weight": "tw-font-bold",
+            "type": "header",
+            "align": "center"
+          }
+        },
+        {
+          "type": "rich-text",
+          "settings": {
+            "text": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>",
+            "align": "center"
+          }
+        },
+        {
+          "type": "button",
+          "settings": {
+            "text": "Get Started",
+            "url": "#",
+            "fullwidth": false,
+            "type": "outlinedBlack",
+            "align": "center"
+          }
+        }
+      ]
+        }
+      ]
     }
   ]
 }

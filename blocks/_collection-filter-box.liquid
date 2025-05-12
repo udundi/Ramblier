@@ -1,0 +1,73 @@
+<div class="block-{{ block.id }}">
+  <div class="tw-flex tw-border-b tw-border-black tw-justify-between tw-items-middle" @click="showFilter = !showFilter">
+    <div class="tw-my-auto">
+      {{ block.settings.title | default: 'Filter Section' }}
+    </div>
+    <div class="tw-font-bold tw-text-32 tw-font-poppins" v-if="!showFilter">+</div>
+    <div v-else class="tw-font-bold tw-text-32 tw-font-poppins">-</div>
+  </div>
+  <div v-if="showFilter" class="tw-pt-3">
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+<script>
+  new Vue({
+    el: '.block-{{ block.id }}',
+    delimiters: ['[[', ']]'],
+    mixins: [global],
+  
+    data() {
+      return {
+        showFilter: {{ block.settings.collapsed }},
+      };
+    },
+  
+    mounted() {
+      console.log('Cart Items Ref', this.cartItems);
+      console.log('Cart Items Data Ref', this.productData);
+      this.bus.$on('refreshCart', this.getItemsForCart());
+      this.bus.$on('addFreight', this.addFreight());
+      this.bus.$on('showCart', () => {
+        this.showCartSidebar = true;
+        setTimeout(() => {
+          this.getItemsForCart();
+          const cartSidebar = document.querySelector('#cartSidebar');
+          cartSidebar.showModal();
+          document.body.style.position = 'fixed';
+          document.body.style.top = `-${window.scrollY}px`;
+        }, 100);
+      });
+    },
+    methods: {},
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Collection Filter Box",
+    "settings": [
+      {
+        "type": "checkbox",
+        "label": "Default Collapsed?",
+        "id": "collapsed",
+        "default": true
+      },
+      {
+        "type": "text",
+        "label": "Title",
+        "id": "title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "_collection-filter"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection Filter Box"
+      }
+    ]
+  }
+{% endschema %}

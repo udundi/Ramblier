@@ -51,6 +51,7 @@ module.exports = {
       },
       transitionProperty: {
         button: 'background-color, transform, border-color, color',
+        size: 'width, height, max-width, max-height',
       },
       maxWidth: {
         'container-xl': 'min(87.5rem, 90%)',
@@ -67,10 +68,12 @@ module.exports = {
       },
       fontFamily: {
         montserrat: ['Montserrat'],
-        playfair: ['Playfair Display', 'serif'],
-        interstate: ['"Interstate"', 'sans-serif'],
-        cadet: ['Cadet', 'sans-serif'],
-        cadet_bold: ['Cadet Bold', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        noto: ['Noto Serif', 'serif'],
+        // playfair: ['Playfair Display', 'serif'],
+        // interstate: ['"Interstate"', 'sans-serif'],
+        // cadet: ['Cadet', 'sans-serif'],
+        // cadet_bold: ['Cadet Bold', 'sans-serif'],
       },
       aspectRatio: {
         '4/3': '4 / 3',

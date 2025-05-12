@@ -1,11 +1,10 @@
-{% comment %} 
-                  Custom City List Section 
-                  - Each block: image, title, link name, link url 
-                  - Section settings: padding (desktop/mobile), background color 
-                  - Tailwind for all classes 
-                  - On hover: show image, link, and borders 
-{% endcomment %}
-
+<!--
+  Custom City List Section
+  - Each block: image, title, link name, link url
+  - Section settings: padding (desktop/mobile), background color
+  - Tailwind for all classes
+  hover: show image, link, and borders
+-->
 {% style %}
   .section-{{ section.id }} {
     background-color: {{ section.settings.background_color }};
@@ -26,33 +25,32 @@
   <div class="tw-w-full tw-max-w-screen-xl tw-mx-auto">
     <div class="tw-flex tw-flex-col">
       {% for block in section.blocks %}
-        <div class="tw-grid tw-grid-cols-3 tw-items-center tw-cursor-pointer tw-group tw-border-y-2 tw-border-black/0 hover:tw-border-black/100 tw-transition-all">
-          <!-- Left: Image column -->
-          <div class="tw-justify-self-start tw-flex tw-items-stretch tw-w-40 tw-h-full">
-            {% if block.settings.image != blank %}
-              <div class="tw-p-4">
-                <img
-                  src="{{ block.settings.image | image_url: width: 400 }}"
-                  alt="{{ block.settings.title }}"
-                  class="tw-object-cover tw-w-40 tw-h-full tw-bg-gray-100 tw-opacity-0 group-hover:tw-opacity-100 tw-pointer-events-none group-hover:tw-pointer-events-auto  tw-duration-300 tw-aspect-square"
-                  loading="lazy">
-              </div>
-            {% endif %}
-          </div>
+        <a href="{{ block.settings.collection.link }}" class="tw-cursor-pointer tw-group tw-relative tw-h-40 tw-w-full tw-max-w-screen-2xl tw-mx-auto">
           <!-- Center: Title column -->
-          <div class="tw-justify-self-center tw-text-center tw-text-4xl tw-font-serif tw-font-normal">
+          <div class="tw-absolute tw-left-1/2 -tw-translate-x-1/2 tw-top-1/2 -tw-translate-y-1/2 tw-z-20 tw-text-64 tw-font-noto tw-text-center tw-text-4xl tw-font-normal">
             {{ block.settings.title }}
           </div>
           <!-- Right: Link column -->
-          <div class="tw-justify-self-end tw-text-left tw-pr-4 tw-flex tw-items-center">
+          <div class="tw-absolute tw-right-0 -tw-translate-y-1/2 tw-pr-4 tw-top-1/2 tw-justify-center tw-flex tw-items-center">
             {% if block.settings.collection != blank and block.settings.link_name != blank %}
-              <a
-                href="{{ block.settings.collection.url }}"
-                class="tw-font-semibold tw-tracking-wide tw-underline tw-underline-offset-4 tw-text-black tw-opacity-0 group-hover:tw-opacity-100 tw-pointer-events-none group-hover:tw-pointer-events-auto tw-transition-all tw-duration-300"
-                tabindex="-1">{{ block.settings.link_name }}</a>
+              <div class="tw-font-semibold tw-tracking-wide tw-underline tw-underline-offset-4 tw-text-black tw-opacity-0 group-hover:tw-opacity-100 tw-pointer-events-none group-hover:tw-pointer-events-auto tw-duration-300" tabindex="-1">{{ block.settings.link_name }}</div>
             {% endif %}
           </div>
-        </div>
+          <div class="tw-flex tw-justify-between tw-w-full tw-h-64 tw-max-h-24 group-hover:tw-max-h-56 tw-pointer-events-none tw-transition-size tw-duration-500 tw-border-y-2 tw-border-black/0 group-hover:tw-border-black/100 tw-max-w-screen-2xl tw-left-1/2 -tw-translate-x-1/2 tw-absolute tw-top-1/2 -tw-translate-y-1/2">
+            <!-- Left: Image column -->
+            <div class="tw-justify-self-start tw-flex tw-h-full tw-w-64">
+              {% if block.settings.image != blank %}
+                <div class="tw-p-4 tw-mx-auto">
+                  <img
+                    src="{{ block.settings.image | image_url: width: 400 }}"
+                    alt="{{ block.settings.title }}"
+                    class="tw-object-cover tw-transition-opacity tw-duration-300 tw-h-full tw-bg-gray-100 tw-opacity-0 group-hover:tw-opacity-100 tw-pointer-events-none group-hover:tw-pointer-events-auto tw-aspect-square"
+                    loading="lazy">
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </a>
       {% endfor %}
     </div>
   </div>

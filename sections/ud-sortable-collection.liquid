@@ -1,0 +1,141 @@
+<div class="tw-w-full tw-flex tw-justify-center tw-items-center tw-py-4 section-{{ section.id }}-props">
+  <div class="tw-flex md:tw-flex-row tw-flex-col tw-justify-between tw-w-full tw-max-w-screen-2xl tw-gap-4 tw-gap-x-10">
+    <!-- Left Side -->
+    <div class="tw-h-fit md:tw-sticky tw-relative tw-top-8 tw-w-1/4 tw-flex tw-flex-col max-md:tw-items-center max-md:tw-justify-center lg:tw-justify-center tw-gap-2 tw-bg-grey-light tw-py-4 tw-px-8 tw-mx-4">
+      <!-- Filter Header -->
+      <h3 class="tw-w-full tw-text-center tw-text-24 tw-font-bold tw-p-2">Filter Designs</h3>
+      <!-- Filter Container -->
+      <div>
+        {% content_for 'blocks' %}
+      </div>
+    </div>
+    <!-- Right Side -->
+    <div class="tw-w-3/4 lg:tw-pl-0 max-md:tw-h-1/2 tw-flex tw-flex-col tw-justify-center tw-gap-4">
+      <div class="tw-grid md:tw-grid-cols-2 tw-grid-cols-1 lg:tw-gap-14 tw-gap-6 md:tw-gap-10 tw-px-5 tw-max-w-7xl tw-mx-auto">
+        {% if collection.products_count > 0 %}
+          {% if section.settings.paginated %}
+            {% paginate collection.products by 6 -%}
+              {% for product in collection.products -%}
+                {% if product.metafields.custom.width.value or product.metafields.custom.height.value %}
+                  {% assign product_dimensions = product.metafields.custom.width.value
+ | append: 'ft x '
+ | append: product.metafields.custom.height.value
+ | append: 'ft'
+                  %}
+                {% else %}
+                  {% assign product_dimensions = '' %}
+                {% endif %}
+                {% render 'ud-product-card'
+                  ,
+ product: product
+                  ,
+ button_style: section.settings.button_style
+                  ,
+ product_reviews: 5
+                  ,
+ product_dimensions: product_dimensions
+                  ,
+ class: 'slide glide__slide'
+                %}
+              {%- endfor %}
+              <div class="md:tw-col-span-2 tw-flex tw-justify-center tw-gap-4 tw-font-bold ud-pagination">
+                {{- paginate | default_pagination }}
+              </div>
+            {%- endpaginate %}
+          {% else %}
+            {% for product in collection.products -%}
+              {% if product.metafields.custom.width.value or product.metafields.custom.height.value %}
+                {% assign product_dimensions = product.metafields.custom.width.value
+ | append: 'ft x '
+ | append: product.metafields.custom.height.value
+ | append: 'ft'
+                %}
+              {% else %}
+                {% assign product_dimensions = '' %}
+              {% endif %}
+              {% render 'ud-product-card'
+                ,
+ product: product
+                ,
+ button_style: section.settings.button_style
+                ,
+ product_reviews: 5
+                ,
+ product_dimensions: product_dimensions
+                ,
+ class: 'slide glide__slide'
+              %}
+            {%- endfor %}
+            <div class="md:tw-col-span-2 tw-flex tw-justify-center tw-gap-4 tw-font-bold ud-pagination">
+              {{- paginate | default_pagination }}
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Sortable Collection",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Padding Desktop",
+        "min": 0,
+        "max": 5,
+        "step": 1,
+        "default": 2,
+        "unit": "rem"
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Padding Desktop",
+        "min": 0,
+        "max": 5,
+        "step": 1,
+        "default": 2,
+        "unit": "rem"
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding_top",
+        "label": "Padding Mobile",
+        "min": 0,
+        "max": 5,
+        "step": 1,
+        "default": 2,
+        "unit": "rem"
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding_bottom",
+        "label": "Padding Mobile",
+        "min": 0,
+        "max": 5,
+        "step": 1,
+        "default": 2,
+        "unit": "rem"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "_collection-filter-box"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Sortable Collection",
+        "blocks": [
+          {
+            "type": "_collection-filter-box"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

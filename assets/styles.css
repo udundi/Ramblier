@@ -4,6 +4,9 @@
 
 @layer components {
   a {
-    @apply tw-text-black hover:tw-text-brand-navy tw-font-montserrat;
+    @apply tw-text-black hover:tw-text-brand-navy tw-font-poppins;
+  }
+  div {
+    @apply tw-font-poppins;
   }
 }
