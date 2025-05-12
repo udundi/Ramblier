@@ -6,7 +6,15 @@
   a {
     @apply tw-text-black hover:tw-text-brand-navy tw-font-poppins;
   }
-  div {
-    @apply tw-font-poppins;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tw-font-noto;
+  }
+  p {
+    @apply tw-font-poppins tw-font-normal;
   }
 }
