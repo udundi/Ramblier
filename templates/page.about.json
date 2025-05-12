@@ -224,7 +224,7 @@
           "settings": {
             "collection": "chicago",
             "custom_title": "",
-            "button_style": "solid"
+            "button_style": "outline"
           }
         },
         "collection_X7mqDP": {
