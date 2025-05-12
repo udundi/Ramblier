@@ -218,7 +218,7 @@
         "flex_direction": "column",
         "tablet_flex_direction": "column",
         "mobile_flex_direction": "column",
-        "x_gap": 2,
+        "x_gap": 0,
         "y_gap": 0,
         "justify_content": "center",
         "align_items": "center",
