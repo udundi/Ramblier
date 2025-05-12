@@ -1,0 +1,235 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "form": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "ud_universal_flexbox_aAVbAU": {
+      "type": "ud-universal-flexbox",
+      "blocks": {
+        "image_text_pair_UicWrj": {
+          "type": "image-text-pair",
+          "settings": {
+            "image": "shopify://shop_images/5f457d0ec223bd64da820d9ef268d368be88280a.png",
+            "align": "center",
+            "background_color": "#ffffff",
+            "row_shrink": false,
+            "max_width": 600,
+            "image_position": "left"
+          },
+          "blocks": {
+            "text_RjabfX": {
+              "type": "text",
+              "settings": {
+                "text": "Lorem ipsum dolor sit amet",
+                "type": "header",
+                "align": "center",
+                "size": "medium",
+                "weight": "tw-font-bold",
+                "max_width": 600,
+                "color": "#000000",
+                "gap-border": false
+              },
+              "blocks": {}
+            },
+            "rich_text_M7jJbt": {
+              "type": "rich-text",
+              "settings": {
+                "text": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>",
+                "align": "center",
+                "color": "#000000",
+                "max_width": 600
+              },
+              "blocks": {}
+            },
+            "button_JtE93c": {
+              "type": "button",
+              "settings": {
+                "text": "GET STARTED",
+                "url": "#",
+                "type": "outlinedBlack",
+                "align": "center",
+                "fullwidth": false,
+                "margin-left": 0,
+                "margin-right": 0,
+                "margin-top": 0,
+                "margin-bottom": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_RjabfX",
+            "rich_text_M7jJbt",
+            "button_JtE93c"
+          ]
+        },
+        "image_text_pair_cYdYbd": {
+          "type": "image-text-pair",
+          "settings": {
+            "image": "shopify://shop_images/7a97ec309f22d1fdf47a56da1a0e8c2d4e1987fa.jpg",
+            "align": "center",
+            "background_color": "#ffffff",
+            "row_shrink": false,
+            "max_width": 600,
+            "image_position": "right"
+          },
+          "blocks": {
+            "text_hWrbc9": {
+              "type": "text",
+              "settings": {
+                "text": "Lorem ipsum dolor sit amet",
+                "type": "header",
+                "align": "center",
+                "size": "medium",
+                "weight": "tw-font-bold",
+                "max_width": 600,
+                "color": "#000000",
+                "gap-border": false
+              },
+              "blocks": {}
+            },
+            "rich_text_h7mfqe": {
+              "type": "rich-text",
+              "settings": {
+                "text": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>",
+                "align": "center",
+                "color": "#000000",
+                "max_width": 600
+              },
+              "blocks": {}
+            },
+            "button_p7Gm43": {
+              "type": "button",
+              "settings": {
+                "text": "GET STARTED",
+                "url": "#",
+                "type": "outlinedBlack",
+                "align": "center",
+                "fullwidth": false,
+                "margin-left": 0,
+                "margin-right": 0,
+                "margin-top": 0,
+                "margin-bottom": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_hWrbc9",
+            "rich_text_h7mfqe",
+            "button_p7Gm43"
+          ]
+        },
+        "image_text_pair_QdqHRf": {
+          "type": "image-text-pair",
+          "settings": {
+            "image": "shopify://shop_images/41a1ee6377df5186c56758e78d095ea4908abac7.png",
+            "align": "start",
+            "background_color": "#ffffff",
+            "row_shrink": false,
+            "max_width": 600,
+            "image_position": "left"
+          },
+          "blocks": {
+            "text_QQyzdj": {
+              "type": "text",
+              "settings": {
+                "text": "Lorem ipsum dolor sit amet",
+                "type": "header",
+                "align": "center",
+                "size": "medium",
+                "weight": "tw-font-bold",
+                "max_width": 600,
+                "color": "#000000",
+                "gap-border": false
+              },
+              "blocks": {}
+            },
+            "rich_text_7x4Bkk": {
+              "type": "rich-text",
+              "settings": {
+                "text": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>",
+                "align": "center",
+                "color": "#000000",
+                "max_width": 600
+              },
+              "blocks": {}
+            },
+            "button_qPencE": {
+              "type": "button",
+              "settings": {
+                "text": "GET STARTED",
+                "url": "#",
+                "type": "outlinedBlack",
+                "align": "center",
+                "fullwidth": false,
+                "margin-left": 0,
+                "margin-right": 0,
+                "margin-top": 0,
+                "margin-bottom": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_QQyzdj",
+            "rich_text_7x4Bkk",
+            "button_qPencE"
+          ]
+        }
+      },
+      "block_order": [
+        "image_text_pair_UicWrj",
+        "image_text_pair_cYdYbd",
+        "image_text_pair_QdqHRf"
+      ],
+      "name": "Checkered Images",
+      "settings": {
+        "padding_top": 4,
+        "padding_bottom": 4,
+        "mobile_padding_top": 4,
+        "mobile_padding_bottom": 4,
+        "padding_left": 2,
+        "padding_right": 2,
+        "background_color": "#ffffff",
+        "flex_direction": "column",
+        "tablet_flex_direction": "column",
+        "mobile_flex_direction": "column",
+        "x_gap": 2,
+        "y_gap": 0,
+        "justify_content": "center",
+        "align_items": "center",
+        "container_width": "full_width",
+        "content_overflow": "fit"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "form",
+    "ud_universal_flexbox_aAVbAU"
+  ]
+}
