@@ -215,10 +215,76 @@
         "container_width": "full_width",
         "content_overflow": "fit"
       }
+    },
+    "ud_carousel_RK78W9": {
+      "type": "ud-carousel",
+      "blocks": {
+        "collection_Ge68yH": {
+          "type": "collection",
+          "settings": {
+            "collection": "chicago",
+            "custom_title": "",
+            "button_style": "solid"
+          }
+        },
+        "collection_X7mqDP": {
+          "type": "collection",
+          "settings": {
+            "collection": "los-angeles",
+            "custom_title": "",
+            "button_style": "solid"
+          }
+        },
+        "collection_abVUbV": {
+          "type": "collection",
+          "settings": {
+            "collection": "midwest",
+            "custom_title": "",
+            "button_style": "outline"
+          }
+        },
+        "collection_ARjHGe": {
+          "type": "collection",
+          "settings": {
+            "collection": "pacific",
+            "custom_title": "",
+            "button_style": "solid"
+          }
+        }
+      },
+      "block_order": [
+        "collection_Ge68yH",
+        "collection_X7mqDP",
+        "collection_abVUbV",
+        "collection_ARjHGe"
+      ],
+      "name": "Collection Carousel",
+      "settings": {
+        "heading": "Best sellers from...",
+        "products_per_collection": 10,
+        "slides_per_view_desktop": 4,
+        "slides_per_view_tablet": 2,
+        "slides_per_view_mobile": 1,
+        "show_arrows": true,
+        "show_dots": false,
+        "autoplay": false,
+        "autoplay_speed": 3000,
+        "pill_active_color": "#000000",
+        "nav_button_color": "#000000",
+        "button_style": "solid",
+        "padding_top": 4,
+        "padding_bottom": 4,
+        "mobile_padding_top": 4,
+        "mobile_padding_bottom": 4,
+        "padding_left": 2,
+        "padding_right": 2,
+        "background_color": "#ffffff"
+      }
     }
   },
   "order": [
     "main",
-    "ud_universal_flexbox_aAVbAU"
+    "ud_universal_flexbox_aAVbAU",
+    "ud_carousel_RK78W9"
   ]
 }
