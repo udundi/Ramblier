@@ -1068,12 +1068,36 @@ p {
   --tw-bg-opacity: 0.4;
 }
 
+.tw-bg-opacity-10 {
+  --tw-bg-opacity: 0.1;
+}
+
+.tw-bg-opacity-90 {
+  --tw-bg-opacity: 0.9;
+}
+
 .tw-bg-cover {
   background-size: cover;
 }
 
+.tw-bg-fixed {
+  background-attachment: fixed;
+}
+
+.tw-bg-scroll {
+  background-attachment: scroll;
+}
+
 .tw-bg-center {
   background-position: center;
+}
+
+.tw-bg-top {
+  background-position: top;
+}
+
+.tw-bg-bottom {
+  background-position: bottom;
 }
 
 .tw-fill-black {
@@ -1217,10 +1241,6 @@ p {
 
 .tw-align-middle {
   vertical-align: middle;
-}
-
-.\!tw-font-noto {
-  font-family: Noto Serif, serif !important;
 }
 
 .tw-font-noto {

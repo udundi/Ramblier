@@ -56,13 +56,16 @@
   }
 {% endstyle %}
 
-<div class="section-{{ section.id }} tw-relative">
+<div {% if section.settings.background_image != blank %} style="background-image: url('{{ section.settings.background_image | image_url: width: 2000 }}');" {% endif %} class="section-{{ section.id }} tw-relative tw-bg-top tw-bg-fixed">
+    
   {% content_for 'blocks' %}
 </div>
 
 {% schema %}
 {
   "name": "Flexbox",
+  "tag": "section",
+  "class": "tw-bg",
   "settings": [
     {
       "type": "range",
@@ -129,6 +132,12 @@
       "id": "background_color",
       "label": "Background Color",
       "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image",
+      "info": "Use this instead of a color for the background. Get rid of the image to use the color again."
     },
     {
       "type": "select",
