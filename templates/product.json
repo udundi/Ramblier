@@ -365,6 +365,62 @@
         "content_overflow": "fit"
       }
     },
+    "ud_carousel_ByDQ9j": {
+      "type": "ud-carousel",
+      "blocks": {
+        "collection_qRjaKD": {
+          "type": "collection",
+          "settings": {
+            "collection": "chicago",
+            "custom_title": "",
+            "button_style": "solid"
+          }
+        },
+        "collection_bj379Y": {
+          "type": "collection",
+          "settings": {
+            "collection": "fake-brand",
+            "custom_title": "",
+            "button_style": "solid"
+          }
+        },
+        "collection_ADAFwt": {
+          "type": "collection",
+          "settings": {
+            "collection": "midwest",
+            "custom_title": "",
+            "button_style": "solid"
+          }
+        }
+      },
+      "block_order": [
+        "collection_qRjaKD",
+        "collection_bj379Y",
+        "collection_ADAFwt"
+      ],
+      "name": "Collection Carousel",
+      "settings": {
+        "heading": "Best sellers from...",
+        "products_per_collection": 10,
+        "slides_per_view_desktop": 4,
+        "slides_per_view_tablet": 2,
+        "slides_per_view_mobile": 1,
+        "show_arrows": true,
+        "show_dots": false,
+        "autoplay": false,
+        "autoplay_speed": 3000,
+        "pill_active_color": "#000000",
+        "nav_button_color": "#000000",
+        "button_style": "solid",
+        "padding_top": 4,
+        "padding_bottom": 4,
+        "mobile_padding_top": 4,
+        "mobile_padding_bottom": 4,
+        "padding_left": 2,
+        "padding_right": 2,
+        "background_color": "#ffffff"
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -509,6 +565,7 @@
   "order": [
     "ud_product_details_8AHX9n",
     "ud_universal_flexbox_bz9QXc",
+    "ud_carousel_ByDQ9j",
     "main",
     "related-products"
   ]
