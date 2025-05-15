@@ -146,9 +146,9 @@
               , size: 'medium'
               , color: 'black' %}
             <select class="tw-w-2/3 tw-border tw-p-4">
-              <option>Small</option>
-              <option>medium</option>
-              <option>Large</option>
+            {% for value in option.values %}
+              <option>{{value}}</option>
+            {% endfor %}
             </select>
           </div>
             {% endfor %}
