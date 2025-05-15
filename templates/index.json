@@ -210,7 +210,7 @@
           "name": "Default Button",
           "settings": {
             "text": "Our Story",
-            "url": "#",
+            "url": "shopify://pages/contact",
             "type": "outlinedBlack",
             "align": "center",
             "fullwidth": false,
