@@ -115,13 +115,7 @@
             "text": "som"
           }
         },
-        "text_block_PpAQ3t": {
-          "type": "text_block",
-          "settings": {
-            "text": "lorem ipsum itorae tirum itsu shitzy husky dog"
-          }
-        },
-        "text_block_Hfr46c": {
+        "text_block_g9TbRU": {
           "type": "text_block",
           "settings": {
             "text": "Smooth"
@@ -139,10 +133,22 @@
             "text": "som"
           }
         },
-        "text_block_qiTXTW": {
+        "text_block_Hfr46c": {
           "type": "text_block",
           "settings": {
-            "text": "lorem ipsum itorae tirum itsu shitzy husky dog"
+            "text": "Smooth"
+          }
+        },
+        "text_block_M98bzW": {
+          "type": "text_block",
+          "settings": {
+            "text": "Cool"
+          }
+        },
+        "text_block_ppADEH": {
+          "type": "text_block",
+          "settings": {
+            "text": "som"
           }
         }
       },
@@ -150,11 +156,12 @@
         "text_block_G6ENEi",
         "text_block_NbPQYi",
         "text_block_xNxtDL",
-        "text_block_PpAQ3t",
-        "text_block_Hfr46c",
+        "text_block_g9TbRU",
         "text_block_R4PizA",
         "text_block_qW4trT",
-        "text_block_qiTXTW"
+        "text_block_Hfr46c",
+        "text_block_M98bzW",
+        "text_block_ppADEH"
       ],
       "name": "Endless Scrolling Text",
       "settings": {
