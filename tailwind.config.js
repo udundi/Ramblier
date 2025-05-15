@@ -17,6 +17,7 @@ module.exports = {
         navy: '#0F214D',
         forest: '#283f22',
         Beige: '#edeae4',
+        gray: '909090',
       },
     },
     fontSize: {

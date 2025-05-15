@@ -1,75 +1,41 @@
 {% assign product_id = section.id | append: '-' | append: product.handle | append: '-atc' %}
 {% assign product_atc_id = product_id | append: '-atc' %}
 
-<div id="{{ product_id }}" class="{{ class }}">
-  <a href="{{ product.url | default: "/" }}">
-    <div class="tw-w-full {% if video_aspect == true %} tw-aspect-video tw-border tw-rounded-lg tw- {% else %} xl:tw-h-[500px] ld:tw-h-[420px] md:tw-h-96 tw-h-64 {% endif %} md:tw-mb-3 tw-mb-2">
+<a
+  href="{{ product.url | default: "/" }}"
+  id="{{ product_id }}"
+  class="{{ class }}">
+  <div>
+    <div class="tw-w-full {% if video_aspect == true %} tw-aspect-video tw-border {% else %} xl:tw-h-[500px] ld:tw-h-[420px] md:tw-h-96 tw-h-64 {% endif %} md:tw-mb-3 tw-mb-2">
       {% if product.featured_image != blank %}
-        <picture>
-          <source media="(max-width: 800px)" srcset="
-              {{ product.image | image_url: width: 400 }} 1x,
-              {{ product.image | image_url: width: 800 }} 2x,
-            ">
-          {{ product.featured_image
- | image_url: width: 800
- | image_tag:
- widths: '400, 800',
- sizes: '(min-width: 1000px) 760px, (min-width: 800px) calc(100vw - 380px), (min-width: 400px) 298px, 78.75vw',
- class: 'tw-size-full tw-object-cover tw-rounded-lg'
-          }}
-        </picture>
+        <div>
+          {{ product.featured_image | image_url: width: 2000 | image_tag: class: 'tw-w-full tw-h-full tw-object-cover ' }}
+        </div>
       {% else %}
-        <div class="tw-border tw-border-black tw-overflow-hidden tw-size-full">
+        <div class=" tw-overflow-hidden tw-size-full">
           {{ 'product-1' | placeholder_svg_tag: 'tw-w-full tw-mx-auto tw-object-cover tw-object' }}
         </div>
       {% endif %}
     </div>
-  </a>
-  <div class="tw-flex tw-flex-col tw-w-full tw-justify-between tw-gap-x-10 tw-gap-y-5 tw-items-start">
-    <div>
-      <div class="tw-flex tw-flex-wrap tw-gap-3 tw-items-center">
-        <a href="{{ product.url | default: "/" }}">
-          <h3 class="tw-font-bold tw-text-black">
-            {{ product.title | default: 'Product title' }}
-          </h3>
-        </a>
-        {% if product_dimensions != blank %}
-          <p class="tw-opacity-75 md:tw-text-14 tw-text-12">{{ product_dimensions }}</p>
-        {% endif %}
+  </div>
+  <div class="tw-flex tw-flex-col tw-w-full tw-items-start">
+    <div class="tw-flex tw-gap-3 tw-items-center tw-w-full tw-justify-between">
+      <div>
+        <h3 class="tw-text-black tw-text-14 tw-font-poppins">
+          {{ product.title | default: 'Product title' }}
+        </h3>
       </div>
-
-      {% if shop.metafields.loox.global_stats %}
-        {% assign looxstats = shop.metafields.loox.global_stats | split: ',' %}
-        {% assign reviews_count = looxstats[0] | round %}
-
-        <a href="/pages/reviews" class="tw-flex tw-flex-wrap md:tw-gap-3 tw-gap-2 tw-items-center">
-          <div
-            role="img"
-            aria-label="{{ reviews_count }} star rating"
-            class="tw-flex md:tw-gap-1 tw-gap-0 tw-items-center">
-            {% for star in (1..reviews_count) %}
-              {% render 'icon-star'
-                , class: 'md:tw-w-4 tw-w-3' %}
-            {% endfor %}
-          </div>
-          <p class="md:tw-text-14 tw-text-nowrap tw-text-12">(See Reviews)</p>
-        </a>
-      {% endif %}
-
-      <p class="md:tw-text-14 tw-text-12" aria-label="Product price is {{ product.price | money | default: '$494.95' }}">
+      <p class="tw-text-black tw-text-14" aria-label="Product price is {{ product.price | money | default: '$494.95' }}">
         {{ product.price | money | default: '$494.95' }}
       </p>
     </div>
+    <p class="tw-text-12 tw-italic tw-text-brand-gray">
+      {{ product.metafields.custom.product_brand.value.name }}
+    </p>
 
-    <button
-      type="submit"
-      v-if="!addingToCart"
-      @click="addToCart()"
-      class="tw-bg-black tw-pointer-events-auto hover:tw-bg-offblack hover:tw-border-offblack tw-border-black tw-text-white tw-w-fit tw-flex tw-justify-center tw-border-2 tw-py-2 tw-px-10 tw-transition-button duration-200 ease-in-out tw-font-semibold tw-font-poppins hover:tw-scale-[102%]">
-      Add to Cart
-    </button>
+
   </div>
-</div>
+</a>
 
 <script>
   new Vue({
