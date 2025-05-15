@@ -13,7 +13,7 @@
       padding-bottom: {{ section.settings.mobile_padding_bottom }}rem;
     }
   }
-  
+
   /* Collection Carousel Pill Navigation Styles */
   .section-{{ section.id }} .tw-collection-pills {
     display: flex;
@@ -22,8 +22,9 @@
     flex-wrap: wrap;
     margin-bottom: 2rem;
   }
-  
-  .section-{{ section.id }} .tw-collection-pill {
+
+  .section-{{ section.id }}
+  .tw-collection-pill {
     padding: 0.5rem 1.5rem;
     border-radius: 9999px;
     cursor: pointer;
@@ -31,59 +32,68 @@
     border: 1px solid #e2e8f0;
     background-color: #ffffff;
   }
-  
-  .section-{{ section.id }} .tw-collection-pill.tw-active {
+
+  .section-{{ section.id }}
+  .tw-collection-pill.tw-active {
     background-color: {{ section.settings.pill_active_color }};
     color: white;
   }
-  
+
   /* Slick Carousel Styles */
   .section-{{ section.id }} .tw-carousel-container {
     width: 100%;
     position: relative;
   }
-  
-  .section-{{ section.id }} .tw-collection-carousel {
+
+  .section-{{ section.id }}
+  .tw-collection-carousel {
     display: none;
     width: 100%;
   }
-  
-  .section-{{ section.id }} .tw-collection-carousel.tw-active {
+
+  .section-{{ section.id }}
+  .tw-collection-carousel.tw-active {
     display: block;
   }
-  
-  .section-{{ section.id }} .slick-slide {
+
+  .section-{{ section.id }}
+  .slick-slide {
     padding: 0 10px;
   }
-  
-  .section-{{ section.id }} .slick-prev,
-  .section-{{ section.id }} .slick-next {
+
+  .section-{{ section.id }}
+  .slick-prev
+  , .section-{{ section.id }}
+  .slick-next {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     background-color: {{ section.settings.nav_button_color }};
     z-index: 10;
   }
-  
-  .section-{{ section.id }} .slick-prev:before,
-  .section-{{ section.id }} .slick-next:before {
+
+  .section-{{ section.id }}.slick-prev:before,
+  .section-{{ section.id }}.slick-next:before {
     color: white;
   }
-  
-  .section-{{ section.id }} .slick-prev {
+
+  .section-{{ section.id }}
+  .slick-prev {
     left: -20px;
   }
-  
-  .section-{{ section.id }} .slick-next {
+
+  .section-{{ section.id }}
+  .slick-next {
     right: -20px;
   }
-  
+
   @media screen and (max-width: 749px) {
     .section-{{ section.id }} .slick-prev {
       left: -10px;
     }
-    
-    .section-{{ section.id }} .slick-next {
+
+    .section-{{ section.id }}
+    .slick-next {
       right: -10px;
     }
   }
@@ -93,16 +103,15 @@
   <!-- Collection Carousel with Pills -->
   <div class="tw-w-full tw-flex tw-flex-col tw-max-w-screen-xl tw-mx-auto">
     <h2 class="tw-text-center tw-text-3xl tw-font-bold tw-mb-6">{{ section.settings.heading }}</h2>
-    
+
     <!-- Collection Pills Navigation -->
     <div class="tw-collection-pills">
       {% for block in section.blocks %}
         {% if block.settings.collection != blank %}
-          <button 
-            class="tw-collection-pill {% if forloop.first %}tw-active{% endif %}" 
+          <button
+            class="tw-collection-pill {% if forloop.first %}tw-active{% endif %}"
             data-block-index="{{ forloop.index0 }}"
-            data-section-id="{{ section.id }}"
-          >
+            data-section-id="{{ section.id }}">
             {% if block.settings.custom_title != blank %}
               {{ block.settings.custom_title }}
             {% else %}
@@ -112,7 +121,7 @@
         {% endif %}
       {% endfor %}
     </div>
-    
+
     <!-- Collection Carousels -->
     <div class="tw-carousel-container">
       {% for block in section.blocks %}
@@ -121,10 +130,10 @@
             {% for product in block.settings.collection.products limit: section.settings.products_per_collection %}
               <div class="tw-carousel-item">
                 {% render 'ud-product-card',
-                  product: product,
-                  button_style: block.settings.button_style | default: section.settings.button_style,
-                  product_reviews: 5,
-                  video_aspect: true
+ product: product,
+ button_style: block.settings.button_style | default: section.settings.button_style,
+ product_reviews: 5,
+ video_aspect: true
                 %}
               </div>
             {% endfor %}
@@ -137,7 +146,7 @@
 
 <script>
   // Wait for both DOM and Slick to be ready
-window.addEventListener('load', function() {
+  window.addEventListener('load', function() {
     // Initialize slick for each collection carousel
     {% for block in section.blocks %}
       {% if block.settings.collection != blank %}
@@ -198,229 +207,229 @@ window.addEventListener('load', function() {
 </script>
 
 {% schema %}
-{
-  "name": "Collection Carousel",
-  "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Best sellers from..."
-    },
-    {
-      "type": "header",
-      "content": "Carousel Settings"
-    },
-    {
-      "type": "range",
-      "id": "products_per_collection",
-      "min": 4,
-      "max": 20,
-      "step": 1,
-      "label": "Maximum Products Per Collection",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "slides_per_view_desktop",
-      "min": 1,
-      "max": 6,
-      "step": 1,
-      "label": "Slides Per View (Desktop)",
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "slides_per_view_tablet",
-      "min": 1,
-      "max": 4,
-      "step": 1,
-      "label": "Slides Per View (Tablet)",
-      "default": 2
-    },
-    {
-      "type": "range",
-      "id": "slides_per_view_mobile",
-      "min": 1,
-      "max": 3,
-      "step": 1,
-      "label": "Slides Per View (Mobile)",
-      "default": 1
-    },
-    {
-      "type": "checkbox",
-      "id": "show_arrows",
-      "label": "Show Navigation Arrows",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_dots",
-      "label": "Show Navigation Dots",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "autoplay",
-      "label": "Enable Autoplay",
-      "default": false
-    },
-    {
-      "type": "range",
-      "id": "autoplay_speed",
-      "min": 2000,
-      "max": 8000,
-      "step": 500,
-      "label": "Autoplay Speed (ms)",
-      "default": 3000
-    },
-    {
-      "type": "color",
-      "id": "pill_active_color",
-      "label": "Pill Active Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "nav_button_color",
-      "label": "Navigation Button Color",
-      "default": "#000000"
-    },
-    {
-      "type": "select",
-      "id": "button_style",
-      "options": [
-        {
-          "value": "solid",
-          "label": "Solid"
-        },
-        {
-          "value": "outline",
-          "label": "Outline"
-        }
-      ],
-      "label": "Product Button Style",
-      "default": "solid"
-    },
-    {
-      "type": "header",
-      "content": "Section Layout Settings"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 40,
-      "step": 0.5,
-      "unit": "rem",
-      "label": "Desktop Padding Top",
-      "default": 4
-    },
-    {
-      "type": "range",
-      "min": 0,
-      "max": 40,
-      "step": 0.5,
-      "unit": "rem",
-      "id": "padding_bottom",
-      "label": "Desktop Padding Bottom",
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "mobile_padding_top",
-      "min": 0,
-      "max": 40,
-      "step": 0.5,
-      "unit": "rem",
-      "label": "Mobile Padding Top",
-      "default": 4
-    },
-    {
-      "type": "range",
-      "min": 0,
-      "max": 40,
-      "step": 0.5,
-      "unit": "rem",
-      "id": "mobile_padding_bottom",
-      "label": "Mobile Padding Bottom",
-      "default": 4
-    },
-    {
-      "type": "range",
-      "min": 0,
-      "max": 40,
-      "step": 0.5,
-      "unit": "rem",
-      "id": "padding_left",
-      "label": "Padding Left",
-      "default": 2
-    },
-    {
-      "type": "range",
-      "min": 0,
-      "max": 40,
-      "step": 0.5,
-      "unit": "rem",
-      "id": "padding_right",
-      "label": "Padding Right",
-      "default": 2
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#ffffff"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "collection",
-      "name": "Collection",
-      "settings": [
-        {
-          "type": "collection",
-          "id": "collection",
-          "label": "Collection"
-        },
-        {
-          "type": "text",
-          "id": "custom_title",
-          "label": "Custom Collection Title",
-          "info": "Leave blank to use collection's title"
-        },
-        {
-          "type": "select",
-          "id": "button_style",
-          "options": [
-            {
-              "value": "solid",
-              "label": "Solid"
-            },
-            {
-              "value": "outline",
-              "label": "Outline"
-            }
-          ],
-          "label": "Product Button Style",
-          "info": "Overrides the section's default button style"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Collection Carousel",
-      "category": "Collection",
-      "blocks": [
-        {
-          "type": "collection"
-        },
-        {
-          "type": "collection"
-        }
-      ]
-    }
-  ]
-}
+  {
+    "name": "Collection Carousel",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Best sellers from..."
+      },
+      {
+        "type": "header",
+        "content": "Carousel Settings"
+      },
+      {
+        "type": "range",
+        "id": "products_per_collection",
+        "min": 4,
+        "max": 20,
+        "step": 1,
+        "label": "Maximum Products Per Collection",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "slides_per_view_desktop",
+        "min": 1,
+        "max": 6,
+        "step": 1,
+        "label": "Slides Per View (Desktop)",
+        "default": 4
+      },
+      {
+        "type": "range",
+        "id": "slides_per_view_tablet",
+        "min": 1,
+        "max": 4,
+        "step": 1,
+        "label": "Slides Per View (Tablet)",
+        "default": 2
+      },
+      {
+        "type": "range",
+        "id": "slides_per_view_mobile",
+        "min": 1,
+        "max": 3,
+        "step": 1,
+        "label": "Slides Per View (Mobile)",
+        "default": 1
+      },
+      {
+        "type": "checkbox",
+        "id": "show_arrows",
+        "label": "Show Navigation Arrows",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_dots",
+        "label": "Show Navigation Dots",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "autoplay",
+        "label": "Enable Autoplay",
+        "default": false
+      },
+      {
+        "type": "range",
+        "id": "autoplay_speed",
+        "min": 2000,
+        "max": 8000,
+        "step": 500,
+        "label": "Autoplay Speed (ms)",
+        "default": 3000
+      },
+      {
+        "type": "color",
+        "id": "pill_active_color",
+        "label": "Pill Active Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "nav_button_color",
+        "label": "Navigation Button Color",
+        "default": "#000000"
+      },
+      {
+        "type": "select",
+        "id": "button_style",
+        "options": [
+          {
+            "value": "solid",
+            "label": "Solid"
+          },
+          {
+            "value": "outline",
+            "label": "Outline"
+          }
+        ],
+        "label": "Product Button Style",
+        "default": "solid"
+      },
+      {
+        "type": "header",
+        "content": "Section Layout Settings"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 40,
+        "step": 0.5,
+        "unit": "rem",
+        "label": "Desktop Padding Top",
+        "default": 4
+      },
+      {
+        "type": "range",
+        "min": 0,
+        "max": 40,
+        "step": 0.5,
+        "unit": "rem",
+        "id": "padding_bottom",
+        "label": "Desktop Padding Bottom",
+        "default": 4
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding_top",
+        "min": 0,
+        "max": 40,
+        "step": 0.5,
+        "unit": "rem",
+        "label": "Mobile Padding Top",
+        "default": 4
+      },
+      {
+        "type": "range",
+        "min": 0,
+        "max": 40,
+        "step": 0.5,
+        "unit": "rem",
+        "id": "mobile_padding_bottom",
+        "label": "Mobile Padding Bottom",
+        "default": 4
+      },
+      {
+        "type": "range",
+        "min": 0,
+        "max": 40,
+        "step": 0.5,
+        "unit": "rem",
+        "id": "padding_left",
+        "label": "Padding Left",
+        "default": 2
+      },
+      {
+        "type": "range",
+        "min": 0,
+        "max": 40,
+        "step": 0.5,
+        "unit": "rem",
+        "id": "padding_right",
+        "label": "Padding Right",
+        "default": 2
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#ffffff"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "collection",
+        "name": "Collection",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          },
+          {
+            "type": "text",
+            "id": "custom_title",
+            "label": "Custom Collection Title",
+            "info": "Leave blank to use collection's title"
+          },
+          {
+            "type": "select",
+            "id": "button_style",
+            "options": [
+              {
+                "value": "solid",
+                "label": "Solid"
+              },
+              {
+                "value": "outline",
+                "label": "Outline"
+              }
+            ],
+            "label": "Product Button Style",
+            "info": "Overrides the section's default button style"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection Carousel",
+        "category": "Collection",
+        "blocks": [
+          {
+            "type": "collection"
+          },
+          {
+            "type": "collection"
+          }
+        ]
+      }
+    ]
+  }
 {% endschema %}
