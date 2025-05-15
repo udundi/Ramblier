@@ -446,6 +446,14 @@
     "ud_carousel_ByDQ9j": {
       "type": "ud-carousel",
       "blocks": {
+        "collection_atcgqg": {
+          "type": "collection",
+          "settings": {
+            "collection": "{{ product.metafields.custom.product_brand.value.location.value.collection.value }}",
+            "custom_title": "",
+            "button_style": "solid"
+          }
+        },
         "collection_qRjaKD": {
           "type": "collection",
           "settings": {
@@ -472,6 +480,7 @@
         }
       },
       "block_order": [
+        "collection_atcgqg",
         "collection_qRjaKD",
         "collection_bj379Y",
         "collection_ADAFwt"
