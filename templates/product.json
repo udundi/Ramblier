@@ -358,11 +358,11 @@
         "tablet_flex_direction": "row",
         "mobile_flex_direction": "row",
         "x_gap": 6,
-        "y_gap": 0,
+        "y_gap": 1,
         "justify_content": "center",
         "align_items": "center",
         "container_width": "full_width",
-        "content_overflow": "wrap"
+        "content_overflow": "scroll"
       }
     },
     "ud_universal_flexbox_AbC6jh": {
