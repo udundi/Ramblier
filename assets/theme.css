@@ -1004,6 +1004,10 @@ p {
   gap: 2px;
 }
 
+.tw-gap-\[1px\] {
+  gap: 1px;
+}
+
 .tw-gap-x-10 {
   -moz-column-gap: 2.5rem;
        column-gap: 2.5rem;
