@@ -1,46 +1,44 @@
-{% comment %}
-  Featured Grid Section
-  - Responsive grid, columns = number of blocks
-  - Each block: clickable, background image, overlay, link text, link url
+{% comment %} 
+                                                      Featured Grid Section 
+                                                      - Responsive grid, columns = number of blocks 
+                                                      - Each block: clickable, background image, overlay, link text, link url 
 {% endcomment %}
 
-<!-- Desktop grid, dynamic columns -->
-<div class="tw-hidden md:tw-grid tw-gap-4 grid-cols-{{ section.id }}">
-{% for block in section.blocks %}
-    <a
-      href="{{ block.settings.link_url }}"
-      class="tw-relative tw-group tw-rounded-lg tw-overflow-hidden tw-aspect-[9/14] tw-cursor-pointer tw-flex tw-items-end tw-bg-center tw-bg-cover"
-      style="background-image: url('{{ block.settings.image | image_url: width: 800 }}');"
-    >
-      <div class="tw-absolute tw-inset-0 tw-bg-black tw-bg-opacity-40 group-hover:tw-bg-opacity-60 tw-transition-all"></div>
-      <div class="tw-relative tw-w-full tw-text-center tw-pb-6 tw-px-2">
-        <span class="tw-text-white tw-font-semibold tw-text-lg tw-drop-shadow">
-          {{ block.settings.link_text }}
-        </span>
-      </div>
-    </a>
-  {% endfor %}
-</div>
-
-<!-- Mobile Slick carousel -->
-<div class="tw-block md:tw-hidden">
-  <div class="slick-featured-{{ section.id }} tw-gap-4">
+<div class="tw-w-full md:tw-px-8 tw-px-4">
+  <!-- Desktop grid, dynamic columns -->
+  <div class="tw-hidden tw-max-w-screen-2xl tw-mx-auto md:tw-grid tw-gap-4 grid-cols-{{ section.id }}">
     {% for block in section.blocks %}
-      <div>
-        <a
-          href="{{ block.settings.link_url }}"
-          class="tw-relative tw-group tw-rounded-lg tw-overflow-hidden tw-aspect-[9/14] tw-min-w-96 tw-cursor-pointer tw-flex tw-items-end tw-bg-center tw-bg-cover"
-          style="background-image: url('{{ block.settings.image | image_url: width: 800 }}');"
-        >
-          <div class="tw-absolute tw-inset-0 tw-bg-black tw-bg-opacity-40 group-hover:tw-bg-opacity-60 tw-transition-all"></div>
-          <div class="tw-relative tw-w-full tw-text-center tw-pb-6 tw-px-2">
-            <span class="tw-text-white tw-font-semibold tw-text-lg tw-drop-shadow">
-              {{ block.settings.link_text }}
-            </span>
-          </div>
-        </a>
-      </div>
+      <a href="{{ block.settings.link_url }}" class="tw-relative tw-group tw-rounded-lg tw-overflow-hidden tw-aspect-3/4 tw-cursor-pointer tw-flex tw-items-end ">
+        <div class="tw-absolute tw-inset-0 tw-bg-black tw-bg-opacity-40 group-hover:tw-bg-opacity-60 tw-transition-all"></div>
+        <div class="tw-absolute tw-bottom-[15%] tw-w-full tw-text-center tw-px-2">
+          <span class="tw-text-white tw-font-semibold tw-text-32 tw-drop-shadow-lg">
+            {{ block.settings.link_text }}
+          </span>
+        </div>
+        <div class="tw-size-full tw-bg-center tw-bg-cover group-hover:tw-scale-100 tw-scale-105 tw-relative -tw-z-10 tw-transition-transform tw-duration-500" style="background-image: url('{{ block.settings.image | image_url: width: 800 }}');"></div>
+      </a>
     {% endfor %}
+  </div>
+
+  <!-- Mobile Slick carousel -->
+  <div class="tw-block md:tw-hidden">
+    <div class="slick-featured-{{ section.id }} tw-gap-4">
+      {% for block in section.blocks %}
+        <div>
+          <a
+            href="{{ block.settings.link_url }}"
+            class="tw-relative tw-group tw-rounded-lg tw-overflow-hidden tw-aspect-3/4 tw-min-w-96 tw-cursor-pointer tw-flex tw-items-end tw-bg-center tw-bg-cover"
+            style="background-image: url('{{ block.settings.image | image_url: width: 800 }}');">
+            <div class="tw-absolute tw-inset-0 tw-bg-black tw-bg-opacity-40 group-hover:tw-bg-opacity-60 tw-transition-all"></div>
+            <div class="tw-relative tw-w-full tw-text-center tw-pb-6 tw-px-2">
+              <span class="tw-text-white tw-font-semibold tw-text-lg tw-drop-shadow">
+                {{ block.settings.link_text }}
+              </span>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </div>
 
@@ -62,51 +60,51 @@
 </script>
 
 <style>
-.slick-featured-{{ section.id }} .slick-slide {
-  margin-right: 1rem;
-}
-.slick-featured-{{ section.id }} .slick-slide:last-child {
-  margin-right: 0;
-}
+  .slick-featured-{{ section.id }} .slick-slide {
+    margin-right: 1rem;
+  }
+  .slick-featured-{{ section.id }}.slick-slide:last-child {
+    margin-right: 0;
+  }
 
-.grid-cols-{{ section.id }} {
-  grid-template-columns: repeat({{ section.blocks.size }}, minmax(0, 1fr));
-}
+  .grid-cols-{{ section.id }} {
+    grid-template-columns: repeat({{ section.blocks.size }}, minmax(0, 1fr));
+  }
 </style>
 
 {% schema %}
-{
-  "name": "Featured Grid",
-  "max_blocks": 6,
-  "blocks": [
-    {
-      "type": "column",
-      "name": "Grid Column",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Background Image"
-        },
-        {
-          "type": "text",
-          "id": "link_text",
-          "label": "Link Text",
-          "default": "Featured Title"
-        },
-        {
-          "type": "url",
-          "id": "link_url",
-          "label": "Link URL"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Featured Grid",
-      "category": "Custom"
-    }
-  ]
-}
+  {
+    "name": "Featured Grid",
+    "max_blocks": 6,
+    "blocks": [
+      {
+        "type": "column",
+        "name": "Grid Column",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Background Image"
+          },
+          {
+            "type": "text",
+            "id": "link_text",
+            "label": "Link Text",
+            "default": "Featured Title"
+          },
+          {
+            "type": "url",
+            "id": "link_url",
+            "label": "Link URL"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Grid",
+        "category": "Custom"
+      }
+    ]
+  }
 {% endschema %}
