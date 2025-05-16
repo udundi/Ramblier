@@ -279,7 +279,7 @@
         "column_cJTnYQ"
       ],
       "custom_css": [
-        "section {padding-bottom: 8px}"
+        "div {padding-bottom: 12px;}"
       ],
       "name": "Featured Grid",
       "settings": {}
