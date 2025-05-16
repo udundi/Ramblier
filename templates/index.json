@@ -278,6 +278,9 @@
         "column_rreA8F",
         "column_cJTnYQ"
       ],
+      "custom_css": [
+        "section {padding-bottom: 8px}"
+      ],
       "name": "Featured Grid",
       "settings": {}
     },
