@@ -12,13 +12,13 @@
     {% elsif block.settings.align == 'start' %} !tw-justify-self-start
     {% else %} !tw-justify-self-center
     {% endif %}
-    {% if block.settings.type == 'white' %} tw-bg-white tw-text-black tw-border-white hover:tw-bg-grey-light hover:tw-border-grey-light
-    {% elsif block.settings.type == 'outlinedWhite' %} tw-border-white tw-text-white tw-bg-transparent hover:tw-bg-black hover:tw-bg-opacity-20
-    {% elsif block.settings.type == 'outlinedBlack' %} tw-border-black tw-text-black tw-bg-transparent hover:tw-bg-white hover:tw-bg-opacity-20
+    {% if block.settings.type == 'white' %} tw-bg-white tw-text-black hover:tw-text-black tw-border-white 
+    {% elsif block.settings.type == 'outlinedWhite' %} tw-border-white tw-text-white tw-bg-transparent hover:tw-text-white hover:tw-bg-black hover:tw-bg-opacity-20
+    {% elsif block.settings.type == 'outlinedBlack' %} tw-border-black tw-text-black tw-bg-transparent hover:tw-text-black hover:tw-bg-white hover:tw-bg-opacity-20
     {% else %} tw-bg-black hover:tw-bg-offblack hover:tw-border-offblack tw-border-black tw-text-white
     {% endif %}
-    {% if block.settings.fullwidth %} tw-w-full {% else %} tw-w-fit {% endif %}
-    tw-flex tw-justify-center tw-border tw-py-2 tw-px-10 tw-transition-button duration-200 ease-in-out tw-font-semibold tw-font-poppins hover:tw-scale-[102%]
+    {% if block.settings.fullwidth %} tw-w-full {% else %} tw-w-full tw-max-w-96 {% endif %}
+    tw-flex tw-justify-center tw-border tw-py-2 tw-px-10 tw-transition-button duration-200 ease-in-out tw-font-semibold tw-font-poppins hover:tw-scale-[105%]
   ">
   {{ block.settings.text }}
 </a>
@@ -26,6 +26,8 @@
 {% schema %}
   {
     "name": "Button",
+    "tag": "div",
+    "class": "tw-w-full",
     "settings": [
       {
         "type": "text",

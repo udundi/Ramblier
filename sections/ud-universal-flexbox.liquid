@@ -1,8 +1,9 @@
 {% style %}
+
   .section-{{ section.id }} {
+    background-color: {{ section.settings.background_color }}{% if section.settings.background_image != blank %}77{% endif %};
     margin: 0 auto;
     display: flex;
-    background-color: {{ section.settings.background_color }};
     padding-top: {{ section.settings.padding_top }}rem;
     padding-bottom: {{ section.settings.padding_bottom }}rem;
     padding-left: {{ section.settings.padding_left }}rem;
@@ -56,16 +57,19 @@
   }
 {% endstyle %}
 
-<div {% if section.settings.background_image != blank %} style="background-image: url('{{ section.settings.background_image | image_url: width: 2000 }}');" {% endif %} class="section-{{ section.id }} tw-relative tw-bg-top tw-bg-fixed">
-    
+{% if section.settings.background_image != blank %}
+<div class="tw-w-full tw-h-full tw-max-w-screen-3xl tw-bg-cover tw-bg-center tw-mx-auto" style="background-image: url('{{ section.settings.background_image | image_url: width: 4000 }}');">
+{% endif %}
+<div class="section-{{ section.id }} tw-relative tw-z-30 tw-w-full tw-h-full">
   {% content_for 'blocks' %}
-</div>
-
+  </div>
+  {% if section.settings.background_image != blank %}
+  </div>
+  {% endif %}
 {% schema %}
 {
   "name": "Flexbox",
   "tag": "section",
-  "class": "tw-bg",
   "settings": [
     {
       "type": "range",

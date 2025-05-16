@@ -8,43 +8,41 @@
 {% style %}
   .section-{{ section.id }} {
     background-color: {{ section.settings.background_color }};
-    padding-top: {{ section.settings.padding_top }}rem;
-    padding-bottom: {{ section.settings.padding_bottom }}rem;
-    padding-left: {{ section.settings.padding_left }}rem;
-    padding-right: {{ section.settings.padding_right }}rem;
+    margin-top: {{ section.settings.padding_top }}rem;
+    margin-bottom: {{ section.settings.padding_bottom }}rem;
   }
   @media screen and (max-width: 749px) {
     .section-{{ section.id }} {
-      padding-top: {{ section.settings.mobile_padding_top }}rem;
-      padding-bottom: {{ section.settings.mobile_padding_bottom }}rem;
+      margin-top: {{ section.settings.mobile_padding_top }}rem;
+      margin-bottom: {{ section.settings.mobile_padding_bottom }}rem;
     }
   }
 {% endstyle %}
 
-<div class="section-{{ section.id }} tw-w-full tw-flex tw-flex-col tw-items-center">
+<div class="section-{{ section.id }} tw-w-full tw-flex tw-flex-col tw-items-center md:tw-py-12">
   <div class="tw-w-full tw-max-w-screen-xl tw-mx-auto">
     <div class="tw-flex tw-flex-col">
       {% for block in section.blocks %}
-        <a href="{{ block.settings.collection.link }}" class="tw-cursor-pointer tw-group tw-relative tw-h-40 tw-w-full tw-max-w-screen-2xl tw-mx-auto">
+        <a href="{{ block.settings.collection.link }}" class="tw-cursor-pointer tw-group tw-relative tw-h-40 tw-w-full tw-max-w-screen-3xl tw-mx-auto {% if forloop.first %}max-md:tw-border-t {% endif %} max-md:tw-border-b">
           <!-- Center: Title column -->
-          <div class="tw-absolute tw-left-1/2 -tw-translate-x-1/2 tw-top-1/2 -tw-translate-y-1/2 tw-z-20 tw-text-64 tw-font-noto tw-text-center tw-text-4xl tw-font-normal">
+          <div class="tw-absolute tw-left-1/2 -tw-translate-x-1/2 tw-top-1/2 -tw-translate-y-1/2 tw-z-20 tw-text-24 md:tw-text-48 lg:tw-text-64 tw-font-noto tw-text-center tw-font-normal">
             {{ block.settings.title }}
           </div>
           <!-- Right: Link column -->
           <div class="tw-absolute tw-right-0 -tw-translate-y-1/2 tw-pr-4 tw-top-1/2 tw-justify-center tw-flex tw-items-center">
             {% if block.settings.collection != blank and block.settings.link_name != blank %}
-              <div class="tw-font-semibold tw-tracking-wide tw-underline tw-underline-offset-4 tw-text-black tw-opacity-0 group-hover:tw-opacity-100 tw-pointer-events-none group-hover:tw-pointer-events-auto tw-duration-300" tabindex="-1">{{ block.settings.link_name }}</div>
+              <div class="tw-font-semibold tw-tracking-wide tw-underline tw-underline-offset-4 tw-text-black md:tw-opacity-0 group-hover:tw-opacity-100 tw-pointer-events-none group-hover:tw-pointer-events-auto tw-duration-300" tabindex="-1">{{ block.settings.link_name }}</div>
             {% endif %}
           </div>
-          <div class="tw-flex tw-justify-between tw-w-full tw-h-64 tw-max-h-24 group-hover:tw-max-h-56 tw-pointer-events-none tw-transition-size tw-duration-500 tw-border-y-2 tw-border-black/0 group-hover:tw-border-black/100 tw-max-w-screen-2xl tw-left-1/2 -tw-translate-x-1/2 tw-absolute tw-top-1/2 -tw-translate-y-1/2">
+          <div class="tw-flex tw-justify-between tw-w-full tw-h-40 md:tw-h-64 md:tw-max-h-32 group-hover:md:tw-max-h-56 tw-pointer-events-none tw-transition-size tw-duration-500 md:tw-border-t md:tw-border-b md:tw-border-black/0 tw-border-black group-hover:md:tw-border-black/100  tw-max-w-screen-3xl tw-left-1/2 -tw-translate-x-1/2 tw-absolute tw-top-1/2 -tw-translate-y-1/2">
             <!-- Left: Image column -->
-            <div class="tw-justify-self-start tw-flex tw-h-full tw-w-64">
+            <div class="tw-justify-self-start tw-flex md:tw-h-full tw-h-40 tw-w-40 md:tw-w-64">
               {% if block.settings.image != blank %}
                 <div class="tw-p-4 tw-mx-auto">
                   <img
                     src="{{ block.settings.image | image_url: width: 400 }}"
                     alt="{{ block.settings.title }}"
-                    class="tw-object-cover tw-transition-opacity tw-duration-300 tw-h-full tw-bg-gray-100 tw-opacity-0 group-hover:tw-opacity-100 tw-pointer-events-none group-hover:tw-pointer-events-auto tw-aspect-square"
+                    class="tw-object-cover tw-transition-opacity tw-duration-300 tw-h-full tw-bg-gray-100 md:tw-opacity-0 tw-opacity-100 group-hover:md:tw-opacity-100 tw-pointer-events-none group-hover:tw-pointer-events-auto tw-aspect-square"
                     loading="lazy">
                 </div>
               {% endif %}
@@ -99,26 +97,6 @@
         "unit": "rem",
         "label": "Padding Right",
         "default": 2
-      },
-      {
-        "type": "range",
-        "id": "mobile_padding_top",
-        "min": 0,
-        "max": 40,
-        "step": 0.5,
-        "unit": "rem",
-        "label": "Mobile Padding Top",
-        "default": 4
-      },
-      {
-        "type": "range",
-        "id": "mobile_padding_bottom",
-        "min": 0,
-        "max": 40,
-        "step": 0.5,
-        "unit": "rem",
-        "label": "Mobile Padding Bottom",
-        "default": 4
       },
       {
         "type": "color",

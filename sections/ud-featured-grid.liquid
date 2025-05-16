@@ -1,12 +1,12 @@
 {% comment %} 
-                                                      Featured Grid Section 
-                                                      - Responsive grid, columns = number of blocks 
-                                                      - Each block: clickable, background image, overlay, link text, link url 
+                                                        Featured Grid Section 
+                                                        - Responsive grid, columns = number of blocks 
+                                                        - Each block: clickable, background image, overlay, link text, link url 
 {% endcomment %}
 
 <div class="tw-w-full md:tw-px-8 tw-px-4">
   <!-- Desktop grid, dynamic columns -->
-  <div class="tw-hidden tw-max-w-screen-2xl tw-mx-auto md:tw-grid tw-gap-4 grid-cols-{{ section.id }}">
+  <div class="tw-hidden tw-max-w-screen-3xl tw-mx-auto md:tw-grid tw-gap-4 grid-cols-{{ section.id }}">
     {% for block in section.blocks %}
       <a href="{{ block.settings.link_url }}" class="tw-relative tw-group tw-rounded-lg tw-overflow-hidden tw-aspect-3/4 tw-cursor-pointer tw-flex tw-items-end ">
         <div class="tw-absolute tw-inset-0 tw-bg-black tw-bg-opacity-40 group-hover:tw-bg-opacity-60 tw-transition-all"></div>

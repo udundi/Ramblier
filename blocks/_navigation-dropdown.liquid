@@ -1,18 +1,17 @@
-
 <button class="tw-w-full tw-p-4 tw-px-12">{{ block.settings.text }}</button>
 <div class="tw-absolute tw-px-12 tw-z-10 group-hover:tw-block group-focus:tw-block group-focus-within:tw-block tw-hidden tw-top-full tw-border-y tw-border-black tw-left-0 tw-w-screen tw-bg-white">
-  <div class="tw-py-12 tw-w-full tw-max-w-screen-2xl tw-mx-auto">
+  <div class="tw-py-12 tw-w-full tw-max-w-screen-3xl tw-mx-auto">
     {% content_for 'blocks' %}
   </div>
 </div>
-  
+
 
 {% schema %}
   {
     "name": "Navigation Dropdown",
     "tag": "div",
     "class": "tw-group",
-    
+
     "settings": [
       {
         "type": "text",

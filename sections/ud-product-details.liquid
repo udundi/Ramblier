@@ -33,41 +33,41 @@
   }
 
   .swiper-pagination-bullet {
-      width: 15px;
-      height: 15px;
-      color: #000;
-      opacity: 1;
-      border: #000 solid 1px;
-      background: transparent;
-      
-    }
+    width: 15px;
+    height: 15px;
+    color: #000;
+    opacity: 1;
+    border: #000 solid 1px;
+    background: transparent;
 
-    .swiper-pagination-bullet-active {
-      color: #fff;
-      background: #000;
-    }
+  }
 
-    @media screen and (max-width: 768px) {
-      .swiper-pagination {
-        width: 100%;
-        display: flex;
-        bottom: 0px !important;
-        position: absolute;
-        gap: 0px;
-      }
-    .swiper-pagination-bullet  {
+  .swiper-pagination-bullet-active {
+    color: #fff;
+    background: #000;
+  }
+
+  @media screen and (max-width: 768px) {
+    .swiper-pagination {
+      width: 100%;
+      display: flex;
+      bottom: 0 !important;
+      position: absolute;
+      gap: 0;
+    }
+    .swiper-pagination-bullet {
       width: 100%;
       height: 8px;
       color: #000;
-      padding: 0px;
-      margin-left: 0px !important;
-      margin-right: 0px !important;
+      padding: 0;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
       opacity: 1;
-      border-radius: 0px;
-      border: 0px solid #000;
+      border-radius: 0;
+      border: 0 solid #000;
       background: #aaa;
-      
-      
+
+
     }
 
     .swiper-pagination-bullet-active {
@@ -79,7 +79,7 @@
 
 <product-info id="MainProduct-{{ section.id }}" class="tw-w-full tw-flex tw-justify-center tw-items-center tw-relative section-{{ section.id }}-props">
   <div class="tw-absolute tw-top-full tw-w-full tw-border-b tw-z-10"></div>
-  <div class="tw-flex md:tw-flex-row tw-flex-col tw-w-full tw-max-w-screen-2xl">
+  <div class="tw-flex md:tw-flex-row tw-flex-col tw-w-full tw-max-w-screen-3xl">
     <!-- -------------------------- -->
     <!-- Mobile Brand Name -->
     <!-- -------------------------- -->
@@ -94,10 +94,10 @@
     <!-- Column 1 (Image Gallery) -->
     <!-- -------------------------------- -->
     <div class="tw-relative tw-w-full tw-overflow-hidden md:tw-w-1/2 max-md:tw-border-y">
-    <button class="custom-button-prev tw-absolute tw-left-12 tw-cursor-pointer tw-stroke-black tw-top-1/2 tw-size-20 md:tw-size-24 tw-z-30">{%  render 'icon-arrow-left' %}</button>
-    <button class="custom-button-next tw-absolute tw-right-12 tw-cursor-pointer tw-stroke-black tw-top-1/2 tw-size-20 md:tw-size-24 tw-z-30">{%  render 'icon-arrow-right' %}</button>
-    <div class="swiper-container swiper tw-cursor-grab tw-w-full tw-h-full max-md:tw-max-h-[80vh] md:tw-absolute tw-top-0 tw-left-0 tw-z-10">
-      <div class="swiper-wrapper tw-h-full tw-w-full">
+      <button class="custom-button-prev tw-absolute tw-left-12 tw-cursor-pointer tw-stroke-black tw-top-1/2 tw-size-20 md:tw-size-24 tw-z-30">{% render 'icon-arrow-left' %}</button>
+      <button class="custom-button-next tw-absolute tw-right-12 tw-cursor-pointer tw-stroke-black tw-top-1/2 tw-size-20 md:tw-size-24 tw-z-30">{% render 'icon-arrow-right' %}</button>
+      <div class="swiper-container swiper tw-cursor-grab tw-w-full tw-h-full max-md:tw-max-h-[80vh] md:tw-absolute tw-top-0 tw-left-0 tw-z-10">
+        <div class="swiper-wrapper tw-h-full tw-w-full">
 
           {% if product.has_only_default_variant == false and product.selected_or_first_available_variant.featured_image != blank %}
             <!-- Variant Image -->
@@ -152,7 +152,8 @@
               , type: 'body'
               , align: 'start'
               , size: 'medium'
-              , color: 'black' %}
+              , color: 'black'
+            %}
 
             <!-- Variant Selector -->
             {%- unless product.has_only_default_variant -%}
@@ -165,13 +166,13 @@
                     , align: 'start'
                     , size: 'medium'
                     , color: 'black' %}
-                    <div class="tw-border focus-within:tw-border-black/0 tw-w-fit tw-pr-2">
-                      <select class="tw-p-4 tw-w-fit tw-min-w-96">
-                        {% for value in option.values %}
-                          <option>{{ value }}</option>
-                        {% endfor %}
-                      </select>
-                    </div>
+                  <div class="tw-border focus-within:tw-border-black/0 tw-w-fit tw-pr-2">
+                    <select class="tw-p-4 tw-w-fit tw-min-w-96">
+                      {% for value in option.values %}
+                        <option>{{ value }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
                 </div>
               {% endfor %}
             {% endunless %}
