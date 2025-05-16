@@ -255,7 +255,7 @@
             "justify_content": "center",
             "align_items": "center",
             "container_width": "full_width",
-            "content_overflow": "scroll",
+            "content_overflow": "fit",
             "absolute_position": false
           },
           "blocks": {
@@ -362,7 +362,7 @@
         "justify_content": "center",
         "align_items": "center",
         "container_width": "full_width",
-        "content_overflow": "fit"
+        "content_overflow": "wrap"
       }
     },
     "ud_universal_flexbox_AbC6jh": {
