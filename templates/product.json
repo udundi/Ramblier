@@ -357,7 +357,7 @@
         "flex_direction": "row",
         "tablet_flex_direction": "row",
         "mobile_flex_direction": "row",
-        "x_gap": 6,
+        "x_gap": 5,
         "y_gap": 1,
         "justify_content": "center",
         "align_items": "center",
