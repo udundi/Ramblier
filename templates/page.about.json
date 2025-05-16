@@ -80,7 +80,7 @@
         "mobile_padding_bottom": 4,
         "padding_left": 2,
         "padding_right": 2,
-        "background_color": "#ffffff",
+        "background_color": "#000000",
         "background_image": "shopify://shop_images/7a97ec309f22d1fdf47a56da1a0e8c2d4e1987fa.jpg",
         "flex_direction": "column",
         "tablet_flex_direction": "column",
