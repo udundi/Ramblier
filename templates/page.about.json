@@ -265,7 +265,7 @@
           "type": "image-text-pair",
           "settings": {
             "image": "shopify://shop_images/41a1ee6377df5186c56758e78d095ea4908abac7.png",
-            "align": "start",
+            "align": "center",
             "background_color": "#ffffff",
             "row_shrink": false,
             "max_width": 600,
