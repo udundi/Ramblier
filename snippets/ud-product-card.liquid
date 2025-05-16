@@ -1,88 +1,16 @@
-{% assign product_id = section.id | append: '-' | append: product.handle | append: '-atc' %}
-{% assign product_atc_id = product_id | append: '-atc' %}
-
-<a
-  href="{{ product.url | default: "/" }}"
-  id="{{ product_id }}"
-  class="{{ class }}">
-  <div>
-    <div class="tw-w-full {% if video_aspect == true %} tw-aspect-video tw-border {% else %} xl:tw-h-[500px] ld:tw-h-[420px] md:tw-h-96 tw-h-64 {% endif %} md:tw-mb-3 tw-mb-2">
-      {% if product.featured_image != blank %}
-        <div>
-          {{ product.featured_image | image_url: width: 2000 | image_tag: class: 'tw-w-full tw-h-full tw-object-cover ' }}
-        </div>
-      {% else %}
-        <div class=" tw-overflow-hidden tw-size-full">
-          {{ 'product-1' | placeholder_svg_tag: 'tw-w-full tw-mx-auto tw-object-cover tw-object' }}
-        </div>
-      {% endif %}
+<a href="{{ product.url }}" class="tw-w-full tw-group">
+  <div class="tw-flex tw-flex-col">
+    <div class="tw-overflow-hidden tw-w-full tw-transition-transform tw-aspect-3/4">
+      {{ product.featured_image | image_url: width: 800 | image_tag: class: 'tw-w-full tw-h-full tw-transition-transform tw-duration-500 group-hover:tw-scale-105 tw-object-cover' }}
     </div>
-  </div>
-  <div class="tw-flex tw-flex-col tw-w-full tw-items-start">
-    <div class="tw-flex tw-gap-3 tw-items-center tw-w-full tw-justify-between">
-      <div>
-        <h3 class="tw-text-black tw-text-14 tw-font-poppins">
-          {{ product.title | default: 'Product title' }}
-        </h3>
+    <div class="tw-flex tw-flex-col">
+      <div class="tw-flex tw-pt-2 tw-justify-between">
+        <span class="tw-text-14">{{ product.title }}</span>
+        <span class="tw-text-14">{{ product.price | money }}</span>
       </div>
-      <p class="tw-text-black tw-text-14" aria-label="Product price is {{ product.price | money | default: '$494.95' }}">
-        {{ product.price | money | default: '$494.95' }}
-      </p>
+      <div class="tw-font-poppins tw-text-12 tw-italic -tw-mt-2 tw-text-brand-gray">
+        {{ product.metafields.custom.product_brand.value.name }}
+      </div>
     </div>
-    <p class="tw-text-12 tw-italic tw-text-brand-gray">
-      {{ product.metafields.custom.product_brand.value.name }}
-    </p>
-
-
   </div>
 </a>
-
-<script>
-  new Vue({
-    el: '#{{ product_id }}',
-    data() {
-      return {
-        addingToCart: false,
-        productPrice: '{{ product.price }}',
-      };
-    },
-    methods: {
-      addToCart() {
-        this.addingToCart = true;
-        let items = [
-          {
-            quantity: 1,
-            id: '{{ product.selected_or_first_available_variant.id }}',
-          },
-        ];
-        console.log(items);
-  
-        axios
-          .post('/cart/add.js', {
-            items: items,
-          })
-          .then((response) => {
-            console.log(response);
-            this.bus.$emit('showCart');
-            this.bus.$emit('refreshCart');
-            this.addingToCart = false;
-            this.$forceUpdate();
-          })
-          .catch((error) => {
-            console.log(error.response, 'caught error');
-            Swal.fire({
-              icon: 'error',
-              text: error.response.data.description,
-            });
-            this.addingToCart = false;
-          })
-          .finally(() => {
-            this.addingToCart = false;
-          });
-      },
-    },
-    mounted() {
-      console.log('{{ product_id }}');
-    },
-  });
-</script>

@@ -39,22 +39,64 @@
     color: white;
   }
 
+  /* Slick Carousel Styles */
+  .section-{{ section.id }} .tw-carousel-container {
+    width: 100%;
+    position: relative;
+  }
 
   .section-{{ section.id }}
   .tw-collection-carousel {
-    position: absolute;
-    height: 100%;
+    display: none;
     width: 100%;
-    top: 30%;
-    z-index: -5;
   }
 
   .section-{{ section.id }}
   .tw-collection-carousel.tw-active {
-    z-index: 5;
-    position: relative;
+    display: block;
   }
 
+  .section-{{ section.id }}
+  .slick-slide {
+    padding: 0 10px;
+  }
+
+  .section-{{ section.id }}
+  .slick-prev
+  , .section-{{ section.id }}
+  .slick-next {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    z-index: 10;
+  }
+
+  .section-{{ section.id }}.slick-prev:before,
+  .section-{{ section.id }}.slick-next:before {
+    color: white;
+  }
+
+  .section-{{ section.id }}
+  .slick-prev {
+    left: -20px;
+  }
+
+  .section-{{ section.id }}
+  .slick-next {
+    right: -20px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .section-{{ section.id }} .slick-prev {
+      left: -10px;
+    }
+
+    .section-{{ section.id }}
+    .slick-next {
+      right: -10px;
+    }
+  }
 {% endstyle %}
 
 <div class="section-{{ section.id }} tw-relative">
@@ -67,7 +109,7 @@
       {% for block in section.blocks %}
         {% if block.settings.collection != blank %}
           <button
-            class="tw-border tw-p-2 tw-px-8 tw-rounded-full tw-collection-pill {% if forloop.first %}tw-active{% endif %}"
+            class="tw-collection-pill {% if forloop.first %}tw-active{% endif %}"
             data-block-index="{{ forloop.index0 }}"
             data-section-id="{{ section.id }}">
             {% if block.settings.custom_title != blank %}
@@ -81,20 +123,20 @@
     </div>
 
     <!-- Collection Carousels -->
-    <div class="tw-relative tw-flex tw-overflow-hidden">
-
+    <div class="tw-carousel-container">
       {% for block in section.blocks %}
         {% if block.settings.collection != blank %}
-          <div id="carousel-{{ section.id }}-{{ forloop.index0 }}" class="tw-collection-carousel tw-relative {% if forloop.first %} tw-active {% endif %}">
-            <button class="custom-button-prev-{{ forloop.index0 }} tw-absolute tw-left-12 tw-cursor-pointer tw-stroke-black tw-top-1/2 tw-size-20 md:tw-size-24 tw-z-30">{% render 'icon-arrow-left' %}</button>
-            <button class="custom-button-next-{{ forloop.index0 }} tw-absolute tw-right-12 tw-cursor-pointer tw-stroke-black tw-top-1/2 tw-size-20 md:tw-size-24 tw-z-30">{% render 'icon-arrow-right' %}</button>
-            <div class="swiper-wrapper">
-              {% for product in block.settings.collection.products limit: section.settings.products_per_collection %}
-                <div class="swiper-slide">
-                  {% render 'ud-product-card', product: product, button_style: block.settings.button_style | default: section.settings.button_style, product_reviews: 5, video_aspect: true %}
-                </div>
-              {% endfor %}
-            </div>
+          <div class="tw-collection-carousel {% if forloop.first %}tw-active{% endif %}" id="collection-carousel-{{ section.id }}-{{ forloop.index0 }}">
+            {% for product in block.settings.collection.products limit: section.settings.products_per_collection %}
+              <div class="tw-carousel-item">
+                {% render 'ud-product-card',
+ product: product,
+ button_style: block.settings.button_style | default: section.settings.button_style,
+ product_reviews: 5,
+ video_aspect: true
+                %}
+              </div>
+            {% endfor %}
           </div>
         {% endif %}
       {% endfor %}
@@ -108,20 +150,30 @@
     // Initialize slick for each collection carousel
     {% for block in section.blocks %}
       {% if block.settings.collection != blank %}
-        var swiper = new Swiper('#carousel-{{ section.id }}-{{ forloop.index0 }}', {
-          slidesPerView: 2.2,
-          spaceBetween: 10,
-          loop: true,
-          navigation: {
-            nextEl: '.custom-button-next-{{ forloop.index0 }}',
-            prevEl: '.custom-button-prev-{{ forloop.index0 }}',
-          },
-          breakpoints: {
-            768: {
-              slidesPerView: 3.2,
-              spaceBetween: 30,
+        $('#collection-carousel-{{ section.id }}-{{ forloop.index0 }}').slick({
+          slidesToShow: {{ section.settings.slides_per_view_desktop }},
+          slidesToScroll: 1,
+          arrows: {{ section.settings.show_arrows }},
+          dots: {{ section.settings.show_dots }},
+          infinite: true,
+          autoplay: {{ section.settings.autoplay }},
+          autoplaySpeed: {{ section.settings.autoplay_speed }},
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: {{ section.settings.slides_per_view_tablet }},
+                slidesToScroll: 1
+              }
             },
-          },
+            {
+              breakpoint: 640,
+              settings: {
+                slidesToShow: {{ section.settings.slides_per_view_mobile }},
+                slidesToScroll: 1
+              }
+            }
+          ]
         });
       {% endif %}
     {% endfor %}
@@ -142,10 +194,12 @@
         carousels.forEach(carousel => {
           carousel.classList.remove('tw-active');
         });
-        const targetCarousel = document.getElementById(`carousel-{{ section.id }}-${blockIndex}`);
-        console.log('target', `carousel-{{ section.id }}-${blockIndex}`)
+        
+        const targetCarousel = document.getElementById(`collection-carousel-{{ section.id }}-${blockIndex}`);
         if (targetCarousel) {
           targetCarousel.classList.add('tw-active');
+          // Refresh Slick when showing a carousel
+          $(targetCarousel).slick('setPosition');
         }
       });
     });

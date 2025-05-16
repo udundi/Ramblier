@@ -58,9 +58,9 @@
 {% endstyle %}
 
 {% if section.settings.background_image != blank %}
-<div class="tw-w-full tw-h-full tw-max-w-screen-3xl tw-bg-cover tw-bg-center tw-mx-auto" style="background-image: url('{{ section.settings.background_image | image_url: width: 4000 }}');">
+<div class="tw-w-full tw-relative tw-h-full tw-max-w-screen-3xl tw-bg-cover tw-bg-center tw-mx-auto" style="background-image: url('{{ section.settings.background_image | image_url: width: 4000 }}');">
 {% endif %}
-<div class="section-{{ section.id }} tw-relative tw-z-30 tw-w-full tw-h-full">
+<div class="section-{{ section.id }}  tw-z-10 tw-w-full tw-h-full">
   {% content_for 'blocks' %}
   </div>
   {% if section.settings.background_image != blank %}

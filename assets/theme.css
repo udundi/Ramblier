@@ -663,6 +663,10 @@ p {
   z-index: 30;
 }
 
+.tw-z-50 {
+  z-index: 50;
+}
+
 .tw-m-4 {
   margin: 1rem;
 }
