@@ -365,11 +365,86 @@
         "city_9Qg3jL"
       ],
       "settings": {
-        "padding_top": 4,
-        "padding_bottom": 4,
+        "padding_top": 0,
+        "padding_bottom": 0,
         "padding_left": 0,
         "padding_right": 0,
         "background_color": "#eceae5"
+      }
+    },
+    "ud_universal_flexbox_QFU9Xd": {
+      "type": "ud-universal-flexbox",
+      "blocks": {
+        "text_f6kpLb": {
+          "type": "text",
+          "name": "text",
+          "settings": {
+            "text": "Become a partner",
+            "type": "header",
+            "align": "center",
+            "size": "medium",
+            "weight": "tw-font-base",
+            "max_width": 600,
+            "color": "#ffffff",
+            "gap-border": false
+          },
+          "blocks": {}
+        },
+        "text_tPxtBr": {
+          "type": "text",
+          "name": "text",
+          "settings": {
+            "text": "Your spot is legendary—your merch should be too. Ramblier makes it easy for restaurants, bars, and venues to sell online. We take care of everything. You just keep being iconic.",
+            "type": "body",
+            "align": "center",
+            "size": "medium",
+            "weight": "tw-font-base",
+            "max_width": 770,
+            "color": "#ffffff",
+            "gap-border": false
+          },
+          "blocks": {}
+        },
+        "button_YHg7U4": {
+          "type": "button",
+          "name": "Default Button",
+          "settings": {
+            "text": "Click Me",
+            "url": "#",
+            "type": "outlinedWhite",
+            "align": "center",
+            "fullwidth": false,
+            "margin-left": 0,
+            "margin-right": 0,
+            "margin-top": 0,
+            "margin-bottom": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_f6kpLb",
+        "text_tPxtBr",
+        "button_YHg7U4"
+      ],
+      "name": "Base Flexbox",
+      "settings": {
+        "padding_top": 6,
+        "padding_bottom": 6,
+        "mobile_padding_top": 5,
+        "mobile_padding_bottom": 5,
+        "padding_left": 2,
+        "padding_right": 2,
+        "background_color": "#0f214d",
+        "flex_direction": "column",
+        "tablet_flex_direction": "column",
+        "mobile_flex_direction": "column",
+        "x_gap": 2,
+        "y_gap": 2,
+        "justify_content": "center",
+        "align_items": "center",
+        "container_width": "full_width",
+        "content_overflow": "fit"
       }
     }
   },
@@ -380,6 +455,7 @@
     "rich_text",
     "ud_universal_flexbox_MipMj7",
     "ud_featured_grid_qtfKcd",
-    "ud_custom_city_list_rDqYax"
+    "ud_custom_city_list_rDqYax",
+    "ud_universal_flexbox_QFU9Xd"
   ]
 }

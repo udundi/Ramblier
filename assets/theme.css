@@ -1983,6 +1983,12 @@ p {
   }
 }
 
+@media (min-width: 1280px) {
+  .xl\:tw-text-64 {
+    font-size: 4rem;
+  }
+}
+
 @media (min-width: 1536px) {
   .\32xl\:tw-h-\[620px\] {
     height: 620px;
