@@ -24,16 +24,16 @@
 </style>
 
 <section id="section-{{ section.id }}" class=''>
-	<div class='tw-grid lg:tw-grid-cols-2 tw-items-center tw-isolate'>
+	<div class='tw-grid lg:tw-grid-cols-2 lg:tw-items-center tw-isolate tw-aspect-[2/3] md:tw-aspect-[1/1] lg:tw-aspect-[2/1]'>
     {% for block in section.blocks %}
       {% liquid
         assign modulus = forloop.index | modulo: 2
         if modulus != 0
           assign col_pos = 'tw-col-start-1 lg:tw-col-start-1'
-          assign button_x_pos = 'tw-left-16'
+          assign button_x_pos = 'tw-left-1/2 lg:tw-left-16'
         else
           assign col_pos = 'tw-col-start-1 lg:tw-col-start-2'
-          assign button_x_pos = 'tw-right-16'
+          assign button_x_pos = 'tw-right-1/2 lg:tw-right-16'
         endif
         if forloop.index0 == 0
           assign status = 'is-current'
@@ -48,11 +48,11 @@
         data-index="{{ forloop.index }}" 
         data-associated-word="{{ block.settings.associated_word | downcase }}" 
       >
-        {{ block.settings.image | image_url: width: 900 | image_tag: class: 'tw-h-full tw-w-full object-cover  tw-brightness-[0.6]' }}
+        {{ block.settings.image | image_url: width: 900 | image_tag: class: 'tw-h-full tw-w-full tw-object-cover  tw-brightness-[0.6]' }}
         {% if block.settings.associated_button_text != empty and block.settings.associated_button_link != empty %}
-          <div class='tw-absolute {{ button_x_pos }} tw-bottom-8'>
+          <div class='tw-absolute {{ button_x_pos }} tw-bottom-8 max-lg:tw-hidden'>
             <a href='{{ block.settings.associated_button_link }}' 
-              class='tw-text-white tw-text-18 tw-px-5 tw-py-3 tw-border tw-border-white tw-uppercase tw-tracking-wider tw-cursor-pointer'>
+              class='tw-text-white tw-text-18 tw-px-5 tw-py-3 tw-border tw-border-white tw-uppercase tw-tracking-wider tw-cursor-pointer tw-text-nowrap'>
               {{ block.settings.associated_button_text }}
             </a>
           </div>
@@ -60,13 +60,28 @@
       </div>
     {% endfor %}
     <div class='tw-col-start-1 tw-row-start-1 lg:tw-col-[1/3] tw-text-center tw-z-10 !tw-font-noto'>
-      <h2 class='tw-text-white tw-font-semibold tw-text-48'>Shop exclusive merch <br/> from iconic 
+      <h2 class='tw-text-white tw-font-semibold tw-text-30 lg:tw-text-48 max-lg:tw-mt-16'>Shop exclusive merch <br/> from iconic 
         <span class='tw-inline-flex tw-flex-col tw-overflow-hidden tw-relative'>
           <span class='js-cursive-word tw-relative'>venues</span>
           <span class='tw-self-stretch'>{% render 'icon-drawn-underline'  %}</span>
         </span>
       </h2>
-      <p class='tw-text-white tw-mt-6 tw-text-18'>Your favorite brands all in one place</p>
+      <p class='tw-text-white tw-mt-4 lg:tw-mt-6 tw-text-14 lg:tw-text-18'>Your favorite brands all in one place</p>
+      <div class='tw-grid tw-justify-center tw-items-center'>
+        {% for block in section.blocks %}
+          <div class='js-carousel-button lg:tw-hidden tw-mt-6 tw-col-start-1 tw-row-start-1 tw-transition-all tw-duration-700
+            {% if block.settings.associated_button_text == empty or block.settings.associated_button_link == empty %} 
+            tw-invisible 
+            {% endif %}
+            {% if forloop.index0 == 0 %} is-current {% else %} is-inactive {% endif %} 
+            ' data-index="{{ forloop.index }}">
+            <a href='{{ block.settings.associated_button_link }}' 
+              class='tw-text-white tw-text-18 tw-px-5 tw-py-3 tw-border tw-border-white tw-uppercase tw-tracking-wider tw-cursor-pointer tw-text-nowrap tw-inline-block'>
+              {{ block.settings.associated_button_text }}
+            </a>
+          </div>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </section>

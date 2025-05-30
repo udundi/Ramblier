@@ -2,6 +2,7 @@ export function createCarouselFromSection(sectionId) {
   const section = document.getElementById(sectionId);
   const cursiveWord = section.querySelector('.js-cursive-word');
   const cursiveWordContainer = cursiveWord?.parentElement;
+  const buttonContainers = section.querySelectorAll('.js-carousel-button');
   const imageContainers = section.querySelectorAll('.js-carousel-image');
 
   if (imageContainers.length === 0) return;
@@ -14,6 +15,14 @@ export function createCarouselFromSection(sectionId) {
     if (index === 0) {
       container.classList.add('is-previous');
     } else if (index === 1) {
+      container.classList.add('is-current');
+    } else {
+      container.classList.add('is-inactive');
+    }
+  });
+
+  buttonContainers.forEach((container, index) => {
+    if (index === 1) {
       container.classList.add('is-current');
     } else {
       container.classList.add('is-inactive');
@@ -63,6 +72,17 @@ export function createCarouselFromSection(sectionId) {
           container.classList.add('is-current');
         } else {
           container.classList.add('is-inactive');
+        }
+      });
+
+      buttonContainers.forEach((button, index) => {
+        button.classList.remove('is-current');
+
+        if (index === currentIndex) {
+          button.classList.remove('is-inactive');
+          button.classList.add('is-current');
+        } else {
+          button.classList.add('is-inactive');
         }
       });
     }, 500);

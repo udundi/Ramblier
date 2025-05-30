@@ -15,7 +15,7 @@
         "carousel_item_VHQ3Kh": {
           "type": "carousel_item",
           "settings": {
-            "associated_word": "Venue",
+            "associated_word": "venues",
             "image": "shopify://shop_images/purchased-favorite-coffee.jpg",
             "associated_button_text": "Shop Legendary Venues",
             "associated_button_link": "shopify://collections/southeast"
@@ -24,10 +24,10 @@
         "carousel_item_gHcJyC": {
           "type": "carousel_item",
           "settings": {
-            "associated_word": "",
+            "associated_word": "icons",
             "image": "shopify://shop_images/woman-shopping-for-clothes.jpg",
-            "associated_button_text": "",
-            "associated_button_link": ""
+            "associated_button_text": "Shop Iconic icons",
+            "associated_button_link": "shopify://pages/about"
           }
         },
         "carousel_item_6tVtCj": {
@@ -42,10 +42,10 @@
         "carousel_item_wjed4z": {
           "type": "carousel_item",
           "settings": {
-            "associated_word": "",
+            "associated_word": "outlets",
             "image": "shopify://shop_images/enjoying-a-coffee-on-a-sunny-patio.jpg",
-            "associated_button_text": "",
-            "associated_button_link": ""
+            "associated_button_text": "Shop Outlets",
+            "associated_button_link": "shopify://pages/contact"
           }
         }
       },
