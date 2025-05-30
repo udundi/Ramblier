@@ -45,6 +45,7 @@ export function createCarouselFromSection(sectionId) {
             removeIndex--;
           } else {
             clearInterval(removeInterval);
+            cursiveWord.textContent = '';
 
             let addIndex = 0;
             const addInterval = setInterval(() => {
