@@ -108,16 +108,16 @@
           {% endif %}
 
           {% liquid
-          assign background_color = scheme.settings.background
-          assign background_color_brightness = background_color | color_brightness
-          if background_color_brightness <= 26
-            assign background_color_contrast = background_color | color_lighten: 50
-          elsif background_color_brightness <= 65
-            assign background_color_contrast = background_color | color_lighten: 5
-          else
-            assign background_color_contrast = background_color | color_darken: 25
-          endif
-%}
+            assign background_color = scheme.settings.background
+            assign background_color_brightness = background_color | color_brightness
+            if background_color_brightness <= 26
+              assign background_color_contrast = background_color | color_lighten: 50
+            elsif background_color_brightness <= 65
+              assign background_color_contrast = background_color | color_lighten: 5
+            else
+              assign background_color_contrast = background_color | color_darken: 25
+            endif
+          %}
 
           --color-foreground: {{ scheme.settings.text.red }}, 
           {{ scheme.settings.text.green }}, 
@@ -300,7 +300,6 @@
 
 html {
   box-sizing: border-box;
-  font-size: calc(var(--font-body-scale) * 62.5%);
   height: 100%;
 }
 
@@ -310,18 +309,6 @@ body {
   grid-template-columns: 100%;
   min-height: 100%;
   margin: 0;
-  font-size: 1.5rem;
-  letter-spacing: 0.06rem;
-  line-height: calc(1 + 0.8 / var(--font-body-scale));
-  font-family: var(--font-body-family);
-  font-style: var(--font-body-style);
-  font-weight: var(--font-body-weight);
-}
-
-@media screen and (min-width: 750px) {
-  body {
-    font-size: 1.6rem;
-  }
 }
     {% endstyle %}
 

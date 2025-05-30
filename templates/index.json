@@ -15,33 +15,46 @@
         "carousel_item_VHQ3Kh": {
           "type": "carousel_item",
           "settings": {
-            "cursive_word": "Venues",
-            "left_image": "shopify://shop_images/purchased-favorite-coffee.jpg",
-            "left_button_text": "",
-            "left_button_link": "",
-            "right_image": "shopify://shop_images/woman-shopping-for-clothes.jpg",
-            "right_button_text": "",
-            "right_button_link": ""
+            "associated_word": "Venue",
+            "image": "shopify://shop_images/purchased-favorite-coffee.jpg",
+            "associated_button_text": "Shop Legendary Venues",
+            "associated_button_link": "shopify://collections/southeast"
+          }
+        },
+        "carousel_item_gHcJyC": {
+          "type": "carousel_item",
+          "settings": {
+            "associated_word": "",
+            "image": "shopify://shop_images/woman-shopping-for-clothes.jpg",
+            "associated_button_text": "",
+            "associated_button_link": ""
           }
         },
         "carousel_item_6tVtCj": {
           "type": "carousel_item",
           "settings": {
-            "cursive_word": "Stores",
-            "left_image": "shopify://shop_images/welcome-to-my-business.jpg",
-            "left_button_text": "",
-            "left_button_link": "",
-            "right_image": "shopify://shop_images/man-browsing-at-a-guitar-shop.jpg",
-            "right_button_text": "",
-            "right_button_link": ""
+            "associated_word": "bars",
+            "image": "shopify://shop_images/welcome-to-my-business.jpg",
+            "associated_button_text": "Shop Iconic Bars",
+            "associated_button_link": "shopify://collections/fake-brand"
+          }
+        },
+        "carousel_item_wjed4z": {
+          "type": "carousel_item",
+          "settings": {
+            "associated_word": "",
+            "image": "shopify://shop_images/enjoying-a-coffee-on-a-sunny-patio.jpg",
+            "associated_button_text": "",
+            "associated_button_link": ""
           }
         }
       },
       "block_order": [
         "carousel_item_VHQ3Kh",
-        "carousel_item_6tVtCj"
+        "carousel_item_gHcJyC",
+        "carousel_item_6tVtCj",
+        "carousel_item_wjed4z"
       ],
-      "name": "Venues Carousel",
       "settings": {
         "main_heading": "Shop exclusive merch from iconic",
         "subheading": "Your favorite brands all in one place."
@@ -71,7 +84,6 @@
         "collection_ctEjh4",
         "collection_jGh9LW"
       ],
-      "name": "Collection Carousel",
       "settings": {
         "heading": "Best sellers from...",
         "products_per_collection": 10,
@@ -163,7 +175,6 @@
         "text_block_M98bzW",
         "text_block_ppADEH"
       ],
-      "name": "Endless Scrolling Text",
       "settings": {
         "bg_color": "#ecebe5",
         "border_top": "#222222",
@@ -207,7 +218,6 @@
       "blocks": {
         "button_4fzg4w": {
           "type": "button",
-          "name": "Default Button",
           "settings": {
             "text": "Our Story",
             "url": "shopify://pages/about",
@@ -225,7 +235,6 @@
       "block_order": [
         "button_4fzg4w"
       ],
-      "name": "Base Flexbox",
       "settings": {
         "padding_top": 0,
         "padding_bottom": 4,
@@ -281,7 +290,6 @@
       "custom_css": [
         "div {padding-bottom: 12px;}"
       ],
-      "name": "Featured Grid",
       "settings": {}
     },
     "ud_custom_city_list_rDqYax": {
@@ -356,14 +364,11 @@
         "city_dL7X9m",
         "city_9Qg3jL"
       ],
-      "name": "Custom City List",
       "settings": {
         "padding_top": 4,
         "padding_bottom": 4,
         "padding_left": 0,
         "padding_right": 0,
-        "mobile_padding_top": 4,
-        "mobile_padding_bottom": 4,
         "background_color": "#eceae5"
       }
     }
