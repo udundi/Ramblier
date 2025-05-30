@@ -778,6 +778,10 @@ p {
   aspect-ratio: 16 / 9;
 }
 
+.tw-aspect-\[4\/5\] {
+  aspect-ratio: 4/5;
+}
+
 .tw-size-12 {
   width: 3rem;
   height: 3rem;
@@ -870,6 +874,10 @@ p {
 
 .tw-min-w-96 {
   min-width: 24rem;
+}
+
+.tw-min-w-64 {
+  min-width: 16rem;
 }
 
 .tw-max-w-28 {
@@ -1828,6 +1836,10 @@ p {
     width: 50%;
   }
 
+  .md\:tw-min-w-96 {
+    min-width: 24rem;
+  }
+
   .md\:tw-auto-rows-\[10rem\] {
     grid-auto-rows: 10rem;
   }
@@ -1917,6 +1929,10 @@ p {
     margin-top: 1.5rem;
   }
 
+  .lg\:tw-grid {
+    display: grid;
+  }
+
   .lg\:tw-hidden {
     display: none;
   }
@@ -1943,6 +1959,11 @@ p {
 
   .lg\:tw-gap-14 {
     gap: 3.5rem;
+  }
+
+  .lg\:tw-px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .lg\:tw-pl-0 {
