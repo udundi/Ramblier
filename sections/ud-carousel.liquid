@@ -86,8 +86,21 @@
       {% for block in section.blocks %}
         {% if block.settings.collection != blank %}
           <div id="carousel-{{ section.id }}-{{ forloop.index0 }}" class="tw-collection-carousel tw-relative {% if forloop.first %} tw-active {% endif %}">
-            <button class="custom-button-prev-{{ forloop.index0 }} tw-absolute tw-left-12 tw-cursor-pointer tw-stroke-black tw-top-1/2 tw-size-20 md:tw-size-24 tw-z-30">{% render 'icon-arrow-left' %}</button>
-            <button class="custom-button-next-{{ forloop.index0 }} tw-absolute tw-right-12 tw-cursor-pointer tw-stroke-black tw-top-1/2 tw-size-20 md:tw-size-24 tw-z-30">{% render 'icon-arrow-right' %}</button>
+            <button class="custom-button-prev-{{ forloop.index0 }} tw-absolute tw-left-2.5 tw-cursor-pointer tw-stroke-black tw-top-1/2 tw-size-20 md:tw-size-24 tw-z-30 -tw-translate-y-1/2 tw-flex tw-items-center tw-justify-start">
+              {% if section.settings.arrow_style == 'arrows' %}
+                {% render 'icon-arrow-left' %}
+              {% elsif section.settings.arrow_style == 'carets' %}
+                <span class='tw-rotate-180 tw-py-2 tw-px-1 tw-bg-white tw-bg-opacity-75 tw-flex tw-items-center'>{% render 'icon-caret' %}</span>
+              {% endif %}
+            </button>
+            <button class="custom-button-next-{{ forloop.index0 }} tw-absolute tw-right-2.5 tw-cursor-pointer tw-stroke-black tw-top-1/2 tw-size-20 md:tw-size-24 tw-z-30 -tw-translate-y-1/2 tw-flex tw-items-center tw-justify-end">
+              {% if section.settings.arrow_style == 'arrows' %}
+                {% render 'icon-arrow-right' %}
+              {% elsif section.settings.arrow_style == 'carets' %}
+                <span class='tw-py-2 tw-px-1 tw-bg-white tw-bg-opacity-75 tw-flex tw-items-center'>
+                  {% render 'icon-caret' %}
+                </span>
+              {% endif %}</button>
             <div class="swiper-wrapper">
               {% for product in block.settings.collection.products limit: section.settings.products_per_collection %}
                 <div class="swiper-slide">
@@ -207,6 +220,21 @@
         "id": "show_arrows",
         "label": "Show Navigation Arrows",
         "default": true
+      },
+      {
+        "type": "select",
+        "id": "arrow_style",
+        "label": "Navigation Arrow Style",
+        "options": [
+          {
+            "label": "Arrows",
+            "value": "arrows"
+          },
+          {
+            "label": "Carets",
+            "value": "carets"
+          }
+        ]
       },
       {
         "type": "checkbox",

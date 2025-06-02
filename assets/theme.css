@@ -651,6 +651,26 @@ p {
   top: 100%;
 }
 
+.tw-left-7 {
+  left: 1.75rem;
+}
+
+.tw-left-5 {
+  left: 1.25rem;
+}
+
+.tw-right-5 {
+  right: 1.25rem;
+}
+
+.tw-left-2\.5 {
+  left: 0.625rem;
+}
+
+.tw-right-2\.5 {
+  right: 0.625rem;
+}
+
 .tw-isolate {
   isolation: isolate;
 }
@@ -925,6 +945,11 @@ p {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.tw-rotate-180 {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .tw-scale-105 {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
@@ -997,6 +1022,10 @@ p {
 
 .tw-items-center {
   align-items: center;
+}
+
+.tw-items-stretch {
+  align-items: stretch;
 }
 
 .tw-justify-start {
@@ -1166,6 +1195,10 @@ p {
   --tw-bg-opacity: 0.4;
 }
 
+.tw-bg-opacity-75 {
+  --tw-bg-opacity: 0.75;
+}
+
 .tw-bg-cover {
   background-size: cover;
 }
@@ -1301,6 +1334,11 @@ p {
   padding-bottom: 2rem;
 }
 
+.tw-px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
 .tw-pb-6 {
   padding-bottom: 1.5rem;
 }
@@ -1331,6 +1369,14 @@ p {
 
 .tw-pt-8 {
   padding-top: 2rem;
+}
+
+.tw-pl-2 {
+  padding-left: 0.5rem;
+}
+
+.tw-pr-1 {
+  padding-right: 0.25rem;
 }
 
 .tw-text-center {
