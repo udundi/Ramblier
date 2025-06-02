@@ -826,6 +826,11 @@ p {
   height: 100%;
 }
 
+.tw-size-9 {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
 .tw-h-96 {
   height: 24rem;
 }
@@ -1755,6 +1760,10 @@ p {
     display: none;
   }
 
+  .max-md\:\!tw-hidden {
+    display: none !important;
+  }
+
   .max-md\:tw-aspect-\[5\/4\] {
     aspect-ratio: 5/4;
   }
@@ -1845,6 +1854,10 @@ p {
     display: none;
   }
 
+  .md\:\!tw-hidden {
+    display: none !important;
+  }
+
   .md\:tw-aspect-3\/4 {
     aspect-ratio: 3 / 4;
   }
@@ -1880,6 +1893,16 @@ p {
   .md\:tw-size-24 {
     width: 6rem;
     height: 6rem;
+  }
+
+  .md\:tw-size-9 {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .md\:tw-size-11 {
+    width: 2.75rem;
+    height: 2.75rem;
   }
 
   .md\:tw-h-\[400px\] {
@@ -1951,6 +1974,15 @@ p {
   .md\:tw-py-12 {
     padding-top: 3rem;
     padding-bottom: 3rem;
+  }
+
+  .md\:tw-py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .md\:tw-pt-16 {
+    padding-top: 4rem;
   }
 
   .md\:tw-text-48 {

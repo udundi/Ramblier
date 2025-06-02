@@ -33,8 +33,8 @@
   }
 
   .swiper-pagination-bullet {
-    width: 15px;
-    height: 15px;
+    width: 11px;
+    height: 11px;
     color: #000;
     opacity: 1;
     border: #000 solid 1px;
@@ -45,6 +45,17 @@
   .swiper-pagination-bullet-active {
     color: #fff;
     background: #000;
+  }
+
+  .swiper-scrollbar-horizontal {
+    --swiper-scrollbar-sides-offset: 0%;
+    --swiper-scrollbar-bottom: 0%;
+    --swiper-scrollbar-size: 6px;
+  }
+
+  .swiper-scrollbar-drag {
+    --swiper-scrollbar-drag-bg-color: #000000;
+    --swiper-scrollbar-border-radius: 0;
   }
 
   @media screen and (max-width: 768px) {
@@ -94,8 +105,8 @@
     <!-- Column 1 (Image Gallery) -->
     <!-- -------------------------------- -->
     <div class="tw-relative tw-w-full tw-overflow-hidden md:tw-w-1/2 max-md:tw-border-y">
-      <button class="custom-button-prev tw-absolute tw-left-12 tw-cursor-pointer tw-stroke-black tw-top-1/2 tw-size-20 md:tw-size-24 tw-z-30">{% render 'icon-arrow-left' %}</button>
-      <button class="custom-button-next tw-absolute tw-right-12 tw-cursor-pointer tw-stroke-black tw-top-1/2 tw-size-20 md:tw-size-24 tw-z-30">{% render 'icon-arrow-right' %}</button>
+      <button class="custom-button-prev tw-absolute tw-left-12 tw-cursor-pointer tw-stroke-black tw-top-1/2 tw-size-9 md:tw-size-11 tw-z-30">{% render 'icon-arrow-left' %}</button>
+      <button class="custom-button-next tw-absolute tw-right-12 tw-cursor-pointer tw-stroke-black tw-top-1/2 tw-size-9 md:tw-size-11 tw-z-30">{% render 'icon-arrow-right' %}</button>
       <div class="swiper-container swiper tw-cursor-grab tw-w-full tw-h-full max-md:tw-max-h-[80vh] md:tw-absolute tw-top-0 tw-left-0 tw-z-10">
         <div class="swiper-wrapper tw-h-full tw-w-full">
 
@@ -113,15 +124,16 @@
             {% endif %}
           {% endfor %}
         </div>
-        <div class="swiper-pagination"></div>
+        <div class="swiper-pagination max-md:!tw-hidden"></div>
+        <div class='swiper-scrollbar md:!tw-hidden'></div>
       </div>
     </div>
 
     <!-- Second column -->
-    <div class="md:tw-w-1/2 tw-flex tw-border-l tw-relative tw-flex-col tw-justify-center">
+    <div class="md:tw-w-1/2 tw-flex md:tw-border-l tw-relative tw-flex-col max-md:tw-justify-center">
       <div class="tw-relative tw-overflow-hidden">
         <div class="tw-absolute tw-bottom-0 tw-w-screen tw-border-b tw-z-20 tw-left-0"></div>
-        <div class="md:tw-px-24 md:tw-p-20 tw-p-8">
+        <div class="md:tw-px-24 md:tw-py-16 tw-p-8">
 
           <div class="tw-flex tw-flex-col tw-justify-center tw-gap-4">
             {% if product.metafields.custom.product_brand != blank %}
@@ -278,6 +290,10 @@
         return '<span class="' + className + '"></span>';
       },
     },
+    scrollbar: {
+      el: ".swiper-scrollbar",
+      draggable: true,
+    }
   });
   
   var swiper2 = new Swiper('.swiper-container-2', {

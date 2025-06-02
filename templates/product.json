@@ -345,6 +345,11 @@
         "flex_box_N7Jfat",
         "flex_box_VXi3rY"
       ],
+      "custom_css": [
+        "div[class*=\"section-template\"] {justify-content: space-betweeen; column-gap: min(18%, 260px);}",
+        "div[class*=\"section-template\"] h3 {text-transform: uppercase; font-family: Poppins, sans-serif;}",
+        "@media (max-width: 768px) {div[class*=\"section-template\"] h3 {font-size: 0.625rem; } div[class*=\"section-template\"] p {display: none; } div[class*=\"section-template\"] img {max-width: 3.5rem; max-height: 3.5rem; }}"
+      ],
       "name": "Base Flexbox",
       "settings": {
         "padding_top": 4,
@@ -357,12 +362,12 @@
         "flex_direction": "row",
         "tablet_flex_direction": "row",
         "mobile_flex_direction": "row",
-        "x_gap": 5,
+        "x_gap": 12.5,
         "y_gap": 1,
         "justify_content": "center",
         "align_items": "center",
         "container_width": "full_width",
-        "content_overflow": "scroll"
+        "content_overflow": "fit"
       }
     },
     "ud_universal_flexbox_AbC6jh": {
@@ -493,10 +498,11 @@
         "slides_per_view_tablet": 2,
         "slides_per_view_mobile": 1,
         "show_arrows": true,
+        "arrow_style": "carets",
         "show_dots": false,
         "autoplay": false,
         "autoplay_speed": 3000,
-        "pill_active_color": "#000000",
+        "pill_active_color": "#0f214d",
         "nav_button_color": "#000000",
         "button_style": "solid",
         "padding_top": 4,
