@@ -802,6 +802,10 @@ p {
   aspect-ratio: 4/5;
 }
 
+.tw-aspect-\[5\/4\] {
+  aspect-ratio: 5/4;
+}
+
 .tw-size-12 {
   width: 3rem;
   height: 3rem;
@@ -1751,6 +1755,10 @@ p {
     display: none;
   }
 
+  .max-md\:tw-aspect-\[5\/4\] {
+    aspect-ratio: 5/4;
+  }
+
   .max-md\:tw-h-1\/2 {
     height: 50%;
   }
@@ -1765,6 +1773,10 @@ p {
 
   .max-md\:tw-justify-center {
     justify-content: center;
+  }
+
+  .max-md\:tw-border {
+    border-width: 1px;
   }
 
   .max-md\:tw-border-y {
@@ -1908,6 +1920,14 @@ p {
 
   .md\:tw-gap-4 {
     gap: 1rem;
+  }
+
+  .md\:tw-border-l {
+    border-left-width: 1px;
+  }
+
+  .md\:tw-border-r {
+    border-right-width: 1px;
   }
 
   .md\:tw-p-20 {
