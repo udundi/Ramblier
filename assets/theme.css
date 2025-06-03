@@ -745,6 +745,10 @@ p {
   margin-top: 1.5rem;
 }
 
+.tw-mt-7 {
+  margin-top: 1.75rem;
+}
+
 .tw-block {
   display: block;
 }
@@ -972,6 +976,11 @@ p {
 
 .tw-cursor-pointer {
   cursor: pointer;
+}
+
+.tw-scroll-px-14 {
+  scroll-padding-left: 3.5rem;
+  scroll-padding-right: 3.5rem;
 }
 
 .tw-list-disc {
@@ -1340,6 +1349,21 @@ p {
   padding-bottom: 2rem;
 }
 
+.tw-py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.tw-py-2\.5 {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
+.tw-px-14 {
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+}
+
 .tw-pb-6 {
   padding-bottom: 1.5rem;
 }
@@ -1402,6 +1426,10 @@ p {
 
 .tw-font-poppins {
   font-family: Poppins, sans-serif;
+}
+
+.tw-text-10 {
+  font-size: 0.625rem;
 }
 
 .tw-text-12 {
@@ -1482,6 +1510,10 @@ p {
 
 .tw-italic {
   font-style: italic;
+}
+
+.tw-leading-6 {
+  line-height: 1.5rem;
 }
 
 .tw-leading-loose {
@@ -1624,21 +1656,38 @@ p {
   width: 50%;
 }
 
-.animated-button__hover-white::before {
+.animated-button--hover-white::before {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
-.animated-button__hover-white::after {
+.animated-button--hover-white::after {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
-.animated-button__hover-white:hover {
+.animated-button--hover-white:hover {
   --tw-text-opacity: 1;
   color: rgb(15 33 77 / var(--tw-text-opacity, 1));
+}
+
+.animated-button--hover-navy::before {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 33 77 / var(--tw-bg-opacity, 1));
+}
+
+.animated-button--hover-navy::after {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 33 77 / var(--tw-bg-opacity, 1));
+}
+
+.animated-button--hover-navy:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
 .placeholder\:tw-uppercase::-moz-placeholder {
@@ -2090,6 +2139,18 @@ p {
   .md\:tw-py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem;
+  }
+
+  .md\:tw-text-12 {
+    font-size: 0.75rem;
+  }
+
+  .md\:tw-text-14 {
+    font-size: 0.875rem;
+  }
+
+  .md\:tw-text-36 {
+    font-size: 2.25rem;
   }
 
   .md\:tw-text-48 {

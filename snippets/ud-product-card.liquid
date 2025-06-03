@@ -1,14 +1,19 @@
-<a href="{{ product.url }}" class="tw-w-full tw-group">
+<a href="{{ product.url }}" class="tw-group tw-w-full">
   <div class="tw-flex tw-flex-col">
-    <div class="tw-overflow-hidden tw-w-full tw-transition-transform tw-aspect-3/4">
-      {{ product.featured_image | image_url: width: 800 | image_tag: class: 'tw-w-full tw-h-full tw-transition-transform tw-duration-500 group-hover:tw-scale-105 tw-object-cover' }}
+    <div class="tw-aspect-3/4 tw-w-full tw-overflow-hidden tw-transition-transform">
+      {{
+        product.featured_image
+        | image_url: width: 800
+        | image_tag:
+          class: 'tw-w-full tw-h-full tw-transition-transform tw-duration-500 group-hover:tw-scale-105 tw-object-cover'
+      }}
     </div>
     <div class="tw-flex tw-flex-col">
-      <div class="tw-flex tw-pt-2 tw-justify-between">
-        <span class="tw-text-14">{{ product.title }}</span>
-        <span class="tw-text-14">{{ product.price | money }}</span>
+      <div class="tw-flex tw-justify-between tw-pt-2">
+        <span class="tw-text-10 tw-leading-6 md:tw-text-14">{{ product.title }}</span>
+        <span class="tw-text-10 md:tw-text-14">{{ product.price | money }}</span>
       </div>
-      <div class="tw-font-poppins tw-text-12 tw-italic -tw-mt-2 tw-text-brand-gray">
+      <div class="-tw-mt-2 tw-font-poppins tw-text-10 tw-italic tw-leading-6 tw-text-brand-gray md:tw-text-12">
         {{ product.metafields.custom.product_brand.value.name }}
       </div>
     </div>
