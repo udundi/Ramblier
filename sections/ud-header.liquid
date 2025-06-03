@@ -1,15 +1,34 @@
+{% liquid
+  if template.name == 'index'
+    assign top_row_color = 'tw-bg-brand-Beige tw-text-black md:tw-bg-brand-navy md:tw-text-white tw-border-white placeholder:tw-text-white'
+    assign logo_color = 'tw-text-brand-navy md:tw-text-white md:tw-border-white'
+    assign icon_color = 'tw-text-black tw-border-black tw-stroke-black tw-fill-black md:tw-text-white md:tw-border-white md:tw-stroke-white md:tw-fill-white'
+    assign bottom_row_color = 'tw-bg-brand-Beige tw-text-black'
+  else
+    assign top_row_color = 'tw-bg-white tw-text-black tw-border-black'
+    assign logo_color = 'tw-text-brand-navy tw-border-black'
+    assign icon_color = 'tw-text-black tw-border-black tw-stroke-black tw-fill-black'
+    assign bottom_row_color = 'tw-bg-white tw-text-black'
+  endif
+%}
 <!-- Main Container -->
-<header class="tw-items-middle tw-flex tw-flex-col tw-justify-center tw-gap-[1px] tw-border-b tw-border-black tw-bg-black tw-text-brand-navy">
+<header
+  class="tw-items-middle tw-flex tw-flex-col tw-justify-center tw-gap-[1px] tw-border-b"
+>
   <!-- Top Row Container -->
-  <div class="tw-flex tw-grid-cols-[3.5rem_3.5rem_1fr_3.5rem_3.5rem] tw-justify-center tw-bg-white tw-align-middle">
+  <div
+    class="tw-flex tw-grid-cols-[3.5rem_3.5rem_1fr_3.5rem_3.5rem] tw-justify-center tw-border-b tw-align-middle  {{ top_row_color }}"
+  >
     <!-- Mobile Hamburger Menu -->
-    <button class="tw-flex tw-w-full tw-max-w-14 tw-items-center tw-justify-center tw-border-r max-md:tw-order-1 md:tw-hidden">
+    <button
+      class="tw-flex tw-w-full tw-max-w-14 tw-items-center tw-justify-center tw-border-r max-md:tw-order-1 md:tw-hidden {{ icon_color }}"
+    >
       <span class="tw-block tw-size-4">{% render 'icon-hamburger' %}</span>
     </button>
     <!-- Site Icon -->
     <a
       href="{{ shop.url }}"
-      class="tw-flex tw-bg-white tw-py-1.5 tw-text-brand-navy max-md:tw-order-3 max-md:tw-w-full max-md:tw-grow max-md:tw-justify-center md:tw-items-center md:tw-border-r md:tw-px-8 md:tw-py-4 lg:tw-px-12"
+      class="tw-flex tw-py-1.5 {{ logo_color }} max-md:tw-order-3 max-md:tw-w-full max-md:tw-grow max-md:tw-justify-center md:tw-items-center md:tw-border-r md:tw-px-8 md:tw-py-4 lg:tw-px-12"
     >
       <span class="tw-w-32 md:tw-w-44">
         {% render 'icon-logo' %}
@@ -17,28 +36,37 @@
     </a>
     <!-- Search Bar -->
     <div
-      default="Enter Search Term"
-      class="tw-relative tw-w-full tw-py-1.5 max-md:tw-order-2 max-md:tw-flex max-md:tw-max-w-14 max-md:tw-items-center max-md:tw-justify-center md:tw-grow md:tw-border-r md:tw-py-4"
+      class="tw-relative tw-w-full tw-py-1.5 max-md:tw-order-2 max-md:tw-flex max-md:tw-max-w-14 max-md:tw-items-center max-md:tw-justify-center md:tw-grow md:tw-border-r"
     >
-      <div class="tw-top-1/2 tw-fill-brand-navy md:tw-absolute md:tw-left-8 md:-tw-translate-y-1/2">
+      <div class="tw-top-1/2 {{ icon_color }} md:tw-absolute md:tw-left-8 md:-tw-translate-y-1/2">
         {% render 'icon-search' %}
       </div>
-      <input placeholder="Enter Search term" class="tw-h-full tw-w-full tw-pl-20 tw-pr-12 max-md:tw-hidden">
+      <label>
+        <span class="tw-sr-only">Enter Search Term</span>
+        <input
+          placeholder="Enter Search term"
+          class="tw-h-full tw-w-full tw-pl-20 tw-pr-12 tw-text-14 placeholder:tw-uppercase max-md:tw-hidden {{ top_row_color }} tw-font-medium tw-tracking-wider"
+        >
+      </label>
     </div>
     <!-- Account Button -->
     <a
       href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
-      class="tw-flex tw-w-full tw-max-w-14 tw-items-center tw-justify-center tw-border-r tw-bg-white tw-stroke-black tw-py-1.5 max-md:tw-order-4 md:tw-max-w-24 md:tw-py-4"
+      class="tw-flex tw-w-full tw-max-w-14 tw-items-center tw-justify-center  {{ icon_color }} tw-border-r tw-py-1.5 max-md:tw-order-4 md:tw-max-w-24 md:tw-py-4"
     >
-      {% render 'icon-account' %}
+      <span class="tw-size-7">{% render 'icon-account' %}</span>
     </a>
     <!-- Cart Button -->
-    <button class="tw-flex tw-w-full tw-max-w-14 tw-items-center tw-justify-center tw-bg-white tw-fill-black tw-py-1.5 max-md:tw-order-5 md:tw-max-w-24 md:tw-py-4 ">
-      {% render 'icon-cart' %}
+    <button
+      class="tw-flex tw-w-full tw-max-w-14 tw-items-center tw-justify-center {{ icon_color }} tw-py-1.5 max-md:tw-order-5 md:tw-max-w-24 md:tw-py-4 "
+    >
+      <span class="tw-size-6">{% render 'icon-cart' %}</span>
     </button>
   </div>
   <!-- Bottom Row Container -->
-  <div class="tw-relative tw-flex tw-items-center tw-justify-between tw-bg-white tw-px-4 tw-py-2 tw-text-14 tw-font-medium tw-uppercase max-md:tw-hidden md:tw-px-8 lg:tw-px-12">
+  <div
+    class="tw-relative tw-flex tw-items-center tw-justify-between tw-px-4 tw-py-2 tw-text-14 tw-font-medium tw-uppercase max-md:tw-hidden md:tw-px-8 lg:tw-px-12 {{ bottom_row_color }}"
+  >
     <!-- Left Links -->
     <div class="tw-flex tw-gap-9">
       {% content_for 'blocks' %}

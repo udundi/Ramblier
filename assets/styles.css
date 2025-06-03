@@ -4,7 +4,7 @@
 
 @layer components {
   a {
-    @apply tw-text-black hover:tw-text-brand-navy tw-font-poppins;
+    @apply tw-text-black tw-font-poppins;
   }
   h1,
   h2,
@@ -16,5 +16,58 @@
   }
   p {
     @apply tw-font-poppins tw-font-normal;
+  }
+}
+
+@layer utilities {
+  .animated-button {
+    position: relative;
+    isolation: isolate;
+    transition-property: color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+  }
+
+  .animated-button::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    transition-property: width;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    z-index: -1;
+  }
+
+  .animated-button::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    z-index: -1;
+    transition-property: width;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+  }
+
+  .animated-button:hover::before,
+  .animated-button:hover::after {
+    width: 50%;
+  }
+
+  .animated-button__hover-white {
+    @apply before:tw-bg-white after:tw-bg-white hover:tw-text-brand-navy
+  }
+
+  .animated-button__hover-black {
+    @apply before:tw-bg-black after:tw-bg-black hover:tw-text-white
+  }
+
+  .animated-button__hover-navy {
+    @apply before:tw-bg-brand-navy after:tw-bg-brand-navy hover:tw-text-white
   }
 }
