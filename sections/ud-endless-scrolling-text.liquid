@@ -6,37 +6,98 @@
 {% endcomment %}
 
 <section
-  class="ud-endless-scrolling-text-section"
-  style="background: {{ section.settings.bg_color }}; border-top: 2px solid {{ section.settings.border_top }}; border-bottom: 2px solid {{ section.settings.border_bottom }}; padding-top: {{ section.settings.pt }}px; padding-bottom: {{ section.settings.pb }}px;"
+  class="ud-endless-scrolling-text-section tw-text-18 md:tw-text-24"
+  style="background: {{ section.settings.bg_color }}; border-block: 1px solid {{ section.settings.border_top }}; border-bottom: 1px solid {{ section.settings.border_bottom }}; padding-top: {{ section.settings.pt }}px; padding-bottom: {{ section.settings.pb }}px;"
 >
-  <div class="slick-endless-{{ section.id }} tw-flex tw-items-center">
-    {% for block in section.blocks %}
-      <div class="tw-inline-block tw-px-4 tw-whitespace-nowrap tw-font-cursive tw-text-lg">
-        {{ block.settings.text }}
-      </div>
-      {% unless forloop.last %}
-        <span class="tw-inline-block tw-px-2">-</span>
-      {% endunless %}
-    {% endfor %}
+  <div class="scrolling-container-{{ section.id }} tw-overflow-hidden tw-whitespace-nowrap">
+    <div class="scrolling-text-{{ section.id }} tw-animate-scroll tw-inline-block tw-w-fit">
+      {% for block in section.blocks %}
+        <span class="tw-font-cursive tw-text-lg tw-inline-block tw-whitespace-nowrap tw-px-4">
+          {{ block.settings.text }}
+        </span>
+        <span class="tw-inline-block tw-px-2">&#8212;</span>
+      {% endfor %}
+    </div>
   </div>
 </section>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    $('.slick-endless-{{ section.id }}').slick({
-      speed: 4000,
-      autoplay: true,
-      autoplaySpeed: 0,
-      cssEase: 'linear',
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      infinite: true,
-      arrows: false,
-      dots: false,
-      variableWidth: true,
-      pauseOnHover: false,
-      pauseOnFocus: false,
+<style>
+  .scrolling-container-{{ section.id }} {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  @keyframes scroll-{{ section.id }} {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .scrolling-text-{{ section.id }} {
+    flex-shrink: 0;
+    width: fit-content;
+    animation: scroll-{{ section.id }} 20s linear infinite;
+    white-space: nowrap;
+  }
+
+  .scrolling-container-{{ section.id }}:hover .scrolling-text-{{ section.id }} {
+    animation-play-state: paused;
+  }
+</style>
+
+<script type="module">
+  const container = document.querySelector('.scrolling-container-{{ section.id }}');
+  const originalText = container.querySelector('.scrolling-text-{{ section.id }}');
+  const originalTextWidth = originalText.offsetWidth;
+
+  function updateScrollers() {
+    const currentTexts = container.querySelectorAll('.scrolling-text-{{ section.id }}');
+    currentTexts.forEach((text) => {
+      text.style.animation = 'none';
     });
+
+    container.offsetHeight;
+
+    const windowWidth = window.innerWidth;
+
+    const copiesNeeded = Math.max(2, Math.ceil(windowWidth / originalTextWidth) + 1);
+    const currentCount = currentTexts.length;
+
+    if (currentCount > copiesNeeded) {
+      for (let i = copiesNeeded; i < currentCount; i++) {
+        container.removeChild(currentTexts[i]);
+      }
+    }
+
+    if (currentCount < copiesNeeded) {
+      for (let i = currentCount; i < copiesNeeded; i++) {
+        const clone = originalText.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        container.appendChild(clone);
+      }
+    }
+
+    const speed = Math.max(15, originalTextWidth / 50);
+
+    setTimeout(() => {
+      const finalTexts = container.querySelectorAll('.scrolling-text-{{ section.id }}');
+      finalTexts.forEach((text) => {
+        text.style.animationDuration = `${speed}s`;
+        text.style.animation = `scroll-{{ section.id }} ${speed}s linear infinite`;
+      });
+    }, 50);
+  }
+
+  document.addEventListener('DOMContentLoaded', updateScrollers);
+
+  let resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(updateScrollers, 250);
   });
 </script>
 

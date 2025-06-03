@@ -23,9 +23,9 @@
   }
 </style>
 
-<div class="tw-w-full max-width-{{ block.id }} tw-font-poppins tw-h-fit tw-flex {% if block.settings.align == 'center' %} tw-text-center tw-justify-center {% elsif block.settings.align == 'end' %} tw-text-end tw-justify-end {% elsif block.settings.align == 'start' %} tw-text-start tw-justify-start {% endif %} tw-relative">
+<div class="tw-w-full max-width-{{ block.id }} tw-flex tw-h-fit tw-font-poppins {% if block.settings.align == 'center' %} tw-text-center tw-justify-center {% elsif block.settings.align == 'end' %} tw-text-end tw-justify-end {% elsif block.settings.align == 'start' %} tw-text-start tw-justify-start {% endif %} tw-relative">
   {% if block.settings.type == 'header' %}
-    <h2 class="{% if block.settings.size == 'small' %} tw-text-32 {% elsif block.settings.size == 'large' %} tw-text-48 {% else %} tw-text-40 {% endif %} tw-font-noto font-color-{{ block.id }} {{ block.settings.weight }} {% if block.settings.gap-border %} gap-border-{{ block.id }} {% endif %}">
+    <h2 class="{% if block.settings.size == 'small' %} tw-text-24 md:tw-text-36 {% elsif block.settings.size == 'large' %} tw-text-48 {% else %} tw-text-40 {% endif %} tw-font-noto font-color-{{ block.id }} {{ block.settings.weight }} {% if block.settings.gap-border %} gap-border-{{ block.id }} {% endif %}">
       {{ block.settings.text }}
     </h2>
   {% elsif block.settings.type == 'mainheader' %}
@@ -37,132 +37,140 @@
       {{ block.settings.text }}
     </h3>
   {% elsif block.settings.type == 'body' %}
-    <p class="{% if block.settings.size == 'small' %} tw-text-14 {% elsif block.settings.size == 'large' %} tw-text-18 {% else %} tw-text-16 {% endif %} font-color-{{ block.id }} {{ block.settings.weight }} {% if block.settings.gap-border %} gap-border-{{ block.id }} {% endif %}">
+    <p class="{% if block.settings.size == 'small' %} tw-text-10 md:tw-text-14 {% elsif block.settings.size == 'large' %} tw-text-14 md:tw-text-18 {% else %} tw-text-12 md:tw-text-16 {% endif %} font-color-{{ block.id }} {{ block.settings.weight }} {% if block.settings.gap-border %} gap-border-{{ block.id }} {% endif %}">
       {{ block.settings.text }}
     </p>
   {% endif %}
 </div>
 
 {% schema %}
-  {
-    "name": "Text",
-    "settings": [
-      {
-        "type": "text",
-        "id": "text",
-        "label": "Text Content",
-        "default": "Lorem ipsum dolor sit amet."
-      },
-      {
-        "type": "select",
-        "id": "type",
-        "label": "Text Type",
-        "options": [
-          {
-            "value": "header",
-            "label": "Header"
-          },
-          {
-            "value": "subheader",
-            "label": "Subheader"
-          },
-          {
-            "value": "body",
-            "label": "Body"
-          },
-          {
-            "value": "mainheader",
-            "label": "Page Header"
-          }
-        ],
-        "default": "header"
-      },
-      {
-        "type": "select",
-        "id": "align",
-        "label": "Alignment",
-        "options": [
-          {
-            "value": "start",
-            "label": "Start"
-          },
-          {
-            "value": "center",
-            "label": "Center"
-          },
-          {
-            "value": "end",
-            "label": "End"
-          }
-        ],
-        "default": "center"
-      },
-      {
-        "type": "select",
-        "id": "size",
-        "label": "Text Size",
-        "options": [
-          {
-            "value": "small",
-            "label": "Small"
-          },
-          {
-            "value": "medium",
-            "label": "Medium"
-          },
-          {
-            "value": "large",
-            "label": "Large"
-          }
-        ],
-        "default": "medium"
-      },
-      {
-        "type": "select",
-        "id": "weight",
-        "label": "Font Weight",
-        "options": [
-          {
-            "value": "tw-font-light",
-            "label": "Light"
-          },
-          {
-            "value": "tw-font-base",
-            "label": "Normal"
-          },
-          {
-            "value": "tw-font-bold",
-            "label": "Bold"
-          }
-        ],
-        "default": "tw-font-base"
-      },
-      {
-        "type": "range",
-        "id": "max_width",
-        "label": "Max Width",
-        "min": 400,
-        "max": 1000,
-        "step": 10,
-        "default": 600
-      },
-      {
-        "type": "color",
-        "id": "color",
-        "label": "Text Color",
-        "default": "#000000"
-      },
-      {
-        "type": "checkbox",
-        "id": "gap-border",
-        "label": "Add Gap Border",
-        "default": false
-      }
-    ],
-    "presets": [
-      {
-        "name": "text"
-      }
-    ]
-  }
+{
+  "name": "Text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text Content",
+      "default": "Lorem ipsum dolor sit amet."
+    },
+    {
+      "type": "select",
+      "id": "type",
+      "label": "Text Type",
+      "options": [
+        {
+          "value": "header",
+          "label": "Header"
+        },
+        {
+          "value": "subheader",
+          "label": "Subheader"
+        },
+        {
+          "value": "body",
+          "label": "Body"
+        },
+        {
+          "value": "mainheader",
+          "label": "Page Header"
+        }
+      ],
+      "default": "header"
+    },
+    {
+      "type": "select",
+      "id": "align",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Start"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "End"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "size",
+      "label": "Text Size",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "weight",
+      "label": "Font Weight",
+      "options": [
+        {
+          "value": "tw-font-light",
+          "label": "Light"
+        },
+        {
+          "value": "tw-font-base",
+          "label": "Normal"
+        },
+        {
+          "value": "tw-font-medium",
+          "label": "Medium"
+        },
+        {
+          "value": "tw-font-semibold",
+          "label": "Semi-Bold"
+        },
+        {
+          "value": "tw-font-bold",
+          "label": "Bold"
+        }
+      ],
+      "default": "tw-font-base"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max Width",
+      "min": 400,
+      "max": 1000,
+      "step": 10,
+      "default": 600
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "checkbox",
+      "id": "gap-border",
+      "label": "Add Gap Border",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "text"
+    }
+  ]
+}
 {% endschema %}

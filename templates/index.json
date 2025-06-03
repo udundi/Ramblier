@@ -122,56 +122,14 @@
         "text_block_xNxtDL": {
           "type": "text_block",
           "settings": {
-            "text": "som"
-          }
-        },
-        "text_block_g9TbRU": {
-          "type": "text_block",
-          "settings": {
-            "text": "Smooth"
-          }
-        },
-        "text_block_R4PizA": {
-          "type": "text_block",
-          "settings": {
-            "text": "Cool"
-          }
-        },
-        "text_block_qW4trT": {
-          "type": "text_block",
-          "settings": {
-            "text": "som"
-          }
-        },
-        "text_block_Hfr46c": {
-          "type": "text_block",
-          "settings": {
-            "text": "Smooth"
-          }
-        },
-        "text_block_M98bzW": {
-          "type": "text_block",
-          "settings": {
-            "text": "Cool"
-          }
-        },
-        "text_block_ppADEH": {
-          "type": "text_block",
-          "settings": {
-            "text": "som"
+            "text": "Here's another one"
           }
         }
       },
       "block_order": [
         "text_block_G6ENEi",
         "text_block_NbPQYi",
-        "text_block_xNxtDL",
-        "text_block_g9TbRU",
-        "text_block_R4PizA",
-        "text_block_qW4trT",
-        "text_block_Hfr46c",
-        "text_block_M98bzW",
-        "text_block_ppADEH"
+        "text_block_xNxtDL"
       ],
       "settings": {
         "bg_color": "#ecebe5",
@@ -181,45 +139,43 @@
         "pb": 12
       }
     },
-    "rich_text": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "<strong>Merch from the places you love, all in one place.</strong>",
-            "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Some places just stick with you. The late-night diners, the legendary BBQ joints, the dive bars with the best jukebox. We bring their merch online, so you can rep your favorites, no road trip required.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
-    "ud_universal_flexbox_MipMj7": {
+    "ud_universal_flexbox_YGwUzw": {
       "type": "ud-universal-flexbox",
       "blocks": {
-        "button_4fzg4w": {
-          "type": "button",
+        "text_nbcpry": {
+          "type": "text",
+          "name": "text",
           "settings": {
-            "text": "Our Story",
-            "url": "shopify://pages/about",
+            "text": "Merch from the places you love, all in one place.",
+            "type": "header",
+            "align": "center",
+            "size": "small",
+            "weight": "tw-font-semibold",
+            "max_width": 540,
+            "color": "#000000",
+            "gap-border": false
+          },
+          "blocks": {}
+        },
+        "rich_text_wzgrTc": {
+          "type": "rich-text",
+          "name": "Rich Text",
+          "settings": {
+            "text": "<p>Some places just stick with you. The late-night diners, the legendary BBQ joints, the dive bars with the best jukebox. We bring their merch online, so you can rep your favorites, no road trip required.</p>",
+            "align": "center",
+            "color": "#000000",
+            "max_width": 570
+          },
+          "blocks": {}
+        },
+        "button_hMfkgq": {
+          "type": "button",
+          "name": "Default Button",
+          "settings": {
+            "text": "Click Me",
+            "url": "#",
             "type": "outlinedBlack",
+            "hover_color": "navy",
             "align": "center",
             "fullwidth": false,
             "margin-left": 0,
@@ -231,13 +187,16 @@
         }
       },
       "block_order": [
-        "button_4fzg4w"
+        "text_nbcpry",
+        "rich_text_wzgrTc",
+        "button_hMfkgq"
       ],
+      "name": "Base Flexbox",
       "settings": {
-        "padding_top": 0,
-        "padding_bottom": 4,
-        "mobile_padding_top": 4,
-        "mobile_padding_bottom": 4,
+        "padding_top": 7,
+        "padding_bottom": 6.5,
+        "mobile_padding_top": 4.5,
+        "mobile_padding_bottom": 6,
         "padding_left": 2,
         "padding_right": 2,
         "background_color": "#ffffff",
@@ -381,7 +340,7 @@
             "type": "header",
             "align": "center",
             "size": "medium",
-            "weight": "tw-font-base",
+            "weight": "tw-font-semibold",
             "max_width": 600,
             "color": "#ffffff",
             "gap-border": false
@@ -410,6 +369,7 @@
             "text": "Click Me",
             "url": "#",
             "type": "outlinedWhite",
+            "hover_color": "white",
             "align": "center",
             "fullwidth": false,
             "margin-left": 0,
@@ -450,8 +410,7 @@
     "ud_split_carousel_hero_XzBJ69",
     "ud_carousel_bEycYi",
     "ud_endless_scrolling_text_UaY7Dh",
-    "rich_text",
-    "ud_universal_flexbox_MipMj7",
+    "ud_universal_flexbox_YGwUzw",
     "ud_featured_grid_qtfKcd",
     "ud_custom_city_list_rDqYax",
     "ud_universal_flexbox_QFU9Xd"

@@ -19,29 +19,42 @@
   }
 {% endstyle %}
 
-<div class="section-{{ section.id }} tw-w-full tw-flex tw-flex-col tw-items-center max-md:tw-py-14">
-  <div class="tw-w-full tw-mx-auto">
-    <div class="tw-grid tw-auto-rows-[fit-content] md:tw-auto-rows-[10rem] tw-items-center">
+<div class="section-{{ section.id }} tw-flex tw-w-full tw-flex-col tw-items-center max-md:tw-py-14">
+  <div class="tw-mx-auto tw-w-full">
+    <div class="tw-grid tw-auto-rows-[fit-content] tw-items-center md:tw-auto-rows-[10rem]">
       {% for block in section.blocks %}
-        <a href="{{ block.settings.collection.link }}" 
-          class="tw-cursor-pointer tw-group tw-relative tw-w-full tw-mx-auto"
+        <a
+          href="{{ block.settings.collection.link }}"
+          class="tw-group tw-relative tw-mx-auto tw-w-full tw-cursor-pointer"
         >
-          <div class='md:tw-h-32 md:group-hover:tw-h-40 tw-border-y tw-border-black/0 hover:md:tw-border-black/100 tw-transition-[height] tw-duration-700 tw-flex tw-overflow-hidden tw-will-change-[height] tw-items-center'>
-            <div class='tw-w-full tw-max-w-screen-2xl tw-flex tw-items-center tw-mx-auto'>
+          <div class="tw-flex tw-items-center tw-overflow-hidden tw-border-y tw-border-black/0 tw-transition-[height] tw-duration-700 tw-will-change-[height] md:tw-h-32 hover:md:tw-border-black/100 md:group-hover:tw-h-40">
+            <div class="tw-mx-auto tw-flex tw-w-full tw-max-w-screen-2xl tw-items-center">
               <!-- Left: Image column -->
               {% if block.settings.image != blank %}
-                <div class="max-lg:tw-hidden tw-opacity-0 group-hover:tw-opacity-100 tw-transition-[opacity] tw-duration-500 tw-mx-auto sm:tw-h-32 group-hover:sm:tw-h-40 tw-relative tw-items-center tw-w-48">
-                  {{ block.settings.image | image_url: width: 400 | image_tag: class: "tw-w-48 tw-h-full tw-object-cover", alt: '' }}
+                <div class="tw-relative tw-mx-auto tw-w-48 tw-items-center tw-opacity-0 tw-transition-[opacity] tw-duration-500 group-hover:tw-opacity-100 max-lg:tw-hidden sm:tw-h-32 group-hover:sm:tw-h-40">
+                  {{
+                    block.settings.image
+                    | image_url: width: 400
+                    | image_tag: class: 'tw-w-48 tw-h-full tw-object-cover', alt: ''
+                  }}
                 </div>
               {% endif %}
               <!-- Center: Title column -->
-              <div class="tw-z-20 tw-text-30 md:tw-text-48 xl:tw-text-64 tw-font-noto tw-text-center tw-font-normal tw-leading-loose tw-grow">
+              <div class="tw-z-20 tw-grow tw-text-center tw-font-noto tw-text-30 tw-font-normal tw-leading-loose md:tw-text-48 xl:tw-text-64">
                 {{ block.settings.title }}
               </div>
               <!-- Right: Link column -->
-              <div class="max-lg:tw-hidden tw-pr-4 tw-justify-center tw-flex tw-items-center tw-w-48">
+              <div class="tw-flex tw-w-48 tw-items-center tw-justify-center tw-pr-4 max-lg:tw-hidden">
                 {% if block.settings.collection != blank and block.settings.link_name != blank %}
-                  <div class="tw-font-semibold tw-tracking-wide tw-underline tw-underline-offset-4 tw-text-black md:tw-opacity-0 group-hover:tw-opacity-100 tw-pointer-events-none group-hover:tw-pointer-events-auto tw-duration-500" tabindex="-1">{{ block.settings.link_name }}</div>
+                  <div
+                    class="tw-pointer-events-none tw-font-semibold tw-uppercase tw-tracking-wide tw-text-black tw-underline tw-underline-offset-4 tw-duration-500 group-hover:tw-pointer-events-auto group-hover:tw-opacity-100 md:tw-opacity-0"
+                    tabindex="-1"
+                  >
+                    <span class="tw-relative tw-inline-flex tw-flex-col tw-overflow-hidden">
+                      <span class="tw-relative">{{ block.settings.link_name }}</span>
+                      <span class="tw-self-stretch">{% render 'icon-drawn-underline' %}</span>
+                    </span>
+                  </div>
                 {% endif %}
               </div>
             </div>
@@ -53,91 +66,91 @@
 </div>
 
 {% schema %}
-  {
-    "name": "Custom City List",
-    "settings": [
-      {
-        "type": "range",
-        "id": "padding_top",
-        "min": 0,
-        "max": 40,
-        "step": 0.5,
-        "unit": "rem",
-        "label": "Desktop Padding Top",
-        "default": 4
-      },
-      {
-        "type": "range",
-        "id": "padding_bottom",
-        "min": 0,
-        "max": 40,
-        "step": 0.5,
-        "unit": "rem",
-        "label": "Desktop Padding Bottom",
-        "default": 4
-      },
-      {
-        "type": "range",
-        "id": "padding_left",
-        "min": 0,
-        "max": 40,
-        "step": 0.5,
-        "unit": "rem",
-        "label": "Padding Left",
-        "default": 2
-      },
-      {
-        "type": "range",
-        "id": "padding_right",
-        "min": 0,
-        "max": 40,
-        "step": 0.5,
-        "unit": "rem",
-        "label": "Padding Right",
-        "default": 2
-      },
-      {
-        "type": "color",
-        "id": "background_color",
-        "label": "Background Color",
-        "default": "#ffffff"
-      }
-    ],
-    "blocks": [
-      {
-        "type": "city",
-        "name": "City Item",
-        "settings": [
-          {
-            "type": "image_picker",
-            "id": "image",
-            "label": "City Image"
-          },
-          {
-            "type": "text",
-            "id": "title",
-            "label": "City Title",
-            "default": "City, State"
-          },
-          {
-            "type": "text",
-            "id": "link_name",
-            "label": "Link Name",
-            "default": "Shop City"
-          },
-          {
-            "type": "collection",
-            "id": "collection",
-            "label": "Collection"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Custom City List",
-        "category": "Custom"
-      }
-    ]
-  }
+{
+  "name": "Custom City List",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 40,
+      "step": 0.5,
+      "unit": "rem",
+      "label": "Desktop Padding Top",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 40,
+      "step": 0.5,
+      "unit": "rem",
+      "label": "Desktop Padding Bottom",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 40,
+      "step": 0.5,
+      "unit": "rem",
+      "label": "Padding Left",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 40,
+      "step": 0.5,
+      "unit": "rem",
+      "label": "Padding Right",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "city",
+      "name": "City Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "City Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "City Title",
+          "default": "City, State"
+        },
+        {
+          "type": "text",
+          "id": "link_name",
+          "label": "Link Name",
+          "default": "Shop City"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom City List",
+      "category": "Custom"
+    }
+  ]
+}
 {% endschema %}

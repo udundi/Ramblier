@@ -1,21 +1,30 @@
-{% comment %} 
-  Featured Grid Section 
-  - Responsive grid, columns = number of blocks 
-  - Each block: clickable, background image, overlay, link text, link url 
+{% comment %}
+  Featured Grid Section
+  - Responsive grid, columns = number of blocks
+  - Each block: clickable, background image, overlay, link text, link url
 {% endcomment %}
 
-<div class="tw-w-full lg:tw-px-8 tw-px-4">
+<div class="tw-w-full tw-px-4 lg:tw-px-8">
   <!-- Desktop grid, dynamic columns -->
-  <div class="tw-hidden tw-max-w-screen-3xl tw-mx-auto lg:tw-grid tw-gap-4 grid-cols-{{ section.id }}">
+  <div class="tw-mx-auto tw-hidden tw-max-w-screen-2xl tw-gap-4 lg:tw-grid grid-cols-{{ section.id }}">
     {% for block in section.blocks %}
-      <a href="{{ block.settings.link_url }}" class="tw-relative tw-group tw-overflow-hidden tw-aspect-3/4 tw-cursor-pointer tw-flex tw-items-end ">
-        <div class="tw-absolute tw-inset-0 tw-bg-black tw-bg-opacity-40 group-hover:tw-bg-opacity-60 tw-transition-all"></div>
-        <div class="tw-absolute tw-bottom-[15%] tw-w-full tw-text-center tw-px-2">
-          <span class="tw-text-white tw-font-semibold tw-text-32 tw-drop-shadow-lg">
-            {{ block.settings.link_text }}
+      <a
+        href="{{ block.settings.link_url }}"
+        class="tw-group tw-relative tw-flex tw-aspect-3/4 tw-cursor-pointer tw-items-end tw-justify-center tw-overflow-hidden "
+      >
+        <div
+          class="tw-absolute tw-inset-0 tw-bg-black tw-bg-opacity-40 tw-transition-all group-hover:tw-bg-opacity-60"
+        ></div>
+        <div class="tw-absolute tw-bottom-8 tw-mx-auto tw-w-fit tw-px-2 tw-text-center">
+          <span class="tw-w-fit tw-text-10 tw-font-medium tw-uppercase tw-tracking-wider tw-text-white tw-drop-shadow-lg md:tw-text-16">
+            <span>{{ block.settings.link_text }}</span>
+            <span>{% render 'icon-drawn-underline' %}</span>
           </span>
         </div>
-        <div class="tw-size-full tw-bg-center tw-bg-cover group-hover:tw-scale-100 tw-scale-105 tw-relative -tw-z-10 tw-transition-transform tw-duration-500" style="background-image: url('{{ block.settings.image | image_url: width: 800 }}');"></div>
+        <div
+          class="tw-relative -tw-z-10 tw-size-full tw-scale-105 tw-bg-cover tw-bg-center tw-transition-transform tw-duration-500 group-hover:tw-scale-100"
+          style="background-image: url('{{ block.settings.image | image_url: width: 800 }}');"
+        ></div>
       </a>
     {% endfor %}
   </div>
@@ -27,11 +36,14 @@
         <div>
           <a
             href="{{ block.settings.link_url }}"
-            class="tw-relative tw-group tw-overflow-hidden tw-aspect-[4/5] tw-min-w-64 md:tw-min-w-96 tw-cursor-pointer tw-flex tw-items-end tw-bg-center tw-bg-cover"
-            style="background-image: url('{{ block.settings.image | image_url: width: 800 }}');">
-            <div class="tw-absolute tw-inset-0 tw-bg-black tw-bg-opacity-40 group-hover:tw-bg-opacity-60 tw-transition-all"></div>
-            <div class="tw-relative tw-w-full tw-text-center tw-pb-6 tw-px-2">
-              <span class="tw-text-white tw-font-semibold tw-text-lg tw-drop-shadow">
+            class="tw-group tw-relative tw-flex tw-aspect-[4/5] tw-min-w-64 tw-cursor-pointer tw-items-end tw-overflow-hidden tw-bg-cover tw-bg-center md:tw-min-w-96"
+            style="background-image: url('{{ block.settings.image | image_url: width: 800 }}');"
+          >
+            <div
+              class="tw-absolute tw-inset-0 tw-bg-black tw-bg-opacity-40 tw-transition-all group-hover:tw-bg-opacity-60"
+            ></div>
+            <div class="tw-relative tw-w-full tw-px-2 tw-pb-6 tw-text-center">
+              <span class="tw-text-lg tw-font-medium tw-text-white tw-drop-shadow">
                 {{ block.settings.link_text }}
               </span>
             </div>
@@ -43,7 +55,7 @@
 </div>
 
 <script type="module">
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     $('.slick-featured-{{ section.id }}').slick({
       infinite: true,
       slidesToShow: 1,
@@ -52,7 +64,7 @@
       dots: false,
       variableWidth: true,
       swipeToSlide: true,
-      centerMode: true
+      centerMode: true,
     });
   });
 </script>
@@ -71,38 +83,38 @@
 </style>
 
 {% schema %}
-  {
-    "name": "Featured Grid",
-    "max_blocks": 6,
-    "blocks": [
-      {
-        "type": "column",
-        "name": "Grid Column",
-        "settings": [
-          {
-            "type": "image_picker",
-            "id": "image",
-            "label": "Background Image"
-          },
-          {
-            "type": "text",
-            "id": "link_text",
-            "label": "Link Text",
-            "default": "Featured Title"
-          },
-          {
-            "type": "url",
-            "id": "link_url",
-            "label": "Link URL"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Featured Grid",
-        "category": "Custom"
-      }
-    ]
-  }
+{
+  "name": "Featured Grid",
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Grid Column",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Featured Title"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Grid",
+      "category": "Custom"
+    }
+  ]
+}
 {% endschema %}
