@@ -71,3 +71,16 @@
     @apply before:tw-bg-brand-navy after:tw-bg-brand-navy hover:tw-text-white
   }
 }
+
+
+.shopify-policy__container {
+  @apply !tw-max-w-4xl !tw-mx-auto !tw-mt-20 !tw-mb-28 !tw-px-5 !tw-font-poppins !tw-font-normal !tw-text-12 md:!tw-text-16 ;
+}
+
+.shopify-policy__title {
+  @apply !tw-text-24 md:!tw-text-36 !tw-font-semibold !tw-mb-4 !tw-font-noto;
+}
+
+.shopify-policy__body * {
+  @apply !tw-prose !tw-max-w-full;
+}
