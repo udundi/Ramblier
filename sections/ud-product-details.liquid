@@ -97,12 +97,17 @@
     <!-- -------------------------- -->
     <!-- Mobile Brand Name -->
     <!-- -------------------------- -->
-    <div class="tw-flex tw-flex-col tw-justify-center tw-gap-4 tw-py-8 tw-text-center tw-font-poppins md:tw-hidden">
+    <div class="tw-flex tw-justify-center tw-gap-4 tw-py-4 tw-text-center tw-font-poppins md:tw-hidden">
       <!-- Mobile Brand Name -->
-      <span class="tw-text-24">
-        {{ product.metafields.custom.product_brand.value.location.value.city }},
-        {{ product.metafields.custom.product_brand.value.location.value.state }} /
-        {{ product.metafields.custom.product_brand.value.name }}
+      <span class="tw-relative tw-w-fit tw-text-12">
+        <span class="tw-absolute tw-right-[1em] tw-text-nowrap">
+          {{- product.metafields.custom.product_brand.value.location.value.city }},
+          {{ product.metafields.custom.product_brand.value.location.value.state -}}
+        </span>
+        <span>/</span>
+        <span class="tw-absolute tw-left-[1em] tw-text-nowrap">
+          {{- product.metafields.custom.product_brand.value.name -}}
+        </span>
       </span>
     </div>
 
@@ -150,66 +155,78 @@
     <!-- Second column -->
     <div class="tw-relative tw-flex tw-flex-col max-md:tw-justify-center md:tw-w-1/2 md:tw-border-l">
       <div class="tw-relative tw-overflow-hidden tw-border-b tw-border-black">
-        <div class="tw-p-8 md:tw-px-24 md:tw-py-16">
-          <div class="tw-flex tw-flex-col tw-justify-center tw-gap-4">
+        <div class="tw-p-8 md:tw-py-16 xl:tw-px-24">
+          <div class="tw-flex tw-flex-col tw-justify-center">
             {% if product.metafields.custom.product_brand != blank %}
               <!-- Desktop Brand Name -->
-              <span class="tw-text-16 tw-text-black max-md:tw-hidden">
+              <span class="tw-text-12 tw-text-black max-md:tw-hidden">
                 {{ product.metafields.custom.product_brand.value.location.value.city }},
                 {{ product.metafields.custom.product_brand.value.location.value.state }} /
                 {{ product.metafields.custom.product_brand.value.name }}
               </span>
             {% endif %}
+
             <!-- Desktop Title -->
-            {% render 'ud-text',
-              text: product.title,
-              type: 'mainheader',
-              align: 'start',
-              size: 'medium',
-              color: 'black'
-            %}
+            <span class="tw-mt-3">
+              {% render 'ud-text',
+                text: product.title,
+                type: 'mainheader',
+                align: 'start',
+                size: 'medium',
+                color: 'black'
+              %}
+            </span>
+
             <!-- Product Price -->
-            {% assign product_price = product.selected_or_first_available_variant.price | money %}
-            {% render 'ud-text',
-              text: product_price,
-              type: 'subheader',
-              align: 'start',
-              size: 'medium',
-              color: 'black'
-            %}
+            <span class="tw-mt-4 tw-tracking-wider">
+              {% assign product_price = product.selected_or_first_available_variant.price | money %}
+              {% render 'ud-text',
+                text: product_price,
+                type: 'subheader',
+                align: 'start',
+                size: 'small',
+                color: 'black'
+              %}
+            </span>
+
             <!-- Desktop Description -->
-            {% assign product_description = product.description
-              | default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.'
-            %}
-            {% render 'ud-text',
-              text: product_description,
-              type: 'body',
-              align: 'start',
-              size: 'medium',
-              color: 'black'
-            %}
+            <span class="tw-mt-3">
+              {% assign product_description = product.description
+                | default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.'
+              %}
+              {% render 'ud-text',
+                text: product_description,
+                type: 'body',
+                align: 'start',
+                size: 'small',
+                color: 'black'
+              %}
+            </span>
 
             <!-- Variant Selector -->
+
             {%- unless product.has_only_default_variant -%}
-              {% for option in product.options_with_values %}
-                <div class="tw-flex tw-w-full tw-flex-col tw-gap-4">
-                  {% assign opt_name = option.name | upcase %}
-                  {% render 'ud-text',
-                    text: opt_name,
-                    type: 'subheader',
-                    align: 'start',
-                    size: 'medium',
-                    color: 'black'
-                  %}
-                  <div class="tw-w-fit tw-border tw-pr-2 focus-within:tw-border-black/0">
-                    <select class="tw-w-fit tw-min-w-96 tw-p-4">
-                      {% for value in option.values %}
-                        <option>{{ value }}</option>
-                      {% endfor %}
-                    </select>
+              <span class="tw-mt-5">
+                {% for option in product.options_with_values %}
+                  <div class="tw-flex tw-w-full tw-flex-col tw-gap-4">
+                    {% assign opt_name = option.name | upcase %}
+                    {% render 'ud-text',
+                      text: opt_name,
+                      type: 'subheader',
+                      align: 'start',
+                      size: 'medium',
+                      color: 'black'
+                    %}
+                    <div class="tw-w-fit tw-border tw-pr-2 focus-within:tw-border-black/0">
+                      <select class="tw-w-fit tw-min-w-96 tw-p-4">
+                        {% for value in option.values %}
+                          <option>{{ value }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
                   </div>
-                </div>
-              {% endfor %}
+                {% endfor %}
+              </span>
             {% endunless %}
           </div>
           <!-- ------------------------------ -->
@@ -217,8 +234,8 @@
           <!-- ------------------------------ -->
 
           <!-- Add to cart button (Black Full Width) -->
-          <form action="/cart/add" method="post">
-            <div class="tw-flex tw-gap-8 tw-pt-8">
+          <form action="/cart/add" method="post" class="tw-mt-8">
+            <div class="tw-flex tw-gap-4">
               <div class="tw-flex tw-gap-4">
                 <div class="tw-flex tw-w-full tw-flex-row tw-items-center tw-gap-2">
                   <div class="tw-relative tw-flex tw-h-full tw-w-[4.5rem]  tw-max-w-28 tw-items-center tw-border ">
@@ -241,7 +258,7 @@
               >
               <button
                 type="submit"
-                class="duration-200 ease-in-out tw-flex tw-w-full tw-justify-center tw-border tw-border-brand-navy/100 tw-bg-brand-navy/100 tw-px-10 tw-py-2 tw-font-montserrat tw-font-semibold tw-text-white tw-transition-button hover:tw-scale-[102%] hover:tw-bg-brand-navy/95 focus:tw-bg-brand-navy/95"
+                class="animated-button animated-button--hover-white tw-flex tw-w-full tw-justify-center tw-border tw-border-brand-navy/100 tw-bg-brand-navy/100 tw-px-10 tw-py-2 tw-font-montserrat tw-font-semibold tw-text-white tw-transition-button"
               >
                 ADD TO CART
               </button>
@@ -251,10 +268,10 @@
       </div>
       <div>
         <!-- Related Products -->
-        <div class="tw-overflow-hidden tw-p-8 md:tw-p-24 md:tw-py-12">
+        <div class="tw-overflow-hidden tw-p-8 md:tw-py-16 xl:tw-px-24">
           <div class="tw-flex tw-flex-col tw-gap-4">
             {% assign featured_collection = product.metafields.custom.product_brand.value.collection.value %}
-            <h3 class="tw-text-20 tw-font-bold">
+            <h3 class="tw-font-poppins tw-text-12 tw-font-bold tw-tracking-wider tw-text-black md:tw-text-14">
               MORE FROM {{ product.metafields.custom.product_brand.value.name | upcase }}
             </h3>
             <div class="swiper-container-2 tw-flex tw-gap-8">
@@ -294,13 +311,12 @@
               </div>
             </div>
             <a class="tw-pt-2 tw-underline" href="{{ featured_collection.url }}">
-              {% render 'ud-text',
-                text: 'SHOP ALL',
-                type: 'subheader',
-                align: 'start',
-                size: 'medium',
-                color: 'black'
-              %}
+              <span class="tw-relative tw-inline-flex tw-flex-col tw-overflow-hidden">
+                <span class="tw-text-poppins tw-relative tw-text-12 tw-font-bold tw-uppercase tw-tracking-wider md:tw-text-14">
+                  Shop All
+                </span>
+                <span class="tw-self-stretch">{% render 'icon-drawn-underline' %}</span>
+              </span>
             </a>
           </div>
         </div>
@@ -339,9 +355,9 @@
     },
 
     breakpoints: {
-      768: {
+      1024: {
         slidesPerView: 3,
-        spaceBetween: 30,
+        spaceBetween: 8,
       },
     },
   });
