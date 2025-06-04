@@ -172,8 +172,8 @@
           "type": "button",
           "name": "Default Button",
           "settings": {
-            "text": "Click Me",
-            "url": "#",
+            "text": "Our Story",
+            "url": "shopify://pages/about",
             "type": "outlinedBlack",
             "hover_color": "navy",
             "align": "center",

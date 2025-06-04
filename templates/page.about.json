@@ -57,6 +57,7 @@
             "text": "Shop Now",
             "url": "#",
             "type": "outlinedWhite",
+            "hover_color": "white",
             "align": "center",
             "fullwidth": false,
             "margin-left": 0,
@@ -71,6 +72,9 @@
         "text_V3cKB4",
         "text_tPqLfx",
         "button_tNGJFj"
+      ],
+      "custom_css": [
+        ".tw-max-w-screen-3xl {max-width: none;}"
       ],
       "name": "Base Flexbox",
       "settings": {
@@ -102,24 +106,6 @@
             "text": "{{ metaobjects.brand[\"fake-brand\"].name.value }}"
           }
         },
-        "text_block_bhMxpX": {
-          "type": "text_block",
-          "settings": {
-            "text": "{{ metaobjects.brand[\"fake-brand\"].name.value }}"
-          }
-        },
-        "text_block_8ACqwk": {
-          "type": "text_block",
-          "settings": {
-            "text": "{{ metaobjects.brand[\"fake-brand\"].name.value }}"
-          }
-        },
-        "text_block_ci6LVp": {
-          "type": "text_block",
-          "settings": {
-            "text": "{{ metaobjects.brand[\"fake-brand\"].name.value }}"
-          }
-        },
         "text_block_Utfq8a": {
           "type": "text_block",
           "settings": {
@@ -129,9 +115,6 @@
       },
       "block_order": [
         "text_block_egzrgF",
-        "text_block_bhMxpX",
-        "text_block_8ACqwk",
-        "text_block_ci6LVp",
         "text_block_Utfq8a"
       ],
       "name": "Endless Scrolling Text",
@@ -163,7 +146,7 @@
                 "text": "Lorem ipsum dolor sit amet",
                 "type": "header",
                 "align": "center",
-                "size": "medium",
+                "size": "small",
                 "weight": "tw-font-bold",
                 "max_width": 600,
                 "color": "#000000",
@@ -180,27 +163,11 @@
                 "max_width": 600
               },
               "blocks": {}
-            },
-            "button_JtE93c": {
-              "type": "button",
-              "settings": {
-                "text": "GET STARTED",
-                "url": "#",
-                "type": "outlinedBlack",
-                "align": "center",
-                "fullwidth": false,
-                "margin-left": 0,
-                "margin-right": 0,
-                "margin-top": 0,
-                "margin-bottom": 0
-              },
-              "blocks": {}
             }
           },
           "block_order": [
             "text_RjabfX",
-            "rich_text_M7jJbt",
-            "button_JtE93c"
+            "rich_text_M7jJbt"
           ]
         },
         "image_text_pair_cYdYbd": {
@@ -220,7 +187,7 @@
                 "text": "Lorem ipsum dolor sit amet",
                 "type": "header",
                 "align": "center",
-                "size": "medium",
+                "size": "small",
                 "weight": "tw-font-bold",
                 "max_width": 600,
                 "color": "#000000",
@@ -244,6 +211,7 @@
                 "text": "GET STARTED",
                 "url": "#",
                 "type": "outlinedBlack",
+                "hover_color": "navy",
                 "align": "center",
                 "fullwidth": false,
                 "margin-left": 0,
@@ -277,7 +245,7 @@
                 "text": "Lorem ipsum dolor sit amet",
                 "type": "header",
                 "align": "center",
-                "size": "medium",
+                "size": "small",
                 "weight": "tw-font-bold",
                 "max_width": 600,
                 "color": "#000000",
@@ -301,6 +269,7 @@
                 "text": "GET STARTED",
                 "url": "#",
                 "type": "outlinedBlack",
+                "hover_color": "navy",
                 "align": "center",
                 "fullwidth": false,
                 "margin-left": 0,
@@ -350,32 +319,28 @@
           "type": "collection",
           "settings": {
             "collection": "chicago",
-            "custom_title": "",
-            "button_style": "outline"
+            "custom_title": ""
           }
         },
         "collection_X7mqDP": {
           "type": "collection",
           "settings": {
             "collection": "los-angeles",
-            "custom_title": "",
-            "button_style": "solid"
+            "custom_title": ""
           }
         },
         "collection_abVUbV": {
           "type": "collection",
           "settings": {
             "collection": "midwest",
-            "custom_title": "",
-            "button_style": "outline"
+            "custom_title": ""
           }
         },
         "collection_ARjHGe": {
           "type": "collection",
           "settings": {
             "collection": "pacific",
-            "custom_title": "",
-            "button_style": "solid"
+            "custom_title": ""
           }
         }
       },
@@ -399,7 +364,6 @@
         "autoplay_speed": 3000,
         "pill_active_color": "#0f214d",
         "nav_button_color": "#000000",
-        "button_style": "solid",
         "padding_top": 4,
         "padding_bottom": 4,
         "mobile_padding_top": 4,

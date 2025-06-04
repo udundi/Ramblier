@@ -1,13 +1,13 @@
 <!-- Selector Button -->
 <button class="tw-w-full tw-text-14 tw-uppercase">{{ block.settings.text }}</button>
 <!-- Dropdown -->
-<div class="tw-absolute tw-left-0 tw-top-full tw-z-50 tw-hidden tw-w-full tw-grid-cols-[1fr_auto_auto_1fr] tw-grid-rows-[1fr_auto] tw-overflow-hidden tw-border-y tw-border-black tw-bg-white group-focus-within:tw-grid group-hover:tw-grid group-focus:tw-grid">
+<div class="tw-absolute tw-left-0 tw-top-full tw-z-50 tw-grid tw-w-full tw-grid-cols-[1fr_auto_auto_1fr] tw-grid-rows-[1fr_auto] tw-overflow-hidden tw-border-y tw-border-black tw-bg-white group-focus-within:tw-grid group-hover:tw-grid group-focus:tw-grid">
   <!-- Left Map -->
   <div class="tw-col-start-2 tw-row-span-2 tw-w-fit tw-border-r tw-p-12">
     {% render 'map-links' %}
   </div>
   <!-- Right Locations -->
-  <div class="tw-flex tw-w-fit tw-flex-col tw-flex-wrap tw-gap-x-32 tw-gap-y-8 tw-p-14 tw-h-[400px] tw-col-start-3 tw-row-start-1">
+  <div class="tw-col-start-3 tw-row-start-1 tw-flex tw-h-[400px] tw-w-fit tw-flex-col tw-flex-wrap tw-gap-x-32 tw-gap-y-8 tw-p-14">
     {% for link in block.settings.link_list.links %}
       <div class="tw-relative tw-flex tw-basis-1/12 tw-flex-col tw-gap-2">
         <a href="{{ link.url }}" class="tw-font-poppins tw-text-20 tw-font-bold">
@@ -21,8 +21,17 @@
       </div>
     {% endfor %}
   </div>
-  <a aria-labelledby="navigation-map-shop-nationwide" href='/products' class='tw-row-start-2 tw-col-start-3 tw-col-span-2 tw-bg-transparent hover:tw-bg-brand-navy tw-peer tw-border-t'></a>
-  <span id='navigation-map-shop-nationwide' class="tw-my-auto tw-w-full tw-text-center tw-text-24 tw-font-bold tw-row-start-2 tw-col-start-3 tw-py-3.5 tw-pointer-events-none peer-hover:tw-text-white"> Shop Nationwide </span>
+  <a
+    aria-labelledby="navigation-map-shop-nationwide"
+    href="/products"
+    class="tw-bg-transparent tw-peer tw-col-span-2 tw-col-start-3 tw-row-start-2 tw-border-t hover:tw-bg-brand-navy"
+  ></a>
+  <span
+    id="navigation-map-shop-nationwide"
+    class="tw-pointer-events-none tw-col-start-3 tw-row-start-2 tw-my-auto tw-w-full tw-py-3.5 tw-text-center tw-text-24 tw-font-bold peer-hover:tw-text-white"
+  >
+    Shop Nationwide
+  </span>
 </div>
 
 {% schema %}
