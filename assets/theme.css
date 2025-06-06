@@ -679,6 +679,14 @@ input[type=number] {
   top: 100%;
 }
 
+.tw-left-3 {
+  left: 0.75rem;
+}
+
+.tw-right-3 {
+  right: 0.75rem;
+}
+
 .tw-isolate {
   isolation: isolate;
 }
@@ -1153,6 +1161,10 @@ input[type=number] {
   overflow: hidden;
 }
 
+.tw-overflow-visible {
+  overflow: visible;
+}
+
 .tw-whitespace-nowrap {
   white-space: nowrap;
 }
@@ -1529,6 +1541,10 @@ input[type=number] {
   font-size: 4rem;
 }
 
+.tw-text-36 {
+  font-size: 2.25rem;
+}
+
 .tw-font-bold {
   font-weight: 700;
 }
@@ -1571,6 +1587,10 @@ input[type=number] {
 
 .tw-leading-none {
   line-height: 1;
+}
+
+.tw-leading-tight {
+  line-height: 1.25;
 }
 
 .tw-tracking-wide {
@@ -2693,6 +2713,22 @@ input[type=number] {
     left: 2rem;
   }
 
+  .md\:tw-left-12 {
+    left: 3rem;
+  }
+
+  .md\:tw-right-12 {
+    right: 3rem;
+  }
+
+  .md\:tw-left-6 {
+    left: 1.5rem;
+  }
+
+  .md\:tw-right-6 {
+    right: 1.5rem;
+  }
+
   .md\:tw-col-span-2 {
     grid-column: span 2 / span 2;
   }
@@ -3000,6 +3036,14 @@ input[type=number] {
     font-size: 3rem;
   }
 
+  .md\:tw-text-32 {
+    font-size: 2rem;
+  }
+
+  .md\:tw-text-64 {
+    font-size: 4rem;
+  }
+
   .md\:tw-text-white {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity, 1));
@@ -3055,6 +3099,14 @@ input[type=number] {
     right: 4rem;
   }
 
+  .lg\:tw-left-12 {
+    left: 3rem;
+  }
+
+  .lg\:tw-right-12 {
+    right: 3rem;
+  }
+
   .lg\:tw-col-\[1\/3\] {
     grid-column: 1/3;
   }
@@ -3101,6 +3153,10 @@ input[type=number] {
 
   .lg\:tw-gap-14 {
     gap: 3.5rem;
+  }
+
+  .lg\:tw-overflow-hidden {
+    overflow: hidden;
   }
 
   .lg\:tw-px-12 {

@@ -339,7 +339,7 @@
             "text": "Become a partner",
             "type": "header",
             "align": "center",
-            "size": "medium",
+            "size": "small",
             "weight": "tw-font-semibold",
             "max_width": 600,
             "color": "#ffffff",

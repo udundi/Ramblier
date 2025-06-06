@@ -19,19 +19,19 @@
 <!-- Text Container -->
 <div class="tw-w-full {% if color == 'white' %} tw-text-white {% else %} tw-text-black {% endif %} tw-flex tw-h-fit tw-font-poppins">
   {% if type == 'header' %}
-    <h2 class="{% if size == 'small' %} tw-text-32 {% elsif size == 'large' %} tw-text-64 {% else %} tw-text-40 {% endif %} tw-w-full !tw-font-noto tw-font-semibold {% if align == 'center' %} tw-text-center {% elsif align == 'end' %} tw-text-end {% elsif align == 'start' %} tw-text-start {% endif %}">
+    <h2 class="{% if size == 'small' %} tw-text-24 md:tw-text-36 {% elsif size == 'large' %} tw-text-42 md:tw-text-64 {% else %} tw-text-36 md:tw-text-48 {% endif %} tw-w-full !tw-font-noto tw-font-semibold tw-leading-tight {% if align == 'center' %} tw-text-center {% elsif align == 'end' %} tw-text-end {% elsif align == 'start' %} tw-text-start {% endif %}">
       {{ text }}
     </h2>
   {% elsif type == 'mainheader' %}
-    <h1 class="{% if size == 'small' %} tw-text-32 {% elsif size == 'large' %} tw-text-64 {% else %} tw-text-40 {% endif %} tw-w-full !tw-font-noto tw-font-semibold {% if align == 'center' %} tw-text-center {% elsif align == 'end' %} tw-text-end {% elsif align == 'start' %} tw-text-start {% endif %}">
+    <h1 class="{% if size == 'small' %} tw-text-24 md:tw-text-36 {% elsif size == 'large' %} tw-text-42 md:tw-text-64 {% else %} tw-text-36 md:tw-text-48 {% endif %} tw-w-full !tw-font-noto tw-font-semibold tw-leading-tight {% if align == 'center' %} tw-text-center {% elsif align == 'end' %} tw-text-end {% elsif align == 'start' %} tw-text-start {% endif %}">
       {{ text }}
     </h1>
   {% elsif type == 'subheader' %}
-    <h3 class="{% if size == 'small' %} tw-text-16 {% elsif size == 'large' %} tw-text-28 {% else %} tw-text-20 {% endif %} tw-w-full tw-font-semibold {% if align == 'center' %} tw-text-center {% elsif align == 'end' %} tw-text-end {% elsif align == 'start' %} tw-text-start {% endif %}">
+    <h3 class="{% if size == 'small' %} tw-text-24 md:tw-text-36 {% elsif size == 'large' %} tw-text-42 md:tw-text-64 {% else %} tw-text-36 md:tw-text-48 {% endif %} tw-w-full tw-font-semibold tw-leading-tight {% if align == 'center' %} tw-text-center {% elsif align == 'end' %} tw-text-end {% elsif align == 'start' %} tw-text-start {% endif %}">
       {{ text }}
     </h3>
   {% elsif type == 'body' %}
-    <div class="tw-flex tw-flex-col {% if size == 'small' %} tw-text-14 {% elsif size == 'large' %} tw-text-18 {% else %} tw-text-16 {% endif %} tw-w-full tw-font-normal {% if align == 'center' %} tw-text-center {% elsif align == 'end' %} tw-text-end {% elsif align == 'start' %} tw-text-start {% endif %}">
+    <div class="tw-flex tw-flex-col {% if size == 'small' %} tw-text-10 md:tw-text-14 {% elsif size == 'large' %} tw-text-14 md:tw-text-18 {% else %} tw-text-12 md:tw-text-16 {% endif %} tw-w-full tw-font-normal {% if align == 'center' %} tw-text-center {% elsif align == 'end' %} tw-text-end {% elsif align == 'start' %} tw-text-start {% endif %}">
       {{ text }}
     </div>
   {% endif %}

@@ -380,8 +380,8 @@
             "text": "More from {{ closest.product.metafields.custom.product_brand.value.name.value }}",
             "type": "header",
             "align": "center",
-            "size": "medium",
-            "weight": "tw-font-base",
+            "size": "small",
+            "weight": "tw-font-semibold",
             "max_width": 600,
             "color": "#000000",
             "gap-border": false

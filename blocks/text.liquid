@@ -25,7 +25,7 @@
 
 <div class="tw-w-full max-width-{{ block.id }} tw-flex tw-h-fit tw-font-poppins {% if block.settings.align == 'center' %} tw-text-center tw-justify-center {% elsif block.settings.align == 'end' %} tw-text-end tw-justify-end {% elsif block.settings.align == 'start' %} tw-text-start tw-justify-start {% endif %} tw-relative">
   {% if block.settings.type == 'header' %}
-    <h2 class="{% if block.settings.size == 'small' %} tw-text-24 md:tw-text-36 {% elsif block.settings.size == 'large' %} tw-text-48 {% else %} tw-text-40 {% endif %} tw-font-noto font-color-{{ block.id }} {{ block.settings.weight }} {% if block.settings.gap-border %} gap-border-{{ block.id }} {% endif %}">
+    <h2 class="{% if block.settings.size == 'small' %} tw-text-24 md:tw-text-36 tw-leading-tight {% elsif block.settings.size == 'large' %} tw-text-48 {% else %} tw-text-40 {% endif %} tw-font-noto font-color-{{ block.id }} {{ block.settings.weight }} {% if block.settings.gap-border %} gap-border-{{ block.id }} {% endif %}">
       {{ block.settings.text }}
     </h2>
   {% elsif block.settings.type == 'mainheader' %}

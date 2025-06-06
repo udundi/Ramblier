@@ -158,13 +158,7 @@
             <!-- Product Price -->
             <span class="tw-mt-4 tw-tracking-wider">
               {% assign product_price = product.selected_or_first_available_variant.price | money %}
-              {% render 'ud-text',
-                text: product_price,
-                type: 'subheader',
-                align: 'start',
-                size: 'small',
-                color: 'black'
-              %}
+              <p class="tw-font-poppins tw-font-semibold tw-tracking-wider tw-text-black">{{ product_price }}</p>
             </span>
 
             <!-- Desktop Description -->
