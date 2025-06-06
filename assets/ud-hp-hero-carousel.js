@@ -7,14 +7,14 @@ export function createCarouselFromSection(sectionId) {
 
   if (imageContainers.length === 0) return;
 
-  let currentIndex = 1;
+  let currentIndex = window.innerWidth < 768 ? 0 : 1;
   let prevIndex = 0;
   const totalImages = imageContainers.length;
 
   imageContainers.forEach((container, index) => {
-    if (index === 0) {
+    if (index === currentIndex - 1) {
       container.classList.add('is-previous');
-    } else if (index === 1) {
+    } else if (index === currentIndex) {
       container.classList.add('is-current');
     } else {
       container.classList.add('is-inactive');
@@ -22,7 +22,7 @@ export function createCarouselFromSection(sectionId) {
   });
 
   buttonContainers.forEach((container, index) => {
-    if (index === 1) {
+    if (index === currentIndex) {
       container.classList.add('is-current');
     } else {
       container.classList.add('is-inactive');

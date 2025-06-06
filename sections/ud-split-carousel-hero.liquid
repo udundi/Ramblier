@@ -38,10 +38,14 @@
           assign col_pos = 'tw-col-start-1 lg:tw-col-start-2'
           assign button_x_pos = 'tw-right-1/2 lg:tw-right-16'
         endif
-        if forloop.index0 == 0
-          assign status = 'is-current'
-        elsif forloop.index0 == 1
+        comment
+          Do a weird little previous/current class switcheroo here to make things match on mobile.
+          This doesn't affect the functionality of the js
+        endcomment
+        if forloop.index0 == 1
           assign status = 'is-previous'
+        elsif forloop.index0 == 0
+          assign status = 'is-current'
         else
           assign status = 'is-inactive'
         endif
@@ -92,7 +96,7 @@
           >
             <a
               href="{{ block.settings.associated_button_link }}"
-              class="animated-button--hover-white tw-inline-block tw-cursor-pointer tw-text-nowrap tw-border tw-border-white tw-px-5 tw-py-3 tw-text-14 tw-uppercase tw-tracking-wider tw-text-white"
+              class="animated-button animated-button--hover-white tw-inline-block tw-cursor-pointer tw-text-nowrap tw-border tw-border-white tw-px-5 tw-py-3 tw-text-14 tw-uppercase tw-tracking-wider tw-text-white"
             >
               {{ block.settings.associated_button_text }}
             </a>
