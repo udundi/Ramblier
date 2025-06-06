@@ -19,15 +19,15 @@
 <!-- Text Container -->
 <div class="tw-w-full {% if color == 'white' %} tw-text-white {% else %} tw-text-black {% endif %} tw-flex tw-h-fit tw-font-poppins">
   {% if type == 'header' %}
-    <h2 class="{% if size == 'small' %} tw-text-32 {% elsif size == 'large' %} tw-text-64 {% else %} tw-text-40 {% endif %} tw-w-full !tw-font-noto tw-font-bold {% if align == 'center' %} tw-text-center {% elsif align == 'end' %} tw-text-end {% elsif align == 'start' %} tw-text-start {% endif %}">
+    <h2 class="{% if size == 'small' %} tw-text-32 {% elsif size == 'large' %} tw-text-64 {% else %} tw-text-40 {% endif %} tw-w-full !tw-font-noto tw-font-semibold {% if align == 'center' %} tw-text-center {% elsif align == 'end' %} tw-text-end {% elsif align == 'start' %} tw-text-start {% endif %}">
       {{ text }}
     </h2>
   {% elsif type == 'mainheader' %}
-    <h1 class="{% if size == 'small' %} tw-text-32 {% elsif size == 'large' %} tw-text-64 {% else %} tw-text-40 {% endif %} tw-w-full !tw-font-noto tw-font-bold {% if align == 'center' %} tw-text-center {% elsif align == 'end' %} tw-text-end {% elsif align == 'start' %} tw-text-start {% endif %}">
+    <h1 class="{% if size == 'small' %} tw-text-32 {% elsif size == 'large' %} tw-text-64 {% else %} tw-text-40 {% endif %} tw-w-full !tw-font-noto tw-font-semibold {% if align == 'center' %} tw-text-center {% elsif align == 'end' %} tw-text-end {% elsif align == 'start' %} tw-text-start {% endif %}">
       {{ text }}
     </h1>
   {% elsif type == 'subheader' %}
-    <h3 class="{% if size == 'small' %} tw-text-16 {% elsif size == 'large' %} tw-text-28 {% else %} tw-text-20 {% endif %} tw-w-full tw-font-bold {% if align == 'center' %} tw-text-center {% elsif align == 'end' %} tw-text-end {% elsif align == 'start' %} tw-text-start {% endif %}">
+    <h3 class="{% if size == 'small' %} tw-text-16 {% elsif size == 'large' %} tw-text-28 {% else %} tw-text-20 {% endif %} tw-w-full tw-font-semibold {% if align == 'center' %} tw-text-center {% elsif align == 'end' %} tw-text-end {% elsif align == 'start' %} tw-text-start {% endif %}">
       {{ text }}
     </h3>
   {% elsif type == 'body' %}

@@ -4,32 +4,13 @@
     font-size: 1rem;
   }
 
-  .section-{{ section.id }}
-  -props {
-    --padding-top: {{ section.settings.mobile_padding_top }}rem;
-    --padding-bottom: {{ section.settings.mobile_padding_bottom }}rem;
-  }
-
-  @media screen and (min-width: 1024px) {
-    .section-{{ section.id }}-props {
-      --padding-top: {{ section.settings.padding_top }}rem;
-      --padding-bottom: {{ section.settings.padding_bottom }}rem;
-    }
-  }
-
-  .section-{{ section.id }}
-  -props {
-    margin-top: var(--padding-top);
-    margin-bottom: var(--padding-bottom);
-  }
-
   .variant-radio {
     display: none !important;
   }
 
   .variant-radio:checked + .variant-label {
     background-color: white;
-    color: #322F30;
+    color: #322f30;
   }
 
   .swiper-pagination-bullet {
@@ -39,7 +20,6 @@
     opacity: 1;
     border: #000 solid 1px;
     background: transparent;
-
   }
 
   .swiper-pagination-bullet-active {
@@ -77,8 +57,6 @@
       border-radius: 0;
       border: 0 solid #000;
       background: #aaa;
-
-
     }
 
     .swiper-pagination-bullet-active {
@@ -239,7 +217,12 @@
               <div class="tw-flex tw-gap-4">
                 <div class="tw-flex tw-w-full tw-flex-row tw-items-center tw-gap-2">
                   <div class="tw-relative tw-grid tw-h-full tw-w-fit tw-grid-cols-[2rem_2rem_2rem] tw-items-center tw-justify-center tw-border">
-                    <button id="quantity-subtract-{{ section.id }}" class="tw-mx-auto tw-size-2.5" type="button">
+                    <button
+                      id="quantity-subtract-{{ section.id }}"
+                      class="tw-mx-auto tw-size-2.5 tw-text-black disabled:tw-cursor-not-allowed disabled:tw-text-opacity-50"
+                      type="button"
+                      disabled
+                    >
                       {% render 'icon-minus' %}
                     </button>
                     <input
@@ -252,7 +235,11 @@
                       step="1"
                       class="tw-text-sm tw-bg-brand-bg-light tw-block tw-h-full tw-w-full tw-py-1 tw-text-center"
                     >
-                    <button id="quantity-add-{{ section.id }}" class="tw-mx-auto tw-size-2.5" type="button">
+                    <button
+                      id="quantity-add-{{ section.id }}"
+                      class="tw-mx-auto tw-size-2.5 tw-text-black"
+                      type="button"
+                    >
                       {% render 'icon-plus' %}
                     </button>
                   </div>
@@ -278,7 +265,7 @@
         <div class="tw-overflow-hidden tw-p-8 md:tw-py-16 xl:tw-px-24">
           <div class="tw-flex tw-flex-col tw-gap-4">
             {% assign featured_collection = product.metafields.custom.product_brand.value.collection.value %}
-            <h3 class="tw-font-poppins tw-text-12 tw-font-bold tw-tracking-wider tw-text-black md:tw-text-14">
+            <h3 class="tw-font-poppins tw-text-12 tw-font-semibold tw-tracking-wider tw-text-black md:tw-text-14">
               MORE FROM {{ product.metafields.custom.product_brand.value.name | upcase }}
             </h3>
             <div class="swiper-container-2 tw-flex tw-gap-8">
@@ -319,7 +306,7 @@
             </div>
             <a class="tw-pt-2 tw-underline" href="{{ featured_collection.url }}">
               <span class="tw-relative tw-inline-flex tw-flex-col tw-overflow-hidden">
-                <span class="tw-text-poppins tw-relative tw-text-12 tw-font-bold tw-uppercase tw-tracking-wider md:tw-text-14">
+                <span class="tw-text-poppins tw-relative tw-text-12 tw-font-semibold tw-uppercase tw-tracking-wider md:tw-text-14">
                   Shop All
                 </span>
                 <span class="tw-self-stretch">{% render 'icon-drawn-underline' %}</span>
@@ -375,18 +362,21 @@
 </script>
 
 <script type="module">
-  function onQuantityAdded(quantityInput) {
-    quantityInput.value = Math.min(+quantityInput.max, +quantityInput.value + 1);
-  }
-
-  function onQuantitySubtracted(quantityInput) {
-    console.log(quantityInput.min);
-    quantityInput.value = Math.max(+quantityInput.min, +quantityInput.value - 1);
-  }
-
   const quantityInput = document.getElementById('quantity-input-{{ section.id }}');
   const addButton = document.getElementById('quantity-add-{{ section.id }}');
   const subtractButton = document.getElementById('quantity-subtract-{{ section.id }}');
+
+  function onQuantityAdded(quantityInput) {
+    quantityInput.value = Math.min(+quantityInput.max, +quantityInput.value + 1);
+    addButton.disabled = +quantityInput.value >= +quantityInput.max;
+    subtractButton.disabled = +quantityInput.value <= +quantityInput.min;
+  }
+
+  function onQuantitySubtracted(quantityInput) {
+    quantityInput.value = Math.max(+quantityInput.min, +quantityInput.value - 1);
+    addButton.disabled = +quantityInput.value >= +quantityInput.max;
+    subtractButton.disabled = +quantityInput.value <= +quantityInput.min;
+  }
 
   addButton.addEventListener('click', () => onQuantityAdded(quantityInput));
   subtractButton.addEventListener('click', () => onQuantitySubtracted(quantityInput));

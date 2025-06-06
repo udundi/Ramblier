@@ -786,6 +786,10 @@ input[type=number] {
   margin-top: 2rem;
 }
 
+.-tw-mt-0\.5 {
+  margin-top: -0.125rem;
+}
+
 .tw-block {
   display: block;
 }
@@ -1565,6 +1569,10 @@ input[type=number] {
   line-height: 2;
 }
 
+.tw-leading-none {
+  line-height: 1;
+}
+
 .tw-tracking-wide {
   letter-spacing: 0.025em;
 }
@@ -2342,6 +2350,14 @@ input[type=number] {
 
 .focus\:tw-underline:focus {
   text-decoration-line: underline;
+}
+
+.disabled\:tw-cursor-not-allowed:disabled {
+  cursor: not-allowed;
+}
+
+.disabled\:tw-text-opacity-50:disabled {
+  --tw-text-opacity: 0.5;
 }
 
 .tw-group\/featured:focus-within .group-focus-within\/featured\:tw-block {

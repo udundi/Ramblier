@@ -59,7 +59,9 @@
 <div class="section-{{ section.id }} tw-relative">
   <!-- Collection Carousel with Pills -->
   <div class="tw-mx-auto tw-flex tw-w-full tw-max-w-screen-xl tw-flex-col">
-    <h2 class="tw-mb-6 tw-text-center tw-text-24 tw-font-semibold md:tw-text-36">{{ section.settings.heading }}</h2>
+    <h2 class="tw-mb-6 tw-text-center tw-text-24 tw-font-semibold tw-text-black md:tw-text-36">
+      {{ section.settings.heading }}
+    </h2>
 
     <!-- Collection Pills Navigation -->
     {% if section.blocks.size > 1 %}

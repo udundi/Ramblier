@@ -28,8 +28,8 @@
             "type": "header",
             "align": "center",
             "size": "large",
-            "weight": "tw-font-base",
-            "max_width": 660,
+            "weight": "tw-font-semibold",
+            "max_width": 720,
             "color": "#ffffff",
             "gap-border": false
           },
@@ -40,11 +40,11 @@
           "name": "text",
           "settings": {
             "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
-            "type": "subheader",
+            "type": "body",
             "align": "center",
             "size": "large",
-            "weight": "tw-font-base",
-            "max_width": 600,
+            "weight": "tw-font-medium",
+            "max_width": 660,
             "color": "#ffffff",
             "gap-border": false
           },
@@ -147,7 +147,7 @@
                 "type": "header",
                 "align": "center",
                 "size": "small",
-                "weight": "tw-font-bold",
+                "weight": "tw-font-semibold",
                 "max_width": 600,
                 "color": "#000000",
                 "gap-border": false
@@ -188,7 +188,7 @@
                 "type": "header",
                 "align": "center",
                 "size": "small",
-                "weight": "tw-font-bold",
+                "weight": "tw-font-semibold",
                 "max_width": 600,
                 "color": "#000000",
                 "gap-border": false
@@ -246,7 +246,7 @@
                 "type": "header",
                 "align": "center",
                 "size": "small",
-                "weight": "tw-font-bold",
+                "weight": "tw-font-semibold",
                 "max_width": 600,
                 "color": "#000000",
                 "gap-border": false
