@@ -58,7 +58,7 @@
         {{
           block.settings.image
           | image_url: width: 900
-          | image_tag: class: 'tw-h-full tw-w-full tw-object-cover  tw-brightness-[0.6]'
+          | image_tag: class: 'tw-h-full tw-w-full tw-object-cover  tw-brightness-[0.6]', widths: '300, 500, 700, 900'
         }}
         {% if block.settings.associated_button_text != empty and block.settings.associated_button_link != empty %}
           <div class="tw-absolute {{ button_x_pos }} tw-bottom-8 max-lg:tw-hidden">
