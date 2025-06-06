@@ -276,27 +276,9 @@
                     {% continue %}
                   {% endif %}
                   {% if p_index < 11 %}
-                    <a href="{{ c_product.url }}" class="swiper-slide tw-group tw-w-1/3">
-                      <div class="tw-flex tw-flex-col">
-                        <div class="tw-aspect-3/4 tw-w-full tw-overflow-hidden tw-transition-transform">
-                          {{
-                            c_product.featured_image
-                            | image_url: width: 800
-                            | image_tag:
-                              class: 'tw-w-full tw-h-full tw-transition-transform tw-duration-500 group-hover:tw-scale-105 tw-object-cover'
-                          }}
-                        </div>
-                        <div class="tw-flex tw-flex-col">
-                          <div class="tw-flex tw-justify-between tw-pt-2">
-                            <span class="tw-text-14">{{ c_product.title }}</span>
-                            <span class="tw-text-14">{{ c_product.price | money }}</span>
-                          </div>
-                          <div class="-tw-mt-2 tw-font-poppins tw-text-12 tw-italic tw-text-brand-gray">
-                            {{ product.metafields.custom.product_brand.value.name }}
-                          </div>
-                        </div>
-                      </div>
-                    </a>
+                    <div class="swiper-slide tw-w-1/3">
+                      {% render 'ud-product-card', product: c_product %}
+                    </div>
                     {% assign p_index = p_index | plus: 1 %}
                   {% else %}
                     {% break %}
