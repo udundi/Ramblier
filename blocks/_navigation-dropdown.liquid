@@ -1,7 +1,23 @@
-<button class="tw-w-full tw-text-14 tw-uppercase">{{ block.settings.text }}</button>
-<div class="tw-absolute tw-left-0 tw-top-full tw-z-10 tw-hidden tw-w-screen tw-border-y tw-border-black tw-bg-white tw-px-12 group-focus-within:tw-block group-hover:tw-block group-focus:tw-block">
-  <div class="tw-mx-auto tw-w-full tw-max-w-screen-3xl tw-py-12">
-    {% content_for 'blocks' %}
+{% liquid
+  if template.name == 'index'
+    assign bottom_row_color = 'tw-bg-brand-Beige tw-text-black'
+  else
+    assign bottom_row_color = 'tw-bg-white tw-text-black'
+  endif
+%}
+
+<div class="tw-group/featured max-md:tw-border-b">
+  <button class="tw-group/mobile-button tw-w-full tw-py-6 tw-text-14 tw-font-medium tw-uppercase tw-tracking-wider tw-text-[inherit] max-md:tw-flex max-md:tw-justify-between  max-md:tw-px-9 md:tw-py-2 md:focus:tw-font-bold md:focus:tw-underline">
+    <span>{{ block.settings.text }}</span>
+    <span class="tw-flex tw-items-center md:tw-hidden">
+      <span class="group-focus/mobile-button:tw-hidden">{% render 'icon-plus' %}</span>
+      <span class="tw-hidden group-focus/mobile-button:tw-block">{% render 'icon-minus' %}</span>
+    </span>
+  </button>
+  <div class="tw-left-0 tw-top-full tw-z-10 tw-hidden tw-w-screen tw-border-[inherit] tw-px-12 group-focus-within/featured:tw-block group-focus/featured:tw-block md:tw-absolute md:tw-border-b md:group-hover:tw-block {{ bottom_row_color }}">
+    <div class="tw-mx-auto tw-w-full tw-max-w-screen-3xl tw-pb-6 md:tw-py-12">
+      {% content_for 'blocks' %}
+    </div>
   </div>
 </div>
 

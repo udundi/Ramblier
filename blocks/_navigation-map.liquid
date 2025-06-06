@@ -1,37 +1,78 @@
+{% liquid
+  if template.name == 'index'
+    assign bottom_row_color = 'tw-bg-brand-Beige tw-text-black'
+  else
+    assign bottom_row_color = 'tw-bg-white tw-text-black'
+  endif
+%}
+
 <!-- Selector Button -->
-<button class="tw-w-full tw-text-14 tw-uppercase">{{ block.settings.text }}</button>
-<!-- Dropdown -->
-<div class="tw-absolute tw-left-0 tw-top-full tw-z-50 tw-hidden tw-w-full tw-grid-cols-[1fr_auto_auto_1fr] tw-grid-rows-[1fr_auto] tw-overflow-hidden tw-border-y tw-border-black tw-bg-white group-focus-within:tw-grid group-hover:tw-grid group-focus:tw-grid">
-  <!-- Left Map -->
-  <div class="tw-col-start-2 tw-row-span-2 tw-w-fit tw-border-r tw-p-12">
-    {% render 'map-links' %}
-  </div>
-  <!-- Right Locations -->
-  <div class="tw-col-start-3 tw-row-start-1 tw-flex tw-h-[400px] tw-w-fit tw-flex-col tw-flex-wrap tw-gap-x-32 tw-gap-y-8 tw-p-14">
-    {% for link in block.settings.link_list.links %}
-      <div class="tw-relative tw-flex tw-basis-1/12 tw-flex-col tw-gap-2">
-        <a href="{{ link.url }}" class="tw-font-poppins tw-text-20 tw-font-bold">
-          {{ link.title }}
-        </a>
-        {% for sub_link in link.links %}
-          <a href="{{ sub_link.url }}" class="tw-text-18 tw-capitalize">
-            {{ sub_link.title }}
-          </a>
-        {% endfor %}
+<div class="tw-group/location">
+  <button class="tw-group/location-button tw-w-full tw-items-center tw-py-6 tw-text-14 tw-font-medium tw-uppercase tw-tracking-wider tw-text-[inherit] focus:tw-font-bold focus:tw-underline max-md:tw-hidden max-md:tw-justify-between max-md:tw-border-b max-md:tw-px-9 md:tw-py-2">
+    <span>{{ block.settings.text }}</span>
+    <span class="md:tw-hidden">
+      <span class="group-focus/location-button:tw-hidden">{% render 'icon-plus' %}</span>
+      <span class="tw-hidden group-focus/location-button:tw-block">{% render 'icon-minus' %}</span>
+    </span>
+  </button>
+  <!-- Dropdown -->
+  <div class="tw-left-0 tw-top-full tw-z-50 tw-w-full tw-overflow-hidden tw-border-[inherit] md:tw-absolute md:tw-hidden md:tw-grid-cols-[1fr_auto_auto_1fr] md:tw-grid-rows-[1fr_auto] md:tw-border-b md:hover:tw-grid md:group-focus-within/location:tw-grid md:group-hover/location:tw-grid md:group-focus/location:tw-grid {{ bottom_row_color }}">
+    <!-- Map Links / Mobile Region Dropdown -->
+    <div class="tw-group/region tw-border-[inherit] max-md:tw-border-b md:tw-col-start-2 md:tw-row-span-2 md:tw-w-fit md:tw-border-r md:tw-p-12">
+      <button class="tw-group/region-button tw-w-full tw-py-6 tw-text-14 tw-font-semibold tw-uppercase tw-tracking-wider tw-text-[inherit] max-md:tw-flex max-md:tw-justify-between max-md:tw-px-9 md:tw-hidden md:tw-py-2">
+        <span>Shop By Region</span>
+        <span class="tw-flex tw-items-center md:tw-hidden">
+          <span class="group-focus/region-button:tw-hidden">{% render 'icon-plus' %}</span>
+          <span class="tw-hidden group-focus/region-button:tw-block">{% render 'icon-minus' %}</span>
+        </span>
+      </button>
+      <!-- Left Map -->
+      <div class="max-md:tw-hidden max-md:tw-px-5 max-md:tw-pb-14 max-md:group-focus-within/region:tw-block max-md:group-focus/region:tw-block">
+        {% render 'map-links' %}
       </div>
-    {% endfor %}
+    </div>
+    <!-- State Links / Mobile State & City Dropdown -->
+    <div class="tw-group/state md:tw-col-start-3 md:tw-row-start-1">
+      <button class="tw-group/state-button tw-w-full tw-py-6 tw-text-14 tw-font-semibold tw-uppercase tw-tracking-wider tw-text-[inherit] max-md:tw-flex max-md:tw-justify-between max-md:tw-px-9 md:tw-hidden md:tw-py-2">
+        <span>Shop By State & City</span>
+        <span class="tw-flex tw-items-center md:tw-hidden">
+          <span class="group-focus/state-button:tw-hidden">{% render 'icon-plus' %}</span>
+          <span class="tw-hidden group-focus/state-button:tw-block">{% render 'icon-minus' %}</span>
+        </span>
+      </button>
+      <!-- Right Locations -->
+      <ul class="tw-flex tw-w-fit tw-flex-col tw-gap-x-32 tw-gap-y-8 tw-px-9 max-md:tw-hidden max-md:tw-pb-6 max-md:group-focus-within/state:tw-flex max-md:group-focus/state:tw-flex md:tw-h-[400px] md:tw-flex-wrap md:tw-p-14">
+        {% for link in block.settings.link_list.links %}
+          <li class="tw-basis-1/12">
+            <ul class="tw-relative tw-flex tw-flex-col tw-gap-2">
+              <a
+                href="{{ link.url }}"
+                class="tw-font-poppins tw-text-14 tw-font-semibold tw-uppercase tw-tracking-wider"
+              >
+                {{ link.title }}
+              </a>
+              {% for sub_link in link.links %}
+                <a href="{{ sub_link.url }}" class="tw-text-14 tw-capitalize">
+                  {{ sub_link.title }}
+                </a>
+              {% endfor %}
+            </ul>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <a
+      aria-labelledby="navigation-map-shop-nationwide"
+      href="/products"
+      class="tw-bg-transparent animated-button animated-button--hover-navy tw-peer tw-col-span-2 tw-col-start-3 tw-row-start-2 tw-border-t max-md:tw-hidden"
+    ></a>
+    <span
+      id="navigation-map-shop-nationwide"
+      class="animated-button animated-button--hover-navy tw-pointer-events-none tw-col-start-3 tw-row-start-2 tw-my-auto tw-w-full tw-p-14 tw-py-3.5 tw-text-24 tw-font-bold peer-hover:tw-text-white max-md:tw-hidden"
+    >
+      Shop Nationwide
+    </span>
   </div>
-  <a
-    aria-labelledby="navigation-map-shop-nationwide"
-    href="/products"
-    class="tw-bg-transparent tw-peer tw-col-span-2 tw-col-start-3 tw-row-start-2 tw-border-t hover:tw-bg-brand-navy"
-  ></a>
-  <span
-    id="navigation-map-shop-nationwide"
-    class="tw-pointer-events-none tw-col-start-3 tw-row-start-2 tw-my-auto tw-w-full tw-py-3.5 tw-text-center tw-text-24 tw-font-bold peer-hover:tw-text-white"
-  >
-    Shop Nationwide
-  </span>
 </div>
 
 {% schema %}

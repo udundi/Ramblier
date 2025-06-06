@@ -51,7 +51,7 @@
                 "mobile_padding_bottom": 0,
                 "padding_left": 0,
                 "padding_right": 0,
-                "background_color": "#ffffff",
+                "background_color": "#ecebe5",
                 "flex_direction": "row",
                 "tablet_flex_direction": "row",
                 "mobile_flex_direction": "row",

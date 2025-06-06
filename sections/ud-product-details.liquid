@@ -238,16 +238,23 @@
             <div class="tw-flex tw-gap-4">
               <div class="tw-flex tw-gap-4">
                 <div class="tw-flex tw-w-full tw-flex-row tw-items-center tw-gap-2">
-                  <div class="tw-relative tw-flex tw-h-full tw-w-[4.5rem]  tw-max-w-28 tw-items-center tw-border ">
+                  <div class="tw-relative tw-grid tw-h-full tw-w-fit tw-grid-cols-[2rem_2rem_2rem] tw-items-center tw-justify-center tw-border">
+                    <button id="quantity-subtract-{{ section.id }}" class="tw-mx-auto tw-size-2.5" type="button">
+                      {% render 'icon-minus' %}
+                    </button>
                     <input
-                      type="integer"
-                      id="quantity-input"
+                      type="number"
+                      id="quantity-input-{{ section.id }}"
                       name="quantity"
                       value="1"
                       min="1"
                       max="100"
+                      step="1"
                       class="tw-text-sm tw-bg-brand-bg-light tw-block tw-h-full tw-w-full tw-py-1 tw-text-center"
                     >
+                    <button id="quantity-add-{{ section.id }}" class="tw-mx-auto tw-size-2.5" type="button">
+                      {% render 'icon-plus' %}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -365,6 +372,24 @@
   function goToSlide(index) {
     swiper.slideTo(index);
   }
+</script>
+
+<script type="module">
+  function onQuantityAdded(quantityInput) {
+    quantityInput.value = Math.min(+quantityInput.max, +quantityInput.value + 1);
+  }
+
+  function onQuantitySubtracted(quantityInput) {
+    console.log(quantityInput.min);
+    quantityInput.value = Math.max(+quantityInput.min, +quantityInput.value - 1);
+  }
+
+  const quantityInput = document.getElementById('quantity-input-{{ section.id }}');
+  const addButton = document.getElementById('quantity-add-{{ section.id }}');
+  const subtractButton = document.getElementById('quantity-subtract-{{ section.id }}');
+
+  addButton.addEventListener('click', () => onQuantityAdded(quantityInput));
+  subtractButton.addEventListener('click', () => onQuantitySubtracted(quantityInput));
 </script>
 
 {% schema %}

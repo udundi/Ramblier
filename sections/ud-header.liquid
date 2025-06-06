@@ -1,8 +1,8 @@
 {% liquid
   if template.name == 'index'
-    assign top_row_color = 'tw-bg-brand-Beige tw-text-black md:tw-bg-brand-navy md:tw-text-white tw-border-white placeholder:tw-text-white'
-    assign logo_color = 'tw-text-brand-navy md:tw-text-white md:tw-border-white'
-    assign icon_color = 'tw-text-black tw-border-black tw-stroke-black tw-fill-black md:tw-text-white md:tw-border-white md:tw-stroke-white md:tw-fill-white'
+    assign top_row_color = 'tw-bg-brand-Beige tw-text-black md:tw-bg-brand-navy md:tw-text-white md:tw-border-white placeholder:tw-text-white'
+    assign logo_color = 'tw-bg-brand-Beige tw-text-brand-navy md:tw-bg-brand-navy md:tw-text-white md:tw-border-white'
+    assign icon_color = 'tw-bg-brand-Beige tw-text-black tw-border-black tw-stroke-black tw-fill-black md:tw-bg-brand-navy md:tw-text-white md:tw-border-white md:tw-stroke-white md:tw-fill-white'
     assign bottom_row_color = 'tw-bg-brand-Beige tw-text-black'
   else
     assign top_row_color = 'tw-bg-white tw-text-black tw-border-black'
@@ -13,67 +13,62 @@
 %}
 <!-- Main Container -->
 <header
-  class="tw-items-middle tw-flex tw-flex-col tw-justify-center tw-gap-[1px] tw-border-b"
+  class="tw-relative tw-grid tw-grid-cols-[3.5rem_3.5rem_1fr_3.5rem_3.5rem] tw-grid-rows-[auto_auto] tw-items-center tw-justify-center md:tw-grid-cols-[auto_1fr_auto_auto]"
 >
-  <!-- Top Row Container -->
-  <div
-    class="tw-flex tw-grid-cols-[3.5rem_3.5rem_1fr_3.5rem_3.5rem] tw-justify-center tw-border-b tw-align-middle  {{ top_row_color }}"
+  <!-- Mobile Hamburger Menu -->
+  <button
+    class="tw-flex tw-w-full tw-max-w-14 tw-items-center tw-justify-center tw-border-r max-md:tw-order-1 md:tw-hidden {{ icon_color }} tw-peer/mobile-menu tw-col-start-1 tw-h-full tw-border-b tw-px-2.5 md:tw-col-start-1 md:tw-row-start-1"
   >
-    <!-- Mobile Hamburger Menu -->
-    <button
-      class="tw-flex tw-w-full tw-max-w-14 tw-items-center tw-justify-center tw-border-r max-md:tw-order-1 md:tw-hidden {{ icon_color }}"
-    >
-      <span class="tw-block tw-size-4">{% render 'icon-hamburger' %}</span>
+    <span class="tw-block tw-size-4">{% render 'icon-hamburger' %}</span>
+  </button>
+  <!-- Site Icon -->
+  <a
+    href="{{ shop.url }}"
+    class="tw-flex tw-py-1.5 {{ logo_color }} tw-col-start-3 tw-border-b tw-px-2.5 max-md:tw-order-3 max-md:tw-w-full max-md:tw-grow max-md:tw-justify-center md:tw-col-start-1 md:tw-row-start-1 md:tw-items-center md:tw-border-r md:tw-px-8 md:tw-py-4 lg:tw-px-12"
+  >
+    <span class="tw-w-32 md:tw-w-44">
+      {% render 'icon-logo' %}
+    </span>
+  </a>
+  <!-- Search Bar -->
+  <div
+    class="tw-relative tw-h-full tw-w-full tw-border-b tw-border-black tw-py-1.5 max-md:tw-order-2 max-md:tw-flex max-md:tw-max-w-14 max-md:tw-items-center max-md:tw-justify-center md:tw-col-start-2 md:tw-row-start-1 md:tw-grow md:tw-border-r {{ top_row_color }}"
+  >
+    <button class="tw-top-1/2 {{ icon_color }} md:tw-absolute md:tw-left-8 md:-tw-translate-y-1/2">
+      {% render 'icon-search' %}
     </button>
-    <!-- Site Icon -->
-    <a
-      href="{{ shop.url }}"
-      class="tw-flex tw-py-1.5 {{ logo_color }} max-md:tw-order-3 max-md:tw-w-full max-md:tw-grow max-md:tw-justify-center md:tw-items-center md:tw-border-r md:tw-px-8 md:tw-py-4 lg:tw-px-12"
-    >
-      <span class="tw-w-32 md:tw-w-44">
-        {% render 'icon-logo' %}
-      </span>
-    </a>
-    <!-- Search Bar -->
-    <div
-      class="tw-relative tw-w-full tw-py-1.5 max-md:tw-order-2 max-md:tw-flex max-md:tw-max-w-14 max-md:tw-items-center max-md:tw-justify-center md:tw-grow md:tw-border-r"
-    >
-      <div class="tw-top-1/2 {{ icon_color }} md:tw-absolute md:tw-left-8 md:-tw-translate-y-1/2">
-        {% render 'icon-search' %}
-      </div>
-      <label>
-        <span class="tw-sr-only">Enter Search Term</span>
-        <input
-          placeholder="Enter Search term"
-          class="tw-h-full tw-w-full tw-pl-20 tw-pr-12 tw-text-14 placeholder:tw-uppercase max-md:tw-hidden {{ top_row_color }} tw-font-medium tw-tracking-wider"
-        >
-      </label>
-    </div>
-    <!-- Account Button -->
-    <a
-      href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
-      class="tw-flex tw-w-full tw-max-w-14 tw-items-center tw-justify-center  {{ icon_color }} tw-border-r tw-py-1.5 max-md:tw-order-4 md:tw-max-w-24 md:tw-py-4"
-    >
-      <span class="tw-size-7">{% render 'icon-account' %}</span>
-    </a>
-    <!-- Cart Button -->
-    <button
-      class="tw-flex tw-w-full tw-max-w-14 tw-items-center tw-justify-center {{ icon_color }} tw-py-1.5 max-md:tw-order-5 md:tw-max-w-24 md:tw-py-4 "
-    >
-      <span class="tw-size-6">{% render 'icon-cart' %}</span>
-    </button>
+    <label>
+      <span class="tw-sr-only">Enter Search Term</span>
+      <input
+        placeholder="Enter Search term"
+        class="tw-h-full tw-w-full tw-pl-20 tw-pr-12 tw-text-14 placeholder:tw-uppercase max-md:tw-hidden {{ top_row_color }} tw-font-medium tw-tracking-wider"
+      >
+    </label>
   </div>
+  <!-- Account Button -->
+  <a
+    href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+    class="tw-flex tw-w-full tw-max-w-14 tw-items-center tw-justify-center  {{ icon_color }} tw-h-full tw-border-b tw-border-r tw-px-2.5 tw-py-1.5 max-md:tw-order-4 md:tw-col-start-3 md:tw-row-start-1 md:tw-max-w-24 md:tw-px-10 md:tw-py-4"
+  >
+    <span class="tw-size-7">{% render 'icon-account' %}</span>
+  </a>
+  <!-- Cart Button -->
+  <button
+    class="tw-flex tw-w-full tw-max-w-14 tw-items-center tw-justify-center {{ icon_color }} tw-h-full tw-border-b tw-px-2.5 tw-py-1.5  max-md:tw-order-5 md:tw-col-start-4 md:tw-row-start-1 md:tw-max-w-24 md:tw-px-10 md:tw-py-4"
+  >
+    <span class="tw-size-6">{% render 'icon-cart' %}</span>
+  </button>
   <!-- Bottom Row Container -->
-  <div
-    class="tw-relative tw-flex tw-items-center tw-justify-between tw-px-4 tw-py-2 tw-text-14 tw-font-medium tw-uppercase max-md:tw-hidden md:tw-px-8 lg:tw-px-12 {{ bottom_row_color }}"
-  >
-    <!-- Left Links -->
-    <div class="tw-flex tw-gap-9">
-      {% content_for 'blocks' %}
-    </div>
-    <!-- Right Become a Partner Button -->
-    <a href="#" class="tw-uppercase">Become A Partner</a>
+  <!-- Left Links -->
+  <div class="tw-col-span-5 tw-row-start-2 tw-flex tw-border-b hover:tw-flex focus:tw-flex peer-focus/mobile-menu:tw-flex has-[:focus]:tw-flex max-md:tw-hidden max-md:tw-flex-col md:tw-col-span-2 md:tw-col-start-1 md:tw-gap-9 md:tw-px-8 lg:tw-px-12 {{ bottom_row_color }}">
+    {% content_for 'blocks' %}
   </div>
+  <!-- Right Become a Partner Button -->
+  <a
+    href="#"
+    class="tw-col-span-3 tw-flex tw-h-full tw-items-center tw-pl-1.5 tw-uppercase max-md:tw-hidden md:tw-col-start-3 md:tw-border-b {{ bottom_row_color }}"
+    >Become A Partner</a
+  >
 </header>
 
 {% schema %}
