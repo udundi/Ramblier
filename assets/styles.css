@@ -70,7 +70,7 @@
 
 	.animated-button:hover::before,
 	.animated-button:hover::after {
-		width: 50%;
+		width: 55%;
 	}
 
 	.animated-button--hover-white {

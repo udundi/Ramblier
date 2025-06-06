@@ -719,20 +719,8 @@ input[type=number] {
   grid-column-start: 1;
 }
 
-.tw-col-start-2 {
-  grid-column-start: 2;
-}
-
 .tw-col-start-3 {
   grid-column-start: 3;
-}
-
-.tw-col-start-4 {
-  grid-column-start: 4;
-}
-
-.tw-row-span-2 {
-  grid-row: span 2 / span 2;
 }
 
 .tw-row-start-1 {
@@ -907,10 +895,6 @@ input[type=number] {
   height: 24rem;
 }
 
-.tw-h-\[400px\] {
-  height: 400px;
-}
-
 .tw-h-auto {
   height: auto;
 }
@@ -1001,10 +985,6 @@ input[type=number] {
   max-width: 1280px;
 }
 
-.tw-max-w-full {
-  max-width: 100%;
-}
-
 .tw-grow {
   flex-grow: 1;
 }
@@ -1049,28 +1029,12 @@ input[type=number] {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
-.tw-grid-cols-\[1fr_auto_auto_1fr\] {
-  grid-template-columns: 1fr auto auto 1fr;
-}
-
 .tw-grid-cols-\[2rem_2rem_2rem\] {
   grid-template-columns: 2rem 2rem 2rem;
 }
 
 .tw-grid-cols-\[3\.5rem_3\.5rem_1fr_3\.5rem_3\.5rem\] {
   grid-template-columns: 3.5rem 3.5rem 1fr 3.5rem 3.5rem;
-}
-
-.tw-grid-cols-\[auto_auto_1fr_auto_auto\] {
-  grid-template-columns: auto auto 1fr auto auto;
-}
-
-.tw-grid-cols-\[auto_1fr_auto_auto\] {
-  grid-template-columns: auto 1fr auto auto;
-}
-
-.tw-grid-rows-\[1fr_auto\] {
-  grid-template-rows: 1fr auto;
 }
 
 .tw-grid-rows-\[auto_auto\] {
@@ -1137,14 +1101,6 @@ input[type=number] {
   gap: 2rem;
 }
 
-.tw-gap-9 {
-  gap: 2.25rem;
-}
-
-.tw-gap-\[1px\] {
-  gap: 1px;
-}
-
 .tw-gap-x-10 {
   -moz-column-gap: 2.5rem;
        column-gap: 2.5rem;
@@ -1173,10 +1129,6 @@ input[type=number] {
   row-gap: 2rem;
 }
 
-.tw-self-end {
-  align-self: flex-end;
-}
-
 .tw-self-stretch {
   align-self: stretch;
 }
@@ -1187,10 +1139,6 @@ input[type=number] {
 
 .\!tw-justify-self-end {
   justify-self: end !important;
-}
-
-.tw-justify-self-end {
-  justify-self: end;
 }
 
 .\!tw-justify-self-center {
@@ -1254,6 +1202,10 @@ input[type=number] {
   border-style: none;
 }
 
+.tw-border-\[inherit\] {
+  border-color: inherit;
+}
+
 .tw-border-black {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity, 1));
@@ -1270,10 +1222,6 @@ input[type=number] {
 .tw-border-white {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
-}
-
-.tw-border-\[inherit\] {
-  border-color: inherit;
 }
 
 .tw-bg-\[transparent\] {
@@ -1302,10 +1250,6 @@ input[type=number] {
 .tw-bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-}
-
-.tw-bg-\[inherit\] {
-  background-color: inherit;
 }
 
 .tw-bg-opacity-40 {
@@ -1363,10 +1307,6 @@ input[type=number] {
   padding: 2.5rem;
 }
 
-.tw-p-12 {
-  padding: 3rem;
-}
-
 .tw-p-14 {
   padding: 3.5rem;
 }
@@ -1413,6 +1353,11 @@ input[type=number] {
   padding-right: 0.5rem;
 }
 
+.tw-px-2\.5 {
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
 .tw-px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1428,6 +1373,11 @@ input[type=number] {
   padding-right: 2rem;
 }
 
+.tw-px-9 {
+  padding-left: 2.25rem;
+  padding-right: 2.25rem;
+}
+
 .tw-py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -1436,11 +1386,6 @@ input[type=number] {
 .tw-py-1\.5 {
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
-}
-
-.tw-py-12 {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
 }
 
 .tw-py-2 {
@@ -1463,23 +1408,17 @@ input[type=number] {
   padding-bottom: 1rem;
 }
 
-.tw-px-2\.5 {
-  padding-left: 0.625rem;
-  padding-right: 0.625rem;
-}
-
 .tw-py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
 
-.tw-px-9 {
-  padding-left: 2.25rem;
-  padding-right: 2.25rem;
-}
-
 .tw-pb-6 {
   padding-bottom: 1.5rem;
+}
+
+.tw-pl-1\.5 {
+  padding-left: 0.375rem;
 }
 
 .tw-pl-20 {
@@ -1506,14 +1445,6 @@ input[type=number] {
   padding-top: 0.75rem;
 }
 
-.tw-pr-14 {
-  padding-right: 3.5rem;
-}
-
-.tw-pl-1\.5 {
-  padding-left: 0.375rem;
-}
-
 .tw-text-center {
   text-align: center;
 }
@@ -1524,10 +1455,6 @@ input[type=number] {
 
 .tw-text-end {
   text-align: end;
-}
-
-.tw-align-middle {
-  vertical-align: middle;
 }
 
 .\!tw-font-noto {
@@ -1651,6 +1578,10 @@ input[type=number] {
   color: rgb(212 0 0 / var(--tw-text-opacity, 1));
 }
 
+.tw-text-\[inherit\] {
+  color: inherit;
+}
+
 .tw-text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
@@ -1669,10 +1600,6 @@ input[type=number] {
 .tw-text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-
-.tw-text-\[inherit\] {
-  color: inherit;
 }
 
 .tw-underline {
@@ -1780,7 +1707,7 @@ input[type=number] {
 
 .animated-button:hover::before,
 	.animated-button:hover::after {
-  width: 50%;
+  width: 55%;
 }
 
 .animated-button--hover-white::before {
@@ -2397,29 +2324,12 @@ input[type=number] {
   border-color: rgb(0 0 0 / 0);
 }
 
-.hover\:tw-block:hover {
-  display: block;
-}
-
 .hover\:tw-flex:hover {
   display: flex;
 }
 
-.hover\:tw-grid:hover {
-  display: grid;
-}
-
-.hover\:tw-bg-brand-navy:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(15 33 77 / var(--tw-bg-opacity, 1));
-}
-
 .hover\:tw-fill-brand-navy:hover {
   fill: #0F214D;
-}
-
-.focus\:tw-block:focus {
-  display: block;
 }
 
 .focus\:tw-flex:focus {
@@ -2434,36 +2344,12 @@ input[type=number] {
   text-decoration-line: underline;
 }
 
-.tw-group:focus-within .group-focus-within\:tw-block {
-  display: block;
-}
-
 .tw-group\/featured:focus-within .group-focus-within\/featured\:tw-block {
   display: block;
 }
 
-.tw-group:focus-within .group-focus-within\:tw-grid {
-  display: grid;
-}
-
-.tw-group\/location:focus-within .group-focus-within\/location\:tw-grid {
-  display: grid;
-}
-
 .tw-group:hover .group-hover\:tw-pointer-events-auto {
   pointer-events: auto;
-}
-
-.tw-group:hover .group-hover\:tw-block {
-  display: block;
-}
-
-.tw-group:hover .group-hover\:tw-grid {
-  display: grid;
-}
-
-.tw-group\/location:hover .group-hover\/location\:tw-grid {
-  display: grid;
 }
 
 .tw-group:hover .group-hover\:tw-scale-100 {
@@ -2490,19 +2376,15 @@ input[type=number] {
   opacity: 1;
 }
 
-.tw-group:focus .group-focus\:tw-block {
-  display: block;
-}
-
-.tw-group\/mobile-button:focus .group-focus\/mobile-button\:tw-block {
-  display: block;
-}
-
-.tw-group\/location-mobile-button:focus .group-focus\/location-mobile-button\:tw-block {
+.tw-group\/featured:focus .group-focus\/featured\:tw-block {
   display: block;
 }
 
 .tw-group\/location-button:focus .group-focus\/location-button\:tw-block {
+  display: block;
+}
+
+.tw-group\/mobile-button:focus .group-focus\/mobile-button\:tw-block {
   display: block;
 }
 
@@ -2514,27 +2396,11 @@ input[type=number] {
   display: block;
 }
 
-.tw-group\/featured:focus .group-focus\/featured\:tw-block {
-  display: block;
-}
-
-.tw-group:focus .group-focus\:tw-grid {
-  display: grid;
-}
-
-.tw-group\/location:focus .group-focus\/location\:tw-grid {
-  display: grid;
+.tw-group\/location-button:focus .group-focus\/location-button\:tw-hidden {
+  display: none;
 }
 
 .tw-group\/mobile-button:focus .group-focus\/mobile-button\:tw-hidden {
-  display: none;
-}
-
-.tw-group\/location-mobile-button:focus .group-focus\/location-mobile-button\:tw-hidden {
-  display: none;
-}
-
-.tw-group\/location-button:focus .group-focus\/location-button\:tw-hidden {
   display: none;
 }
 
@@ -2544,18 +2410,6 @@ input[type=number] {
 
 .tw-group\/state-button:focus .group-focus\/state-button\:tw-hidden {
   display: none;
-}
-
-.tw-peer\/mobile-menu:hover ~ .peer-hover\/mobile-menu\:tw-block {
-  display: block;
-}
-
-.tw-peer\/mobile-menu:hover ~ .peer-hover\/mobile-menu\:tw-flex {
-  display: flex;
-}
-
-.tw-peer\/mobile-menu:hover ~ .peer-hover\/mobile-menu\:tw-grid {
-  display: grid;
 }
 
 .tw-peer\/midwest:hover ~ .peer-hover\/midwest\:tw-fill-white {
@@ -2591,10 +2445,6 @@ input[type=number] {
   top: -0.5rem;
 }
 
-.tw-peer\/mobile-menu:focus ~ .peer-focus\/mobile-menu\:tw-block {
-  display: block;
-}
-
 .tw-peer\/mobile-menu:focus ~ .peer-focus\/mobile-menu\:tw-flex {
   display: flex;
 }
@@ -2617,10 +2467,6 @@ input[type=number] {
 
 .tw-peer:not(:placeholder-shown) ~ .peer-\[\:not\(\:placeholder-shown\)\]\:tw-text-10 {
   font-size: 0.625rem;
-}
-
-.has-\[\:focus\]\:tw-block:has(:focus) {
-  display: block;
 }
 
 .has-\[\:focus\]\:tw-flex:has(:focus) {
@@ -2727,12 +2573,12 @@ input[type=number] {
     border-bottom-width: 1px;
   }
 
-  .max-md\:tw-border-t {
-    border-top-width: 1px;
-  }
-
   .max-md\:tw-border-b {
     border-bottom-width: 1px;
+  }
+
+  .max-md\:tw-border-t {
+    border-top-width: 1px;
   }
 
   .max-md\:tw-border-black {
@@ -2745,71 +2591,46 @@ input[type=number] {
     padding-right: 1.25rem;
   }
 
-  .max-md\:tw-py-14 {
-    padding-top: 3.5rem;
-    padding-bottom: 3.5rem;
-  }
-
   .max-md\:tw-px-9 {
     padding-left: 2.25rem;
     padding-right: 2.25rem;
   }
 
-  .max-md\:tw-py-6 {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+  .max-md\:tw-py-14 {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
   }
 
   .max-md\:tw-pb-14 {
     padding-bottom: 3.5rem;
   }
 
-  .max-md\:tw-pt-10 {
-    padding-top: 2.5rem;
-  }
-
   .max-md\:tw-pb-6 {
     padding-bottom: 1.5rem;
+  }
+
+  .max-md\:tw-pt-10 {
+    padding-top: 2.5rem;
   }
 
   .max-md\:tw-text-center {
     text-align: center;
   }
 
-  .tw-group\/location:focus-within .max-md\:group-focus-within\/location\:tw-block {
-    display: block;
+  .max-md\:tw-font-semibold {
+    font-weight: 600;
   }
 
   .tw-group\/region:focus-within .max-md\:group-focus-within\/region\:tw-block {
     display: block;
   }
 
-  .tw-group\/region:focus-within .max-md\:group-focus-within\/region\:tw-flex {
-    display: flex;
-  }
-
   .tw-group\/state:focus-within .max-md\:group-focus-within\/state\:tw-flex {
     display: flex;
   }
 
-  .tw-group\/location:hover .max-md\:group-hover\/location\:tw-block {
-    display: block;
-  }
-
-  .tw-group\/region:hover .max-md\:group-hover\/region\:tw-block {
-    display: block;
-  }
-
-  .tw-group\/location:focus .max-md\:group-focus\/location\:tw-block {
-    display: block;
-  }
-
   .tw-group\/region:focus .max-md\:group-focus\/region\:tw-block {
     display: block;
-  }
-
-  .tw-group\/region:focus .max-md\:group-focus\/region\:tw-flex {
-    display: flex;
   }
 
   .tw-group\/state:focus .max-md\:group-focus\/state\:tw-flex {
@@ -2884,16 +2705,8 @@ input[type=number] {
     grid-row-start: 1;
   }
 
-  .md\:tw-row-start-2 {
-    grid-row-start: 2;
-  }
-
   .md\:tw-mt-1 {
     margin-top: 0.25rem;
-  }
-
-  .md\:tw-flex {
-    display: flex;
   }
 
   .md\:tw-grid {
@@ -3001,16 +2814,16 @@ input[type=number] {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .md\:tw-grid-cols-\[1fr_auto_auto_1fr\] {
+    grid-template-columns: 1fr auto auto 1fr;
+  }
+
   .md\:tw-grid-cols-\[auto_1fr_auto\] {
     grid-template-columns: auto 1fr auto;
   }
 
   .md\:tw-grid-cols-\[auto_1fr_auto_auto\] {
     grid-template-columns: auto 1fr auto auto;
-  }
-
-  .md\:tw-grid-cols-\[1fr_auto_auto_1fr\] {
-    grid-template-columns: 1fr auto auto 1fr;
   }
 
   .md\:tw-grid-rows-\[1fr_auto\] {
@@ -3057,16 +2870,16 @@ input[type=number] {
     gap: 2.25rem;
   }
 
+  .md\:tw-border-b {
+    border-bottom-width: 1px;
+  }
+
   .md\:tw-border-l {
     border-left-width: 1px;
   }
 
   .md\:tw-border-r {
     border-right-width: 1px;
-  }
-
-  .md\:tw-border-b {
-    border-bottom-width: 1px;
   }
 
   .md\:tw-border-black {
@@ -3100,14 +2913,29 @@ input[type=number] {
     padding: 3.5rem;
   }
 
+  .md\:tw-px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
   .md\:tw-px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
   }
 
+  .md\:tw-py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
   .md\:tw-py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
+  }
+
+  .md\:tw-py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 
   .md\:tw-py-20 {
@@ -3118,26 +2946,6 @@ input[type=number] {
   .md\:tw-py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem;
-  }
-
-  .md\:tw-px-10 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-  }
-
-  .md\:tw-py-2 {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
-
-  .md\:tw-py-6 {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-  }
-
-  .md\:tw-py-12 {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
   }
 
   .md\:tw-pl-8 {
