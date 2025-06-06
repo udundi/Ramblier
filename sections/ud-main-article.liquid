@@ -1,0 +1,71 @@
+<article>
+  {%- if article.image or article.metafields.custom.featured_image -%}
+    <div
+      class="tw-aspect-[5/1]"
+    >
+      {% if article.metafields.custom.featured_image %}
+        {% assign article_image = article.metafields.custom.featured_image %}
+      {% else %}
+        {% assign article_image = article.image %}
+      {% endif %}
+      {{ article_image | image_url: width: 2560 | image_tag: class: 'tw-w-full tw-h-full tw-object-cover' }}
+    </div>
+  {%- endif -%}
+  <div class="tw-mx-auto tw-mt-6 tw-max-w-screen-xl tw-grid-cols-[29rem_1fr] tw-gap-x-5 tw-px-5 md:tw-mt-24 xl:tw-grid">
+    <div>
+      <h2 class="tw-text-24 tw-font-semibold tw-leading-tight tw-text-black md:tw-text-36">{{ article.title }}</h2>
+      <p class="tw-mt-4 tw-text-12 tw-font-semibold tw-uppercase tw-tracking-wider tw-text-black md:tw-text-14">
+        {{ article.author }} | {{ article.published_at | date: '%d/%m/%Y' }}
+      </p>
+      <ul class="tw-mt-6 tw-flex tw-gap-x-3">
+        <li>
+          <a class="tw-size-8">{% render 'icon-socials', site: 'instagram' %}</a>
+        </li>
+        <li>
+          <a class="tw-size-8">{% render 'icon-socials', site: 'facebook' %}</a>
+        </li>
+      </ul>
+      <h3 class="tw-mt-12 tw-font-poppins tw-text-14 tw-font-semibold tw-uppercase tw-tracking-wider tw-text-black">
+        You might also like
+      </h3>
+      <ul class="tw-max-w-96">
+        {% for related_post in article.metafields.custom.related_posts.value %}
+          {% assign article_drop = articles[related_post] %}
+          <li class="tw-border-b tw-border-[#e6e6e6] tw-py-5">
+            <a href="" class="tw-grid tw-grid-cols-[7rem_1fr] tw-grid-rows-2 tw-gap-x-3 tw-gap-y-1">
+              <div class="tw-col-start-1 tw-row-span-2 tw-row-start-1">
+                {{
+                  article_drop.image
+                  | image_url: width: 150
+                  | image_tag: class: 'tw-w-full tw-h-full tw-object-cover'
+                }}
+              </div>
+              <h4 class="tw-col-start-2 tw-row-start-1 tw-font-poppins tw-text-14 tw-font-semibold tw-tracking-tight">
+                {{ article_drop.title }}
+              </h4>
+              <p class="tw-col-start-2 tw-row-start-2 tw-font-poppins tw-text-12 tw-tracking-tight">
+                ASDF{{ article_drop.excerpt_or_content }}
+              </p>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="tw-prose tw-max-w-none prose-headings:tw-font-noto prose-headings:tw-font-semibold prose-p:tw-font-poppins prose-p:tw-text-12 prose-ol:tw-text-12 prose-ul:tw-text-12 prose-table:tw-text-18 md:prose-p:tw-text-18 md:prose-ol:tw-text-18 md:prose-ul:tw-text-18 md:prose-table:tw-text-18 ">
+      {{ article.content }}
+    </div>
+  </div>
+</article>
+
+<script type="application/ld+json">
+  {{ article | structured_data }}
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.main-article.name",
+  "tag": "section",
+  "class": "section",
+  "settings": []
+}
+{% endschema %}
