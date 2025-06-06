@@ -1,0 +1,27 @@
+{%- if article and article != empty -%}
+  <div class="tw-group tw-relative tw-flex tw-h-full tw-flex-col tw-border">
+    <div class="tw-h-72 tw-overflow-hidden tw-border-b">
+      {% if article.image %}
+        {{
+          article.image
+          | image_url: width: 500
+          | image_tag: class: 'tw-w-full tw-h-full tw-object-cover group-hover:tw-scale-105 tw-transition-all'
+        }}
+      {% endif %}
+    </div>
+    <div class="tw-p-7">
+      <h3 class="tw-font-poppins tw-text-12 tw-font-semibold tw-uppercase tw-tracking-wider tw-text-black md:tw-text-14">
+        {{ article.title }}
+      </h3>
+      <p class="tw-mt-1 tw-font-poppins tw-text-12 tw-text-black md:tw-text-14">{{ article.excerpt }}</p>
+    </div>
+    <div class="tw-mt-auto tw-border-t">
+      <a href="{{ article.url }}" class="tw-flex tw-items-center tw-justify-between tw-px-7 tw-py-5">
+        <span class="tw-text-12 tw-font-semibold tw-uppercase tw-tracking-wider tw-text-black before:tw-absolute before:tw-inset-0 md:tw-text-14"
+          >Read More</span
+        >
+        <span class="tw-w-9">{% render 'icon-arrow-right' %}</span>
+      </a>
+    </div>
+  </div>
+{%- endif -%}
