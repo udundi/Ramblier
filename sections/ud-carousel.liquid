@@ -56,7 +56,7 @@
   }
 {% endstyle %}
 
-<div class="section-{{ section.id }} tw-relative">
+<div class="section-{{ section.id }} tw-relative tw-overflow-hidden">
   <!-- Collection Carousel with Pills -->
   <div class="tw-mx-auto tw-flex tw-w-full tw-max-w-screen-xl tw-flex-col">
     <h2 class="tw-mb-6 tw-text-center tw-text-24 tw-font-semibold tw-text-black md:tw-text-36">
@@ -84,7 +84,7 @@
       </div>
     {% endif %}
     <!-- Collection Carousels -->
-    <div class="tw-relative tw-flex tw-overflow-hidden">
+    <div class="tw-relative tw-flex tw-overflow-visible lg:tw-overflow-hidden">
       {% for block in section.blocks %}
         {% if block.settings.collection != blank %}
           <div class="tw-collection-carousel-container {% if forloop.first %} tw-active {% endif %}">
@@ -137,7 +137,7 @@
     {% for block in section.blocks %}
       {% if block.settings.collection != blank %}
         var swiper = new Swiper('#carousel-{{ section.id }}-{{ forloop.index0 }}', {
-          slidesPerView: '{{ section.settings.slides_per_view_mobile }}',
+          slidesPerView: '{{ section.settings.slides_per_view_mobile }}.1',
           spaceBetween: 8,
           loop: true,
           navigation: {
@@ -146,7 +146,7 @@
           },
           breakpoints: {
             768: {
-              slidesPerView: '{{ section.settings.slides_per_view_tablet }}',
+              slidesPerView: '{{ section.settings.slides_per_view_tablet }}.5',
               spaceBetween: 10,
             },
             1024: {
