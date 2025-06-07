@@ -3,98 +3,100 @@
 @tailwind utilities;
 
 @layer components {
-	a {
-		@apply tw-text-black tw-font-poppins;
-	}
+  a {
+    @apply tw-font-poppins tw-text-black;
+  }
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		@apply tw-font-noto;
-	}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tw-font-noto;
+  }
 
-	p {
-		@apply tw-font-poppins tw-font-normal;
-	}
+  p {
+    @apply tw-font-poppins tw-font-normal;
+  }
 
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  }
 
-	input::-webkit-outer-spin-button,
-	input::-webkit-inner-spin-button {
-			/* display: none; <- Crashes Chrome on hover */
-			-webkit-appearance: none;
-			margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-	}
-
-	input[type=number] {
-			-moz-appearance:textfield; /* Firefox */
-	}
+  input[type='number'] {
+    -moz-appearance: textfield; /* Firefox */
+  }
 }
 
 @layer utilities {
-	.animated-button {
-		position: relative;
-		isolation: isolate;
-		transition-property: color;
-		transition-duration: 0.3s;
-		transition-timing-function: ease-in-out;
-	}
+  .animated-button {
+    position: relative;
+    isolation: isolate;
+    transition-property: color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+  }
 
-	.animated-button::before {
-		content: '';
-		position: absolute;
-		left: 0;
-		top: 0;
-		bottom: 0;
-		width: 0;
-		transition-property: width;
-		transition-duration: 0.3s;
-		transition-timing-function: ease-in-out;
-		z-index: -1;
-	}
+  .animated-button::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    transition-property: width;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    z-index: -1;
+  }
 
-	.animated-button::after {
-		content: '';
-		position: absolute;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		width: 0;
-		z-index: -1;
-		transition-property: width;
-		transition-duration: 0.3s;
-		transition-timing-function: ease-in-out;
-	}
+  .animated-button::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    z-index: -1;
+    transition-property: width;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+  }
 
-	.animated-button:hover::before,
-	.animated-button:hover::after {
-		width: 55%;
-	}
+  .animated-button:hover::before,
+  .animated-button:hover::after {
+    @apply tw-w-[55%];
+  }
 
-	.animated-button--hover-white {
-		@apply before:tw-bg-white after:tw-bg-white hover:tw-text-brand-navy
-	}
+  .animated-button {
+    @apply peer-hover/animated-button-peer:before:tw-w-[55%] peer-hover/animated-button-peer:after:tw-w-[55%];
+  }
 
-	.animated-button--hover-black {
-		@apply before:tw-bg-black after:tw-bg-black hover:tw-text-white
-	}
+  .animated-button--hover-white {
+    @apply before:tw-bg-white after:tw-bg-white hover:tw-text-brand-navy peer-hover/animated-button-peer:tw-text-brand-navy;
+  }
 
-	.animated-button--hover-navy {
-		@apply before:tw-bg-brand-navy after:tw-bg-brand-navy hover:tw-text-white
-	}
+  .animated-button--hover-black {
+    @apply before:tw-bg-black after:tw-bg-black hover:tw-text-white peer-hover/animated-button-peer:tw-text-white;
+  }
+
+  .animated-button--hover-navy {
+    @apply before:tw-bg-brand-navy after:tw-bg-brand-navy hover:tw-text-white peer-hover/animated-button-peer:tw-text-white;
+  }
 }
 
-
 .shopify-policy__container {
-	@apply !tw-max-w-4xl !tw-mx-auto !tw-mt-20 !tw-mb-28 !tw-px-5 !tw-font-poppins !tw-font-normal !tw-text-12 md:!tw-text-16;
+  @apply !tw-mx-auto !tw-mb-28 !tw-mt-20 !tw-max-w-4xl !tw-px-5 !tw-font-poppins !tw-text-12 !tw-font-normal md:!tw-text-16;
 }
 
 .shopify-policy__title {
-	@apply !tw-text-24 md:!tw-text-36 !tw-font-semibold !tw-mb-4 !tw-font-noto;
+  @apply !tw-mb-4 !tw-font-noto !tw-text-24 !tw-font-semibold md:!tw-text-36;
 }
 
 .shopify-policy__body * {
-	@apply !tw-prose !tw-max-w-full;
+  @apply !tw-prose !tw-max-w-full;
 }

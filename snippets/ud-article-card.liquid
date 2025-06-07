@@ -1,5 +1,5 @@
 {%- if article and article != empty -%}
-  <div class="tw-group tw-relative tw-flex tw-h-full tw-flex-col tw-border">
+  <div class="tw-group tw-relative tw-isolate tw-flex tw-h-full tw-flex-col tw-border">
     <div class="tw-h-72 tw-overflow-hidden tw-border-b">
       {% if article.image %}
         {{
@@ -16,12 +16,20 @@
       <p class="tw-mt-1 tw-font-poppins tw-text-12 tw-text-black md:tw-text-14">{{ article.excerpt }}</p>
     </div>
     <div class="tw-mt-auto tw-border-t">
-      <a href="{{ article.url }}" class="tw-flex tw-items-center tw-justify-between tw-px-7 tw-py-5">
-        <span class="tw-text-12 tw-font-semibold tw-uppercase tw-tracking-wider tw-text-black before:tw-absolute before:tw-inset-0 md:tw-text-14"
+      <a
+        href="{{ article.url }}"
+        class="tw-peer/animated-button-peer before:tw-absolute before:tw-inset-0 before:tw-z-10"
+      ></a>
+      <div class="animated-button animated-button--hover-navy tw-flex tw-items-center tw-justify-between tw-px-7 tw-py-5 tw-text-black [.tw-peer\/animated-button-peer:hover_~_&_span]:!tw-text-white">
+        <span class="tw-text-12 tw-font-semibold tw-uppercase tw-tracking-wider before:tw-absolute before:tw-inset-0 md:tw-text-14 "
           >Read More</span
         >
-        <span class="tw-w-9">{% render 'icon-arrow-right' %}</span>
-      </a>
+        <span class="tw-w-9 tw-text-brand-navy">
+          {%- render 'icon-arrow-right' -%}
+        </span>
+      </div>
     </div>
   </div>
 {%- endif -%}
+
+<style></style>
