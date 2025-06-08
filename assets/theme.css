@@ -1696,6 +1696,14 @@ input[type='number'] {
   row-gap: 2rem;
 }
 
+.tw-gap-y-3\.5 {
+  row-gap: 0.875rem;
+}
+
+.tw-gap-y-5 {
+  row-gap: 1.25rem;
+}
+
 .tw-self-stretch {
   align-self: stretch;
 }
@@ -2269,6 +2277,10 @@ input[type='number'] {
 
 .tw-duration-700 {
   transition-duration: 700ms;
+}
+
+.tw-duration-300 {
+  transition-duration: 300ms;
 }
 
 .tw-will-change-\[height\] {
@@ -3356,12 +3368,20 @@ input[type='number'] {
     height: 8rem;
   }
 
+  .sm\:tw-grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .sm\:tw-flex-row {
     flex-direction: row;
   }
 
   .sm\:tw-gap-4 {
     gap: 1rem;
+  }
+
+  .sm\:tw-gap-y-3\.5 {
+    row-gap: 0.875rem;
   }
 
   .tw-group:hover .group-hover\:sm\:tw-h-40 {
@@ -3824,6 +3844,10 @@ input[type='number'] {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .lg\:tw-grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .lg\:tw-items-center {
     align-items: center;
   }
@@ -3871,6 +3895,10 @@ input[type='number'] {
 @media (min-width: 1280px) {
   .xl\:tw-grid {
     display: grid;
+  }
+
+  .xl\:tw-grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .xl\:tw-px-20 {

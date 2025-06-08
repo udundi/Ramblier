@@ -4,7 +4,7 @@
       {{ blog.title | escape }}
     </h1>
 
-    <div class="tw-mx-auto tw-mt-20 tw-grid tw-max-w-screen-xl tw-gap-x-2.5 tw-px-5 md:tw-grid-cols-3">
+    <div class="tw-mx-auto tw-mt-20 tw-grid tw-max-w-screen-xl tw-gap-x-2.5 tw-gap-y-5 tw-px-5 sm:tw-grid-cols-2 sm:tw-gap-y-3.5 lg:tw-grid-cols-3">
       {%- for article in blog.articles -%}
         <div class="tw-h-full tw-self-stretch">
           {%- render 'ud-article-card', article: article -%}
