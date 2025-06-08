@@ -16,8 +16,14 @@
                 checked
               {% endif %}
             >
-            <div>{{ city_category.category.value.icon | image_url: width: 70 | image_tag }}</div>
-            <p>
+            <div class="tw-aspect-square tw-size-12 md:tw-size-16">
+              {{
+                city_category.category.value.icon
+                | image_url: width: 70
+                | image_tag: class: 'tw-w-full tw-h-full tw-object-cover'
+              }}
+            </div>
+            <p class="tw-text-8 tw-font-medium tw-uppercase tw-text-black md:tw-text-10">
               <span>{{ city_category.category.value.name }}</span>
               <span class="tw-hidden">{% render 'icon-drawn-underline' %}</span>
             </p>
@@ -51,7 +57,9 @@
                 <h3 class="tw-font-noto tw-text-16 tw-font-semibold md:tw-text-18">{{ col.title }}</h3>
                 <p class="tw-text-poppins tw-text-12 md:tw-text-14">{{ col.description }}</p>
               </div>
-              <a href="{{ col.url }}" class="tw-text-14 tw-font-medium tw-uppercase tw-tracking-wider tw-underline"
+              <a
+                href="{{ col.url }}"
+                class="tw-text-14 tw-font-medium tw-uppercase tw-tracking-wider tw-underline max-md:tw-hidden"
                 >Shop All</a
               >
             </div>
@@ -77,6 +85,11 @@
                 </span>
               </button>
             </div>
+            <a
+              href="{{ col.url }}"
+              class="tw-mt-3 tw-block tw-text-12 tw-font-medium tw-uppercase tw-tracking-wider tw-underline md:tw-hidden"
+              >Shop All</a
+            >
           </div>
         {% endfor %}
       </div>
@@ -111,7 +124,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     new Swiper('.category-swiper', {
       slidesPerView: 'auto',
-      spaceBetween: 16,
+      spaceBetween: 20,
       freeMode: true,
     });
 
@@ -137,15 +150,15 @@
 
     swipers.forEach(function (swiperEl) {
       new Swiper(swiperEl, {
-        slidesPerView: 'auto',
-        spaceBetween: 20,
+        slidesPerView: 2.2,
+        spaceBetween: 8,
         navigation: {
           nextEl: swiperEl.querySelector('.swiper-button-next-custom'),
           prevEl: swiperEl.querySelector('.swiper-button-prev-custom'),
         },
         breakpoints: {
           640: {
-            slidesPerView: 2.2,
+            slidesPerView: 2.8,
           },
           768: {
             slidesPerView: 3.2,
