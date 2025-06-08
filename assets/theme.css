@@ -1461,6 +1461,10 @@ input[type='number'] {
   height: 100%;
 }
 
+.tw-h-3 {
+  height: 0.75rem;
+}
+
 .tw-w-1\/2 {
   width: 50%;
 }
@@ -1614,6 +1618,10 @@ input[type='number'] {
   grid-template-columns: 7rem 1fr;
 }
 
+.tw-grid-cols-\[3rem_1fr_auto\] {
+  grid-template-columns: 3rem 1fr auto;
+}
+
 .tw-grid-rows-2 {
   grid-template-rows: repeat(2, minmax(0, 1fr));
 }
@@ -1752,6 +1760,10 @@ input[type='number'] {
   overflow: visible;
 }
 
+.tw-overflow-x-hidden {
+  overflow-x: hidden;
+}
+
 .tw-whitespace-nowrap {
   white-space: nowrap;
 }
@@ -1830,6 +1842,11 @@ input[type='number'] {
 .tw-border-white {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
+}
+
+.tw-border-\[\#d9d9d9\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(217 217 217 / var(--tw-border-opacity, 1));
 }
 
 .tw-bg-\[transparent\] {
@@ -2146,6 +2163,10 @@ input[type='number'] {
 
 .tw-text-48 {
   font-size: 3rem;
+}
+
+.tw-text-16 {
+  font-size: 1rem;
 }
 
 .tw-font-bold {
@@ -3478,6 +3499,18 @@ input[type='number'] {
 
   .md\:tw-mt-24 {
     margin-top: 6rem;
+  }
+
+  .md\:tw-mt-4 {
+    margin-top: 1rem;
+  }
+
+  .md\:tw-mt-14 {
+    margin-top: 3.5rem;
+  }
+
+  .md\:tw-mt-5 {
+    margin-top: 1.25rem;
   }
 
   .md\:tw-grid {
