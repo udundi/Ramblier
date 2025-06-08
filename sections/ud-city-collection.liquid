@@ -1,0 +1,32 @@
+<div>
+  <h2>{{ closest.metaobject.city.name.value }}, {{ closest.metaobject.city.state.value.name.value }}</h2>
+  <div class="tw-flex">
+    {% for city_category in closest.metaobject.city.city_categories.value %}
+      <button
+        data-category="{{ city_category.category.value.name.value }}"
+      >
+        <div>{{ city_category.category.value.icon | image_url: width: 70 | image_tag }}</div>
+        <p>{{ city_category.category.value.name }}</p>
+      </button>
+    {% endfor %}
+  </div>
+  <div>
+    {% for city_category in closest.metaobject.city.city_categories.value %}
+      <div data-category="{{ city_category.category.value.name.value }}">
+        {% for col in city_category.collections.value %}
+          <div data-collection-id="{{ col.id }}">
+            <div>
+              {{ col.featured_image | image_url: width: 50 | image_tag }}
+              {{ col.title }}
+            </div>
+            <div class="tw-flex">
+              {% for product in col.products limit: 10 %}
+                {% render 'ud-product-card', product: product %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
