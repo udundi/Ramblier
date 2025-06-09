@@ -6,7 +6,6 @@
 {% endcomment %}
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
 
 <style>
@@ -15,14 +14,14 @@
   }
 </style>
 
-<cart-drawer class="">
+<cart-drawer class="tw-hidden">
   <div id="CartDrawer" class="">
     <div
       id="CartDrawer-Overlay"
       class="tw-fixed tw-inset-0 tw-h-full tw-bg-black/30 tw-backdrop-blur-sm"
     ></div>
     <div
-      class="tw-fixed tw-bottom-0 tw-right-0 tw-top-0 tw-z-50  tw-w-[clamp(min(100%,_22rem),_85%,_38rem)] tw-border tw-border-black tw-bg-white"
+      class="js-drawer-inner tw-fixed tw-bottom-0 tw-right-0 tw-top-0 tw-z-50  tw-w-[clamp(min(100%,_22rem),_85%,_38rem)] tw-border tw-border-black tw-bg-white"
       role="dialog"
       aria-modal="true"
       aria-label="{{ 'sections.cart.title' | t }}"
@@ -88,7 +87,7 @@
         >
           <div id="CartDrawer-CartItems" class="">
             {%- if cart != empty -%}
-              <div class="tw-mt-2 tw-h-[calc(100vh-4rem-13rem-2rem)] tw-overflow-y-scroll md:tw-mt-4 md:tw-h-[calc(100vh-3rem-20rem-2rem-0.5rem)]">
+              <div class="tw-mt-2 tw-h-[calc(100vh-4rem-13rem-2rem)] tw-overflow-y-auto md:tw-mt-4 md:tw-h-[calc(100vh-3rem-20rem-2rem-0.5rem)]">
                 <table class="tw-w-full">
                   <thead role="rowgroup" class="tw-sr-only">
                     <tr role="row">
@@ -121,7 +120,7 @@
                     {%- for item in cart.items -%}
                       <tr
                         id="CartDrawer-Item-{{ item.index | plus: 1 }}"
-                        class="tw-grid tw-w-full tw-grid-cols-[3.5rem_1fr_auto] tw-grid-rows-[1fr_auto] tw-gap-x-7 tw-border-b tw-px-6 tw-py-6 md:tw-grid-cols-[6.5rem_1fr_auto] md:tw-px-12 md:tw-py-8"
+                        class="js-cart-item tw-relative tw-grid tw-w-full tw-grid-cols-[3.5rem_1fr_auto] tw-grid-rows-[1fr_auto] tw-gap-x-7 tw-border-b tw-px-6 tw-py-6 md:tw-grid-cols-[6.5rem_1fr_auto] md:tw-px-12 md:tw-py-8"
                       >
                         <td class="tw-col-start-1 tw-row-span-2 tw-row-start-1 tw-flex">
                           {% if item.image %}
@@ -142,7 +141,7 @@
                         <td class="tw-col-start-2 tw-row-start-1">
                           <a
                             href="{{ item.url }}"
-                            class="tw-text-poppins tw-mb-0.5 tw-block tw-pt-0.5 tw-text-10 tw-font-medium tw-leading-none md:tw-pt-1.5 md:tw-text-14"
+                            class="js-cart-item-name tw-text-poppins tw-mb-0.5 tw-block tw-pt-0.5 tw-text-10 tw-font-medium tw-leading-none md:tw-pt-1.5 md:tw-text-14"
                           >
                             {{- item.product.title | escape -}}
                           </a>
@@ -216,7 +215,7 @@
                           endif
                         -%}
                         <td
-                          class="tw-col-span-2 tw-col-start-2 tw-row-start-2"
+                          class="tw-col-span-2 tw-col-start-2 tw-row-start-2 tw-flex tw-items-center tw-justify-between"
                           role="cell"
                           headers="CartDrawer-ColumnQuantity"
                         >
@@ -225,23 +224,6 @@
                               <div class="">
                                 <quantity-input class="tw-grid tw-max-w-16 tw-grid-cols-3 tw-items-center tw-justify-center tw-border tw-py-2 md:tw-max-w-24">
                                   <div class="tw-flex tw-items-center tw-justify-center">
-                                    {% comment %}
-                                      <cart-remove-button
-                                        id="CartDrawer-Remove-{{ item.index | plus: 1 }}"
-                                        data-index="{{ item.index | plus: 1 }}"
-                                      >
-                                        <button
-                                          type="button"
-                                          class=" tw-flex tw-items-center tw-justify-center"
-                                          aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
-                                          data-variant-id="{{ item.variant.id }}"
-                                        >
-                                          <span class="tw-size-4">
-                                            {{- 'icon-remove.svg' | inline_asset_content -}}
-                                          </span>
-                                        </button>
-                                      </cart-remove-button>
-                                    {% endcomment %}
                                     <button
                                       class="js-quantity-button tw-flex tw-items-center tw-justify-center"
                                       name="minus"
@@ -253,8 +235,8 @@
                                           | escape
                                         -}}
                                       </span>
-                                      <span class="tw-flex tw-size-2.5 tw-items-center md:tw-size-4">
-                                        {{- 'icon-remove.svg' | inline_asset_content -}}
+                                      <span class="tw-pointer-events-none tw-flex tw-size-2.5 tw-items-center md:tw-size-4">
+                                        {{- 'icon-minus.svg' | inline_asset_content -}}
                                       </span>
                                     </button>
                                   </div>
@@ -288,7 +270,7 @@
                                         | escape
                                       -}}
                                     </span>
-                                    <span class="tw-flex tw-size-2.5 tw-items-center md:tw-size-4">
+                                    <span class="tw-pointer-events-none tw-flex tw-size-2.5 tw-items-center md:tw-size-4">
                                       {{- 'icon-plus.svg' | inline_asset_content -}}
                                     </span>
                                   </button>
@@ -300,16 +282,34 @@
                               class=""
                               role="alert"
                             >
-                              <small class=""></small>
+                              <small class="js-cart-item-error-text"></small>
                               <span class="tw-size-6">
                                 {{- 'icon-error.svg' | inline_asset_content -}}
                               </span>
                             </div>
                           </quantity-popover>
+
+                          <cart-remove-button
+                            id="CartDrawer-Remove-{{ item.index | plus: 1 }}"
+                            data-index="{{ item.index | plus: 1 }}"
+                          >
+                            <button
+                              type="button"
+                              class=" tw-flex tw-items-center tw-justify-center"
+                              aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
+                              data-variant-id="{{ item.variant.id }}"
+                            >
+                              <span class="tw-size-4">
+                                {{- 'icon-remove.svg' | inline_asset_content -}}
+                              </span>
+                            </button>
+                          </cart-remove-button>
                         </td>
 
                         <td class="tw-col-start-3 tw-row-start-1">
-                          {%- render 'loading-spinner' -%}
+                          <span class="tw-absolute tw-inset-0 tw-flex tw-hidden tw-items-center tw-justify-center">
+                            {%- render 'loading-spinner', class: 'loading__spinner tw-text-white' -%}
+                          </span>
                           <div class="tw-pt-0.5 tw-font-poppins tw-text-10 tw-font-semibold tw-tracking-wider md:tw-pt-1.5 md:tw-text-14">
                             <span class="tw-block tw-leading-none">
                               {{ item.original_line_price | money }}
@@ -332,7 +332,7 @@
       </cart-drawer-items>
       <div class="tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-flex tw-h-52 tw-w-full tw-flex-col tw-justify-end tw-bg-white tw-px-6 tw-pb-14 md:tw-h-64 md:tw-px-12 md:tw-pb-16">
         <div
-          class=""
+          class="js-cart-drawer-footer"
           {{ block.shopify_attributes }}
         >
           <div class="tw-flex tw-justify-between">

@@ -1,4 +1,3 @@
-console.log("I'm loading here");
 class CartDrawer extends HTMLElement {
   constructor() {
     super();
@@ -39,9 +38,9 @@ class CartDrawer extends HTMLElement {
       'transitionend',
       () => {
         const containerToTrapFocusOn = this.classList.contains('is-empty')
-          ? this.querySelector('.drawer__inner-empty')
+          ? this.querySelector('.js-drawer-inner-empty')
           : document.getElementById('CartDrawer');
-        const focusElement = this.querySelector('.drawer__inner') || this.querySelector('.drawer__close');
+        const focusElement = this.querySelector('.js-drawer-inner') || this.querySelector('.drawer__close');
         trapFocus(containerToTrapFocusOn, focusElement);
       },
       { once: true },
@@ -72,8 +71,8 @@ class CartDrawer extends HTMLElement {
   }
 
   renderContents(parsedState) {
-    this.querySelector('.drawer__inner').classList.contains('is-empty') &&
-      this.querySelector('.drawer__inner').classList.remove('is-empty');
+    this.querySelector('.js-drawer-inner').classList.contains('is-empty') &&
+      this.querySelector('.js-drawer-inner').classList.remove('is-empty');
     this.productId = parsedState.id;
     this.getSectionsToRender().forEach((section) => {
       const sectionElement = section.selector
@@ -97,7 +96,7 @@ class CartDrawer extends HTMLElement {
   getSectionsToRender() {
     return [
       {
-        id: 'cart-drawer',
+        id: 'ud-cart-drawer',
         selector: '#CartDrawer',
       },
       {
@@ -123,7 +122,7 @@ class CartDrawerItems extends CartItems {
       {
         id: 'CartDrawer',
         section: 'cart-drawer',
-        selector: '.drawer__inner',
+        selector: '.js-drawer-inner',
       },
       {
         id: 'cart-icon-bubble',

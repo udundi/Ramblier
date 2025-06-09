@@ -8,6 +8,7 @@ module.exports = {
     './snippets/**/*.liquid',
     './assets/**/*.liquid',
     './blocks/**/*.liquid',
+    './assets/**/*.js',
   ],
   theme: {
     colors: {
