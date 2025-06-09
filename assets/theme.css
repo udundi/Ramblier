@@ -1327,6 +1327,10 @@ input[type='number'] {
   margin-bottom: 3.5rem;
 }
 
+.tw-mt-2 {
+  margin-top: 0.5rem;
+}
+
 .tw-block {
   display: block;
 }
@@ -1393,6 +1397,14 @@ input[type='number'] {
 
 .tw-aspect-\[2\/1\] {
   aspect-ratio: 2/1;
+}
+
+.tw-aspect-\[17\/5\] {
+  aspect-ratio: 17/5;
+}
+
+.tw-aspect-\[4\/3\] {
+  aspect-ratio: 4/3;
 }
 
 .tw-size-12 {
@@ -1468,6 +1480,10 @@ input[type='number'] {
 
 .tw-h-3 {
   height: 0.75rem;
+}
+
+.tw-h-\[30vw\] {
+  height: 30vw;
 }
 
 .tw-w-1\/2 {
@@ -1627,6 +1643,10 @@ input[type='number'] {
   grid-template-columns: 3rem 1fr auto;
 }
 
+.tw-grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .tw-grid-rows-2 {
   grid-template-rows: repeat(2, minmax(0, 1fr));
 }
@@ -1739,6 +1759,15 @@ input[type='number'] {
 
 .tw-gap-y-5 {
   row-gap: 1.25rem;
+}
+
+.tw-gap-x-8 {
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+}
+
+.tw-gap-y-6 {
+  row-gap: 1.5rem;
 }
 
 .tw-self-stretch {
@@ -1888,6 +1917,16 @@ input[type='number'] {
 
 .tw-bg-opacity-75 {
   --tw-bg-opacity: 0.75;
+}
+
+.tw-bg-gradient-to-t {
+  background-image: linear-gradient(to top, var(--tw-gradient-stops));
+}
+
+.tw-from-black\/80 {
+  --tw-gradient-from: rgb(0 0 0 / 0.8) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
 .tw-bg-cover {
@@ -2062,6 +2101,16 @@ input[type='number'] {
   padding-bottom: 1.5rem;
 }
 
+.tw-py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.tw-py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
 .tw-pb-6 {
   padding-bottom: 1.5rem;
 }
@@ -2092,6 +2141,10 @@ input[type='number'] {
 
 .tw-pt-3 {
   padding-top: 0.75rem;
+}
+
+.tw-pb-9 {
+  padding-bottom: 2.25rem;
 }
 
 .tw-text-center {
@@ -3566,6 +3619,10 @@ input[type='number'] {
     aspect-ratio: 16 / 9;
   }
 
+  .md\:tw-aspect-\[17\/5\] {
+    aspect-ratio: 17/5;
+  }
+
   .md\:tw-size-11 {
     width: 2.75rem;
     height: 2.75rem;
@@ -4008,6 +4065,10 @@ input[type='number'] {
 
   .xl\:tw-grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .xl\:tw-grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .xl\:tw-px-20 {

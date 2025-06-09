@@ -1,0 +1,39 @@
+<div>
+  <div class="tw-relative tw-isolate tw-grid tw-aspect-[4/3] tw-items-end md:tw-aspect-[17/5]">
+    <div class="tw-relative tw-col-start-1 tw-row-start-1 tw-h-full tw-w-full tw-items-end tw-overflow-hidden">
+      <div class="tw-absolute tw-inset-0 tw-bg-gradient-to-t tw-from-black/80"></div>
+      {{
+        collection.metafields.custom.featured_image.value
+        | image_url: width: 3840
+        | image_tag: class: 'tw-w-full tw-h-full tw-object-cover'
+      }}
+    </div>
+    <div class="tw-z-10 tw-col-start-1 tw-row-start-1 tw-mx-auto tw-flex tw-w-full tw-max-w-screen-xl tw-items-center tw-gap-x-8 tw-px-5 tw-pb-9">
+      <div class="tw-size-14">
+        {{ collection.featured_image | image_url: width: 60 | image_tag: class: 'tw-w-full tw-h-full tw-object-cover' }}
+      </div>
+      <h2 class="tw-grow tw-font-noto tw-text-36 tw-font-semibold tw-text-white">{{ collection.title }}</h2>
+    </div>
+  </div>
+  <div class="tw-border-b tw-text-black">
+    <div class="tw-mx-auto tw-grid tw-max-w-screen-xl tw-grid-cols-2 tw-px-5 tw-text-black">
+      <div class="tw-h-full tw-border-r tw-px-12 tw-py-12">
+        <h3 class="tw-font-poppins tw-text-14 tw-font-semibold tw-uppercase tw-tracking-wider">Brand History</h3>
+        <div class="tw-text-poppins tw-text-normal tw-mt-2 tw-text-12">
+          {{ collection.metafields.custom.brand_history | metafield_tag }}
+        </div>
+      </div>
+      <div class="tw-h-full tw-px-12 tw-py-12">
+        <h3 class="tw-font-poppins tw-text-14 tw-font-semibold tw-uppercase tw-tracking-wider">More Information</h3>
+        <div class="tw-text-poppins tw-text-normal tw-mt-2 tw-text-12">
+          {{ collection.metafields.custom.more_information | metafield_tag }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tw-mx-auto tw-grid tw-max-w-screen-xl tw-grid-cols-2 tw-gap-x-2.5 tw-gap-y-6 tw-px-5 tw-py-10 md:tw-grid-cols-3 xl:tw-grid-cols-4">
+    {% for product in collection.products %}
+      {% render 'ud-product-card', product: product %}
+    {% endfor %}
+  </div>
+</div>
