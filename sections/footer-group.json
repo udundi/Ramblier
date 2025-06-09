@@ -13,17 +13,6 @@
   "sections": {
     "footer": {
       "type": "ud-footer",
-      "blocks": {
-        "footer-0": {
-          "type": "link_list",
-          "settings": {
-            "menu": "footer"
-          }
-        }
-      },
-      "block_order": [
-        "footer-0"
-      ],
       "settings": {}
     }
   },
