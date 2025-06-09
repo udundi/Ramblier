@@ -3827,6 +3827,11 @@ input[type='number'] {
     padding-bottom: 1rem;
   }
 
+  .md\:tw-px-5 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
   .md\:tw-pl-8 {
     padding-left: 2rem;
   }

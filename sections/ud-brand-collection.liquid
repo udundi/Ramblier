@@ -12,18 +12,20 @@
       <div class="tw-size-14">
         {{ collection.featured_image | image_url: width: 60 | image_tag: class: 'tw-w-full tw-h-full tw-object-cover' }}
       </div>
-      <h2 class="tw-grow tw-font-noto tw-text-36 tw-font-semibold tw-text-white">{{ collection.title }}</h2>
+      <h2 class="tw-grow tw-font-noto tw-text-24 tw-font-semibold tw-text-white md:tw-text-36">
+        {{ collection.title }}
+      </h2>
     </div>
   </div>
   <div class="tw-border-b tw-text-black">
-    <div class="tw-mx-auto tw-grid tw-max-w-screen-xl tw-grid-cols-2 tw-px-5 tw-text-black">
-      <div class="tw-h-full tw-border-r tw-px-12 tw-py-12">
+    <div class="tw-mx-auto tw-grid tw-max-w-screen-xl tw-text-black md:tw-grid-cols-2 md:tw-px-5">
+      <div class="tw-h-full tw-px-12 tw-py-12 max-md:tw-border-b max-md:tw-px-5 md:tw-border-r">
         <h3 class="tw-font-poppins tw-text-14 tw-font-semibold tw-uppercase tw-tracking-wider">Brand History</h3>
         <div class="tw-text-poppins tw-text-normal tw-mt-2 tw-text-12">
           {{ collection.metafields.custom.brand_history | metafield_tag }}
         </div>
       </div>
-      <div class="tw-h-full tw-px-12 tw-py-12">
+      <div class="tw-h-full tw-px-12 tw-py-12 max-md:tw-px-5">
         <h3 class="tw-font-poppins tw-text-14 tw-font-semibold tw-uppercase tw-tracking-wider">More Information</h3>
         <div class="tw-text-poppins tw-text-normal tw-mt-2 tw-text-12">
           {{ collection.metafields.custom.more_information | metafield_tag }}
