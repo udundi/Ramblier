@@ -13,7 +13,7 @@
 %}
 <!-- Main Container -->
 <header
-  class="tw-relative tw-grid tw-grid-cols-[3.5rem_3.5rem_1fr_3.5rem_3.5rem] tw-grid-rows-[auto_auto] tw-items-center tw-justify-center md:tw-grid-cols-[auto_1fr_auto_auto]"
+  class="tw-relative tw-z-50 tw-grid tw-grid-cols-[3.5rem_3.5rem_1fr_3.5rem_3.5rem] tw-grid-rows-[auto_auto] tw-items-center tw-justify-center md:tw-grid-cols-[auto_1fr_auto_auto]"
 >
   <!-- Mobile Hamburger Menu -->
   <button
@@ -56,8 +56,19 @@
   <button
     class="tw-flex tw-w-full tw-max-w-14 tw-items-center tw-justify-center {{ icon_color }} tw-h-full tw-border-b tw-px-2.5 tw-py-1.5  max-md:tw-order-5 md:tw-col-start-4 md:tw-row-start-1 md:tw-max-w-24 md:tw-px-10 md:tw-py-4"
   >
-    <span class="tw-size-6">{% render 'icon-cart' %}</span>
+    <span class="tw-relative tw-size-6">
+      {%- render 'icon-cart' %}
+      {%- if cart != empty -%}
+        <span class="tw-absolute tw-right-0 tw-top-0 tw-flex tw-size-4 -tw-translate-y-1/2 tw-translate-x-1/2 tw-items-center tw-justify-center tw-rounded-full tw-bg-brand-navy">
+          {%- if cart.item_count < 100 -%}
+            <span aria-hidden="true" class="tw-text-12 tw-text-white">{{ cart.item_count }}</span>
+          {%- endif -%}
+          <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+        </span>
+      {%- endif -%}
+    </span>
   </button>
+  {% render 'cart-drawer' %}
   <!-- Bottom Row Container -->
   <!-- Left Links -->
   <div class="tw-col-span-5 tw-row-start-2 tw-flex tw-border-b hover:tw-flex focus:tw-flex peer-focus/mobile-menu:tw-flex has-[:focus]:tw-flex max-md:tw-hidden max-md:tw-flex-col md:tw-col-span-2 md:tw-col-start-1 md:tw-gap-9 md:tw-px-8 lg:tw-px-12 {{ bottom_row_color }}">

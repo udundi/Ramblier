@@ -2182,9 +2182,6 @@ input[type='checkbox'] {
 }
 
 /* section-header */
-.section-header.shopify-section-group-header-group {
-  z-index: 3;
-}
 
 .shopify-section-header-sticky {
   position: sticky;
@@ -2201,14 +2198,6 @@ input[type='checkbox'] {
 
 .section-header.animate {
   transition: top 0.15s ease-out;
-}
-
-.shopify-section-group-header-group {
-  z-index: 4;
-}
-
-.section-header ~ .shopify-section-group-header-group {
-  z-index: initial;
 }
 
 /* Main Header Layout */

@@ -1,3 +1,4 @@
+console.log("I'm loading here");
 class CartDrawer extends HTMLElement {
   constructor() {
     super();
@@ -31,7 +32,7 @@ class CartDrawer extends HTMLElement {
     if (cartDrawerNote && !cartDrawerNote.hasAttribute('role')) this.setSummaryAccessibility(cartDrawerNote);
     // here the animation doesn't seem to always get triggered. A timeout seem to help
     setTimeout(() => {
-      this.classList.add('animate', 'active');
+      this.classList.remove('tw-hidden');
     });
 
     this.addEventListener(
@@ -43,14 +44,14 @@ class CartDrawer extends HTMLElement {
         const focusElement = this.querySelector('.drawer__inner') || this.querySelector('.drawer__close');
         trapFocus(containerToTrapFocusOn, focusElement);
       },
-      { once: true }
+      { once: true },
     );
 
     document.body.classList.add('overflow-hidden');
   }
 
   close() {
-    this.classList.remove('active');
+    this.classList.add('tw-hidden');
     removeTrapFocus(this.activeElement);
     document.body.classList.remove('overflow-hidden');
   }
