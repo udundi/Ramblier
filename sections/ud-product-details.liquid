@@ -78,14 +78,20 @@
     <div class="tw-flex tw-justify-center tw-gap-4 tw-py-4 tw-text-center tw-font-poppins md:tw-hidden">
       <!-- Mobile Brand Name -->
       <span class="tw-relative tw-w-fit tw-text-12">
-        <span class="tw-absolute tw-right-[1em] tw-text-nowrap">
-          {{- product.metafields.custom.product_brand.value.location.value.city }},
-          {{ product.metafields.custom.product_brand.value.location.value.state -}}
-        </span>
-        <span>/</span>
-        <span class="tw-absolute tw-left-[1em] tw-text-nowrap">
-          {{- product.metafields.custom.product_brand.value.name -}}
-        </span>
+        {% if product.metafields.custom.city != blank %}
+          <span class="tw-absolute tw-right-[1em] tw-text-nowrap">
+            {{ product.metafields.custom.city.value.name }},
+            {{ product.metafields.custom.city.value.state.value.name }}
+          </span>
+          <span>/</span>
+          <span class="tw-absolute tw-left-[1em] tw-text-nowrap">
+            {{- product.vendor -}}
+          </span>
+        {% else %}
+          <span class="tw-text-nowrap">
+            {{- product.vendor -}}
+          </span>
+        {% endif %}
       </span>
     </div>
 
@@ -135,14 +141,14 @@
       <div class="tw-relative tw-overflow-hidden tw-border-b tw-border-black">
         <div class="tw-p-8 md:tw-py-16 xl:tw-px-24">
           <div class="tw-flex tw-flex-col tw-justify-center">
-            {% if product.metafields.custom.product_brand != blank %}
-              <!-- Desktop Brand Name -->
-              <span class="tw-text-12 tw-text-black max-md:tw-hidden">
-                {{ product.metafields.custom.product_brand.value.location.value.city }},
-                {{ product.metafields.custom.product_brand.value.location.value.state }} /
-                {{ product.metafields.custom.product_brand.value.name }}
-              </span>
-            {% endif %}
+            <!-- Desktop Brand Name -->
+            <span class="tw-text-12 tw-text-black max-md:tw-hidden">
+              {% if product.metafields.custom.city != blank %}
+                {{ product.metafields.custom.city.value.name }},
+                {{ product.metafields.custom.city.value.state.value.name }} /
+              {% endif %}
+              {{ product.vendor }}
+            </span>
 
             <!-- Desktop Title -->
             <span class="tw-mt-3">
@@ -255,17 +261,17 @@
         </div>
       </div>
       <div>
+        {% assign brand_collection = product.collections | first %}
         <!-- Related Products -->
         <div class="tw-overflow-hidden tw-p-8 md:tw-py-16 xl:tw-px-24">
           <div class="tw-flex tw-flex-col tw-gap-4">
-            {% assign featured_collection = product.metafields.custom.product_brand.value.collection.value %}
             <h3 class="tw-font-poppins tw-text-12 tw-font-semibold tw-tracking-wider tw-text-black md:tw-text-14">
-              MORE FROM {{ product.metafields.custom.product_brand.value.name | upcase }}
+              MORE FROM {{ product.vendor | upcase }}
             </h3>
             <div class="swiper-container-2 tw-flex tw-gap-8">
               {% assign p_index = 1 %}
               <div class="swiper-wrapper">
-                {% for c_product in featured_collection.products %}
+                {% for c_product in brand_collection.products %}
                   {% if c_product == product %}
                     {% continue %}
                   {% endif %}
@@ -280,7 +286,7 @@
                 {% endfor %}
               </div>
             </div>
-            <a class="tw-pt-2 tw-underline" href="{{ featured_collection.url }}">
+            <a class="tw-pt-2 tw-underline" href="{{ brand_collection.url }}">
               <span class="tw-relative tw-inline-flex tw-flex-col tw-overflow-hidden">
                 <span class="tw-text-poppins tw-relative tw-text-12 tw-font-semibold tw-uppercase tw-tracking-wider md:tw-text-14">
                   Shop All
