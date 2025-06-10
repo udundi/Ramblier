@@ -4,44 +4,46 @@
   </h2>
   <div class="swiper category-swiper tw-mt-3 md:tw-mt-4">
     <div class="swiper-wrapper">
-      {% for city_category in closest.metaobject.city.city_categories.value %}
-        <div class="swiper-slide">
-          <label class="category-selector tw-flex tw-flex-col tw-items-center">
-            <input
-              type="radio"
-              name="city-category"
-              value="{{ city_category.category.value.name.value }}"
-              class="tw-peer"
-              {% if forloop.first %}
-                checked
-              {% endif %}
-            >
-            <div class="tw-aspect-square tw-size-12 md:tw-size-16">
-              {{
-                city_category.category.value.icon
-                | image_url: width: 70
-                | image_tag: class: 'tw-w-full tw-h-full tw-object-cover'
-              }}
-            </div>
-            <p class="tw-text-8 tw-font-medium tw-uppercase tw-text-black md:tw-text-10">
-              <span>{{ city_category.category.value.name }}</span>
-              <span class="tw-hidden">{% render 'icon-drawn-underline' %}</span>
-            </p>
-          </label>
-        </div>
+      {% for categorized_collection in closest.metaobject.city.categorized_collections.value %}
+        {% if categorized_collection.category.value %}
+          <div class="swiper-slide">
+            <label class="category-selector tw-flex tw-flex-col tw-items-center">
+              <input
+                type="radio"
+                name="city-category"
+                value="{{ categorized_collection.category.value.name.value }}"
+                class="tw-peer"
+                {% if forloop.first %}
+                  checked
+                {% endif %}
+              >
+              <div class="tw-aspect-square tw-size-12 md:tw-size-16">
+                {{
+                  categorized_collection.category.value.icon
+                  | image_url: width: 70
+                  | image_tag: class: 'tw-w-full tw-h-full tw-object-cover'
+                }}
+              </div>
+              <p class="tw-text-8 tw-font-medium tw-uppercase tw-text-black md:tw-text-10">
+                <span>{{ categorized_collection.category.value.name }}</span>
+                <span class="tw-hidden">{% render 'icon-drawn-underline' %}</span>
+              </p>
+            </label>
+          </div>
+        {% endif %}
       {% endfor %}
     </div>
   </div>
   <div class="tw-mt-9 md:tw-mt-14">
-    {% for city_category in closest.metaobject.city.city_categories.value %}
+    {% for categorized_collection in closest.metaobject.city.categorized_collections.value %}
       <div
-        data-category="{{ city_category.category.value.name.value }}"
+        data-category="{{ categorized_collection.category.value.name.value }}"
         class="category-content"
         {% unless forloop.first %}
           style="display: none;"
         {% endunless %}
       >
-        {% for col in city_category.collections.value %}
+        {% for col in categorized_collection.collections.value %}
           <div data-collection-id="{{ col.id }}" class="tw-mt-8">
             <div class="tw-grid tw-grid-cols-[3rem_1fr_auto] tw-items-center tw-gap-x-5">
               <div class="tw-aspect-square tw-border tw-border-[#d9d9d9]">

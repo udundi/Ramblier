@@ -2337,6 +2337,10 @@ input[type='number'] {
   line-height: 1.25;
 }
 
+.tw-leading-normal {
+  line-height: 1.5;
+}
+
 .tw-tracking-tight {
   letter-spacing: -0.025em;
 }
