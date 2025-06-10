@@ -11,8 +11,8 @@
       {% endif %}
     </div>
     <div class="tw-z-10 tw-col-start-1 tw-row-start-1 tw-mx-auto tw-flex tw-w-full tw-max-w-screen-xl tw-items-center tw-gap-x-8 tw-px-5 tw-pb-9">
-      <div class="tw-size-14">
-        {{ collection.featured_image | image_url: width: 60 | image_tag: class: 'tw-w-full tw-h-full tw-object-cover' }}
+      <div class="tw-flex tw-aspect-square tw-size-14 tw-items-center tw-justify-center tw-bg-white">
+        {{ collection.featured_image | image_url: width: 60 | image_tag: class: 'tw-w-full' }}
       </div>
       <h2 class="tw-grow tw-font-noto tw-text-24 tw-font-semibold tw-text-white md:tw-text-36">
         {{ collection.title }}

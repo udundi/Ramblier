@@ -4153,6 +4153,10 @@ input[type='number'] {
     aspect-ratio: 5/1;
   }
 
+  .xl\:tw-aspect-\[3\/1\] {
+    aspect-ratio: 3/1;
+  }
+
   .xl\:tw-max-w-screen-xl {
     max-width: 1280px;
   }

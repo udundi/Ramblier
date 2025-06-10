@@ -46,13 +46,9 @@
         {% for col in categorized_collection.collections.value %}
           <div data-collection-id="{{ col.id }}" class="tw-mt-8">
             <div class="tw-grid tw-grid-cols-[3rem_1fr_auto] tw-items-center tw-gap-x-5">
-              <div class="tw-aspect-square tw-border tw-border-[#d9d9d9]">
+              <div class="tw-flex tw-aspect-square tw-items-center tw-justify-center tw-border tw-border-[#d9d9d9]">
                 {% if col.featured_image %}
-                  {{
-                    col.featured_image
-                    | image_url: width: 50
-                    | image_tag: class: 'tw-w-full tw-h-full tw-object-cover'
-                  }}
+                  {{ col.featured_image | image_url: width: 50 | image_tag: class: 'tw-w-full' }}
                 {% endif %}
               </div>
               <div>
