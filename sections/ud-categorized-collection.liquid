@@ -1,0 +1,105 @@
+<div class="tw-mx-auto tw-max-w-screen-xl tw-overflow-x-hidden tw-px-5 tw-pb-24">
+  <h2 class="tw-mt-9 tw-font-noto tw-text-24 tw-font-semibold tw-text-black md:tw-mt-14 md:tw-text-36">
+    {{ closest.metaobject.categorized_collections.name }}
+  </h2>
+  <div class="tw-mt-9 md:tw-mt-14">
+    {% for col in closest.metaobject.categorized_collections.collections.value %}
+      <div data-collection-id="{{ col.id }}" class="tw-mt-8">
+        <div class="tw-grid tw-grid-cols-[3rem_1fr_auto] tw-items-center tw-gap-x-5">
+          <div class="tw-aspect-square tw-border tw-border-[#d9d9d9]">
+            {% if col.featured_image %}
+              {{ col.featured_image | image_url: width: 50 | image_tag: class: 'tw-w-full tw-h-full tw-object-cover' }}
+            {% endif %}
+          </div>
+          <div>
+            <h3 class="tw-font-noto tw-text-16 tw-font-semibold md:tw-text-18">{{ col.title }}</h3>
+            <p class="tw-text-poppins tw-text-12 md:tw-text-14">{{ col.description }}</p>
+          </div>
+          <a
+            href="{{ col.url }}"
+            class="tw-text-14 tw-font-medium tw-uppercase tw-tracking-wider tw-underline max-md:tw-hidden"
+            >Shop All</a
+          >
+        </div>
+        <div
+          class="swiper tw-relative tw-mt-4 tw-overflow-visible md:tw-mt-5"
+          data-swiper-collection="{{ col.id }}"
+        >
+          <div class="swiper-wrapper">
+            {% for product in col.products limit: 10 %}
+              <div class="swiper-slide">
+                {% render 'ud-product-card', product: product %}
+              </div>
+            {% endfor %}
+          </div>
+          <button class="swiper-button-prev-custom tw-absolute tw-left-2.5 tw-top-1/2 tw-z-30 tw-flex tw-size-20 -tw-translate-y-1/2 tw-cursor-pointer tw-items-center tw-justify-start tw-stroke-black md:tw-size-24">
+            <span class="tw-flex tw-rotate-180 tw-items-center tw-bg-white tw-bg-opacity-75 tw-px-1 tw-py-2">
+              {%- render 'icon-caret' -%}
+            </span>
+          </button>
+          <button class="swiper-button-next-custom tw-absolute tw-right-2.5 tw-top-1/2 tw-z-30 tw-flex tw-size-20 -tw-translate-y-1/2 tw-cursor-pointer tw-items-center tw-justify-end tw-stroke-black md:tw-size-24">
+            <span class="tw-flex tw-items-center tw-bg-white tw-bg-opacity-75 tw-px-1 tw-py-2">
+              {% render 'icon-caret' %}
+            </span>
+          </button>
+        </div>
+        <a
+          href="{{ col.url }}"
+          class="tw-mt-3 tw-block tw-text-12 tw-font-medium tw-uppercase tw-tracking-wider tw-underline md:tw-hidden"
+          >Shop All</a
+        >
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .category-selector {
+    cursor: pointer;
+  }
+
+  .category-selector input[type='radio'] {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .category-selector input[type='radio']:checked + div + p {
+    font-weight: bold;
+  }
+
+  .category-swiper .swiper-slide {
+    width: auto;
+  }
+
+  .category-selector input[type='radio']:checked + div + p > span:last-child {
+    display: block;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const swipers = document.querySelectorAll('[data-swiper-collection]');
+
+    swipers.forEach(function (swiperEl) {
+      new Swiper(swiperEl, {
+        slidesPerView: 2.2,
+        spaceBetween: 8,
+        navigation: {
+          nextEl: swiperEl.querySelector('.swiper-button-next-custom'),
+          prevEl: swiperEl.querySelector('.swiper-button-prev-custom'),
+        },
+        breakpoints: {
+          640: {
+            slidesPerView: 2.8,
+          },
+          768: {
+            slidesPerView: 3.2,
+          },
+          1024: {
+            slidesPerView: 4,
+          },
+        },
+      });
+    });
+  });
+</script>
