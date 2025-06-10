@@ -1,12 +1,14 @@
 <div>
-  <div class="tw-relative tw-isolate tw-grid tw-aspect-[4/3] tw-items-end md:tw-aspect-[17/5]">
+  <div class="tw-relative tw-isolate tw-grid tw-items-end {% if collection.metafields.custom.featured_image.value %} tw-aspect-[4/3]  md:tw-aspect-[17/5] {% else %} tw-pt-12 tw-bg-black/80{% endif %}">
     <div class="tw-relative tw-col-start-1 tw-row-start-1 tw-h-full tw-w-full tw-items-end tw-overflow-hidden">
-      <div class="tw-absolute tw-inset-0 tw-bg-gradient-to-t tw-from-black/80"></div>
-      {{
-        collection.metafields.custom.featured_image.value
-        | image_url: width: 3840
-        | image_tag: class: 'tw-w-full tw-h-full tw-object-cover'
-      }}
+      {% if collection.metafields.custom.featured_image.value %}
+        <div class="tw-absolute tw-inset-0 tw-bg-gradient-to-t tw-from-black/80"></div>
+        {{
+          collection.metafields.custom.featured_image.value
+          | image_url: width: 3840
+          | image_tag: class: 'tw-w-full tw-h-full tw-object-cover'
+        }}
+      {% endif %}
     </div>
     <div class="tw-z-10 tw-col-start-1 tw-row-start-1 tw-mx-auto tw-flex tw-w-full tw-max-w-screen-xl tw-items-center tw-gap-x-8 tw-px-5 tw-pb-9">
       <div class="tw-size-14">
