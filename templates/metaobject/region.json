@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "ud_city_collection": {
+      "type": "ud-region-collection",
+      "settings": {}
+    }
+  },
+  "order": [
+    "ud_city_collection"
+  ]
+}
