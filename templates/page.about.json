@@ -103,13 +103,13 @@
         "text_block_egzrgF": {
           "type": "text_block",
           "settings": {
-            "text": "{{ metaobjects.brand[\"fake-brand\"].name.value }}"
+            "text": "Stubb's BBQ"
           }
         },
         "text_block_Utfq8a": {
           "type": "text_block",
           "settings": {
-            "text": "{{ metaobjects.brand[\"fake-brand\"].name.value }}"
+            "text": "Austin Motel"
           }
         }
       },
