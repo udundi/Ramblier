@@ -377,7 +377,7 @@
           "type": "text",
           "name": "text",
           "settings": {
-            "text": "More from {{ closest.product.metafields.custom.product_brand.value.name.value }}",
+            "text": "More from {{ closest.product.metafields.custom.city.value.name.value }}, {{ closest.product.metafields.custom.city.value.state.value.name.value }}",
             "type": "header",
             "align": "center",
             "size": "small",
@@ -490,43 +490,6 @@
         "align_items": "center",
         "container_width": "full_width",
         "content_overflow": "fit"
-      }
-    },
-    "ud_carousel_ByDQ9j": {
-      "type": "ud-carousel",
-      "blocks": {
-        "collection_atcgqg": {
-          "type": "collection",
-          "settings": {
-            "collection": "{{ product.metafields.custom.product_brand.value.location.value.collection.value }}",
-            "custom_title": ""
-          }
-        }
-      },
-      "block_order": [
-        "collection_atcgqg"
-      ],
-      "name": "Collection Carousel",
-      "settings": {
-        "heading": "You Might Also Like...",
-        "products_per_collection": 10,
-        "slides_per_view_desktop": 4,
-        "slides_per_view_tablet": 2,
-        "slides_per_view_mobile": 1,
-        "show_arrows": true,
-        "arrow_style": "carets",
-        "show_dots": false,
-        "autoplay": false,
-        "autoplay_speed": 3000,
-        "pill_active_color": "#0f214d",
-        "nav_button_color": "#000000",
-        "padding_top": 4,
-        "padding_bottom": 4,
-        "mobile_padding_top": 4,
-        "mobile_padding_bottom": 4,
-        "padding_left": 2,
-        "padding_right": 2,
-        "background_color": "#ffffff"
       }
     },
     "main": {
@@ -676,7 +639,6 @@
     "ud_universal_flexbox_AbC6jh",
     "ud_featured_grid_xtDEAn",
     "ud_universal_flexbox_Pxr9KX",
-    "ud_carousel_ByDQ9j",
     "main",
     "related-products"
   ]
