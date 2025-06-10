@@ -250,74 +250,29 @@
     "ud_custom_city_list_rDqYax": {
       "type": "ud-custom-city-list",
       "blocks": {
-        "city_jDnAzi": {
+        "city_EfypMY": {
           "type": "city",
-          "source": "{{ metaobjects.location.chicago }}",
           "settings": {
-            "image": "{{ metaobjects.location.chicago.location_image.value }}",
-            "title": "{{ metaobjects.location.chicago.city.value }}, {{ metaobjects.location.chicago.state.value }}",
-            "link_name": "Shop City",
-            "collection": "{{ metaobjects.location.chicago.collection.value }}"
+            "city": "austin-tx"
           }
         },
-        "city_ACXKVD": {
+        "city_MJBa8Q": {
           "type": "city",
-          "source": "{{ metaobjects.location[\"los-angeles\"] }}",
           "settings": {
-            "image": "{{ metaobjects.location[\"los-angeles\"].location_image.value }}",
-            "title": "{{ metaobjects.location[\"los-angeles\"].city.value }}, {{ metaobjects.location[\"los-angeles\"].state.value }}",
-            "link_name": "Shop City",
-            "collection": "{{ metaobjects.location[\"los-angeles\"].collection.value }}"
+            "city": "los-angeles"
           }
         },
-        "city_yhxkTW": {
+        "city_3GBQJr": {
           "type": "city",
-          "source": "{{ metaobjects.location.chicago }}",
           "settings": {
-            "image": "{{ metaobjects.location.chicago.location_image.value }}",
-            "title": "{{ metaobjects.location.chicago.city.value }}, {{ metaobjects.location.chicago.state.value }}",
-            "link_name": "Shop City",
-            "collection": "{{ metaobjects.location.chicago.collection.value }}"
-          }
-        },
-        "city_kNwg3b": {
-          "type": "city",
-          "source": "{{ metaobjects.location[\"los-angeles\"] }}",
-          "settings": {
-            "image": "{{ metaobjects.location[\"los-angeles\"].location_image.value }}",
-            "title": "{{ metaobjects.location[\"los-angeles\"].city.value }}, {{ metaobjects.location[\"los-angeles\"].state.value }}",
-            "link_name": "Shop City",
-            "collection": "{{ metaobjects.location[\"los-angeles\"].collection.value }}"
-          }
-        },
-        "city_dL7X9m": {
-          "type": "city",
-          "source": "{{ metaobjects.location.chicago }}",
-          "settings": {
-            "image": "{{ metaobjects.location.chicago.location_image.value }}",
-            "title": "{{ metaobjects.location.chicago.city.value }}, {{ metaobjects.location.chicago.state.value }}",
-            "link_name": "Shop City",
-            "collection": "{{ metaobjects.location.chicago.collection.value }}"
-          }
-        },
-        "city_9Qg3jL": {
-          "type": "city",
-          "source": "{{ metaobjects.location[\"los-angeles\"] }}",
-          "settings": {
-            "image": "{{ metaobjects.location[\"los-angeles\"].location_image.value }}",
-            "title": "{{ metaobjects.location[\"los-angeles\"].city.value }}, {{ metaobjects.location[\"los-angeles\"].state.value }}",
-            "link_name": "Shop City",
-            "collection": "{{ metaobjects.location[\"los-angeles\"].collection.value }}"
+            "city": "austin-tx"
           }
         }
       },
       "block_order": [
-        "city_jDnAzi",
-        "city_ACXKVD",
-        "city_yhxkTW",
-        "city_kNwg3b",
-        "city_dL7X9m",
-        "city_9Qg3jL"
+        "city_EfypMY",
+        "city_MJBa8Q",
+        "city_3GBQJr"
       ],
       "settings": {
         "padding_top": 0,
