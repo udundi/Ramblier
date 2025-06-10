@@ -8,6 +8,79 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {},
-  "order": []
+  "sections": {
+    "featured_product_4894B4": {
+      "type": "featured-product",
+      "blocks": {
+        "text_F3PiEi": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_xkwYBD": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_PU9zAW": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_BfQmBE": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_AKFNNg": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_PP7pQj": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_TLaYcM": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "text_F3PiEi",
+        "title_xkwYBD",
+        "price_PU9zAW",
+        "variant_picker_BfQmBE",
+        "quantity_selector_AKFNNg",
+        "buy_buttons_PP7pQj",
+        "share_TLaYcM"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "",
+        "color_scheme": "",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "featured_product_4894B4"
+  ]
 }
