@@ -216,8 +216,8 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/vintage-shopping.jpg",
-            "link_text": "Featured Title",
-            "link_url": ""
+            "link_text": "Legendary Tex-Mex",
+            "link_url": "shopify://collections/matts-el-rancho"
           }
         },
         "column_rreA8F": {
