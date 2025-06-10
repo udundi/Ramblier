@@ -74,11 +74,18 @@
           "settings": {
             "city": "los-angeles"
           }
+        },
+        "city_k6rRQA": {
+          "type": "city",
+          "settings": {
+            "city": "los-angeles"
+          }
         }
       },
       "block_order": [
         "city_HwrmEC",
-        "city_bTbrU3"
+        "city_bTbrU3",
+        "city_k6rRQA"
       ],
       "settings": {
         "heading": "Best sellers from...",
