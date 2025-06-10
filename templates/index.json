@@ -18,7 +18,7 @@
             "associated_word": "venues",
             "image": "shopify://shop_images/purchased-favorite-coffee.jpg",
             "associated_button_text": "Shop Legendary Venues",
-            "associated_button_link": "shopify://collections/southeast"
+            "associated_button_link": "{{ metaobjects.categorized_collections[\"iconic-venues\"].system.url }}"
           }
         },
         "carousel_item_gHcJyC": {
@@ -27,7 +27,7 @@
             "associated_word": "icons",
             "image": "shopify://shop_images/woman-shopping-for-clothes.jpg",
             "associated_button_text": "Shop Iconic icons",
-            "associated_button_link": "shopify://pages/about"
+            "associated_button_link": "{{ metaobjects.categorized_collections[\"iconic-venues\"].system.url }}"
           }
         },
         "carousel_item_6tVtCj": {
@@ -36,7 +36,7 @@
             "associated_word": "bars",
             "image": "shopify://shop_images/welcome-to-my-business.jpg",
             "associated_button_text": "Shop Iconic Bars",
-            "associated_button_link": "shopify://collections/fake-brand"
+            "associated_button_link": ""
           }
         },
         "carousel_item_wjed4z": {
@@ -45,7 +45,7 @@
             "associated_word": "outlets",
             "image": "shopify://shop_images/enjoying-a-coffee-on-a-sunny-patio.jpg",
             "associated_button_text": "Shop Outlets",
-            "associated_button_link": "shopify://pages/contact"
+            "associated_button_link": ""
           }
         }
       },
@@ -214,26 +214,29 @@
       "blocks": {
         "column_cdKKn3": {
           "type": "column",
+          "source": "{{ metaobjects.categorized_collections[\"legendary-tex-mex\"] }}",
           "settings": {
-            "image": "shopify://shop_images/vintage-shopping.jpg",
-            "link_text": "Legendary Tex-Mex",
-            "link_url": "shopify://collections/matts-el-rancho"
+            "image": "{{ metaobjects.categorized_collections[\"legendary-tex-mex\"].featured_image.value }}",
+            "link_text": "{{ metaobjects.categorized_collections[\"legendary-tex-mex\"].name.value }}",
+            "link_url": "{{ metaobjects.categorized_collections[\"legendary-tex-mex\"].system.url }}"
           }
         },
         "column_rreA8F": {
           "type": "column",
+          "source": "{{ metaobjects.categorized_collections[\"california-hotels\"] }}",
           "settings": {
-            "image": "shopify://shop_images/tall-white-building-with-rust-colored-water-in-front.jpg",
-            "link_text": "Featured Title",
-            "link_url": ""
+            "image": "{{ metaobjects.categorized_collections[\"california-hotels\"].featured_image.value }}",
+            "link_text": "{{ metaobjects.categorized_collections[\"california-hotels\"].name.value }}",
+            "link_url": "{{ metaobjects.categorized_collections[\"california-hotels\"].system.url }}"
           }
         },
         "column_cJTnYQ": {
           "type": "column",
+          "source": "{{ metaobjects.categorized_collections[\"iconic-venues\"] }}",
           "settings": {
-            "image": "shopify://shop_images/chinese-lanterns-glow-on-storefront.jpg",
-            "link_text": "Featured Title",
-            "link_url": ""
+            "image": "{{ metaobjects.categorized_collections[\"iconic-venues\"].featured_image.value }}",
+            "link_text": "{{ metaobjects.categorized_collections[\"iconic-venues\"].name.value }}",
+            "link_url": "{{ metaobjects.categorized_collections[\"iconic-venues\"].system.url }}"
           }
         }
       },

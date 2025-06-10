@@ -4157,6 +4157,10 @@ input[type='number'] {
     max-width: 1280px;
   }
 
+  .xl\:tw-max-w-xl {
+    max-width: 36rem;
+  }
+
   .xl\:tw-grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -4192,6 +4196,10 @@ input[type='number'] {
 @media (min-width: 1536px) {
   .\32xl\:tw-h-\[620px\] {
     height: 620px;
+  }
+
+  .\32xl\:tw-max-w-screen-xl {
+    max-width: 1280px;
   }
 }
 

@@ -4,9 +4,9 @@
   - Each block: clickable, background image, overlay, link text, link url
 {% endcomment %}
 
-<div class="tw-w-full tw-px-4 lg:tw-px-8">
+<div class="tw-w-full">
   <!-- Desktop grid, dynamic columns -->
-  <div class="tw-mx-auto tw-hidden tw-max-w-screen-2xl tw-gap-4 lg:tw-grid grid-cols-{{ section.id }}">
+  <div class="tw-mx-auto tw-hidden tw-gap-4 lg:tw-grid 2xl:tw-max-w-screen-xl grid-cols-{{ section.id }}">
     {% for block in section.blocks %}
       <a
         href="{{ block.settings.link_url }}"
