@@ -14,8 +14,8 @@
     }
   }
 
-  /* Collection Carousel Pill Navigation Styles */
-  .section-{{ section.id }} .tw-collection-pills {
+  /* city Carousel Pill Navigation Styles */
+  .section-{{ section.id }} .tw-city-pills {
     display: flex;
     justify-content: center;
     gap: 1rem;
@@ -24,7 +24,7 @@
   }
 
   .section-{{ section.id }}
-  .tw-collection-pill {
+  .tw-city-pill {
     padding: 0.5rem 1.5rem;
     border-radius: 9999px;
     cursor: pointer;
@@ -34,14 +34,14 @@
   }
 
   .section-{{ section.id }}
-  .tw-collection-pill.tw-active {
+  .tw-city-pill.tw-active {
     background-color: {{ section.settings.pill_active_color }};
     color: white;
   }
 
 
   .section-{{ section.id }}
-  .tw-collection-carousel-container {
+  .tw-city-carousel-container {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -50,44 +50,40 @@
   }
 
   .section-{{ section.id }}
-  .tw-collection-carousel-container.tw-active {
+  .tw-city-carousel-container.tw-active {
     z-index: 5;
     position: relative;
   }
 {% endstyle %}
 
 <div class="section-{{ section.id }} tw-relative tw-overflow-hidden">
-  <!-- Collection Carousel with Pills -->
+  <!-- city Carousel with Pills -->
   <div class="tw-mx-auto tw-flex tw-w-full tw-max-w-screen-xl tw-flex-col">
     <h2 class="tw-mb-6 tw-text-center tw-text-24 tw-font-semibold tw-text-black md:tw-text-36">
       {{ section.settings.heading }}
     </h2>
 
-    <!-- Collection Pills Navigation -->
+    <!-- city Pills Navigation -->
     {% if section.blocks.size > 1 %}
-      <div class="tw-collection-pills">
+      <div class="tw-city-pills">
         {% for block in section.blocks %}
-          {% if block.settings.collection != blank %}
+          {% if block.settings.city != blank %}
             <button
-              class="tw-collection-pill tw-rounded-full tw-border tw-p-2 tw-px-8 {% if forloop.first %}tw-active{% endif %}"
+              class="tw-city-pill tw-rounded-full tw-border tw-p-2 tw-px-8 {% if forloop.first %}tw-active{% endif %}"
               data-block-index="{{ forloop.index0 }}"
               data-section-id="{{ section.id }}"
             >
-              {% if block.settings.custom_title != blank %}
-                {{ block.settings.custom_title }}
-              {% else %}
-                {{ block.settings.collection.title }}
-              {% endif %}
+              {{ block.settings.city.name }}, {{ block.settings.city.state.value.abbreviation }}
             </button>
           {% endif %}
         {% endfor %}
       </div>
     {% endif %}
-    <!-- Collection Carousels -->
+    <!-- city Carousels -->
     <div class="tw-relative tw-flex tw-overflow-visible lg:tw-overflow-hidden">
       {% for block in section.blocks %}
-        {% if block.settings.collection != blank %}
-          <div class="tw-collection-carousel-container {% if forloop.first %} tw-active {% endif %}">
+        {% if block.settings.city != blank %}
+          <div class="tw-city-carousel-container {% if forloop.first %} tw-active {% endif %}">
             <div
               id="carousel-{{ section.id }}-{{ forloop.index0 }}"
               class="tw-relative"
@@ -111,7 +107,7 @@
                 {% endif %}
               </button>
               <div class="swiper-wrapper">
-                {% for product in block.settings.collection.products limit: section.settings.products_per_collection %}
+                {% for product in block.settings.city.best_sellers.value limit: section.settings.products_per_city %}
                   <div class="swiper-slide">
                     {% render 'ud-product-card', product: product %}
                   </div>
@@ -119,9 +115,9 @@
               </div>
             </div>
             <a
-              href="{{ block.settings.collection.url }}"
+              href="{{ block.settings.city.system.url }}"
               class="animated-button animated-button--hover-navy tw-mx-auto tw-mt-7 tw-block tw-w-fit tw-border tw-border-black tw-px-14 tw-py-3 tw-text-14 tw-font-medium tw-uppercase md:tw-text-16"
-              >Shop all {{ block.settings.collection.custom_title -}}
+              >Shop all {{ block.settings.city.name -}}
             </a>
           </div>
         {% endif %}
@@ -133,9 +129,9 @@
 <script>
   // Wait for both DOM and Slick to be ready
   window.addEventListener('load', function() {
-    // Initialize slick for each collection carousel
+    // Initialize slick for each city carousel
     {% for block in section.blocks %}
-      {% if block.settings.collection != blank %}
+      {% if block.settings.city != blank %}
         var swiper = new Swiper('#carousel-{{ section.id }}-{{ forloop.index0 }}', {
           slidesPerView: '{{ section.settings.slides_per_view_mobile }}.1',
           spaceBetween: 8,
@@ -158,8 +154,8 @@
     {% endfor %}
     
     // Pill navigation functionality
-    const pills = document.querySelectorAll('.tw-collection-pill[data-section-id="{{ section.id }}"]');
-    const carouselContainers = document.querySelectorAll('.tw-collection-carousel-container');
+    const pills = document.querySelectorAll('.tw-city-pill[data-section-id="{{ section.id }}"]');
+    const carouselContainers = document.querySelectorAll('.tw-city-carousel-container');
     
     pills.forEach(pill => {
       pill.addEventListener('click', function() {
@@ -184,7 +180,7 @@
 
 {% schema %}
 {
-  "name": "Collection Carousel",
+  "name": "city Carousel",
   "settings": [
     {
       "type": "text",
@@ -198,11 +194,11 @@
     },
     {
       "type": "range",
-      "id": "products_per_collection",
+      "id": "products_per_city",
       "min": 4,
       "max": 20,
       "step": 1,
-      "label": "Maximum Products Per Collection",
+      "label": "Maximum Products Per city",
       "default": 10
     },
     {
@@ -359,33 +355,28 @@
   ],
   "blocks": [
     {
-      "type": "collection",
-      "name": "Collection",
+      "type": "city",
+      "name": "City",
       "settings": [
         {
-          "type": "collection",
-          "id": "collection",
-          "label": "Collection"
-        },
-        {
-          "type": "text",
-          "id": "custom_title",
-          "label": "Custom Collection Title",
-          "info": "Leave blank to use collection's title"
+          "type": "metaobject",
+          "metaobject_type": "city",
+          "id": "city",
+          "label": "city"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Collection Carousel",
-      "category": "Collection",
+      "name": "city Carousel",
+      "category": "city",
       "blocks": [
         {
-          "type": "collection"
+          "type": "city"
         },
         {
-          "type": "collection"
+          "type": "city"
         }
       ]
     }

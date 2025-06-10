@@ -315,45 +315,27 @@
     "ud_carousel_RK78W9": {
       "type": "ud-carousel",
       "blocks": {
-        "collection_Ge68yH": {
-          "type": "collection",
+        "city_fezF9p": {
+          "type": "city",
           "settings": {
-            "collection": "chicago",
-            "custom_title": ""
+            "city": "austin-tx"
           }
         },
-        "collection_X7mqDP": {
-          "type": "collection",
+        "city_iiALzG": {
+          "type": "city",
           "settings": {
-            "collection": "los-angeles",
-            "custom_title": ""
-          }
-        },
-        "collection_abVUbV": {
-          "type": "collection",
-          "settings": {
-            "collection": "midwest",
-            "custom_title": ""
-          }
-        },
-        "collection_ARjHGe": {
-          "type": "collection",
-          "settings": {
-            "collection": "pacific",
-            "custom_title": ""
+            "city": "los-angeles"
           }
         }
       },
       "block_order": [
-        "collection_Ge68yH",
-        "collection_X7mqDP",
-        "collection_abVUbV",
-        "collection_ARjHGe"
+        "city_fezF9p",
+        "city_iiALzG"
       ],
       "name": "Collection Carousel",
       "settings": {
         "heading": "Best sellers from...",
-        "products_per_collection": 10,
+        "products_per_city": 10,
         "slides_per_view_desktop": 4,
         "slides_per_view_tablet": 2,
         "slides_per_view_mobile": 1,

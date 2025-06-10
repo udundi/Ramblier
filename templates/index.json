@@ -63,28 +63,26 @@
     "ud_carousel_bEycYi": {
       "type": "ud-carousel",
       "blocks": {
-        "collection_ctEjh4": {
-          "type": "collection",
+        "city_HwrmEC": {
+          "type": "city",
           "settings": {
-            "collection": "fake-brand",
-            "custom_title": "Austin, TX"
+            "city": "austin-tx"
           }
         },
-        "collection_WP7HRD": {
-          "type": "collection",
+        "city_bTbrU3": {
+          "type": "city",
           "settings": {
-            "collection": "chicago",
-            "custom_title": ""
+            "city": "los-angeles"
           }
         }
       },
       "block_order": [
-        "collection_ctEjh4",
-        "collection_WP7HRD"
+        "city_HwrmEC",
+        "city_bTbrU3"
       ],
       "settings": {
         "heading": "Best sellers from...",
-        "products_per_collection": 10,
+        "products_per_city": 10,
         "slides_per_view_desktop": 4,
         "slides_per_view_tablet": 2,
         "slides_per_view_mobile": 2,
