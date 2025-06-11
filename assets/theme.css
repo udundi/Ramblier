@@ -1275,10 +1275,6 @@ input[type='number'] {
   margin-bottom: auto;
 }
 
-.-tw-mt-0\.5 {
-  margin-top: -0.125rem;
-}
-
 .tw-mb-0\.5 {
   margin-bottom: 0.125rem;
 }
@@ -1289,6 +1285,10 @@ input[type='number'] {
 
 .tw-mb-6 {
   margin-bottom: 1.5rem;
+}
+
+.tw-mb-8 {
+  margin-bottom: 2rem;
 }
 
 .tw-mt-1 {
@@ -1547,6 +1547,10 @@ input[type='number'] {
   min-width: 24rem;
 }
 
+.tw-min-w-\[calc\(\(100vw-1440px\)\/2\+400px\)\] {
+  min-width: calc((100vw - 1440px) / 2 + 400px);
+}
+
 .tw-max-w-14 {
   max-width: 3.5rem;
 }
@@ -1575,10 +1579,6 @@ input[type='number'] {
   max-width: 300px;
 }
 
-.tw-max-w-none {
-  max-width: none;
-}
-
 .tw-max-w-screen-2xl {
   max-width: 1536px;
 }
@@ -1589,6 +1589,10 @@ input[type='number'] {
 
 .tw-max-w-screen-xl {
   max-width: 1280px;
+}
+
+.tw-max-w-3xl {
+  max-width: 48rem;
 }
 
 .tw-grow {
@@ -1827,10 +1831,6 @@ input[type='number'] {
   overflow-x: hidden;
 }
 
-.tw-overflow-y-scroll {
-  overflow-y: scroll;
-}
-
 .tw-whitespace-nowrap {
   white-space: nowrap;
 }
@@ -1929,6 +1929,10 @@ input[type='number'] {
   background-color: rgb(0 0 0 / 0.3);
 }
 
+.tw-bg-black\/80 {
+  background-color: rgb(0 0 0 / 0.8);
+}
+
 .tw-bg-brand-Beige {
   --tw-bg-opacity: 1;
   background-color: rgb(237 234 228 / var(--tw-bg-opacity, 1));
@@ -1946,10 +1950,6 @@ input[type='number'] {
 .tw-bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-}
-
-.tw-bg-black\/80 {
-  background-color: rgb(0 0 0 / 0.8);
 }
 
 .tw-bg-opacity-40 {
@@ -2122,6 +2122,11 @@ input[type='number'] {
   padding-bottom: 3rem;
 }
 
+.tw-py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
 .tw-py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -2157,8 +2162,32 @@ input[type='number'] {
   padding-bottom: 1.5rem;
 }
 
+.tw-py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.tw-py-7 {
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+}
+
+.tw-px-3\.5 {
+  padding-left: 0.875rem;
+  padding-right: 0.875rem;
+}
+
+.tw-py-2\.5 {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
 .tw-pb-14 {
   padding-bottom: 3.5rem;
+}
+
+.tw-pb-24 {
+  padding-bottom: 6rem;
 }
 
 .tw-pb-6 {
@@ -2177,8 +2206,16 @@ input[type='number'] {
   padding-left: 5rem;
 }
 
+.tw-pl-5 {
+  padding-left: 1.25rem;
+}
+
 .tw-pr-12 {
   padding-right: 3rem;
+}
+
+.tw-pr-14 {
+  padding-right: 3.5rem;
 }
 
 .tw-pr-2 {
@@ -2193,6 +2230,10 @@ input[type='number'] {
   padding-top: 0.125rem;
 }
 
+.tw-pt-12 {
+  padding-top: 3rem;
+}
+
 .tw-pt-2 {
   padding-top: 0.5rem;
 }
@@ -2201,12 +2242,16 @@ input[type='number'] {
   padding-top: 0.75rem;
 }
 
-.tw-pb-24 {
-  padding-bottom: 6rem;
+.tw-pb-16 {
+  padding-bottom: 4rem;
 }
 
-.tw-pt-12 {
-  padding-top: 3rem;
+.tw-pr-5 {
+  padding-right: 1.25rem;
+}
+
+.tw-pt-5 {
+  padding-top: 1.25rem;
 }
 
 .tw-text-center {
@@ -2333,12 +2378,12 @@ input[type='number'] {
   line-height: 1;
 }
 
-.tw-leading-tight {
-  line-height: 1.25;
-}
-
 .tw-leading-normal {
   line-height: 1.5;
+}
+
+.tw-leading-tight {
+  line-height: 1.25;
 }
 
 .tw-tracking-tight {
@@ -2417,12 +2462,6 @@ input[type='number'] {
 
 .tw-transition-\[height\] {
   transition-property: height;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.tw-transition-\[opacity\] {
-  transition-property: opacity;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -2604,16 +2643,19 @@ input[type='number'] {
   }
 }
 
+.rich-text,
 .shopify-policy__body * {
   color: var(--tw-prose-body) !important;
   max-width: 65ch !important;
 }
 
+.rich-text :where(p):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(p):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 1.25em !important;
   margin-bottom: 1.25em !important;
 }
 
+.rich-text :where([class~="lead"]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where([class~="lead"]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: var(--tw-prose-lead) !important;
   font-size: 1.25em !important;
@@ -2622,29 +2664,35 @@ input[type='number'] {
   margin-bottom: 1.2em !important;
 }
 
+.rich-text :where(a):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(a):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: var(--tw-prose-links) !important;
   text-decoration: underline !important;
   font-weight: 500 !important;
 }
 
+.rich-text :where(strong):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(strong):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: var(--tw-prose-bold) !important;
   font-weight: 600 !important;
 }
 
+.rich-text :where(a strong):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(a strong):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: inherit !important;
 }
 
+.rich-text :where(blockquote strong):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(blockquote strong):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: inherit !important;
 }
 
+.rich-text :where(thead th strong):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(thead th strong):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: inherit !important;
 }
 
+.rich-text :where(ol):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(ol):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   list-style-type: decimal !important;
   margin-top: 1.25em !important;
@@ -2652,42 +2700,52 @@ input[type='number'] {
   padding-inline-start: 1.625em !important;
 }
 
+.rich-text :where(ol[type="A"]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(ol[type="A"]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   list-style-type: upper-alpha !important;
 }
 
+.rich-text :where(ol[type="a"]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(ol[type="a"]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   list-style-type: lower-alpha !important;
 }
 
+.rich-text :where(ol[type="A" s]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(ol[type="A" s]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   list-style-type: upper-alpha !important;
 }
 
+.rich-text :where(ol[type="a" s]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(ol[type="a" s]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   list-style-type: lower-alpha !important;
 }
 
+.rich-text :where(ol[type="I"]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(ol[type="I"]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   list-style-type: upper-roman !important;
 }
 
+.rich-text :where(ol[type="i"]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(ol[type="i"]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   list-style-type: lower-roman !important;
 }
 
+.rich-text :where(ol[type="I" s]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(ol[type="I" s]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   list-style-type: upper-roman !important;
 }
 
+.rich-text :where(ol[type="i" s]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(ol[type="i" s]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   list-style-type: lower-roman !important;
 }
 
+.rich-text :where(ol[type="1"]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(ol[type="1"]):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   list-style-type: decimal !important;
 }
 
+.rich-text :where(ul):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(ul):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   list-style-type: disc !important;
   margin-top: 1.25em !important;
@@ -2695,21 +2753,25 @@ input[type='number'] {
   padding-inline-start: 1.625em !important;
 }
 
+.rich-text :where(ol > li):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))::marker,
 .shopify-policy__body * :where(ol > li):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))::marker {
   font-weight: 400 !important;
   color: var(--tw-prose-counters) !important;
 }
 
+.rich-text :where(ul > li):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))::marker,
 .shopify-policy__body * :where(ul > li):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))::marker {
   color: var(--tw-prose-bullets) !important;
 }
 
+.rich-text :where(dt):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(dt):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: var(--tw-prose-headings) !important;
   font-weight: 600 !important;
   margin-top: 1.25em !important;
 }
 
+.rich-text :where(hr):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(hr):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   border-color: var(--tw-prose-hr) !important;
   border-top-width: 1px !important;
@@ -2717,6 +2779,7 @@ input[type='number'] {
   margin-bottom: 3em !important;
 }
 
+.rich-text :where(blockquote):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(blockquote):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   font-weight: 500 !important;
   font-style: italic !important;
@@ -2729,14 +2792,17 @@ input[type='number'] {
   padding-inline-start: 1em !important;
 }
 
+.rich-text :where(blockquote p:first-of-type):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))::before,
 .shopify-policy__body * :where(blockquote p:first-of-type):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))::before {
   content: open-quote !important;
 }
 
+.rich-text :where(blockquote p:last-of-type):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))::after,
 .shopify-policy__body * :where(blockquote p:last-of-type):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))::after {
   content: close-quote !important;
 }
 
+.rich-text :where(h1):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(h1):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: var(--tw-prose-headings) !important;
   font-weight: 800 !important;
@@ -2746,11 +2812,13 @@ input[type='number'] {
   line-height: 1.1111111 !important;
 }
 
+.rich-text :where(h1 strong):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(h1 strong):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   font-weight: 900 !important;
   color: inherit !important;
 }
 
+.rich-text :where(h2):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(h2):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: var(--tw-prose-headings) !important;
   font-weight: 700 !important;
@@ -2760,11 +2828,13 @@ input[type='number'] {
   line-height: 1.3333333 !important;
 }
 
+.rich-text :where(h2 strong):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(h2 strong):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   font-weight: 800 !important;
   color: inherit !important;
 }
 
+.rich-text :where(h3):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(h3):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: var(--tw-prose-headings) !important;
   font-weight: 600 !important;
@@ -2774,11 +2844,13 @@ input[type='number'] {
   line-height: 1.6 !important;
 }
 
+.rich-text :where(h3 strong):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(h3 strong):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   font-weight: 700 !important;
   color: inherit !important;
 }
 
+.rich-text :where(h4):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(h4):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: var(--tw-prose-headings) !important;
   font-weight: 600 !important;
@@ -2787,27 +2859,32 @@ input[type='number'] {
   line-height: 1.5 !important;
 }
 
+.rich-text :where(h4 strong):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(h4 strong):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   font-weight: 700 !important;
   color: inherit !important;
 }
 
+.rich-text :where(img):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(img):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 2em !important;
   margin-bottom: 2em !important;
 }
 
+.rich-text :where(picture):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(picture):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   display: block !important;
   margin-top: 2em !important;
   margin-bottom: 2em !important;
 }
 
+.rich-text :where(video):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(video):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 2em !important;
   margin-bottom: 2em !important;
 }
 
+.rich-text :where(kbd):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(kbd):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   font-weight: 500 !important;
   font-family: inherit !important;
@@ -2821,50 +2898,61 @@ input[type='number'] {
   padding-inline-start: 0.375em !important;
 }
 
+.rich-text :where(code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: var(--tw-prose-code) !important;
   font-weight: 600 !important;
   font-size: 0.875em !important;
 }
 
+.rich-text :where(code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))::before,
 .shopify-policy__body * :where(code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))::before {
   content: "`" !important;
 }
 
+.rich-text :where(code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))::after,
 .shopify-policy__body * :where(code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))::after {
   content: "`" !important;
 }
 
+.rich-text :where(a code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(a code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: inherit !important;
 }
 
+.rich-text :where(h1 code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(h1 code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: inherit !important;
 }
 
+.rich-text :where(h2 code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(h2 code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: inherit !important;
   font-size: 0.875em !important;
 }
 
+.rich-text :where(h3 code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(h3 code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: inherit !important;
   font-size: 0.9em !important;
 }
 
+.rich-text :where(h4 code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(h4 code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: inherit !important;
 }
 
+.rich-text :where(blockquote code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(blockquote code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: inherit !important;
 }
 
+.rich-text :where(thead th code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(thead th code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: inherit !important;
 }
 
+.rich-text :where(pre):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(pre):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: var(--tw-prose-pre-code) !important;
   background-color: var(--tw-prose-pre-bg) !important;
@@ -2881,6 +2969,7 @@ input[type='number'] {
   padding-inline-start: 1.1428571em !important;
 }
 
+.rich-text :where(pre code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(pre code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   background-color: transparent !important;
   border-width: 0 !important;
@@ -2893,14 +2982,17 @@ input[type='number'] {
   line-height: inherit !important;
 }
 
+.rich-text :where(pre code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))::before,
 .shopify-policy__body * :where(pre code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))::before {
   content: none !important;
 }
 
+.rich-text :where(pre code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))::after,
 .shopify-policy__body * :where(pre code):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))::after {
   content: none !important;
 }
 
+.rich-text :where(table):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(table):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   width: 100% !important;
   table-layout: auto !important;
@@ -2910,11 +3002,13 @@ input[type='number'] {
   line-height: 1.7142857 !important;
 }
 
+.rich-text :where(thead):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(thead):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   border-bottom-width: 1px !important;
   border-bottom-color: var(--tw-prose-th-borders) !important;
 }
 
+.rich-text :where(thead th):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(thead th):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: var(--tw-prose-headings) !important;
   font-weight: 600 !important;
@@ -2924,37 +3018,45 @@ input[type='number'] {
   padding-inline-start: 0.5714286em !important;
 }
 
+.rich-text :where(tbody tr):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(tbody tr):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   border-bottom-width: 1px !important;
   border-bottom-color: var(--tw-prose-td-borders) !important;
 }
 
+.rich-text :where(tbody tr:last-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(tbody tr:last-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   border-bottom-width: 0 !important;
 }
 
+.rich-text :where(tbody td):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(tbody td):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   vertical-align: baseline !important;
 }
 
+.rich-text :where(tfoot):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(tfoot):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   border-top-width: 1px !important;
   border-top-color: var(--tw-prose-th-borders) !important;
 }
 
+.rich-text :where(tfoot td):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(tfoot td):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   vertical-align: top !important;
 }
 
+.rich-text :where(th, td):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(th, td):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   text-align: start !important;
 }
 
+.rich-text :where(figure > *):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(figure > *):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
 
+.rich-text :where(figcaption):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(figcaption):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   color: var(--tw-prose-captions) !important;
   font-size: 0.875em !important;
@@ -2962,6 +3064,7 @@ input[type='number'] {
   margin-top: 0.8571429em !important;
 }
 
+.rich-text,
 .shopify-policy__body * {
   --tw-prose-body: #374151 !important;
   --tw-prose-headings: #111827 !important;
@@ -3003,84 +3106,103 @@ input[type='number'] {
   line-height: 1.75 !important;
 }
 
+.rich-text :where(picture > img):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(picture > img):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
 
+.rich-text :where(li):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(li):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 0.5em !important;
   margin-bottom: 0.5em !important;
 }
 
+.rich-text :where(ol > li):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(ol > li):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   padding-inline-start: 0.375em !important;
 }
 
+.rich-text :where(ul > li):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(ul > li):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   padding-inline-start: 0.375em !important;
 }
 
+.rich-text :where(.\!tw-prose > ul > li p):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(.\!tw-prose > ul > li p):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 0.75em !important;
   margin-bottom: 0.75em !important;
 }
 
+.rich-text :where(.\!tw-prose > ul > li > p:first-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(.\!tw-prose > ul > li > p:first-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 1.25em !important;
 }
 
+.rich-text :where(.\!tw-prose > ul > li > p:last-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(.\!tw-prose > ul > li > p:last-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-bottom: 1.25em !important;
 }
 
+.rich-text :where(.\!tw-prose > ol > li > p:first-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(.\!tw-prose > ol > li > p:first-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 1.25em !important;
 }
 
+.rich-text :where(.\!tw-prose > ol > li > p:last-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(.\!tw-prose > ol > li > p:last-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-bottom: 1.25em !important;
 }
 
+.rich-text :where(ul ul, ul ol, ol ul, ol ol):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(ul ul, ul ol, ol ul, ol ol):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 0.75em !important;
   margin-bottom: 0.75em !important;
 }
 
+.rich-text :where(dl):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(dl):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 1.25em !important;
   margin-bottom: 1.25em !important;
 }
 
+.rich-text :where(dd):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(dd):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 0.5em !important;
   padding-inline-start: 1.625em !important;
 }
 
+.rich-text :where(hr + *):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(hr + *):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 0 !important;
 }
 
+.rich-text :where(h2 + *):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(h2 + *):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 0 !important;
 }
 
+.rich-text :where(h3 + *):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(h3 + *):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 0 !important;
 }
 
+.rich-text :where(h4 + *):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(h4 + *):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 0 !important;
 }
 
+.rich-text :where(thead th:first-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(thead th:first-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   padding-inline-start: 0 !important;
 }
 
+.rich-text :where(thead th:last-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(thead th:last-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   padding-inline-end: 0 !important;
 }
 
+.rich-text :where(tbody td, tfoot td):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(tbody td, tfoot td):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   padding-top: 0.5714286em !important;
   padding-inline-end: 0.5714286em !important;
@@ -3088,29 +3210,103 @@ input[type='number'] {
   padding-inline-start: 0.5714286em !important;
 }
 
+.rich-text :where(tbody td:first-child, tfoot td:first-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(tbody td:first-child, tfoot td:first-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   padding-inline-start: 0 !important;
 }
 
+.rich-text :where(tbody td:last-child, tfoot td:last-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(tbody td:last-child, tfoot td:last-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   padding-inline-end: 0 !important;
 }
 
+.rich-text :where(figure):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(figure):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 2em !important;
   margin-bottom: 2em !important;
 }
 
+.rich-text :where(.\!tw-prose > :first-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(.\!tw-prose > :first-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-top: 0 !important;
 }
 
+.rich-text :where(.\!tw-prose > :last-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)),
 .shopify-policy__body * :where(.\!tw-prose > :last-child):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *)) {
   margin-bottom: 0 !important;
 }
 
+.rich-text,
 .shopify-policy__body * {
-  max-width: 100% !important;
+  max-width: none;
+}
+
+.rich-text :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))),
+.shopify-policy__body * :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+  font-family: Noto Serif, serif;
+  font-weight: 600;
+}
+
+.rich-text :is(:where(p):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))),
+.shopify-policy__body * :is(:where(p):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+  font-family: Poppins, sans-serif;
+  font-size: 0.75rem;
+}
+
+.rich-text :is(:where(ol):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))),
+.shopify-policy__body * :is(:where(ol):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+  font-size: 0.75rem;
+}
+
+.rich-text :is(:where(ul):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))),
+.shopify-policy__body * :is(:where(ul):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+  font-size: 0.75rem;
+}
+
+.rich-text :is(:where(table):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))),
+.shopify-policy__body * :is(:where(table):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+  font-size: 1.125rem;
+}
+
+.rich-text :is(:where(video):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))),
+.shopify-policy__body * :is(:where(video):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+  max-width: 100%;
+}
+
+@media not all and (min-width: 1280px) {
+  .rich-text,
+.shopify-policy__body * {
+    margin-top: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .rich-text :is(:where(p):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))),
+.shopify-policy__body * :is(:where(p):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+    font-size: 1.125rem;
+  }
+
+  .rich-text :is(:where(ol):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))),
+.shopify-policy__body * :is(:where(ol):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+    font-size: 1.125rem;
+  }
+
+  .rich-text :is(:where(ul):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))),
+.shopify-policy__body * :is(:where(ul):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+    font-size: 1.125rem;
+  }
+
+  .rich-text :is(:where(table):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))),
+.shopify-policy__body * :is(:where(table):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+    font-size: 1.125rem;
+  }
+}
+
+.rich-text iframe,
+.shopify-policy__body * iframe {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 100%;
 }
 
 .placeholder\:tw-uppercase::-moz-placeholder {
@@ -3146,6 +3342,14 @@ input[type='number'] {
   z-index: 10;
 }
 
+.open\:tw-pb-9[open] {
+  padding-bottom: 2.25rem;
+}
+
+.open\:tw-pb-4[open] {
+  padding-bottom: 1rem;
+}
+
 .focus-within\:tw-border-black\/0:focus-within {
   border-color: rgb(0 0 0 / 0);
 }
@@ -3176,6 +3380,26 @@ input[type='number'] {
 
 .disabled\:tw-text-opacity-50:disabled {
   --tw-text-opacity: 0.5;
+}
+
+.tw-group[open] .group-open\:-tw-mb-2 {
+  margin-bottom: -0.5rem;
+}
+
+.tw-group[open] .group-open\:tw-block {
+  display: block;
+}
+
+.tw-group[open] .group-open\:tw-hidden {
+  display: none;
+}
+
+.tw-group[open] .group-open\:tw-pb-2\.5 {
+  padding-bottom: 0.625rem;
+}
+
+.tw-group[open] .group-open\:tw-pb-0 {
+  padding-bottom: 0px;
 }
 
 .tw-group\/featured:focus-within .group-focus-within\/featured\:tw-block {
@@ -3307,39 +3531,7 @@ input[type='number'] {
   display: flex;
 }
 
-.prose-headings\:tw-font-noto :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
-  font-family: Noto Serif, serif;
-}
-
-.prose-headings\:tw-font-semibold :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
-  font-weight: 600;
-}
-
-.prose-p\:tw-font-poppins :is(:where(p):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
-  font-family: Poppins, sans-serif;
-}
-
-.prose-p\:tw-text-12 :is(:where(p):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
-  font-size: 0.75rem;
-}
-
-.prose-ol\:tw-text-12 :is(:where(ol):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
-  font-size: 0.75rem;
-}
-
-.prose-ul\:tw-text-12 :is(:where(ul):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
-  font-size: 0.75rem;
-}
-
-.prose-table\:tw-text-18 :is(:where(table):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
-  font-size: 1.125rem;
-}
-
 @media not all and (min-width: 1280px) {
-  .max-xl\:tw-mt-6 {
-    margin-top: 1.5rem;
-  }
-
   .max-xl\:tw-hidden {
     display: none;
   }
@@ -3625,6 +3817,18 @@ input[type='number'] {
     margin-top: 2rem;
   }
 
+  .md\:tw-mb-8 {
+    margin-bottom: 2rem;
+  }
+
+  .md\:tw-mb-2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .md\:tw-mb-1 {
+    margin-bottom: 0.25rem;
+  }
+
   .md\:tw-grid {
     display: grid;
   }
@@ -3888,6 +4092,11 @@ input[type='number'] {
     padding-bottom: 3rem;
   }
 
+  .md\:tw-py-14 {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
   .md\:tw-py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -3917,6 +4126,10 @@ input[type='number'] {
     padding-bottom: 4rem;
   }
 
+  .md\:tw-pl-20 {
+    padding-left: 5rem;
+  }
+
   .md\:tw-pl-8 {
     padding-left: 2rem;
   }
@@ -3927,6 +4140,10 @@ input[type='number'] {
 
   .md\:tw-pt-1\.5 {
     padding-top: 0.375rem;
+  }
+
+  .md\:tw-pl-12 {
+    padding-left: 3rem;
   }
 
   .md\:tw-text-10 {
@@ -4018,16 +4235,32 @@ input[type='number'] {
     font-size: 1.125rem;
   }
 
+  .md\:prose-p\:tw-text-16 :is(:where(p):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+    font-size: 1rem;
+  }
+
   .md\:prose-ol\:tw-text-18 :is(:where(ol):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
     font-size: 1.125rem;
+  }
+
+  .md\:prose-ol\:tw-text-16 :is(:where(ol):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+    font-size: 1rem;
   }
 
   .md\:prose-ul\:tw-text-18 :is(:where(ul):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
     font-size: 1.125rem;
   }
 
+  .md\:prose-ul\:tw-text-16 :is(:where(ul):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+    font-size: 1rem;
+  }
+
   .md\:prose-table\:tw-text-18 :is(:where(table):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
     font-size: 1.125rem;
+  }
+
+  .md\:prose-table\:tw-text-16 :is(:where(table):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+    font-size: 1rem;
   }
 }
 
@@ -4114,11 +4347,6 @@ input[type='number'] {
     padding-right: 4rem;
   }
 
-  .lg\:tw-px-8 {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-
   .lg\:tw-pl-0 {
     padding-left: 0px;
   }
@@ -4149,20 +4377,16 @@ input[type='number'] {
     display: none;
   }
 
-  .xl\:tw-aspect-\[5\/1\] {
-    aspect-ratio: 5/1;
-  }
-
   .xl\:tw-aspect-\[3\/1\] {
     aspect-ratio: 3/1;
   }
 
-  .xl\:tw-max-w-screen-xl {
-    max-width: 1280px;
+  .xl\:tw-aspect-\[5\/1\] {
+    aspect-ratio: 5/1;
   }
 
-  .xl\:tw-max-w-xl {
-    max-width: 36rem;
+  .xl\:tw-max-w-screen-xl {
+    max-width: 1280px;
   }
 
   .xl\:tw-grid-cols-4 {
@@ -4207,6 +4431,10 @@ input[type='number'] {
   }
 }
 
+.\[\&\+h3\]\:tw-mt-8+h3 {
+  margin-top: 2rem;
+}
+
 .\[\&\>option\:disabled\]\:tw-text-black>option:disabled {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
@@ -4219,18 +4447,6 @@ input[type='number'] {
 
 .\[\&_\*\]\:\!tw-text-opacity-50 * {
   --tw-text-opacity: 0.5 !important;
-}
-
-.\[\&_iframe\]\:tw-aspect-video iframe {
-  aspect-ratio: 16 / 9;
-}
-
-.\[\&_iframe\]\:tw-w-full iframe {
-  width: 100%;
-}
-
-.\[\&_iframe\]\:tw-max-w-full iframe {
-  max-width: 100%;
 }
 
 .\[\&_img\]\:\!tw-opacity-50 img {

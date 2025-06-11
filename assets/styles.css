@@ -97,6 +97,7 @@
   @apply !tw-mb-4 !tw-font-noto !tw-text-24 !tw-font-semibold md:!tw-text-36;
 }
 
+.rich-text,
 .shopify-policy__body * {
-  @apply !tw-prose !tw-max-w-full;
+  @apply !tw-prose tw-max-w-none prose-headings:tw-font-noto prose-headings:tw-font-semibold prose-p:tw-font-poppins prose-p:tw-text-12 prose-ol:tw-text-12 prose-ul:tw-text-12 prose-table:tw-text-18 prose-video:tw-max-w-full max-xl:tw-mt-6 md:prose-p:tw-text-18 md:prose-ol:tw-text-18 md:prose-ul:tw-text-18 md:prose-table:tw-text-18 [&_iframe]:tw-aspect-video [&_iframe]:tw-w-full [&_iframe]:tw-max-w-full;
 }

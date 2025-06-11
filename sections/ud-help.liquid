@@ -1,0 +1,137 @@
+<div class="">
+  <div class="tw-w-full tw-bg-brand-navy tw-text-center tw-text-white">
+    <h2 class="tw-py-8 tw-text-24 tw-font-semibold md:tw-py-14 md:tw-text-36">{{ section.settings.heading }}</h2>
+  </div>
+  <div class="tw-flex max-md:tw-flex-col">
+    <div class="tw-flex tw-min-w-[calc((100vw-1440px)/2+400px)] tw-justify-end tw-border-r tw-py-16 tw-pl-5 max-md:tw-hidden">
+      <ul class="tw-pr-14 tw-text-14 tw-font-semibold tw-uppercase tw-tracking-wider">
+        {% for block in section.blocks %}
+          {% if block.type == 'heading' %}
+            <li>
+              <a href="#{{ block.settings.text | handleize }}">{{ block.settings.text }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="tw-mt-8 tw-px-5 md:tw-hidden">
+      <select
+        class="tw-w-full tw-border tw-border-black tw-bg-white tw-px-3.5 tw-py-2.5"
+        name="faq-section"
+        onchange="location = this.value"
+      >
+        {% for block in section.blocks %}
+          {% if block.type == 'heading' %}
+            <option value="#{{ block.settings.text | handleize }}">{{ block.settings.text }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+    <div class="tw-grow tw-pt-5 md:tw-py-16">
+      {% for block in section.blocks %}
+        {% if block.type == 'heading' %}
+          <h3
+            id="{{ block.settings.text | handleize }}"
+            class="tw-px-5 tw-font-noto tw-text-24 tw-font-semibold md:tw-mb-1 md:tw-pl-12 xl:tw-pl-20"
+          >
+            {{ block.settings.text }}
+          </h3>
+        {% else %}
+          <details class="tw-group tw-border-b tw-px-5 open:tw-pb-4 md:tw-pl-12 xl:tw-pl-20 [&+h3]:tw-mt-8">
+            <summary class="tw-flex tw-max-w-3xl tw-items-center tw-justify-between tw-py-7 group-open:-tw-mb-2 group-open:tw-pb-0">
+              <h4 class="tw-font-poppins tw-text-12 tw-font-semibold tw-tracking-tight md:tw-text-16">
+                {{ block.settings.question }}
+              </h4>
+              <span>
+                <span class="tw-block tw-size-2.5 group-open:tw-hidden md:tw-size-4">{% render 'icon-plus' %}</span>
+                <span class="tw-hidden tw-size-2.5 group-open:tw-block md:tw-size-4">{% render 'icon-minus' %}</span>
+              </span>
+            </summary>
+            <div class="rich-text tw-prose md:prose-p:tw-text-16 md:prose-ol:tw-text-16 md:prose-ul:tw-text-16 md:prose-table:tw-text-16">
+              {{ block.settings.answer }}
+            </div>
+          </details>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Help Center",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Help Center"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "General Questions"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What is your return policy?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>We offer a 30-day return policy on all items.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Help Center",
+      "blocks": [
+        {
+          "type": "heading",
+          "settings": {
+            "text": "General Questions"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 30-day return policy on all items.</p>"
+          }
+        },
+        {
+          "type": "heading",
+          "settings": {
+            "text": "Shipping & Returns"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Standard shipping takes 3-5 business days, expedited shipping takes 1-2 business days.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

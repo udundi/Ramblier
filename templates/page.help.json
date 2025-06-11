@@ -11,7 +11,67 @@
   "sections": {
     "help": {
       "type": "ud-help",
-      "settings": {}
+      "blocks": {
+        "heading_UDRPKj": {
+          "type": "heading",
+          "settings": {
+            "text": "General Questions"
+          }
+        },
+        "faq_e6qnwY": {
+          "type": "faq",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 30-day return policy on all items.</p>"
+          }
+        },
+        "faq_BFbxBH": {
+          "type": "faq",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 30-day return policy on all items.</p>"
+          }
+        },
+        "faq_HBB9P8": {
+          "type": "faq",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 30-day return policy on all items.</p>"
+          }
+        },
+        "faq_T6JKXh": {
+          "type": "faq",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 30-day return policy on all items.</p>"
+          }
+        },
+        "heading_MVcVQM": {
+          "type": "heading",
+          "settings": {
+            "text": "Shipping & Returns"
+          }
+        },
+        "faq_UrAiLx": {
+          "type": "faq",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 30-day return policy on all items.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_UDRPKj",
+        "faq_e6qnwY",
+        "faq_BFbxBH",
+        "faq_HBB9P8",
+        "faq_T6JKXh",
+        "heading_MVcVQM",
+        "faq_UrAiLx"
+      ],
+      "settings": {
+        "heading": "Help Center"
+      }
     }
   },
   "order": [
