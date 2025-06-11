@@ -1,0 +1,600 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ud_universal_flexbox_6aFiwD": {
+      "type": "ud-universal-flexbox",
+      "blocks": {
+        "text_JQKEU9": {
+          "type": "text",
+          "name": "text",
+          "settings": {
+            "text": "BECOME A RAMBLIER PARTNER",
+            "type": "body",
+            "align": "center",
+            "size": "large",
+            "weight": "tw-font-semibold",
+            "max_width": 600,
+            "color": "#000000",
+            "gap-border": false
+          },
+          "blocks": {}
+        },
+        "text_i9RJXC": {
+          "type": "text",
+          "name": "text",
+          "settings": {
+            "text": "Wholesale <span class=\"max-md:tw-hidden\">& Creative</span> Services",
+            "type": "header",
+            "align": "center",
+            "size": "medium",
+            "weight": "tw-font-semibold",
+            "max_width": 780,
+            "color": "#000000",
+            "gap-border": false
+          },
+          "blocks": {}
+        },
+        "rich_text_CUhWUd": {
+          "type": "rich-text",
+          "name": "Rich Text",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+            "align": "center",
+            "color": "#000000",
+            "max_width": 680
+          },
+          "blocks": {}
+        },
+        "button_mNLNYN": {
+          "type": "button",
+          "name": "Default Button",
+          "settings": {
+            "text": "Get Started",
+            "url": "#",
+            "type": "outlinedBlack",
+            "hover_color": "navy",
+            "align": "center",
+            "fullwidth": false,
+            "margin-left": 0,
+            "margin-right": 0,
+            "margin-top": 0,
+            "margin-bottom": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_JQKEU9",
+        "text_i9RJXC",
+        "rich_text_CUhWUd",
+        "button_mNLNYN"
+      ],
+      "name": "Base Flexbox",
+      "settings": {
+        "padding_top": 5,
+        "padding_bottom": 5,
+        "mobile_padding_top": 4,
+        "mobile_padding_bottom": 5,
+        "padding_left": 2,
+        "padding_right": 2,
+        "background_color": "#ecebe5",
+        "flex_direction": "column",
+        "tablet_flex_direction": "column",
+        "mobile_flex_direction": "column",
+        "x_gap": 2,
+        "y_gap": 2,
+        "justify_content": "center",
+        "align_items": "center",
+        "container_width": "full_width",
+        "content_overflow": "fit"
+      }
+    },
+    "ud_endless_scrolling_text_TcyMtg": {
+      "type": "ud-endless-scrolling-text",
+      "blocks": {
+        "text_block_amMx6d": {
+          "type": "text_block",
+          "settings": {
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_block_amMx6d"
+      ],
+      "name": "Endless Scrolling Text",
+      "settings": {
+        "bg_color": "#ecebe5",
+        "border_top": "#222222",
+        "border_bottom": "#222222",
+        "pt": 12,
+        "pb": 12
+      }
+    },
+    "ud_universal_flexbox_bz9QXc": {
+      "type": "ud-universal-flexbox",
+      "blocks": {
+        "flex_box_xQqefK": {
+          "type": "flex-box",
+          "name": "Flexbox",
+          "settings": {
+            "optional_link": "",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "mobile_padding_top": 0,
+            "mobile_padding_bottom": 0,
+            "padding_left": 0,
+            "padding_right": 0,
+            "background_color": "#ffffff",
+            "flex_direction": "column",
+            "tablet_flex_direction": "column",
+            "mobile_flex_direction": "column",
+            "x_gap": 2,
+            "y_gap": 0,
+            "justify_content": "center",
+            "align_items": "center",
+            "container_width": "full_width",
+            "content_overflow": "fit",
+            "absolute_position": false
+          },
+          "blocks": {
+            "shop_by_location_fL3gkX": {
+              "type": "shop-by-location",
+              "name": "Image",
+              "settings": {
+                "image": "shopify://shop_images/restaurants_1.png",
+                "alt_text": "Image description",
+                "border": false,
+                "border_color": "",
+                "border_radius": 0,
+                "shape": "default",
+                "fullsize": true
+              },
+              "blocks": {}
+            },
+            "flex_box_JKR88W": {
+              "type": "flex-box",
+              "name": "Flexbox",
+              "settings": {
+                "optional_link": "",
+                "padding_top": 1.5,
+                "padding_bottom": 0,
+                "mobile_padding_top": 1,
+                "mobile_padding_bottom": 0,
+                "padding_left": 0,
+                "padding_right": 0,
+                "background_color": "#ffffff",
+                "flex_direction": "column",
+                "tablet_flex_direction": "column",
+                "mobile_flex_direction": "column",
+                "x_gap": 4,
+                "y_gap": 0,
+                "justify_content": "center",
+                "align_items": "center",
+                "container_width": "full_width",
+                "content_overflow": "fit",
+                "absolute_position": false
+              },
+              "blocks": {
+                "text_xhAgie": {
+                  "type": "text",
+                  "name": "text",
+                  "settings": {
+                    "text": "E-Commerce",
+                    "type": "subheader",
+                    "align": "center",
+                    "size": "small",
+                    "weight": "tw-font-bold",
+                    "max_width": 400,
+                    "color": "#000000",
+                    "gap-border": false
+                  },
+                  "blocks": {}
+                },
+                "text_EkgdRe": {
+                  "type": "text",
+                  "name": "text",
+                  "settings": {
+                    "text": "Digital shopping on Ramblier’s website",
+                    "type": "body",
+                    "align": "center",
+                    "size": "medium",
+                    "weight": "tw-font-base",
+                    "max_width": 400,
+                    "color": "#000000",
+                    "gap-border": false
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_xhAgie",
+                "text_EkgdRe"
+              ]
+            }
+          },
+          "block_order": [
+            "shop_by_location_fL3gkX",
+            "flex_box_JKR88W"
+          ]
+        },
+        "flex_box_N7Jfat": {
+          "type": "flex-box",
+          "name": "Flexbox",
+          "settings": {
+            "optional_link": "",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "mobile_padding_top": 0,
+            "mobile_padding_bottom": 0,
+            "padding_left": 0,
+            "padding_right": 0,
+            "background_color": "#ffffff",
+            "flex_direction": "column",
+            "tablet_flex_direction": "column",
+            "mobile_flex_direction": "column",
+            "x_gap": 2,
+            "y_gap": 0,
+            "justify_content": "center",
+            "align_items": "center",
+            "container_width": "full_width",
+            "content_overflow": "fit",
+            "absolute_position": false
+          },
+          "blocks": {
+            "shop_by_location_tTidkC": {
+              "type": "shop-by-location",
+              "name": "Image",
+              "settings": {
+                "image": "shopify://shop_images/goods_1.png",
+                "alt_text": "Image description",
+                "border": false,
+                "border_color": "",
+                "border_radius": 0,
+                "shape": "default",
+                "fullsize": true
+              },
+              "blocks": {}
+            },
+            "flex_box_7BkLKE": {
+              "type": "flex-box",
+              "name": "Flexbox",
+              "settings": {
+                "optional_link": "",
+                "padding_top": 1.5,
+                "padding_bottom": 0,
+                "mobile_padding_top": 1,
+                "mobile_padding_bottom": 0,
+                "padding_left": 0,
+                "padding_right": 0,
+                "background_color": "#ffffff",
+                "flex_direction": "column",
+                "tablet_flex_direction": "column",
+                "mobile_flex_direction": "column",
+                "x_gap": 4,
+                "y_gap": 0,
+                "justify_content": "center",
+                "align_items": "center",
+                "container_width": "full_width",
+                "content_overflow": "fit",
+                "absolute_position": false
+              },
+              "blocks": {
+                "text_pDTwPY": {
+                  "type": "text",
+                  "name": "text",
+                  "settings": {
+                    "text": "Fulfillment",
+                    "type": "subheader",
+                    "align": "center",
+                    "size": "small",
+                    "weight": "tw-font-bold",
+                    "max_width": 600,
+                    "color": "#000000",
+                    "gap-border": false
+                  },
+                  "blocks": {}
+                },
+                "text_AVfFP4": {
+                  "type": "text",
+                  "name": "text",
+                  "settings": {
+                    "text": "We handle the it all from warehouse to fulfillment",
+                    "type": "body",
+                    "align": "center",
+                    "size": "medium",
+                    "weight": "tw-font-base",
+                    "max_width": 600,
+                    "color": "#000000",
+                    "gap-border": false
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_pDTwPY",
+                "text_AVfFP4"
+              ]
+            }
+          },
+          "block_order": [
+            "shop_by_location_tTidkC",
+            "flex_box_7BkLKE"
+          ]
+        },
+        "flex_box_VXi3rY": {
+          "type": "flex-box",
+          "name": "Flexbox",
+          "settings": {
+            "optional_link": "",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "mobile_padding_top": 0,
+            "mobile_padding_bottom": 0,
+            "padding_left": 0,
+            "padding_right": 0,
+            "background_color": "#ffffff",
+            "flex_direction": "column",
+            "tablet_flex_direction": "column",
+            "mobile_flex_direction": "column",
+            "x_gap": 2,
+            "y_gap": 0,
+            "justify_content": "center",
+            "align_items": "center",
+            "container_width": "full_width",
+            "content_overflow": "fit",
+            "absolute_position": false
+          },
+          "blocks": {
+            "shop_by_location_Kqyfif": {
+              "type": "shop-by-location",
+              "name": "Image",
+              "settings": {
+                "image": "shopify://shop_images/influencers_1.png",
+                "alt_text": "Image description",
+                "border": false,
+                "border_color": "",
+                "border_radius": 0,
+                "shape": "default",
+                "fullsize": true
+              },
+              "blocks": {}
+            },
+            "flex_box_x6ccAy": {
+              "type": "flex-box",
+              "name": "Flexbox",
+              "settings": {
+                "optional_link": "",
+                "padding_top": 1.5,
+                "padding_bottom": 0,
+                "mobile_padding_top": 1,
+                "mobile_padding_bottom": 0,
+                "padding_left": 0,
+                "padding_right": 0,
+                "background_color": "#ffffff",
+                "flex_direction": "column",
+                "tablet_flex_direction": "column",
+                "mobile_flex_direction": "column",
+                "x_gap": 4,
+                "y_gap": 0,
+                "justify_content": "center",
+                "align_items": "center",
+                "container_width": "full_width",
+                "content_overflow": "fit",
+                "absolute_position": false
+              },
+              "blocks": {
+                "text_BgaUj8": {
+                  "type": "text",
+                  "name": "text",
+                  "settings": {
+                    "text": "Marketing",
+                    "type": "subheader",
+                    "align": "center",
+                    "size": "small",
+                    "weight": "tw-font-bold",
+                    "max_width": 600,
+                    "color": "#000000",
+                    "gap-border": false
+                  },
+                  "blocks": {}
+                },
+                "text_hcWhU6": {
+                  "type": "text",
+                  "name": "text",
+                  "settings": {
+                    "text": "Social media marketing creative and strategy",
+                    "type": "body",
+                    "align": "center",
+                    "size": "medium",
+                    "weight": "tw-font-base",
+                    "max_width": 600,
+                    "color": "#000000",
+                    "gap-border": false
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_BgaUj8",
+                "text_hcWhU6"
+              ]
+            }
+          },
+          "block_order": [
+            "shop_by_location_Kqyfif",
+            "flex_box_x6ccAy"
+          ]
+        },
+        "flex_box_hfpNfw": {
+          "type": "flex-box",
+          "name": "Flexbox",
+          "settings": {
+            "optional_link": "",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "mobile_padding_top": 0,
+            "mobile_padding_bottom": 0,
+            "padding_left": 0,
+            "padding_right": 0,
+            "background_color": "#ffffff",
+            "flex_direction": "column",
+            "tablet_flex_direction": "column",
+            "mobile_flex_direction": "column",
+            "x_gap": 2,
+            "y_gap": 0,
+            "justify_content": "center",
+            "align_items": "center",
+            "container_width": "full_width",
+            "content_overflow": "fit",
+            "absolute_position": false
+          },
+          "blocks": {
+            "shop_by_location_HpGkNx": {
+              "type": "shop-by-location",
+              "name": "Image",
+              "settings": {
+                "image": "shopify://shop_images/influencers_1.png",
+                "alt_text": "Image description",
+                "border": false,
+                "border_color": "",
+                "border_radius": 0,
+                "shape": "default",
+                "fullsize": true
+              },
+              "blocks": {}
+            },
+            "flex_box_JQUcKm": {
+              "type": "flex-box",
+              "name": "Flexbox",
+              "settings": {
+                "optional_link": "",
+                "padding_top": 1.5,
+                "padding_bottom": 0,
+                "mobile_padding_top": 1,
+                "mobile_padding_bottom": 0,
+                "padding_left": 0,
+                "padding_right": 0,
+                "background_color": "#ffffff",
+                "flex_direction": "column",
+                "tablet_flex_direction": "column",
+                "mobile_flex_direction": "column",
+                "x_gap": 4,
+                "y_gap": 0,
+                "justify_content": "center",
+                "align_items": "center",
+                "container_width": "full_width",
+                "content_overflow": "fit",
+                "absolute_position": false
+              },
+              "blocks": {
+                "text_6XeUTD": {
+                  "type": "text",
+                  "name": "text",
+                  "settings": {
+                    "text": "Customer Support",
+                    "type": "subheader",
+                    "align": "center",
+                    "size": "small",
+                    "weight": "tw-font-bold",
+                    "max_width": 600,
+                    "color": "#000000",
+                    "gap-border": false
+                  },
+                  "blocks": {}
+                },
+                "text_iHFrGq": {
+                  "type": "text",
+                  "name": "text",
+                  "settings": {
+                    "text": "Direct communication to ensure happy customers",
+                    "type": "body",
+                    "align": "center",
+                    "size": "medium",
+                    "weight": "tw-font-base",
+                    "max_width": 600,
+                    "color": "#000000",
+                    "gap-border": false
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_6XeUTD",
+                "text_iHFrGq"
+              ]
+            }
+          },
+          "block_order": [
+            "shop_by_location_HpGkNx",
+            "flex_box_JQUcKm"
+          ]
+        }
+      },
+      "block_order": [
+        "flex_box_xQqefK",
+        "flex_box_N7Jfat",
+        "flex_box_VXi3rY",
+        "flex_box_hfpNfw"
+      ],
+      "custom_css": [
+        "div[class*=\"section-template\"] {justify-content: space-betweeen; column-gap: min(18%, 60px); flex-wrap: wrap;}",
+        "div[class*=\"section-template\"] h3 {text-transform: uppercase; font-family: Poppins, sans-serif; font-size: 0.875rem;}",
+        "div[class*=\"section-template\"] p {font-size: 0.875rem; max-width: 200px;}",
+        "@media (max-width: 768px) {div[class*=\"section-template\"] h3, div[class*=\"section-template\"] p {font-size: 0.625rem; max-width: 175px; } div[class*=\"section-template\"] img {max-width: 3.5rem; max-height: 3.5rem; }}"
+      ],
+      "name": "Base Flexbox",
+      "settings": {
+        "padding_top": 4,
+        "padding_bottom": 4,
+        "mobile_padding_top": 4,
+        "mobile_padding_bottom": 4,
+        "padding_left": 2,
+        "padding_right": 2,
+        "background_color": "#ffffff",
+        "flex_direction": "row",
+        "tablet_flex_direction": "row",
+        "mobile_flex_direction": "row",
+        "x_gap": 12.5,
+        "y_gap": 1.5,
+        "justify_content": "center",
+        "align_items": "center",
+        "container_width": "full_width",
+        "content_overflow": "fit"
+      }
+    },
+    "form": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "ud_universal_flexbox_6aFiwD",
+    "ud_endless_scrolling_text_TcyMtg",
+    "ud_universal_flexbox_bz9QXc",
+    "form",
+    "main"
+  ]
+}
