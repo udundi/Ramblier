@@ -1,4 +1,4 @@
-<article>
+<article class="tw-pb-24">
   {%- if article.image or article.metafields.custom.featured_image -%}
     <div
       class="tw-aspect-[2/1] xl:tw-aspect-[5/1]"
@@ -25,14 +25,52 @@
           <a class="tw-size-8">{% render 'icon-socials', site: 'facebook' %}</a>
         </li>
       </ul>
-      <h3 class="tw-mt-12 tw-font-poppins tw-text-14 tw-font-semibold tw-uppercase tw-tracking-wider tw-text-black max-xl:tw-hidden">
+      {% if article.metafields.custom.related_posts.value %}
+        <h3 class="tw-mt-12 tw-font-poppins tw-text-14 tw-font-semibold tw-uppercase tw-tracking-wider tw-text-black max-xl:tw-hidden">
+          You might also like
+        </h3>
+        <ul class="tw-max-w-96 max-xl:tw-hidden">
+          {% for related_post in article.metafields.custom.related_posts.value %}
+            {% assign article_drop = articles[related_post] %}
+            <li class="tw-border-b tw-border-[#e6e6e6] tw-py-5">
+              <a
+                href="{{ article_drop.url }}"
+                class="tw-grid tw-grid-cols-[7rem_1fr] tw-grid-rows-2 tw-gap-x-3 tw-gap-y-1"
+              >
+                <div class="tw-col-start-1 tw-row-span-2 tw-row-start-1">
+                  {{
+                    article_drop.image
+                    | image_url: width: 150
+                    | image_tag: class: 'tw-w-full tw-h-full tw-object-cover'
+                  }}
+                </div>
+                <h4 class="tw-col-start-2 tw-row-start-1 tw-font-poppins tw-text-14 tw-font-semibold tw-tracking-tight">
+                  {{ article_drop.title }}
+                </h4>
+                <p class="tw-col-start-2 tw-row-start-2 tw-font-poppins tw-text-12 tw-tracking-tight">
+                  {{ article_drop.excerpt }}
+                </p>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    <div class="rich-text">
+      {{ article.content }}
+    </div>
+    {% if article.metafields.custom.related_posts.value %}
+      <h3 class="tw-mt-9 tw-font-poppins tw-text-14 tw-font-semibold tw-uppercase tw-tracking-wider tw-text-black xl:tw-hidden">
         You might also like
       </h3>
-      <ul class="tw-max-w-96 max-xl:tw-hidden">
+      <ul class="tw-mb-14 xl:tw-hidden">
         {% for related_post in article.metafields.custom.related_posts.value %}
           {% assign article_drop = articles[related_post] %}
           <li class="tw-border-b tw-border-[#e6e6e6] tw-py-5">
-            <a href="" class="tw-grid tw-grid-cols-[7rem_1fr] tw-grid-rows-2 tw-gap-x-3 tw-gap-y-1">
+            <a
+              href="{{ article_drop.url }}"
+              class="tw-grid tw-grid-cols-[7rem_1fr] tw-grid-rows-2 tw-gap-x-3 tw-gap-y-1"
+            >
               <div class="tw-col-start-1 tw-row-span-2 tw-row-start-1">
                 {{
                   article_drop.image
@@ -50,31 +88,7 @@
           </li>
         {% endfor %}
       </ul>
-    </div>
-    <div class="prose-video:max-w-full tw-prose tw-max-w-none prose-headings:tw-font-noto prose-headings:tw-font-semibold prose-p:tw-font-poppins prose-p:tw-text-12 prose-ol:tw-text-12 prose-ul:tw-text-12 prose-table:tw-text-18 max-xl:tw-mt-6 md:prose-p:tw-text-18 md:prose-ol:tw-text-18 md:prose-ul:tw-text-18 md:prose-table:tw-text-18 [&_iframe]:tw-aspect-video [&_iframe]:tw-w-full [&_iframe]:tw-max-w-full">
-      {{ article.content }}
-    </div>
-    <h3 class="tw-mt-9 tw-font-poppins tw-text-14 tw-font-semibold tw-uppercase tw-tracking-wider tw-text-black xl:tw-hidden">
-      You might also like
-    </h3>
-    <ul class="tw-mb-14 xl:tw-hidden">
-      {% for related_post in article.metafields.custom.related_posts.value %}
-        {% assign article_drop = articles[related_post] %}
-        <li class="tw-border-b tw-border-[#e6e6e6] tw-py-5">
-          <a href="" class="tw-grid tw-grid-cols-[7rem_1fr] tw-grid-rows-2 tw-gap-x-3 tw-gap-y-1">
-            <div class="tw-col-start-1 tw-row-span-2 tw-row-start-1">
-              {{ article_drop.image | image_url: width: 150 | image_tag: class: 'tw-w-full tw-h-full tw-object-cover' }}
-            </div>
-            <h4 class="tw-col-start-2 tw-row-start-1 tw-font-poppins tw-text-14 tw-font-semibold tw-tracking-tight">
-              {{ article_drop.title }}
-            </h4>
-            <p class="tw-col-start-2 tw-row-start-2 tw-font-poppins tw-text-12 tw-tracking-tight">
-              {{ article_drop.excerpt }}
-            </p>
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
+    {% endif %}
   </div>
 </article>
 
