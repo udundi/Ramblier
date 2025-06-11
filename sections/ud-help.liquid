@@ -7,7 +7,7 @@
       <ul class="tw-pr-14 tw-text-14 tw-font-semibold tw-uppercase tw-tracking-wider">
         {% for block in section.blocks %}
           {% if block.type == 'heading' %}
-            <li>
+            <li class="tw-mb-4">
               <a href="#{{ block.settings.text | handleize }}">{{ block.settings.text }}</a>
             </li>
           {% endif %}
