@@ -1750,10 +1750,6 @@ select {
   justify-content: space-between;
 }
 
-.tw-gap-1 {
-  gap: 0.25rem;
-}
-
 .tw-gap-2 {
   gap: 0.5rem;
 }
@@ -3357,6 +3353,10 @@ select {
   max-width: 100%;
 }
 
+.shopify-policy__body * {
+  max-width: none !important;
+}
+
 .placeholder\:tw-uppercase::-moz-placeholder {
   text-transform: uppercase;
 }
@@ -3971,10 +3971,6 @@ select {
     max-width: 6rem;
   }
 
-  .md\:tw-max-w-96 {
-    max-width: 24rem;
-  }
-
   .md\:tw-max-w-md {
     max-width: 28rem;
   }
@@ -4101,10 +4097,6 @@ select {
 
   .md\:tw-p-14 {
     padding: 3.5rem;
-  }
-
-  .md\:tw-p-4 {
-    padding: 1rem;
   }
 
   .md\:tw-px-10 {
