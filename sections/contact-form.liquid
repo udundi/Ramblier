@@ -4,7 +4,12 @@
     border: 1px solid #d0cfcf;
     padding-block: 0.75rem;
     padding-inline: 1.5rem;
+    line-height: 1.5;
     flex-grow: 1;
+  }
+
+  .ud-form select {
+    padding-block: calc(0.75rem + 0.25em);
   }
 
   .ud-form > div {
@@ -74,171 +79,140 @@
         </ul>
       {%- endif -%}
 
-      <!-- FIRST NAME -->
-      <div>
-        <input
-          class=""
-          autocomplete="given-name"
-          type="text"
-          id="ContactForm-given-name"
-          name="contact[First Name]"
-          value="{% if form.first_name %}{{ form.first_name }}{% elsif customer %}{{ customer.first_name }}{% endif %}"
-          placeholder="Jane"
-          required
-        >
-        <label for="ContactForm-given-name">First Name</label>
-      </div>
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'text_input' -%}
+            <div class="{% if block.settings.full_width %}md:tw-col-span-2{% endif %}" {{ block.shopify_attributes }}>
+              <input
+                class=""
+                type="text"
+                id="ContactForm-{{ block.id }}"
+                name="contact[{{ block.settings.field_name }}]"
+                placeholder="{{ block.settings.placeholder }}"
+                autocomplete="{% case block.settings.input_type %}{% when 'first_name' %}given-name{% when 'last_name' %}family-name{% when 'company' %}organization{% else %}{% endcase %}"
+                {% if block.settings.required %}
+                  required
+                {% endif %}
+              >
+              <label for="ContactForm-{{ block.id }}">{{ block.settings.label }}</label>
+            </div>
 
-      <!-- LAST NAME -->
-      <div>
-        <input
-          class=""
-          autocomplete="family-name"
-          type="text"
-          id="ContactForm-family-name"
-          name="contact[Last Name]"
-          value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}"
-          placeholder="Doe"
-          required
-        >
-        <label class="" for="ContactForm-family-name">Last Name</label>
-      </div>
+          {%- when 'url_input' -%}
+            <div class="{% if block.settings.full_width %}md:tw-col-span-2{% endif %}" {{ block.shopify_attributes }}>
+              <input
+                type="url"
+                id="ContactForm-{{ block.id }}"
+                class=""
+                name="contact[{{ block.settings.field_name }}]"
+                placeholder="{{ block.settings.placeholder }}"
+                autocomplete="url"
+                {% if block.settings.required %}
+                  required
+                {% endif %}
+              >
+              <label for="ContactForm-{{ block.id }}">{{ block.settings.label }}</label>
+            </div>
 
-      <!-- COMPANY -->
-      <div>
-        <input
-          class=""
-          autocomplete="organization"
-          type="text"
-          id="ContactForm-organization"
-          name="contact[Company]"
-          placeholder="ABC Company"
-          required
-        >
-        <label class="" for="ContactForm-organization">Company</label>
-      </div>
+          {%- when 'email_input' -%}
+            <div class="{% if block.settings.full_width %}md:tw-col-span-2{% endif %}" {{ block.shopify_attributes }}>
+              <input
+                type="email"
+                id="ContactForm-{{ block.id }}"
+                class=""
+                name="contact[{{ block.settings.field_name }}]"
+                spellcheck="false"
+                autocapitalize="off"
+                placeholder="{{ block.settings.placeholder }}"
+                autocomplete="email"
+                aria-required="true"
+                {% if block.settings.required %}
+                  required
+                {% endif %}
+              >
+              <label for="ContactForm-{{ block.id }}">{{ block.settings.label }}</label>
+            </div>
 
-      <!-- WEBSITE -->
-      <div>
-        <input
-          class=""
-          autocomplete="url"
-          type="text"
-          id="ContactForm-website"
-          name="contact[Website]"
-          placeholder="www.example.com"
-          required
-        >
-        <label class="" for="ContactForm-website">Website</label>
-      </div>
+          {%- when 'phone_input' -%}
+            <div class="{% if block.settings.full_width %}md:tw-col-span-2{% endif %}" {{ block.shopify_attributes }}>
+              <input
+                type="tel"
+                id="ContactForm-{{ block.id }}"
+                class=""
+                name="contact[{{ block.settings.field_name }}]"
+                pattern="[0-9\-]*"
+                placeholder="{{ block.settings.placeholder }}"
+                autocomplete="tel"
+                {% if block.settings.required %}
+                  required
+                {% endif %}
+              >
+              <label for="ContactForm-{{ block.id }}">{{ block.settings.label }}</label>
+            </div>
 
-      <!-- EMAIL ADDRESS -->
-      <div>
-        <input
-          autocomplete="email"
-          type="email"
-          id="ContactForm-email"
-          class=""
-          name="contact[email]"
-          spellcheck="false"
-          autocapitalize="off"
-          value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-          aria-required="true"
-          required
-          {% if form.errors contains 'email' %}
-            aria-invalid="true"
-            aria-describedby="ContactForm-email-error"
-          {% endif %}
-          placeholder="{{ 'templates.contact.form.email' | t }}"
-        >
-        <label class="" for="ContactForm-email">Email</label>
-        {%- if form.errors contains 'email' -%}
-          <small class="" id="ContactForm-email-error">
-            <span class="">{{ 'accessibility.error' | t }}</span>
-            <span class="">
-              <span class="">
-                {{- 'icon-error.svg' | inline_asset_content -}}
-              </span>
-              {{- form.errors.translated_fields.email | capitalize }}
-              {{ form.errors.messages.email -}}
-            </span>
-          </small>
-        {%- endif -%}
-      </div>
+          {%- when 'select_input' -%}
+            <div class="{% if block.settings.full_width %}md:tw-col-span-2{% endif %}" {{ block.shopify_attributes }}>
+              <select
+                id="ContactForm-{{ block.id }}"
+                name="contact[{{ block.settings.field_name }}]"
+                {% if block.settings.required %}
+                  required
+                {% endif %}
+              >
+                <option selected disabled value="">{{ block.settings.placeholder }}</option>
+                {%- assign options = block.settings.options | split: ', ' -%}
+                {%- for option in options -%}
+                  <option value="{{ option | strip }}">{{ option | strip }}</option>
+                {%- endfor -%}
+              </select>
+              <label for="ContactForm-{{ block.id }}">{{ block.settings.label }}</label>
+            </div>
 
-      <!-- PHONE NUMBER -->
-      <div>
-        <input
-          type="tel"
-          id="ContactForm-phone"
-          class=""
-          autocomplete="tel"
-          name="contact[{{ 'templates.contact.form.phone' | t }}]"
-          pattern="[0-9\-]*"
-          value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
-          placeholder="XXX-XXX-XXXX"
-        >
-        <label class="" for="ContactForm-phone">Phone Number</label>
-      </div>
+          {%- when 'textarea_input' -%}
+            <div class="{% if block.settings.full_width %}md:tw-col-span-2{% endif %}" {{ block.shopify_attributes }}>
+              <textarea
+                rows="{{ block.settings.rows }}"
+                id="ContactForm-{{ block.id }}"
+                class=""
+                name="contact[{{ block.settings.field_name }}]"
+                placeholder="{{ block.settings.placeholder }}"
+                {% if block.settings.required %}
+                  required
+                {% endif %}
+              ></textarea>
+              <label for="ContactForm-{{ block.id }}">{{ block.settings.label }}</label>
+            </div>
 
-      <!-- GETTING TO KNOW YOU -->
-      <div class="md:tw-col-span-2">
-        <select id="ContactForm-getting-to-know" name="contact[Getting to Know You]" required>
-          <option selected disabled value="">Which best describes you...</option>
-        </select>
-        <label class="" for="ContactForm-getting-to-know">Getting to Know You...</label>
-      </div>
+          {%- when 'checkbox_input' -%}
+            <div class="{% if block.settings.full_width %}md:tw-col-span-2{% endif %}" {{ block.shopify_attributes }}>
+              <input
+                type="checkbox"
+                id="ContactForm-{{ block.id }}"
+                class=""
+                name="contact[{{ block.settings.field_name }}]"
+                {% if block.settings.checked_by_default %}
+                  checked
+                {% endif %}
+                {% if block.settings.required %}
+                  required
+                {% endif %}
+              >
+              <label for="ContactForm-{{ block.id }}">{{ block.settings.label }}</label>
+            </div>
 
-      <!-- PRODUCT CATEGORY -->
-      <div class="">
-        <select id="ContactForm-product-category" name="contact[Product Category]" class="" required>
-          <option selected disabled value="">Please select...</option>
-        </select>
-        <label class="" for="ContactForm-product-category">Product Category</label>
-      </div>
-
-      <!-- MARKETING BUDGET -->
-      <div class="">
-        <select id="ContactForm-marketing-budget" name="contact[Marketing Budget]" class="" required>
-          <option selected disabled value="">Please select...</option>
-        </select>
-        <label class="" for="ContactForm-marketing-budget">Marketing Budget</label>
-      </div>
-
-      <!-- MESSAGE -->
-      <div class="md:tw-col-span-2">
-        <textarea
-          rows="10"
-          id="ContactForm-body"
-          class=""
-          name="contact[{{ 'templates.contact.form.comment' | t }}]"
-          placeholder="{{ 'templates.contact.form.comment' | t }}"
-        >
-          {{- form.body -}}
-        </textarea>
-        <label class="" for="ContactForm-body">
-          {{- 'templates.contact.form.comment' | t -}}
-        </label>
-      </div>
-
-      <!-- AGREEMENT CHECKBOX -->
-      <div class="">
-        <input
-          type="checkbox"
-          id="ContactForm-agreement"
-          class=""
-          name="contact[Marketing Agreement]"
-          checked
-        >
-        <label class="" for="ContactForm-agreement"> I agree to receive marketing news by email</label>
-      </div>
-
-      <!-- SUBMIT BUTTON -->
-      <div class="">
-        <button type="submit" class="">
-          {{ 'templates.contact.form.send' | t }}
-        </button>
-      </div>
+          {%- when 'submit_button' -%}
+            <div
+              class="{% if block.settings.full_width %}md:tw-col-span-2{% endif %} tw-mt-14"
+              {{ block.shopify_attributes }}
+            >
+              <button
+                type="submit"
+                class=" animated-button animated-button--hover-white tw-w-full tw-border tw-border-brand-navy tw-bg-brand-navy tw-py-4 tw-text-white"
+              >
+                {{ block.settings.button_text }}
+              </button>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
     {%- endform -%}
   </div>
 </div>
@@ -263,9 +237,364 @@
       "content": "t:sections.all.padding.section_padding_heading"
     }
   ],
+  "blocks": [
+    {
+      "type": "text_input",
+      "name": "Text Input",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Text Field"
+        },
+        {
+          "type": "text",
+          "id": "field_name",
+          "label": "Field Name",
+          "default": "Custom Field"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Placeholder",
+          "default": "Enter text..."
+        },
+        {
+          "type": "select",
+          "id": "input_type",
+          "label": "Input Type",
+          "options": [
+            { "value": "text", "label": "Generic Text" },
+            { "value": "first_name", "label": "First Name" },
+            { "value": "last_name", "label": "Last Name" },
+            { "value": "company", "label": "Company" }
+          ],
+          "default": "text"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "full_width",
+          "label": "Full Width",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "url_input",
+      "name": "URL Input",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Website"
+        },
+        {
+          "type": "text",
+          "id": "field_name",
+          "label": "Field Name",
+          "default": "Website"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Placeholder",
+          "default": "https://www.example.com"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "full_width",
+          "label": "Full Width",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "email_input",
+      "name": "Email Input",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Email"
+        },
+        {
+          "type": "text",
+          "id": "field_name",
+          "label": "Field Name",
+          "default": "email"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Placeholder",
+          "default": "Enter your email..."
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "full_width",
+          "label": "Full Width",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "phone_input",
+      "name": "Phone Input",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Phone Number"
+        },
+        {
+          "type": "text",
+          "id": "field_name",
+          "label": "Field Name",
+          "default": "Phone"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Placeholder",
+          "default": "XXX-XXX-XXXX"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "full_width",
+          "label": "Full Width",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "select_input",
+      "name": "Select Dropdown",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Select Option"
+        },
+        {
+          "type": "text",
+          "id": "field_name",
+          "label": "Field Name",
+          "default": "Selection"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Placeholder",
+          "default": "Please select..."
+        },
+        {
+          "type": "textarea",
+          "id": "options",
+          "label": "Options (comma separated)",
+          "default": "Option 1, Option 2, Option 3"
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "full_width",
+          "label": "Full Width",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "textarea_input",
+      "name": "Text Area",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Message"
+        },
+        {
+          "type": "text",
+          "id": "field_name",
+          "label": "Field Name",
+          "default": "Message"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Placeholder",
+          "default": "Enter your message..."
+        },
+        {
+          "type": "range",
+          "id": "rows",
+          "label": "Rows",
+          "min": 3,
+          "max": 15,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "full_width",
+          "label": "Full Width",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "checkbox_input",
+      "name": "Checkbox",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "I agree to the terms"
+        },
+        {
+          "type": "text",
+          "id": "field_name",
+          "label": "Field Name",
+          "default": "Agreement"
+        },
+        {
+          "type": "checkbox",
+          "id": "checked_by_default",
+          "label": "Checked by Default",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Required",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "full_width",
+          "label": "Full Width",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "submit_button",
+      "name": "Submit Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Send Message"
+        },
+        {
+          "type": "checkbox",
+          "id": "full_width",
+          "label": "Full Width",
+          "default": true
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "t:sections.contact-form.presets.name"
+      "name": "t:sections.contact-form.presets.name",
+      "blocks": [
+        {
+          "type": "text_input",
+          "settings": {
+            "label": "First Name",
+            "field_name": "First Name",
+            "placeholder": "Jane",
+            "input_type": "first_name",
+            "required": true
+          }
+        },
+        {
+          "type": "text_input",
+          "settings": {
+            "label": "Last Name",
+            "field_name": "Last Name",
+            "placeholder": "Doe",
+            "input_type": "last_name",
+            "required": true
+          }
+        },
+        {
+          "type": "email_input",
+          "settings": {
+            "label": "Email",
+            "field_name": "email",
+            "placeholder": "hello@example.com",
+            "required": true
+          }
+        },
+        {
+          "type": "phone_input",
+          "settings": {
+            "label": "Phone Number",
+            "field_name": "Phone",
+            "placeholder": "XXX-XXX-XXXX"
+          }
+        },
+        {
+          "type": "textarea_input",
+          "settings": {
+            "label": "Message",
+            "field_name": "Message",
+            "placeholder": "Your message...",
+            "rows": 5,
+            "full_width": true
+          }
+        },
+        {
+          "type": "submit_button",
+          "settings": {
+            "button_text": "Send Message",
+            "full_width": true
+          }
+        }
+      ]
     }
   ]
 }
