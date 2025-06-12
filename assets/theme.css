@@ -3971,6 +3971,14 @@ select {
     max-width: 6rem;
   }
 
+  .md\:tw-max-w-96 {
+    max-width: 24rem;
+  }
+
+  .md\:tw-max-w-md {
+    max-width: 28rem;
+  }
+
   .md\:tw-grow {
     flex-grow: 1;
   }

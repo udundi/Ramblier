@@ -96,7 +96,7 @@ class CartDrawer extends HTMLElement {
   getSectionsToRender() {
     return [
       {
-        id: 'ud-cart-drawer',
+        id: 'cart-drawer',
         selector: '#CartDrawer',
       },
       {

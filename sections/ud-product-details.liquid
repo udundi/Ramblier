@@ -1,3 +1,5 @@
+<script src="{{ 'product-form.js' | asset_url }}" defer></script>
+
 <style>
   .swiper-button-next:after,
   .swiper-button-prev:after {
@@ -180,83 +182,64 @@
                 color: 'black'
               %}
             </span>
-
-            <!-- Variant Selector -->
-
-            {%- unless product.has_only_default_variant -%}
-              <span class="tw-mt-5">
-                {% for option in product.options_with_values %}
-                  <div class="tw-mt-4 tw-flex tw-w-full tw-flex-col tw-gap-1">
-                    <label
-                      for="product-{{ product.id }}-option-{{ option.name | handleize }}"
-                      class="tw-font-poppins tw-text-12 tw-font-semibold tw-uppercase tw-tracking-wider md:tw-text-14"
-                    >
-                      {{ option.name }}
-                    </label>
-                    <select
-                      id="product-{{ product.id }}-option-{{ option.name | handleize }}"
-                      class="tw-w-full tw-max-w-96 tw-border tw-bg-white tw-px-3.5 tw-py-2.5 md:tw-p-4"
-                    >
-                      {% for value in option.values %}
-                        <option>{{ value }}</option>
-                      {% endfor %}
-                    </select>
-                  </div>
-                {% endfor %}
-              </span>
-            {% endunless %}
           </div>
           <!-- ------------------------------ -->
           <!-- Product Variant Selector -->
           <!-- ------------------------------ -->
 
           <!-- Add to cart button (Black Full Width) -->
-          <form action="/cart/add" method="post" class="tw-mt-8">
-            <div class="tw-flex tw-gap-4">
+          <product-form>
+            <form action="/cart/add" method="post" class="tw-mt-8">
               <div class="tw-flex tw-gap-4">
-                <div class="tw-flex tw-w-full tw-flex-row tw-items-center tw-gap-2">
-                  <div class="tw-relative tw-grid tw-h-full tw-w-fit tw-grid-cols-[2rem_2rem_2rem] tw-items-center tw-justify-center tw-border">
-                    <button
-                      id="quantity-subtract-{{ section.id }}"
-                      class="tw-mx-auto tw-size-2.5 tw-text-black disabled:tw-cursor-not-allowed disabled:tw-text-opacity-50"
-                      type="button"
-                      disabled
-                    >
-                      {% render 'icon-minus' %}
-                    </button>
-                    <input
-                      type="number"
-                      id="quantity-input-{{ section.id }}"
-                      name="quantity"
-                      value="1"
-                      min="1"
-                      max="100"
-                      step="1"
-                      class="tw-text-sm tw-bg-brand-bg-light tw-block tw-h-full tw-w-full tw-py-1 tw-text-center tw-text-14 md:tw-text-16"
-                    >
-                    <button
-                      id="quantity-add-{{ section.id }}"
-                      class="tw-mx-auto tw-size-2.5 tw-text-black"
-                      type="button"
-                    >
-                      {% render 'icon-plus' %}
-                    </button>
+                <div class="tw-flex tw-gap-4">
+                  <div class="tw-flex tw-w-full tw-flex-row tw-items-center tw-gap-2">
+                    <div class="tw-relative tw-grid tw-h-full tw-w-fit tw-grid-cols-[2rem_2rem_2rem] tw-items-center tw-justify-center tw-border">
+                      <button
+                        id="quantity-subtract-{{ section.id }}"
+                        class="tw-mx-auto tw-size-2.5 tw-text-black disabled:tw-cursor-not-allowed disabled:tw-text-opacity-50"
+                        type="button"
+                        disabled
+                      >
+                        {% render 'icon-minus' %}
+                      </button>
+                      <input
+                        type="number"
+                        id="quantity-input-{{ section.id }}"
+                        name="quantity"
+                        value="1"
+                        min="1"
+                        max="100"
+                        step="1"
+                        class="tw-text-sm tw-bg-brand-bg-light tw-block tw-h-full tw-w-full tw-py-1 tw-text-center tw-text-14 md:tw-text-16"
+                      >
+                      <button
+                        id="quantity-add-{{ section.id }}"
+                        class="tw-mx-auto tw-size-2.5 tw-text-black"
+                        type="button"
+                      >
+                        {% render 'icon-plus' %}
+                      </button>
+                    </div>
                   </div>
                 </div>
+                <input
+                  type="hidden"
+                  name="id"
+                  id="variant-id-{{ section.id }}"
+                  value="{{ product.selected_or_first_available_variant.id }}"
+                >
+                <button
+                  type="submit"
+                  class="animated-button animated-button--hover-white tw-flex tw-w-full tw-justify-center tw-border tw-border-brand-navy/100 tw-bg-brand-navy/100 tw-px-10 tw-py-2.5 tw-font-montserrat tw-text-14 tw-font-semibold tw-text-white tw-transition-button md:tw-max-w-md md:tw-py-3.5 md:tw-text-16"
+                >
+                  <span class="tw-absolute tw-inset-0 tw-flex tw-hidden tw-items-center tw-justify-center">
+                    {%- render 'loading-spinner', class: 'loading__spinner tw-text-white' -%}
+                  </span>
+                  <span>ADD TO CART</span>
+                </button>
               </div>
-              <input
-                type="hidden"
-                name="id"
-                value="{{ product.selected_or_first_available_variant.id }}"
-              >
-              <button
-                type="submit"
-                class="animated-button animated-button--hover-white tw-flex tw-w-full tw-max-w-96 tw-justify-center tw-border tw-border-brand-navy/100 tw-bg-brand-navy/100 tw-px-10 tw-py-2.5 tw-font-montserrat tw-text-14 tw-font-semibold tw-text-white tw-transition-button md:tw-py-3.5 md:tw-text-16"
-              >
-                ADD TO CART
-              </button>
-            </div>
-          </form>
+            </form>
+          </product-form>
         </div>
       </div>
       <div>
@@ -361,6 +344,30 @@
 
   addButton.addEventListener('click', () => onQuantityAdded(quantityInput));
   subtractButton.addEventListener('click', () => onQuantitySubtracted(quantityInput));
+
+  // Variant selection handling
+  const variantSelects = document.querySelectorAll('[data-option-position]');
+  const variantIdInput = document.getElementById('variant-id-{{ section.id }}');
+  const productVariants = {{ product.variants | json }};
+
+  function updateVariant() {
+    const selectedOptions = [];
+    variantSelects.forEach(select => {
+      selectedOptions[select.dataset.optionPosition] = select.value;
+    });
+
+    const selectedVariant = productVariants.find(variant => {
+      return variant.options.every((option, index) => option === selectedOptions[index]);
+    });
+
+    if (selectedVariant) {
+      variantIdInput.value = selectedVariant.id;
+    }
+  }
+
+  variantSelects.forEach(select => {
+    select.addEventListener('change', updateVariant);
+  });
 </script>
 
 {% schema %}
