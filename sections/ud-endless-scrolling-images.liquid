@@ -13,9 +13,11 @@
     <div class="scrolling-container-{{ section.id }} tw-overflow-hidden tw-whitespace-nowrap">
       <div class="scrolling-images-{{ section.id }} tw-animate-scroll tw-inline-block tw-w-fit tw-pr-1">
         {% for block in section.blocks %}
-          <span class="tw-inline-block tw-px-1">
-            {{ block.settings.image | image_url: width: 400 | image_tag: class: 'tw-aspect-square tw-object-cover' }}
-          </span>
+          {% if block.settings.image %}
+            <span class="tw-inline-block tw-px-1">
+              {{ block.settings.image | image_url: width: 400 | image_tag: class: 'tw-aspect-square tw-object-cover' }}
+            </span>
+          {% endif %}
         {% endfor %}
       </div>
     </div>
@@ -110,18 +112,6 @@
 {
   "name": "Endless Scrolling Images",
   "settings": [
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Background Color",
-      "default": "#ecebe5"
-    },
-    {
-      "type": "color",
-      "id": "border_top",
-      "label": "Top Border Color",
-      "default": "#222"
-    },
     {
       "type": "color",
       "id": "border_bottom",

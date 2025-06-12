@@ -32,7 +32,7 @@
             "text": "Wholesale & Creative Services",
             "type": "header",
             "align": "center",
-            "size": "large",
+            "size": "medium",
             "weight": "tw-font-semibold",
             "max_width": 780,
             "color": "#000000",
@@ -54,7 +54,7 @@
           "type": "button",
           "settings": {
             "text": "Get Started",
-            "url": "#",
+            "url": "#ContactForm",
             "type": "outlinedBlack",
             "hover_color": "navy",
             "align": "center",
@@ -73,6 +73,7 @@
         "rich_text_CUhWUd",
         "button_mNLNYN"
       ],
+      "custom_css": [],
       "settings": {
         "padding_top": 5,
         "padding_bottom": 5,
@@ -81,6 +82,86 @@
         "padding_left": 2,
         "padding_right": 2,
         "background_color": "#ecebe5",
+        "flex_direction": "column",
+        "tablet_flex_direction": "column",
+        "mobile_flex_direction": "column",
+        "x_gap": 2,
+        "y_gap": 2,
+        "justify_content": "center",
+        "align_items": "center",
+        "container_width": "full_width",
+        "content_overflow": "fit"
+      }
+    },
+    "ud_endless_scrolling_images_ty3FkE": {
+      "type": "ud-endless-scrolling-images",
+      "blocks": {
+        "image_block_7bLeYD": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/stubbs-featured-image.jpg"
+          }
+        },
+        "image_block_ykEn3B": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/test-blog-image.png"
+          }
+        },
+        "image_block_T6KLV4": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/7a97ec309f22d1fdf47a56da1a0e8c2d4e1987fa.jpg"
+          }
+        },
+        "image_block_w7djL6": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/5f457d0ec223bd64da820d9ef268d368be88280a.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_block_7bLeYD",
+        "image_block_ykEn3B",
+        "image_block_T6KLV4",
+        "image_block_w7djL6"
+      ],
+      "settings": {
+        "border_bottom": "#222222",
+        "pt": 0,
+        "pb": 88
+      }
+    },
+    "ud_universal_flexbox_a94X76": {
+      "type": "ud-universal-flexbox",
+      "blocks": {
+        "text_LidaK7": {
+          "type": "text",
+          "settings": {
+            "text": "What to expect as a partner",
+            "type": "header",
+            "align": "center",
+            "size": "small",
+            "weight": "tw-font-semibold",
+            "max_width": 600,
+            "color": "#000000",
+            "gap-border": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_LidaK7"
+      ],
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "padding_left": 2,
+        "padding_right": 2,
+        "background_color": "#ffffff",
         "flex_direction": "column",
         "tablet_flex_direction": "column",
         "mobile_flex_direction": "column",
@@ -672,6 +753,8 @@
   },
   "order": [
     "ud_universal_flexbox_6aFiwD",
+    "ud_endless_scrolling_images_ty3FkE",
+    "ud_universal_flexbox_a94X76",
     "ud_universal_flexbox_bz9QXc",
     "form"
   ]
