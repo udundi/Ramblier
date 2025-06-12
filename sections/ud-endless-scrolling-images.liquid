@@ -1,0 +1,165 @@
+{% comment %}
+  Endless Scrolling Images Section
+  - Uses Slick carousel for infinite auto-scrolling
+  - Background color, border color (top/bottom), and vertical padding are editable
+  - Each images is a block, separated by a dash
+{% endcomment %}
+
+{% if section.blocks.size > 0 %}
+  <section
+    class="ud-endless-scrolling-images-section tw-text-18 md:tw-text-24"
+    style="background: {{ section.settings.bg_color }}; padding-top: {{ section.settings.pt }}px; padding-bottom: {{ section.settings.pb }}px;"
+  >
+    <div class="scrolling-container-{{ section.id }} tw-overflow-hidden tw-whitespace-nowrap">
+      <div class="scrolling-images-{{ section.id }} tw-animate-scroll tw-inline-block tw-w-fit tw-pr-1">
+        {% for block in section.blocks %}
+          <span class="tw-inline-block tw-px-1">
+            {{ block.settings.image | image_url: width: 400 | image_tag: class: 'tw-aspect-square tw-object-cover' }}
+          </span>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .scrolling-container-{{ section.id }} {
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    @keyframes scroll-{{ section.id }} {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    .scrolling-images-{{ section.id }} {
+      flex-shrink: 0;
+      width: fit-content;
+      animation: scroll-{{ section.id }} 20s linear infinite;
+      white-space: nowrap;
+    }
+
+    .scrolling-container-{{ section.id }}:hover .scrolling-images-{{ section.id }} {
+      animation-play-state: paused;
+    }
+  </style>
+
+  <script type="module">
+    try {
+      const container = document.querySelector('.scrolling-container-{{ section.id }}');
+      const originalImages = container.querySelector('.scrolling-images-{{ section.id }}');
+      const originalImagesWidth = originalImages.offsetWidth || 1;
+
+      function updateScrollers() {
+        const currentImages = container.querySelectorAll('.scrolling-images-{{ section.id }}');
+        currentImages.forEach((image) => {
+          image.style.animation = 'none';
+        });
+
+        container.offsetHeight;
+
+        const windowWidth = window.innerWidth;
+
+        const copiesNeeded = Math.max(2, Math.ceil(windowWidth / originalImagesWidth) + 1);
+        const currentCount = currentImages.length;
+
+        if (currentCount > copiesNeeded) {
+          for (let i = copiesNeeded; i < currentCount; i++) {
+            container.removeChild(currentImages[i]);
+          }
+        }
+
+        if (currentCount < copiesNeeded) {
+          for (let i = currentCount; i < copiesNeeded; i++) {
+            const clone = originalImages.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            container.appendChild(clone);
+          }
+        }
+
+        const speed = Math.max(15, originalImagesWidth / 50);
+
+        setTimeout(() => {
+          const finalImages = container.querySelectorAll('.scrolling-images-{{ section.id }}');
+          finalImages.forEach((image) => {
+            image.style.animationDuration = `${speed}s`;
+            image.style.animation = `scroll-{{ section.id }} ${speed}s linear infinite`;
+          });
+        }, 50);
+      }
+
+      document.addEventListener('DOMContentLoaded', updateScrollers);
+
+      let resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(updateScrollers, 250);
+      });
+    } catch {
+      console.log('There was an issue with the endless scrolling images');
+    }
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Endless Scrolling Images",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ecebe5"
+    },
+    {
+      "type": "color",
+      "id": "border_top",
+      "label": "Top Border Color",
+      "default": "#222"
+    },
+    {
+      "type": "color",
+      "id": "border_bottom",
+      "label": "Bottom Border Color",
+      "default": "#222"
+    },
+    {
+      "type": "number",
+      "id": "pt",
+      "label": "Padding Top (px)",
+      "default": 12
+    },
+    {
+      "type": "number",
+      "id": "pb",
+      "label": "Padding Bottom (px)",
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_block",
+      "name": "Image Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Endless Scrolling Images",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

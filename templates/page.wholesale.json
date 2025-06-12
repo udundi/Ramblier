@@ -31,10 +31,10 @@
           "type": "text",
           "name": "text",
           "settings": {
-            "text": "Wholesale <span class=\"max-md:tw-hidden\">& Creative</span> Services",
+            "text": "Wholesale & Creative Services",
             "type": "header",
             "align": "center",
-            "size": "medium",
+            "size": "large",
             "weight": "tw-font-semibold",
             "max_width": 780,
             "color": "#000000",
@@ -95,28 +95,6 @@
         "align_items": "center",
         "container_width": "full_width",
         "content_overflow": "fit"
-      }
-    },
-    "ud_endless_scrolling_text_TcyMtg": {
-      "type": "ud-endless-scrolling-text",
-      "blocks": {
-        "text_block_amMx6d": {
-          "type": "text_block",
-          "settings": {
-            "text": ""
-          }
-        }
-      },
-      "block_order": [
-        "text_block_amMx6d"
-      ],
-      "name": "Endless Scrolling Text",
-      "settings": {
-        "bg_color": "#ecebe5",
-        "border_top": "#222222",
-        "border_bottom": "#222222",
-        "pt": 12,
-        "pb": 12
       }
     },
     "ud_universal_flexbox_bz9QXc": {
@@ -580,21 +558,11 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "main": {
-      "type": "main-page",
-      "disabled": true,
-      "settings": {
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
     }
   },
   "order": [
     "ud_universal_flexbox_6aFiwD",
-    "ud_endless_scrolling_text_TcyMtg",
     "ud_universal_flexbox_bz9QXc",
-    "form",
-    "main"
+    "form"
   ]
 }
