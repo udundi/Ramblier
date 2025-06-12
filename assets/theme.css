@@ -1092,6 +1092,20 @@ input[type='number'] {
   /* Firefox */
 }
 
+select {
+  -webkit-appearance: none;
+  /* For Chrome, Safari, etc. */
+  -moz-appearance: none;
+  /* For Firefox */
+  appearance: none;
+  /* Standard property */
+  position: relative;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.1002 0.684219C10.1524 0.634933 10.2137 0.596404 10.2808 0.570828C10.3478 0.545253 10.4193 0.533134 10.491 0.535163C10.5627 0.537192 10.6334 0.55333 10.6988 0.582654C10.7643 0.611979 10.8234 0.653916 10.8727 0.706071C10.922 0.758226 10.9605 0.819579 10.9861 0.886625C11.0117 0.953671 11.0238 1.0251 11.0218 1.09683C11.0197 1.16856 11.0036 1.23918 10.9743 1.30468C10.9449 1.37017 10.903 1.42925 10.8508 1.47853L5.9342 6.12204C5.83276 6.21793 5.69847 6.27136 5.55889 6.27136C5.41931 6.27136 5.28502 6.21793 5.18359 6.12204L0.266388 1.47853C0.213091 1.42957 0.170053 1.37051 0.139774 1.30478C0.109496 1.23904 0.0925818 1.16795 0.0900117 1.09562C0.0874425 1.02329 0.0992699 0.951177 0.124806 0.88346C0.150343 0.815743 0.18908 0.753775 0.238768 0.701156C0.288456 0.648537 0.348105 0.606315 0.414248 0.576942C0.480392 0.54757 0.551712 0.531633 0.624067 0.530058C0.696422 0.528482 0.768369 0.541298 0.835729 0.567763C0.903089 0.594228 0.964518 0.633813 1.01645 0.684219L5.55889 4.97373L10.1002 0.684219Z' fill='black'/%3E%3C/svg%3E%0A");
+  background-position: calc(100% - 20px) 50%;
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+}
+
 .tw-sr-only {
   position: absolute;
   width: 1px;
@@ -1295,8 +1309,16 @@ input[type='number'] {
   margin-top: 0.25rem;
 }
 
+.tw-mt-10 {
+  margin-top: 2.5rem;
+}
+
 .tw-mt-12 {
   margin-top: 3rem;
+}
+
+.tw-mt-14 {
+  margin-top: 3.5rem;
 }
 
 .tw-mt-2 {
@@ -1341,14 +1363,6 @@ input[type='number'] {
 
 .tw-mt-auto {
   margin-top: auto;
-}
-
-.tw-mt-10 {
-  margin-top: 2.5rem;
-}
-
-.tw-mt-14 {
-  margin-top: 3.5rem;
 }
 
 .tw-block {
@@ -1551,10 +1565,6 @@ input[type='number'] {
   min-width: 16rem;
 }
 
-.tw-min-w-96 {
-  min-width: 24rem;
-}
-
 .tw-min-w-\[calc\(\(100vw-1440px\)\/2\+400px\)\] {
   min-width: calc((100vw - 1440px) / 2 + 400px);
 }
@@ -1740,6 +1750,10 @@ input[type='number'] {
   justify-content: space-between;
 }
 
+.tw-gap-1 {
+  gap: 0.25rem;
+}
+
 .tw-gap-2 {
   gap: 0.5rem;
 }
@@ -1847,6 +1861,10 @@ input[type='number'] {
   text-wrap: nowrap;
 }
 
+.tw-rounded {
+  border-radius: 0.25rem;
+}
+
 .tw-rounded-3xl {
   border-radius: 1.5rem;
 }
@@ -1865,10 +1883,6 @@ input[type='number'] {
 
 .tw-rounded-xl {
   border-radius: 0.75rem;
-}
-
-.tw-rounded {
-  border-radius: 0.25rem;
 }
 
 .tw-border {
@@ -1919,6 +1933,11 @@ input[type='number'] {
   border-color: rgb(0 0 0 / 0);
 }
 
+.tw-border-brand-navy {
+  --tw-border-opacity: 1;
+  border-color: rgb(15 33 77 / var(--tw-border-opacity, 1));
+}
+
 .tw-border-brand-navy\/100 {
   border-color: rgb(15 33 77 / 1);
 }
@@ -1928,9 +1947,9 @@ input[type='number'] {
   border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
 }
 
-.tw-border-brand-navy {
-  --tw-border-opacity: 1;
-  border-color: rgb(15 33 77 / var(--tw-border-opacity, 1));
+.tw-bg-\[\#ECEAE5\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 234 229 / var(--tw-bg-opacity, 1));
 }
 
 .tw-bg-\[transparent\] {
@@ -1969,9 +1988,8 @@ input[type='number'] {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
-.tw-bg-\[\#ECEAE5\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 234 229 / var(--tw-bg-opacity, 1));
+.tw-bg-opacity-25 {
+  --tw-bg-opacity: 0.25;
 }
 
 .tw-bg-opacity-40 {
@@ -1980,10 +1998,6 @@ input[type='number'] {
 
 .tw-bg-opacity-75 {
   --tw-bg-opacity: 0.75;
-}
-
-.tw-bg-opacity-25 {
-  --tw-bg-opacity: 0.25;
 }
 
 .tw-bg-gradient-to-t {
@@ -2051,8 +2065,12 @@ input[type='number'] {
   padding: 0.5rem;
 }
 
-.tw-p-4 {
-  padding: 1rem;
+.tw-p-3 {
+  padding: 0.75rem;
+}
+
+.tw-p-5 {
+  padding: 1.25rem;
 }
 
 .tw-p-7 {
@@ -2061,10 +2079,6 @@ input[type='number'] {
 
 .tw-p-8 {
   padding: 2rem;
-}
-
-.tw-p-3 {
-  padding: 0.75rem;
 }
 
 .tw-px-1 {
@@ -2212,22 +2226,16 @@ input[type='number'] {
   padding-bottom: 2rem;
 }
 
-.tw-px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
-.tw-px-1\.5 {
-  padding-left: 0.375rem;
-  padding-right: 0.375rem;
-}
-
 .tw-pb-14 {
   padding-bottom: 3.5rem;
 }
 
 .tw-pb-24 {
   padding-bottom: 6rem;
+}
+
+.tw-pb-40 {
+  padding-bottom: 10rem;
 }
 
 .tw-pb-6 {
@@ -2248,6 +2256,10 @@ input[type='number'] {
 
 .tw-pl-5 {
   padding-left: 1.25rem;
+}
+
+.tw-pr-1 {
+  padding-right: 0.25rem;
 }
 
 .tw-pr-12 {
@@ -2278,28 +2290,16 @@ input[type='number'] {
   padding-top: 0.5rem;
 }
 
+.tw-pt-24 {
+  padding-top: 6rem;
+}
+
 .tw-pt-3 {
   padding-top: 0.75rem;
 }
 
 .tw-pt-5 {
   padding-top: 1.25rem;
-}
-
-.tw-pr-1 {
-  padding-right: 0.25rem;
-}
-
-.tw-pr-8 {
-  padding-right: 2rem;
-}
-
-.tw-pb-40 {
-  padding-bottom: 10rem;
-}
-
-.tw-pt-24 {
-  padding-top: 6rem;
 }
 
 .tw-text-center {
@@ -2473,10 +2473,6 @@ input[type='number'] {
 .tw-text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-
-.tw-text-opacity-40 {
-  --tw-text-opacity: 0.4;
 }
 
 .tw-underline {
@@ -3398,10 +3394,6 @@ input[type='number'] {
   padding-bottom: 1rem;
 }
 
-.focus-within\:tw-border-black\/0:focus-within {
-  border-color: rgb(0 0 0 / 0);
-}
-
 .hover\:tw-flex:hover {
   display: flex;
 }
@@ -4103,6 +4095,10 @@ input[type='number'] {
     padding: 3.5rem;
   }
 
+  .md\:tw-p-4 {
+    padding: 1rem;
+  }
+
   .md\:tw-px-10 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
@@ -4146,6 +4142,11 @@ input[type='number'] {
   .md\:tw-py-20 {
     padding-top: 5rem;
     padding-bottom: 5rem;
+  }
+
+  .md\:tw-py-3\.5 {
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
   }
 
   .md\:tw-py-4 {
@@ -4467,10 +4468,6 @@ input[type='number'] {
 
 .\[\&_img\]\:\!tw-opacity-50 img {
   opacity: 0.5 !important;
-}
-
-.\[\&_option\:disabled\]\:tw-text-opacity-40 option:disabled {
-  --tw-text-opacity: 0.4;
 }
 
 .tw-peer\/animated-button-peer:hover ~ .\[\.tw-peer\\\/animated-button-peer\:hover_\~_\&_span\]\:\!tw-text-white span {
