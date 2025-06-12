@@ -1867,6 +1867,10 @@ input[type='number'] {
   border-radius: 0.75rem;
 }
 
+.tw-rounded {
+  border-radius: 0.25rem;
+}
+
 .tw-border {
   border-width: 1px;
 }
@@ -2057,6 +2061,10 @@ input[type='number'] {
 
 .tw-p-8 {
   padding: 2rem;
+}
+
+.tw-p-3 {
+  padding: 0.75rem;
 }
 
 .tw-px-1 {
