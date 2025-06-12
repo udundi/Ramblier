@@ -3588,6 +3588,22 @@ select {
   display: flex;
 }
 
+.prose-p\:tw-text-14 :is(:where(p):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+  font-size: 0.875rem;
+}
+
+.prose-ol\:tw-text-14 :is(:where(ol):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+  font-size: 0.875rem;
+}
+
+.prose-ul\:tw-text-14 :is(:where(ul):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+  font-size: 0.875rem;
+}
+
+.prose-table\:tw-text-14 :is(:where(table):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
+  font-size: 0.875rem;
+}
+
 @media not all and (min-width: 1280px) {
   .max-xl\:tw-hidden {
     display: none;

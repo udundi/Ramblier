@@ -22,7 +22,6 @@
           "blocks": {
             "flex_box_pBynpq": {
               "type": "flex-box",
-              "name": "Flexbox",
               "settings": {
                 "optional_link": "",
                 "padding_top": 0,
@@ -31,7 +30,7 @@
                 "mobile_padding_bottom": 0,
                 "padding_left": 0,
                 "padding_right": 0,
-                "background_color": "#ecebe5",
+                "background_color": "rgba(0,0,0,0)",
                 "flex_direction": "row",
                 "tablet_flex_direction": "row",
                 "mobile_flex_direction": "row",
@@ -46,7 +45,6 @@
               "blocks": {
                 "basic_image_BW7UqM": {
                   "type": "basic-image",
-                  "name": "Base Image",
                   "settings": {
                     "image": "shopify://shop_images/Rectangle_7.jpg",
                     "aspect_ratio": "square",
@@ -63,7 +61,6 @@
                 },
                 "rich_text_cfaamE": {
                   "type": "rich-text",
-                  "name": "Rich Text",
                   "settings": {
                     "text": "<p>Lorem ipsum dolor sit amet.</p>",
                     "align": "center",
@@ -85,7 +82,6 @@
         },
         "navigation_map_FtmjVn": {
           "type": "_navigation-map",
-          "name": "Navigation Map Selector",
           "settings": {
             "text": "Shop By Location",
             "link_list": "dropdown-map-menu"
@@ -97,7 +93,6 @@
         "navigation_dropdown_YcDK7t",
         "navigation_map_FtmjVn"
       ],
-      "name": "Header",
       "settings": {
         "logo": "shopify://shop_images/1_1.png",
         "margin_bottom": 0,
