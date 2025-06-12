@@ -149,7 +149,6 @@
       "blocks": {
         "text_nbcpry": {
           "type": "text",
-          "name": "text",
           "settings": {
             "text": "Merch from the places you love, all in one place.",
             "type": "header",
@@ -164,7 +163,6 @@
         },
         "rich_text_wzgrTc": {
           "type": "rich-text",
-          "name": "Rich Text",
           "settings": {
             "text": "<p>Some places just stick with you. The late-night diners, the legendary BBQ joints, the dive bars with the best jukebox. We bring their merch online, so you can rep your favorites, no road trip required.</p>",
             "align": "center",
@@ -175,7 +173,6 @@
         },
         "button_hMfkgq": {
           "type": "button",
-          "name": "Default Button",
           "settings": {
             "text": "Our Story",
             "url": "shopify://pages/about",
@@ -196,7 +193,6 @@
         "rich_text_wzgrTc",
         "button_hMfkgq"
       ],
-      "name": "Base Flexbox",
       "settings": {
         "padding_top": 7,
         "padding_bottom": 6.5,
@@ -297,7 +293,6 @@
       "blocks": {
         "text_f6kpLb": {
           "type": "text",
-          "name": "text",
           "settings": {
             "text": "Become a partner",
             "type": "header",
@@ -312,7 +307,6 @@
         },
         "text_tPxtBr": {
           "type": "text",
-          "name": "text",
           "settings": {
             "text": "Your spot is legendary—your merch should be too. Ramblier makes it easy for restaurants, bars, and venues to sell online. We take care of everything. You just keep being iconic.",
             "type": "body",
@@ -327,10 +321,9 @@
         },
         "button_YHg7U4": {
           "type": "button",
-          "name": "Default Button",
           "settings": {
             "text": "Click Me",
-            "url": "#",
+            "url": "shopify://pages/wholesale",
             "type": "outlinedWhite",
             "hover_color": "white",
             "align": "center",
@@ -348,7 +341,6 @@
         "text_tPxtBr",
         "button_YHg7U4"
       ],
-      "name": "Base Flexbox",
       "settings": {
         "padding_top": 6,
         "padding_bottom": 6,

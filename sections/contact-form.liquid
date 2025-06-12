@@ -24,6 +24,7 @@
     font-size: 0.75rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
+    font-weight: 600;
   }
 
   @media (min-width: 768px) {
@@ -183,11 +184,14 @@
             </div>
 
           {%- when 'checkbox_input' -%}
-            <div class="{% if block.settings.full_width %}md:tw-col-span-2{% endif %}" {{ block.shopify_attributes }}>
+            <div
+              class="{% if block.settings.full_width %}md:tw-col-span-2{% endif %} !tw-flex-row"
+              {{ block.shopify_attributes }}
+            >
               <input
                 type="checkbox"
                 id="ContactForm-{{ block.id }}"
-                class=""
+                class="!tw-w-fit !tw-grow-0"
                 name="contact[{{ block.settings.field_name }}]"
                 {% if block.settings.checked_by_default %}
                   checked
@@ -196,7 +200,7 @@
                   required
                 {% endif %}
               >
-              <label for="ContactForm-{{ block.id }}">{{ block.settings.label }}</label>
+              <label for="ContactForm-{{ block.id }}" class="tw-grow">{{ block.settings.label }}</label>
             </div>
 
           {%- when 'submit_button' -%}

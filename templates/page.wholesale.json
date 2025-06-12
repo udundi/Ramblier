@@ -14,7 +14,6 @@
       "blocks": {
         "text_JQKEU9": {
           "type": "text",
-          "name": "text",
           "settings": {
             "text": "BECOME A RAMBLIER PARTNER",
             "type": "body",
@@ -29,7 +28,6 @@
         },
         "text_i9RJXC": {
           "type": "text",
-          "name": "text",
           "settings": {
             "text": "Wholesale & Creative Services",
             "type": "header",
@@ -44,7 +42,6 @@
         },
         "rich_text_CUhWUd": {
           "type": "rich-text",
-          "name": "Rich Text",
           "settings": {
             "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
             "align": "center",
@@ -55,7 +52,6 @@
         },
         "button_mNLNYN": {
           "type": "button",
-          "name": "Default Button",
           "settings": {
             "text": "Get Started",
             "url": "#",
@@ -77,7 +73,6 @@
         "rich_text_CUhWUd",
         "button_mNLNYN"
       ],
-      "name": "Base Flexbox",
       "settings": {
         "padding_top": 5,
         "padding_bottom": 5,
@@ -102,7 +97,6 @@
       "blocks": {
         "flex_box_xQqefK": {
           "type": "flex-box",
-          "name": "Flexbox",
           "settings": {
             "optional_link": "",
             "padding_top": 0,
@@ -126,7 +120,6 @@
           "blocks": {
             "shop_by_location_fL3gkX": {
               "type": "shop-by-location",
-              "name": "Image",
               "settings": {
                 "image": "shopify://shop_images/restaurants_1.png",
                 "alt_text": "Image description",
@@ -140,7 +133,6 @@
             },
             "flex_box_JKR88W": {
               "type": "flex-box",
-              "name": "Flexbox",
               "settings": {
                 "optional_link": "",
                 "padding_top": 1.5,
@@ -164,7 +156,6 @@
               "blocks": {
                 "text_xhAgie": {
                   "type": "text",
-                  "name": "text",
                   "settings": {
                     "text": "E-Commerce",
                     "type": "subheader",
@@ -179,7 +170,6 @@
                 },
                 "text_EkgdRe": {
                   "type": "text",
-                  "name": "text",
                   "settings": {
                     "text": "Digital shopping on Ramblier’s website",
                     "type": "body",
@@ -206,7 +196,6 @@
         },
         "flex_box_N7Jfat": {
           "type": "flex-box",
-          "name": "Flexbox",
           "settings": {
             "optional_link": "",
             "padding_top": 0,
@@ -230,7 +219,6 @@
           "blocks": {
             "shop_by_location_tTidkC": {
               "type": "shop-by-location",
-              "name": "Image",
               "settings": {
                 "image": "shopify://shop_images/goods_1.png",
                 "alt_text": "Image description",
@@ -244,7 +232,6 @@
             },
             "flex_box_7BkLKE": {
               "type": "flex-box",
-              "name": "Flexbox",
               "settings": {
                 "optional_link": "",
                 "padding_top": 1.5,
@@ -268,7 +255,6 @@
               "blocks": {
                 "text_pDTwPY": {
                   "type": "text",
-                  "name": "text",
                   "settings": {
                     "text": "Fulfillment",
                     "type": "subheader",
@@ -283,7 +269,6 @@
                 },
                 "text_AVfFP4": {
                   "type": "text",
-                  "name": "text",
                   "settings": {
                     "text": "We handle the it all from warehouse to fulfillment",
                     "type": "body",
@@ -310,7 +295,6 @@
         },
         "flex_box_VXi3rY": {
           "type": "flex-box",
-          "name": "Flexbox",
           "settings": {
             "optional_link": "",
             "padding_top": 0,
@@ -334,7 +318,6 @@
           "blocks": {
             "shop_by_location_Kqyfif": {
               "type": "shop-by-location",
-              "name": "Image",
               "settings": {
                 "image": "shopify://shop_images/influencers_1.png",
                 "alt_text": "Image description",
@@ -348,7 +331,6 @@
             },
             "flex_box_x6ccAy": {
               "type": "flex-box",
-              "name": "Flexbox",
               "settings": {
                 "optional_link": "",
                 "padding_top": 1.5,
@@ -372,7 +354,6 @@
               "blocks": {
                 "text_BgaUj8": {
                   "type": "text",
-                  "name": "text",
                   "settings": {
                     "text": "Marketing",
                     "type": "subheader",
@@ -387,7 +368,6 @@
                 },
                 "text_hcWhU6": {
                   "type": "text",
-                  "name": "text",
                   "settings": {
                     "text": "Social media marketing creative and strategy",
                     "type": "body",
@@ -414,7 +394,6 @@
         },
         "flex_box_hfpNfw": {
           "type": "flex-box",
-          "name": "Flexbox",
           "settings": {
             "optional_link": "",
             "padding_top": 0,
@@ -438,7 +417,6 @@
           "blocks": {
             "shop_by_location_HpGkNx": {
               "type": "shop-by-location",
-              "name": "Image",
               "settings": {
                 "image": "shopify://shop_images/influencers_1.png",
                 "alt_text": "Image description",
@@ -452,7 +430,6 @@
             },
             "flex_box_JQUcKm": {
               "type": "flex-box",
-              "name": "Flexbox",
               "settings": {
                 "optional_link": "",
                 "padding_top": 1.5,
@@ -476,7 +453,6 @@
               "blocks": {
                 "text_6XeUTD": {
                   "type": "text",
-                  "name": "text",
                   "settings": {
                     "text": "Customer Support",
                     "type": "subheader",
@@ -491,7 +467,6 @@
                 },
                 "text_iHFrGq": {
                   "type": "text",
-                  "name": "text",
                   "settings": {
                     "text": "Direct communication to ensure happy customers",
                     "type": "body",
@@ -529,7 +504,6 @@
         "div[class*=\"section-template\"] p {font-size: 0.875rem; max-width: 200px;}",
         "@media (max-width: 768px) {div[class*=\"section-template\"] h3, div[class*=\"section-template\"] p {font-size: 0.625rem; max-width: 175px; } div[class*=\"section-template\"] img {max-width: 3.5rem; max-height: 3.5rem; }}"
       ],
-      "name": "Base Flexbox",
       "settings": {
         "padding_top": 4,
         "padding_bottom": 4,
@@ -551,12 +525,148 @@
     },
     "form": {
       "type": "contact-form",
+      "blocks": {
+        "text_input_GbLPJE": {
+          "type": "text_input",
+          "settings": {
+            "label": "First Name",
+            "field_name": "first-name",
+            "placeholder": "Jane",
+            "input_type": "first_name",
+            "required": true,
+            "full_width": false
+          }
+        },
+        "text_input_CRndgp": {
+          "type": "text_input",
+          "settings": {
+            "label": "Last Name",
+            "field_name": "last-name",
+            "placeholder": "Doe",
+            "input_type": "last_name",
+            "required": true,
+            "full_width": false
+          }
+        },
+        "text_input_6mHFGT": {
+          "type": "text_input",
+          "settings": {
+            "label": "Company",
+            "field_name": "company",
+            "placeholder": "ABC Company",
+            "input_type": "company",
+            "required": true,
+            "full_width": false
+          }
+        },
+        "url_input_WG3cEp": {
+          "type": "url_input",
+          "settings": {
+            "label": "Website",
+            "field_name": "Website",
+            "placeholder": "www.example.com",
+            "required": false,
+            "full_width": false
+          }
+        },
+        "email_input_DWw6Rw": {
+          "type": "email_input",
+          "settings": {
+            "label": "Email",
+            "field_name": "email",
+            "placeholder": "hello@example.com",
+            "required": true,
+            "full_width": false
+          }
+        },
+        "phone_input_bcpBC4": {
+          "type": "phone_input",
+          "settings": {
+            "label": "Phone Number",
+            "field_name": "Phone",
+            "placeholder": "XXX-XXX-XXXX",
+            "required": false,
+            "full_width": false
+          }
+        },
+        "select_input_pdpXnd": {
+          "type": "select_input",
+          "settings": {
+            "label": "Getting to know you...",
+            "field_name": "about",
+            "placeholder": "Which best describes you...",
+            "options": "Option 1, Option 2, Option 3",
+            "required": true,
+            "full_width": true
+          }
+        },
+        "select_input_KpmbHa": {
+          "type": "select_input",
+          "settings": {
+            "label": "Product Category",
+            "field_name": "product-category",
+            "placeholder": "Please select...",
+            "options": "Option 1, Option 2, Option 3",
+            "required": true,
+            "full_width": false
+          }
+        },
+        "select_input_cgiLVJ": {
+          "type": "select_input",
+          "settings": {
+            "label": "Marketing Budget",
+            "field_name": "Marketing Budget",
+            "placeholder": "Please select...",
+            "options": "Option 1, Option 2, Option 3",
+            "required": true,
+            "full_width": false
+          }
+        },
+        "textarea_input_EhhBKM": {
+          "type": "textarea_input",
+          "settings": {
+            "label": "Message",
+            "field_name": "Message",
+            "placeholder": "Please provide as much detail about your product and goals as possible.",
+            "rows": 5,
+            "required": true,
+            "full_width": true
+          }
+        },
+        "checkbox_input_4eNVUt": {
+          "type": "checkbox_input",
+          "settings": {
+            "label": "I agree to receive marketing news by email",
+            "field_name": "accepts-marketing",
+            "checked_by_default": false,
+            "required": false,
+            "full_width": true
+          }
+        },
+        "submit_button_8wiNyT": {
+          "type": "submit_button",
+          "settings": {
+            "button_text": "Send Message",
+            "full_width": true
+          }
+        }
+      },
+      "block_order": [
+        "text_input_GbLPJE",
+        "text_input_CRndgp",
+        "text_input_6mHFGT",
+        "url_input_WG3cEp",
+        "email_input_DWw6Rw",
+        "phone_input_bcpBC4",
+        "select_input_pdpXnd",
+        "select_input_KpmbHa",
+        "select_input_cgiLVJ",
+        "textarea_input_EhhBKM",
+        "checkbox_input_4eNVUt",
+        "submit_button_8wiNyT"
+      ],
       "settings": {
-        "heading": "",
-        "heading_size": "h1",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "heading": ""
       }
     }
   },

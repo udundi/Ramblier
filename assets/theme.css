@@ -1561,6 +1561,11 @@ select {
   width: 100vw;
 }
 
+.\!tw-w-fit {
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+}
+
 .tw-min-w-64 {
   min-width: 16rem;
 }
@@ -1615,6 +1620,10 @@ select {
 
 .tw-grow {
   flex-grow: 1;
+}
+
+.\!tw-grow-0 {
+  flex-grow: 0 !important;
 }
 
 .tw-basis-1\/12 {
@@ -1708,6 +1717,18 @@ select {
 
 .tw-flex-row {
   flex-direction: row;
+}
+
+.\!tw-flex-row {
+  flex-direction: row !important;
+}
+
+.tw-flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.\!tw-flex-row-reverse {
+  flex-direction: row-reverse !important;
 }
 
 .tw-flex-col {
