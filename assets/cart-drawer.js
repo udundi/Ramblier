@@ -29,30 +29,26 @@ class CartDrawer extends HTMLElement {
     if (triggeredBy) this.setActiveElement(triggeredBy);
     const cartDrawerNote = this.querySelector('[id^="Details-"] summary');
     if (cartDrawerNote && !cartDrawerNote.hasAttribute('role')) this.setSummaryAccessibility(cartDrawerNote);
-    // here the animation doesn't seem to always get triggered. A timeout seem to help
-    setTimeout(() => {
-      this.classList.remove('tw-hidden');
-    });
 
-    this.addEventListener(
-      'transitionend',
-      () => {
-        const containerToTrapFocusOn = this.classList.contains('is-empty')
-          ? this.querySelector('.js-drawer-inner-empty')
-          : document.getElementById('CartDrawer');
-        const focusElement = this.querySelector('.js-drawer-inner') || this.querySelector('.drawer__close');
-        trapFocus(containerToTrapFocusOn, focusElement);
-      },
-      { once: true },
-    );
-
+    this.classList.add('cart-drawer-open');
     document.body.classList.add('overflow-hidden');
+
+    setTimeout(() => {
+      const containerToTrapFocusOn = this.classList.contains('is-empty')
+        ? this.querySelector('.js-drawer-inner-empty')
+        : document.getElementById('CartDrawer');
+      const focusElement = this.querySelector('.js-drawer-inner') || this.querySelector('.drawer__close');
+      trapFocus(containerToTrapFocusOn, focusElement);
+    }, 300);
   }
 
   close() {
-    this.classList.add('tw-hidden');
-    removeTrapFocus(this.activeElement);
-    document.body.classList.remove('overflow-hidden');
+    this.classList.remove('cart-drawer-open');
+
+    setTimeout(() => {
+      removeTrapFocus(this.activeElement);
+      document.body.classList.remove('overflow-hidden');
+    }, 300);
   }
 
   setSummaryAccessibility(cartDrawerNote) {

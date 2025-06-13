@@ -12,16 +12,36 @@
   .drawer {
     visibility: hidden;
   }
+
+  cart-drawer {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  cart-drawer.cart-drawer-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .js-drawer-inner {
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+  }
+
+  cart-drawer.cart-drawer-open .js-drawer-inner {
+    transform: translateX(0);
+  }
 </style>
 
-<cart-drawer class="tw-hidden">
+<cart-drawer class="tw-fixed tw-inset-0 tw-z-50">
   <div id="CartDrawer" class="">
     <div
       id="CartDrawer-Overlay"
-      class="tw-fixed tw-inset-0 tw-h-full tw-bg-black/30 tw-backdrop-blur-sm"
+      class="tw-absolute tw-inset-0 tw-h-full tw-bg-black/30 tw-backdrop-blur-sm"
     ></div>
     <div
-      class="js-drawer-inner tw-fixed tw-bottom-0 tw-right-0 tw-top-0 tw-z-50  tw-w-[clamp(min(100%,_22rem),_85%,_38rem)] tw-border tw-border-black tw-bg-white"
+      class="js-drawer-inner tw-absolute tw-bottom-0 tw-right-0 tw-top-0 tw-w-[clamp(min(100%,_22rem),_85%,_38rem)] tw-border tw-border-black tw-bg-white"
       role="dialog"
       aria-modal="true"
       aria-label="{{ 'sections.cart.title' | t }}"
