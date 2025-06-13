@@ -1566,6 +1566,11 @@ select {
   width: fit-content !important;
 }
 
+.tw-w-max {
+  width: -moz-max-content;
+  width: max-content;
+}
+
 .tw-min-w-64 {
   min-width: 16rem;
 }

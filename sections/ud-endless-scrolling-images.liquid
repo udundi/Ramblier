@@ -11,7 +11,7 @@
     style="background: {{ section.settings.bg_color }}; padding-top: {{ section.settings.pt }}px; padding-bottom: {{ section.settings.pb }}px;"
   >
     <div class="scrolling-container-{{ section.id }} tw-overflow-hidden tw-whitespace-nowrap">
-      <div class="scrolling-images-{{ section.id }} tw-animate-scroll tw-inline-block tw-w-fit tw-pr-1">
+      <div class="scrolling-images-{{ section.id }} tw-animate-scroll tw-inline-block tw-w-max tw-pr-1">
         {% for block in section.blocks %}
           {% if block.settings.image %}
             <span class="tw-inline-block tw-px-1">
@@ -41,7 +41,7 @@
 
     .scrolling-images-{{ section.id }} {
       flex-shrink: 0;
-      width: fit-content;
+      width: max-content;
       animation: scroll-{{ section.id }} 20s linear infinite;
       white-space: nowrap;
     }

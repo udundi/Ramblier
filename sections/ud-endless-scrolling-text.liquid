@@ -10,7 +10,7 @@
   style="background: {{ section.settings.bg_color }}; border-block: 1px solid {{ section.settings.border_top }}; border-bottom: 1px solid {{ section.settings.border_bottom }}; padding-top: {{ section.settings.pt }}px; padding-bottom: {{ section.settings.pb }}px;"
 >
   <div class="scrolling-container-{{ section.id }} tw-overflow-hidden tw-whitespace-nowrap">
-    <div class="scrolling-text-{{ section.id }} tw-animate-scroll tw-inline-block tw-w-fit tw-pr-2">
+    <div class="scrolling-text-{{ section.id }} tw-animate-scroll tw-inline-block tw-w-max tw-pr-2">
       {% for block in section.blocks %}
         <span class="tw-font-cursive tw-text-lg tw-inline-block tw-whitespace-nowrap tw-px-4">
           {{ block.settings.text }}
@@ -39,7 +39,7 @@
 
   .scrolling-text-{{ section.id }} {
     flex-shrink: 0;
-    width: fit-content;
+    width: max-content;
     animation: scroll-{{ section.id }} 20s linear infinite;
     white-space: nowrap;
   }
