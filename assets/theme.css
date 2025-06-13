@@ -1060,7 +1060,7 @@ video {
 }
 
 a {
-  font-family: Poppins, sans-serif;
+  font-family: "Poppins", sans-serif;
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
 }
@@ -1071,11 +1071,11 @@ h1,
   h4,
   h5,
   h6 {
-  font-family: Noto Serif, serif;
+  font-family: "Noto Serif", serif;
 }
 
 p {
-  font-family: Poppins, sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
 }
 
@@ -1208,6 +1208,14 @@ select {
 
 .tw-top-full {
   top: 100%;
+}
+
+.tw-top-1 {
+  top: 0.25rem;
+}
+
+.tw-top-1\.5 {
+  top: 0.375rem;
 }
 
 .tw-isolate {
@@ -1365,10 +1373,6 @@ select {
   margin-top: auto;
 }
 
-.tw-mt-96 {
-  margin-top: 24rem;
-}
-
 .tw-block {
   display: block;
 }
@@ -1520,6 +1524,11 @@ select {
   height: 100%;
 }
 
+.\!tw-w-fit {
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+}
+
 .tw-w-1\/2 {
   width: 50%;
 }
@@ -1561,18 +1570,13 @@ select {
   width: 100%;
 }
 
-.tw-w-screen {
-  width: 100vw;
-}
-
-.\!tw-w-fit {
-  width: -moz-fit-content !important;
-  width: fit-content !important;
-}
-
 .tw-w-max {
   width: -moz-max-content;
   width: max-content;
+}
+
+.tw-w-screen {
+  width: 100vw;
 }
 
 .tw-min-w-64 {
@@ -1627,12 +1631,12 @@ select {
   max-width: 1280px;
 }
 
-.tw-grow {
-  flex-grow: 1;
-}
-
 .\!tw-grow-0 {
   flex-grow: 0 !important;
+}
+
+.tw-grow {
+  flex-grow: 1;
 }
 
 .tw-basis-1\/12 {
@@ -1720,32 +1724,20 @@ select {
   grid-template-rows: 1fr auto;
 }
 
-.tw-grid-rows-\[auto_auto\] {
-  grid-template-rows: auto auto;
-}
-
-.tw-grid-rows-\[auto_1fr_auto\] {
-  grid-template-rows: auto 1fr auto;
-}
-
 .tw-grid-rows-\[3rem_1fr_3rem\] {
   grid-template-rows: 3rem 1fr 3rem;
 }
 
-.tw-flex-row {
-  flex-direction: row;
+.tw-grid-rows-\[auto_auto\] {
+  grid-template-rows: auto auto;
 }
 
 .\!tw-flex-row {
   flex-direction: row !important;
 }
 
-.tw-flex-row-reverse {
-  flex-direction: row-reverse;
-}
-
-.\!tw-flex-row-reverse {
-  flex-direction: row-reverse !important;
+.tw-flex-row {
+  flex-direction: row;
 }
 
 .tw-flex-col {
@@ -1788,6 +1780,10 @@ select {
   justify-content: space-between;
 }
 
+.tw-gap-1 {
+  gap: 0.25rem;
+}
+
 .tw-gap-2 {
   gap: 0.5rem;
 }
@@ -1802,10 +1798,6 @@ select {
 
 .tw-gap-8 {
   gap: 2rem;
-}
-
-.tw-gap-1 {
-  gap: 0.25rem;
 }
 
 .tw-gap-x-10 {
@@ -1948,6 +1940,10 @@ select {
   border-style: none;
 }
 
+.\!tw-border-brand-navy\/40 {
+  border-color: rgb(15 33 77 / 0.4) !important;
+}
+
 .tw-border-\[\#d9d9d9\] {
   --tw-border-opacity: 1;
   border-color: rgb(217 217 217 / var(--tw-border-opacity, 1));
@@ -1985,8 +1981,8 @@ select {
   border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
 }
 
-.\!tw-border-brand-navy\/40 {
-  border-color: rgb(15 33 77 / 0.4) !important;
+.\!tw-bg-brand-navy\/40 {
+  background-color: rgb(15 33 77 / 0.4) !important;
 }
 
 .tw-bg-\[\#ECEAE5\] {
@@ -2028,18 +2024,6 @@ select {
 .tw-bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-}
-
-.\!tw-bg-brand-navy\/50 {
-  background-color: rgb(15 33 77 / 0.5) !important;
-}
-
-.\!tw-bg-brand-navy\/20 {
-  background-color: rgb(15 33 77 / 0.2) !important;
-}
-
-.\!tw-bg-brand-navy\/40 {
-  background-color: rgb(15 33 77 / 0.4) !important;
 }
 
 .tw-bg-opacity-25 {
@@ -2356,6 +2340,10 @@ select {
   padding-top: 1.25rem;
 }
 
+.tw-pl-1 {
+  padding-left: 0.25rem;
+}
+
 .tw-text-center {
   text-align: center;
 }
@@ -2369,19 +2357,23 @@ select {
 }
 
 .\!tw-font-noto {
-  font-family: Noto Serif, serif !important;
+  font-family: "Noto Serif", serif !important;
 }
 
 .tw-font-montserrat {
-  font-family: Montserrat;
+  font-family: "Montserrat";
 }
 
 .tw-font-noto {
-  font-family: Noto Serif, serif;
+  font-family: "Noto Serif", serif;
 }
 
 .tw-font-poppins {
-  font-family: Poppins, sans-serif;
+  font-family: "Poppins", sans-serif;
+}
+
+.tw-font-dear-jocelyn {
+  font-family: "Dear Jocelyn", cursive;
 }
 
 .tw-text-10 {
@@ -2438,6 +2430,14 @@ select {
 
 .tw-text-8 {
   font-size: 0.5rem;
+}
+
+.tw-text-64 {
+  font-size: 4rem;
+}
+
+.tw-text-\[5rem\] {
+  font-size: 5rem;
 }
 
 .tw-font-bold {
@@ -2721,7 +2721,7 @@ select {
   max-width: 56rem !important;
   padding-left: 1.25rem !important;
   padding-right: 1.25rem !important;
-  font-family: Poppins, sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
   font-size: 0.75rem !important;
   font-weight: 400 !important;
 }
@@ -2734,7 +2734,7 @@ select {
 
 .shopify-policy__title {
   margin-bottom: 1rem !important;
-  font-family: Noto Serif, serif !important;
+  font-family: "Noto Serif", serif !important;
   font-size: 1.5rem !important;
   font-weight: 600 !important;
 }
@@ -3345,13 +3345,13 @@ select {
 
 .rich-text :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))),
 .shopify-policy__body * :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
-  font-family: Noto Serif, serif;
+  font-family: "Noto Serif", serif;
   font-weight: 600;
 }
 
 .rich-text :is(:where(p):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))),
 .shopify-policy__body * :is(:where(p):not(:where([class~="tw-not-prose"],[class~="tw-not-prose"] *))) {
-  font-family: Poppins, sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 0.75rem;
 }
 
@@ -3458,14 +3458,6 @@ select {
 
 .hover\:tw-fill-brand-navy:hover {
   fill: #0F214D;
-}
-
-.hover\:tw-font-bold:hover {
-  font-weight: 700;
-}
-
-.hover\:tw-underline:hover {
-  text-decoration-line: underline;
 }
 
 .focus\:tw-flex:focus {
@@ -3696,10 +3688,6 @@ select {
 
   .max-md\:tw-mt-9 {
     margin-top: 2.25rem;
-  }
-
-  .max-md\:tw-block {
-    display: block;
   }
 
   .max-md\:tw-flex {
@@ -3945,10 +3933,6 @@ select {
 
   .md\:tw-mt-8 {
     margin-top: 2rem;
-  }
-
-  .md\:tw-block {
-    display: block;
   }
 
   .md\:tw-grid {
@@ -4332,14 +4316,6 @@ select {
 
   .hover\:md\:tw-border-black\/100:hover {
     border-color: rgb(0 0 0 / 1);
-  }
-
-  .md\:hover\:tw-font-bold:hover {
-    font-weight: 700;
-  }
-
-  .md\:hover\:tw-underline:hover {
-    text-decoration-line: underline;
   }
 
   .md\:focus\:tw-font-bold:focus {

@@ -69,9 +69,10 @@ module.exports = {
         'container-sm': 'min(43.125rem, 90%)',
       },
       fontFamily: {
-        montserrat: ['Montserrat'],
-        poppins: ['Poppins', 'sans-serif'],
-        noto: ['Noto Serif', 'serif'],
+        montserrat: ['"Montserrat"'],
+        poppins: ['"Poppins"', 'sans-serif'],
+        noto: ['"Noto Serif"', 'serif'],
+        'dear-jocelyn': ['"Dear Jocelyn"', 'cursive'],
         // playfair: ['Playfair Display', 'serif'],
         // interstate: ['"Interstate"', 'sans-serif'],
         // cadet: ['Cadet', 'sans-serif'],
