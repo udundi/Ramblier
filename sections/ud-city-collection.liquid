@@ -119,6 +119,31 @@
 </style>
 
 <script>
+  function syncCategoryDisplay() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedCategory = urlParams.get('category');
+    const categoryContents = document.querySelectorAll('.category-content');
+    const radioButtons = document.querySelectorAll('input[name="city-category"]');
+
+    if (selectedCategory) {
+      const targetRadio = document.querySelector(`input[name="city-category"][value="${selectedCategory}"]`);
+      if (targetRadio) {
+        targetRadio.checked = true;
+      }
+    }
+
+    const checkedRadio = document.querySelector('input[name="city-category"]:checked');
+    if (checkedRadio) {
+      categoryContents.forEach(function (content) {
+        content.style.display = 'none';
+      });
+      const targetCategory = document.querySelector(`[data-category="${checkedRadio.value}"]`);
+      if (targetCategory) {
+        targetCategory.style.display = 'block';
+      }
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     new Swiper('.category-swiper', {
       slidesPerView: 'auto',
@@ -129,18 +154,14 @@
     const radioButtons = document.querySelectorAll('input[name="city-category"]');
     const categoryContents = document.querySelectorAll('.category-content');
 
+    syncCategoryDisplay();
+
     radioButtons.forEach(function (radio) {
       radio.addEventListener('change', function () {
-        if (this.checked) {
-          categoryContents.forEach(function (content) {
-            content.style.display = 'none';
-          });
-
-          const targetCategory = document.querySelector(`[data-category="${this.value}"]`);
-          if (targetCategory) {
-            targetCategory.style.display = 'block';
-          }
-        }
+        const url = new URL(window.location);
+        url.searchParams.set('category', this.value);
+        window.history.replaceState(null, '', url);
+        syncCategoryDisplay();
       });
     });
 
@@ -167,5 +188,9 @@
         },
       });
     });
+  });
+
+  window.addEventListener('pageshow', function () {
+    syncCategoryDisplay();
   });
 </script>
