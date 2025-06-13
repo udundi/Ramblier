@@ -1365,6 +1365,10 @@ select {
   margin-top: auto;
 }
 
+.tw-mt-96 {
+  margin-top: 24rem;
+}
+
 .tw-block {
   display: block;
 }
@@ -1718,6 +1722,14 @@ select {
 
 .tw-grid-rows-\[auto_auto\] {
   grid-template-rows: auto auto;
+}
+
+.tw-grid-rows-\[auto_1fr_auto\] {
+  grid-template-rows: auto 1fr auto;
+}
+
+.tw-grid-rows-\[3rem_1fr_3rem\] {
+  grid-template-rows: 3rem 1fr 3rem;
 }
 
 .tw-flex-row {
