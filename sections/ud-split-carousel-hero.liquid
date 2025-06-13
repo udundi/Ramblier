@@ -4,7 +4,25 @@
 <script defer type="module">
   import { createCarouselFromSection } from "{{ 'ud-hp-hero-carousel.js' | asset_url }}";
 
-  createCarouselFromSection('section-{{ section.id }}');
+  const carousel = createCarouselFromSection('section-{{ section.id }}');
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (carousel?.pause) carousel.pause();
+    } else {
+      const cursiveWord = document.querySelector('#section-{{ section.id }} .js-cursive-word');
+      const currentImage = document.querySelector('#section-{{ section.id }} .js-carousel-image.is-current');
+
+      if (cursiveWord && currentImage) {
+        const associatedWord = currentImage.dataset.associatedWord;
+        if (associatedWord) {
+          cursiveWord.textContent = associatedWord;
+        }
+      }
+
+      if (carousel?.resume) carousel.resume();
+    }
+  });
 </script>
 
 <style>
