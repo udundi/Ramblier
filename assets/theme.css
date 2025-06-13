@@ -3460,6 +3460,14 @@ select {
   fill: #0F214D;
 }
 
+.hover\:tw-font-bold:hover {
+  font-weight: 700;
+}
+
+.hover\:tw-underline:hover {
+  text-decoration-line: underline;
+}
+
 .focus\:tw-flex:focus {
   display: flex;
 }
@@ -3688,6 +3696,10 @@ select {
 
   .max-md\:tw-mt-9 {
     margin-top: 2.25rem;
+  }
+
+  .max-md\:tw-block {
+    display: block;
   }
 
   .max-md\:tw-flex {
@@ -3933,6 +3945,10 @@ select {
 
   .md\:tw-mt-8 {
     margin-top: 2rem;
+  }
+
+  .md\:tw-block {
+    display: block;
   }
 
   .md\:tw-grid {
@@ -4316,6 +4332,14 @@ select {
 
   .hover\:md\:tw-border-black\/100:hover {
     border-color: rgb(0 0 0 / 1);
+  }
+
+  .md\:hover\:tw-font-bold:hover {
+    font-weight: 700;
+  }
+
+  .md\:hover\:tw-underline:hover {
+    text-decoration-line: underline;
   }
 
   .md\:focus\:tw-font-bold:focus {
