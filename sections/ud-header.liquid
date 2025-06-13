@@ -89,39 +89,39 @@
 </header>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const mobileMenuToggle = document.querySelector('[data-mobile-menu-toggle]');
-  const locationButton = document.querySelector('.tw-group\\/location-button');
-  const regionButton = document.querySelector('.tw-group\\/region-button');
-  const stateButton = document.querySelector('.tw-group\\/state-button');
-  const featuredButtons = document.querySelectorAll('.tw-group\\/mobile-button');
-  
-  function handleButtonClick(button) {
-    let lastFocusTime = 0;
-    
-    button.addEventListener('focus', function() {
-      lastFocusTime = Date.now();
-    });
-    
-    return function(e) {
-      e.preventDefault();
-      const clickTime = Date.now();
-      const wasFocused = clickTime - lastFocusTime > 100;
-      
-      if (wasFocused && document.activeElement === button) {
-        button.blur();
-      } else {
-        button.focus();
-      }
-    };
-  }
-  
-  [mobileMenuToggle, locationButton, regionButton, stateButton, ...featuredButtons].forEach(button => {
-    if (button) {
-      button.addEventListener('click', handleButtonClick(button));
+  document.addEventListener('DOMContentLoaded', function () {
+    const mobileMenuToggle = document.querySelector('[data-mobile-menu-toggle]');
+    const locationButton = document.querySelector('.tw-group\\/location-button');
+    const regionButton = document.querySelector('.tw-group\\/region-button');
+    const stateButton = document.querySelector('.tw-group\\/state-button');
+    const featuredButtons = document.querySelectorAll('.tw-group\\/mobile-button');
+
+    function handleButtonClick(button) {
+      let lastFocusTime = 0;
+
+      button.addEventListener('focus', function () {
+        lastFocusTime = Date.now();
+      });
+
+      return function (e) {
+        e.preventDefault();
+        const clickTime = Date.now();
+        const wasFocused = clickTime - lastFocusTime > 100;
+
+        if (wasFocused && document.activeElement === button) {
+          button.blur();
+        } else {
+          button.focus();
+        }
+      };
     }
+
+    [mobileMenuToggle, locationButton, regionButton, stateButton, ...featuredButtons].forEach((button) => {
+      if (button) {
+        button.addEventListener('click', handleButtonClick(button));
+      }
+    });
   });
-});
 </script>
 
 {% schema %}
