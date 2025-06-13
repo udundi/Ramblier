@@ -1792,6 +1792,10 @@ select {
   gap: 2rem;
 }
 
+.tw-gap-1 {
+  gap: 0.25rem;
+}
+
 .tw-gap-x-10 {
   -moz-column-gap: 2.5rem;
        column-gap: 2.5rem;
@@ -3548,6 +3552,10 @@ select {
   display: none;
 }
 
+.tw-peer:empty ~ .peer-empty\:tw-hidden {
+  display: none;
+}
+
 .tw-peer\/midwest:hover ~ .peer-hover\/midwest\:tw-fill-white {
   fill: #FFFFFF;
 }
@@ -4155,6 +4163,10 @@ select {
 
   .md\:tw-p-14 {
     padding: 3.5rem;
+  }
+
+  .md\:tw-p-4 {
+    padding: 1rem;
   }
 
   .md\:tw-px-10 {

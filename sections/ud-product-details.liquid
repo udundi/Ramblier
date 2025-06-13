@@ -183,6 +183,40 @@
               %}
             </span>
           </div>
+
+          <!-- Variant Selector -->
+
+          {%- unless product.has_only_default_variant -%}
+            <span class="tw-mt-5">
+              {% for option in product.options_with_values %}
+                <div class="tw-mt-4 tw-flex tw-w-full tw-flex-col tw-gap-1">
+                  <label
+                    for="product-{{ product.id }}-option-{{ option.name | handleize }}"
+                    class="tw-font-poppins tw-text-12 tw-font-semibold tw-uppercase tw-tracking-wider md:tw-text-14"
+                  >
+                    {{ option.name }}
+                  </label>
+                  <select
+                    id="product-{{ product.id }}-option-{{ option.name | handleize }}"
+                    data-option-position="{{ forloop.index0 }}"
+                    class="tw-w-full tw-max-w-96 tw-border tw-bg-white tw-px-3.5 tw-py-2.5 md:tw-p-4"
+                  >
+                    {% for value in option.values %}
+                      <option
+                        value="{{ value }}"
+                        {% if product.selected_or_first_available_variant.options[forloop.index0] == value %}
+                          selected
+                        {% endif %}
+                      >
+                        {{ value }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              {% endfor %}
+            </span>
+          {% endunless %}
+
           <!-- ------------------------------ -->
           <!-- Product Variant Selector -->
           <!-- ------------------------------ -->
@@ -234,7 +268,7 @@
                      tw-flex tw-w-full tw-justify-center tw-border tw-border-brand-navy/100 tw-bg-brand-navy/100 tw-px-10 tw-py-2.5 tw-font-montserrat tw-text-14 tw-font-semibold tw-text-white tw-transition-button md:tw-max-w-md md:tw-py-3.5 md:tw-text-16
                     {% unless product.available %} !tw-bg-brand-navy/40 !tw-border-brand-navy/40 {% else %} animated-button animated-button--hover-white {% endunless %}
                   "
-                  {% unless product.available? %}
+                  {% unless product.available %}
                     disabled
                   {% endunless %}
                 >
@@ -242,7 +276,7 @@
                     {%- render 'loading-spinner', class: 'loading__spinner tw-text-white' -%}
                   </span>
                   <span>
-                    {%- unless product.available? %}
+                    {%- unless product.available %}
                       OUT OF STOCK
                     {% else %}
                       ADD TO CART
