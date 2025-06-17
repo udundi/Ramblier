@@ -4,7 +4,7 @@
   - Each block: clickable, background image, overlay, link text, link url
 {% endcomment %}
 
-<div class="tw-w-full">
+<div class="tw-w-full md:tw-px-6">
   <!-- Desktop grid, dynamic columns -->
   <div class="tw-mx-auto tw-hidden tw-grid-cols-3 tw-gap-4 lg:tw-grid 2xl:tw-max-w-screen-xl">
     {% for collection in product.metafields.custom.city.value.featured_brands.value %}
@@ -32,10 +32,10 @@
   <!-- Mobile Slick carousel -->
   <div class="tw-block lg:tw-hidden">
     <div class="slick-featured-{{ section.id }} tw-gap-4">
-      {% for block in section.blocks %}
+      {% for collection in product.metafields.custom.city.value.featured_brands.value %}
         <div>
           <a
-            href="{{ block.settings.link_url }}"
+            href="{{ collection.url }}"
             class="tw-group tw-relative tw-flex tw-aspect-[4/5] tw-min-w-64 tw-cursor-pointer tw-items-end tw-overflow-hidden tw-bg-cover tw-bg-center md:tw-min-w-96"
             style="background-image: url('{{ collection.metafields.custom.featured_image | image_url: width: 800 }}');"
           >
@@ -44,7 +44,7 @@
             ></div>
             <div class="tw-relative tw-w-full tw-px-2 tw-pb-6 tw-text-center">
               <span class="tw-text-lg tw-font-medium tw-text-white tw-drop-shadow">
-                {{ collection.url }}
+                {{ collection.title }}
               </span>
             </div>
           </a>
@@ -57,7 +57,7 @@
 <script type="module">
   document.addEventListener('DOMContentLoaded', function () {
     $('.slick-featured-{{ section.id }}').slick({
-      infinite: true,
+      infinite: false,
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,
