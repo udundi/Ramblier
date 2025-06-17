@@ -1,0 +1,129 @@
+{% style %}
+  .section-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+    padding-top: {{ section.settings.padding_top }}rem;
+    padding-bottom: {{ section.settings.padding_bottom }}rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}rem;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}rem;
+    }
+  }
+{% endstyle %}
+
+<div class="section-{{ section.id }} tw-relative tw-mx-auto tw-max-w-screen-xl tw-overflow-hidden">
+  <!-- city Carousels -->
+  <div class="tw-carousel-container">
+    <div
+      id="carousel-{{ section.id }}"
+      class="tw-relative"
+    >
+      <button class="custom-button-prev tw-absolute tw-left-2.5 tw-top-1/2 tw-z-30 tw-flex tw-size-20 -tw-translate-y-1/2 tw-cursor-pointer tw-items-center tw-justify-start tw-stroke-black md:tw-size-24">
+        <span class="tw-flex tw-rotate-180 tw-items-center tw-bg-white tw-bg-opacity-75 tw-px-1 tw-py-2">
+          {%- render 'icon-caret' -%}
+        </span>
+      </button>
+      <button class="custom-button-next tw-absolute tw-right-2.5 tw-top-1/2 tw-z-30 tw-flex tw-size-20 -tw-translate-y-1/2 tw-cursor-pointer tw-items-center tw-justify-end tw-stroke-black md:tw-size-24">
+        <span class="tw-flex tw-items-center tw-bg-white tw-bg-opacity-75 tw-px-1 tw-py-2">
+          {% render 'icon-caret' %}
+        </span>
+      </button>
+      <div class="swiper-wrapper">
+        {% for product in product.metafields.custom.city.value.best_sellers.value %}
+          <div class="swiper-slide">
+            {% render 'ud-product-card', product: product %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('load', function () {
+    new Swiper('#carousel-{{ section.id }}', {
+      slidesPerView: '2.1',
+      spaceBetween: 8,
+      loop: true,
+      navigation: {
+        nextEl: '.custom-button-next',
+        prevEl: '.custom-button-prev',
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: '3.5',
+          spaceBetween: 10,
+        },
+        1024: {
+          slidesPerView: '4',
+        },
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "PDP Related",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 40,
+      "step": 0.5,
+      "unit": "rem",
+      "label": "Desktop Padding Top",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "min": 0,
+      "max": 40,
+      "step": 0.5,
+      "unit": "rem",
+      "id": "padding_bottom",
+      "label": "Desktop Padding Bottom",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 40,
+      "step": 0.5,
+      "unit": "rem",
+      "label": "Mobile Padding Top",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "min": 0,
+      "max": 40,
+      "step": 0.5,
+      "unit": "rem",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile Padding Bottom",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP Related",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

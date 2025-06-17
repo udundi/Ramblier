@@ -412,40 +412,9 @@
         "content_overflow": "fit"
       }
     },
-    "ud_featured_grid_xtDEAn": {
-      "type": "ud-featured-grid",
-      "blocks": {
-        "column_M8b9ix": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/41a1ee6377df5186c56758e78d095ea4908abac7.png",
-            "link_text": "Featured Title",
-            "link_url": ""
-          }
-        },
-        "column_zqiFaL": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/41a1ee6377df5186c56758e78d095ea4908abac7.png",
-            "link_text": "Featured Title",
-            "link_url": ""
-          }
-        },
-        "column_bfPUrT": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/41a1ee6377df5186c56758e78d095ea4908abac7.png",
-            "link_text": "Featured Title",
-            "link_url": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_M8b9ix",
-        "column_zqiFaL",
-        "column_bfPUrT"
-      ],
-      "name": "Featured Grid",
+    "ud_pdp_featured_grid_bA4BF7": {
+      "type": "ud-pdp-featured-grid",
+      "name": "PDP Featured Grid",
       "settings": {}
     },
     "ud_universal_flexbox_Pxr9KX": {
@@ -455,8 +424,8 @@
           "type": "button",
           "name": "Default Button",
           "settings": {
-            "text": "Shop All Austin",
-            "url": "#",
+            "text": "Shop All {{ closest.product.metafields.custom.city.value.name.value }}",
+            "url": "{{ closest.product.metafields.custom.city.value.system.url }}",
             "type": "outlinedBlack",
             "hover_color": "navy",
             "align": "center",
@@ -616,6 +585,7 @@
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
@@ -631,15 +601,70 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "ud_universal_flexbox_kMDNeY": {
+      "type": "ud-universal-flexbox",
+      "blocks": {
+        "text_CNFL9Q": {
+          "type": "text",
+          "name": "text",
+          "settings": {
+            "text": "You might also like...",
+            "type": "header",
+            "align": "center",
+            "size": "small",
+            "weight": "tw-font-semibold",
+            "max_width": 600,
+            "color": "#000000",
+            "gap-border": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_CNFL9Q"
+      ],
+      "name": "Base Flexbox",
+      "settings": {
+        "padding_top": 4.5,
+        "padding_bottom": 0,
+        "mobile_padding_top": 3.5,
+        "mobile_padding_bottom": 0,
+        "padding_left": 2,
+        "padding_right": 2,
+        "background_color": "#ffffff",
+        "flex_direction": "column",
+        "tablet_flex_direction": "column",
+        "mobile_flex_direction": "column",
+        "x_gap": 2,
+        "y_gap": 2,
+        "justify_content": "center",
+        "align_items": "center",
+        "container_width": "full_width",
+        "content_overflow": "fit"
+      }
+    },
+    "ud_pdp_related_674WgV": {
+      "type": "ud-pdp-related",
+      "name": "PDP Related",
+      "settings": {
+        "padding_top": 2,
+        "padding_bottom": 5,
+        "mobile_padding_top": 1.5,
+        "mobile_padding_bottom": 4,
+        "background_color": "#ffffff"
+      }
     }
   },
   "order": [
     "ud_product_details_8AHX9n",
     "ud_universal_flexbox_bz9QXc",
     "ud_universal_flexbox_AbC6jh",
-    "ud_featured_grid_xtDEAn",
+    "ud_pdp_featured_grid_bA4BF7",
     "ud_universal_flexbox_Pxr9KX",
     "main",
-    "related-products"
+    "related-products",
+    "ud_universal_flexbox_kMDNeY",
+    "ud_pdp_related_674WgV"
   ]
 }
