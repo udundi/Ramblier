@@ -3,8 +3,14 @@
     background-color: {{ section.settings.background_color }};
     padding-top: {{ section.settings.padding_top }}rem;
     padding-bottom: {{ section.settings.padding_bottom }}rem;
+  }
+
+  .section-{{ section.id }} .tw-city-carousel-container {
     padding-left: {{ section.settings.padding_left }}rem;
-    padding-right: {{ section.settings.padding_right }}rem;
+  }
+
+  .section-{{ section.id }} .ud-city-pills {
+    padding-left: {{ section.settings.padding_left }}rem;
   }
 
   @media screen and (max-width: 749px) {
@@ -12,15 +18,6 @@
       padding-top: {{ section.settings.mobile_padding_top }}rem;
       padding-bottom: {{ section.settings.mobile_padding_bottom }}rem;
     }
-  }
-
-  /* city Carousel Pill Navigation Styles */
-  .section-{{ section.id }} .tw-city-pills {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
   }
 
   .section-{{ section.id }}
@@ -63,24 +60,30 @@
       {{ section.settings.heading }}
     </h2>
 
-    <!-- city Pills Navigation -->
-    {% if section.blocks.size > 1 %}
-      <div class="tw-city-pills">
-        {% for block in section.blocks %}
-          {% if block.settings.city != blank %}
-            <button
-              class="tw-city-pill tw-rounded-full tw-border tw-p-2 tw-px-8 {% if forloop.first %}tw-active{% endif %}"
-              data-block-index="{{ forloop.index0 }}"
-              data-section-id="{{ section.id }}"
-            >
-              {{ block.settings.city.name }}, {{ block.settings.city.state.value.abbreviation }}
-            </button>
-          {% endif %}
-        {% endfor %}
-      </div>
-    {% endif %}
+    <div class=" ud-city-pills">
+      <!-- city Pills Navigation -->
+      {% if section.blocks.size > 1 %}
+        <div id="city-pills-{{ section.id }}" class="swiper">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              {% if block.settings.city != blank %}
+                <div class="swiper-slide !tw-w-auto">
+                  <button
+                    class="tw-city-pill tw-rounded-full tw-border tw-p-2 tw-px-8 {% if forloop.first %}tw-active{% endif %} tw-w-fit"
+                    data-block-index="{{ forloop.index0 }}"
+                    data-section-id="{{ section.id }}"
+                  >
+                    {{ block.settings.city.name }}, {{ block.settings.city.state.value.abbreviation }}
+                  </button>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
     <!-- city Carousels -->
-    <div class="tw-relative tw-flex tw-overflow-visible lg:tw-overflow-hidden">
+    <div class="tw-relative tw-mt-7 tw-flex tw-overflow-visible md:tw-mt-8 lg:tw-overflow-hidden">
       {% for block in section.blocks %}
         {% if block.settings.city != blank %}
           <div class="tw-city-carousel-container {% if forloop.first %} tw-active {% endif %}">
@@ -132,7 +135,7 @@
     // Initialize slick for each city carousel
     {% for block in section.blocks %}
       {% if block.settings.city != blank %}
-        var swiper = new Swiper('#carousel-{{ section.id }}-{{ forloop.index0 }}', {
+        new Swiper('#carousel-{{ section.id }}-{{ forloop.index0 }}', {
           slidesPerView: '{{ section.settings.slides_per_view_mobile }}.1',
           spaceBetween: 8,
           loop: true,
@@ -152,6 +155,23 @@
         });
       {% endif %}
     {% endfor %}
+
+    new Swiper('#city-pills-{{ section.id }}', {
+      slidesPerView: '{{ section.settings.slides_per_view_mobile }}',
+          spaceBetween: 8,
+          slidesPerView: "auto",
+          centerInsufficientSlides: true,
+          freeMode: true,
+          slideToClickedSlide: true,
+          breakpoints: {
+            768: {
+              spaceBetween: 10,
+            },
+            1024: {
+              spaceBetween: 15,
+            }
+          },
+    })
     
     // Pill navigation functionality
     const pills = document.querySelectorAll('.tw-city-pill[data-section-id="{{ section.id }}"]');
