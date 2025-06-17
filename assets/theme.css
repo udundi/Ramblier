@@ -4305,6 +4305,11 @@ select {
     padding-bottom: 2rem;
   }
 
+  .md\:tw-px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
   .md\:tw-pb-16 {
     padding-bottom: 4rem;
   }

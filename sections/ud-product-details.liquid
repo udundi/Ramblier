@@ -81,13 +81,24 @@
       <!-- Mobile Brand Name -->
       <span class="tw-relative tw-w-fit tw-text-12">
         {% if product.metafields.custom.city != blank %}
-          <span class="tw-absolute tw-right-[1em] tw-text-nowrap">
+          <a
+            href="{{ product.metafields.custom.city.value.system.url }}"
+            class="tw-absolute tw-right-[1em] tw-text-nowrap"
+          >
             {{ product.metafields.custom.city.value.name }},
             {{ product.metafields.custom.city.value.state.value.name }}
-          </span>
+          </a>
           <span>/</span>
+
           <span class="tw-absolute tw-left-[1em] tw-text-nowrap">
+            {% assign vendor_collection_name = product.vendor | handleize %}
+            {% if collections[vendor_collection_name] %}
+              <a href="{{ collections[vendor_collection_name].url }}">
+            {% endif %}
             {{- product.vendor -}}
+            {% if collections[vendor_collection_name] %}
+              </a>
+            {% endif %}
           </span>
         {% else %}
           <span class="tw-text-nowrap">
@@ -144,12 +155,25 @@
         <div class="tw-p-8 md:tw-py-16 xl:tw-px-24">
           <div class="tw-flex tw-flex-col tw-justify-center">
             <!-- Desktop Brand Name -->
-            <span class="tw-text-12 tw-text-black max-md:tw-hidden">
+            <span
+              href="{{ product.metafields.custom.city.value.system.url }}"
+              class="tw-font-poppins tw-text-12 tw-text-black max-md:tw-hidden"
+            >
               {% if product.metafields.custom.city != blank %}
-                {{ product.metafields.custom.city.value.name }},
-                {{ product.metafields.custom.city.value.state.value.name }} /
+                <a class="tw-text-12 tw-text-black" href="{{ product.metafields.custom.city.value.system.url }}">
+                  {{ product.metafields.custom.city.value.name }},
+                  {{ product.metafields.custom.city.value.state.value.name -}}
+                </a>
+                /
+              {% endif %}
+              {% assign vendor_collection_name = product.vendor | handleize %}
+              {% if collections[vendor_collection_name] %}
+                <a class="tw-text-12 tw-text-black" href="{{ collections[vendor_collection_name].url }}">
               {% endif %}
               {{ product.vendor }}
+              {% if collections[vendor_collection_name] %}
+                </a>
+              {% endif %}
             </span>
 
             <!-- Desktop Title -->
