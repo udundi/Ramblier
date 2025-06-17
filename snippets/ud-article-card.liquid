@@ -14,7 +14,9 @@
       <h3 class="tw-font-poppins tw-text-12 tw-font-semibold tw-uppercase tw-tracking-wider tw-text-black md:tw-text-14">
         {{ article.title }}
       </h3>
-      <p class="tw-mt-1 tw-font-poppins tw-text-12 tw-text-black md:tw-text-14">{{ article.excerpt }}</p>
+      {% unless hide_excerpt %}
+        <p class="tw-mt-1 tw-font-poppins tw-text-12 tw-text-black md:tw-text-14">{{ article.excerpt }}</p>
+      {% endunless %}
     </div>
     <div class="tw-mt-auto tw-border-t">
       <a

@@ -32,7 +32,8 @@
     </span>
   </a>
   <!-- Search Bar -->
-  <div
+  <form
+    action="{{ routes.search_url }}"
     class="tw-relative tw-h-full tw-w-full tw-border-b tw-border-black tw-py-1.5 max-md:tw-order-2 max-md:tw-flex max-md:tw-max-w-14 max-md:tw-items-center max-md:tw-justify-center md:tw-col-start-2 md:tw-row-start-1 md:tw-grow md:tw-border-r {{ top_row_color }}"
   >
     <button class="tw-top-1/2 {{ icon_color }} md:tw-absolute md:tw-left-8 md:-tw-translate-y-1/2">
@@ -43,9 +44,13 @@
       <input
         placeholder="Enter Search term"
         class="tw-h-full tw-w-full tw-pl-20 tw-pr-12 tw-text-14 placeholder:tw-uppercase max-md:tw-hidden {{ top_row_color }} tw-font-medium tw-tracking-wider"
+        name="q"
       >
+      <input type="hidden" name="type" value="product,page,article">
+      <input type="hidden" name="options[unavailable_products]" value="hide">
+      <input type="hidden" name="options[prefix]" value="last">
     </label>
-  </div>
+  </form>
   <!-- Account Button -->
   <a
     href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
