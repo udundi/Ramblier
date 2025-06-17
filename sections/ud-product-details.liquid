@@ -195,11 +195,8 @@
 
             <!-- Desktop Description -->
             <span class="tw-mt-3">
-              {% assign product_description = product.description
-                | default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.'
-              %}
               {% render 'ud-text',
-                text: product_description,
+                text: product.description,
                 type: 'body',
                 align: 'start',
                 size: 'small',
