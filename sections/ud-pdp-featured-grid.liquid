@@ -1,0 +1,95 @@
+{% comment %}
+  Featured Grid Section
+  - Responsive grid, columns = number of blocks
+  - Each block: clickable, background image, overlay, link text, link url
+{% endcomment %}
+
+<div class="tw-w-full">
+  <!-- Desktop grid, dynamic columns -->
+  <div class="tw-mx-auto tw-hidden tw-grid-cols-3 tw-gap-4 lg:tw-grid 2xl:tw-max-w-screen-xl">
+    {% for collection in product.metafields.custom.city.value.featured_brands.value %}
+      <a
+        href="{{ collection.url }}"
+        class="tw-group tw-relative tw-flex tw-aspect-3/4 tw-cursor-pointer tw-items-end tw-justify-center tw-overflow-hidden "
+      >
+        <div
+          class="tw-absolute tw-inset-0 tw-bg-black tw-bg-opacity-40 tw-transition-all group-hover:tw-bg-opacity-60"
+        ></div>
+        <div class="tw-absolute tw-bottom-8 tw-mx-auto tw-w-fit tw-px-2 tw-text-center">
+          <span class="tw-w-fit tw-text-10 tw-font-medium tw-uppercase tw-tracking-wider tw-text-white tw-drop-shadow-lg md:tw-text-16">
+            <span>{{ collection.title }}</span>
+            <span>{% render 'icon-drawn-underline' %}</span>
+          </span>
+        </div>
+        <div
+          class="tw-relative -tw-z-10 tw-size-full tw-scale-105 tw-bg-cover tw-bg-center tw-transition-transform tw-duration-500 group-hover:tw-scale-100"
+          style="background-image: url('{{ collection.metafields.custom.featured_image | image_url: width: 800 }}');"
+        ></div>
+      </a>
+    {% endfor %}
+  </div>
+
+  <!-- Mobile Slick carousel -->
+  <div class="tw-block lg:tw-hidden">
+    <div class="slick-featured-{{ section.id }} tw-gap-4">
+      {% for block in section.blocks %}
+        <div>
+          <a
+            href="{{ block.settings.link_url }}"
+            class="tw-group tw-relative tw-flex tw-aspect-[4/5] tw-min-w-64 tw-cursor-pointer tw-items-end tw-overflow-hidden tw-bg-cover tw-bg-center md:tw-min-w-96"
+            style="background-image: url('{{ collection.metafields.custom.featured_image | image_url: width: 800 }}');"
+          >
+            <div
+              class="tw-absolute tw-inset-0 tw-bg-black tw-bg-opacity-40 tw-transition-all group-hover:tw-bg-opacity-60"
+            ></div>
+            <div class="tw-relative tw-w-full tw-px-2 tw-pb-6 tw-text-center">
+              <span class="tw-text-lg tw-font-medium tw-text-white tw-drop-shadow">
+                {{ collection.url }}
+              </span>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', function () {
+    $('.slick-featured-{{ section.id }}').slick({
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      dots: false,
+      variableWidth: true,
+      swipeToSlide: true,
+      centerMode: true,
+    });
+  });
+</script>
+
+<style>
+  .slick-featured-{{ section.id }} .slick-slide {
+    margin-right: 1rem;
+  }
+  .slick-featured-{{ section.id }}.slick-slide:last-child {
+    margin-right: 0;
+  }
+
+  .grid-cols-{{ section.id }} {
+    grid-template-columns: repeat({{ section.blocks.size }}, minmax(0, 1fr));
+  }
+</style>
+
+{% schema %}
+{
+  "name": "PDP Featured Grid",
+  "presets": [
+    {
+      "name": "PDP Featured Grid",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
