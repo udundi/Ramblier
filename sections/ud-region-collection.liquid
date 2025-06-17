@@ -17,11 +17,11 @@
                   checked
                 {% endif %}
               >
-              <div class="tw-aspect-square tw-size-12 md:tw-size-16">
+              <div class="tw-flex tw-aspect-square tw-size-8 tw-items-center md:tw-size-10">
                 {{
                   categorized_collection.category.value.icon
                   | image_url: width: 70
-                  | image_tag: class: 'tw-w-full tw-h-full tw-object-cover'
+                  | image_tag: class: 'tw-w-full tw-h-full tw-object-contain'
                 }}
               </div>
               <p class="tw-text-8 tw-font-medium tw-uppercase tw-text-black md:tw-text-10">
