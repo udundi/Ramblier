@@ -35,83 +35,107 @@
   "
 >
   <script>
-    (() => {
-      const initRamblierComingSoon = () => {
-        const section = document.getElementById('{{ section_id }}');
-        if (!section || section.dataset.rotatorInitialized === 'true') return;
+  (() => {
+    const initRamblierComingSoon = () => {
+      const section = document.getElementById('{{ section_id }}');
+      if (!section || section.dataset.rotatorInitialized === 'true') return;
 
-        const rotatingWord = section.querySelector('.js-ramblier-rotating-word');
-        if (!rotatingWord) return;
+      const rotatingWord = section.querySelector('.js-ramblier-rotating-word');
+      if (!rotatingWord) return;
 
-        const words = [];
-        {% for block in section.blocks %}
-          {% if block.settings.word != blank %}
-            words.push({{ block.settings.word | json }});
-          {% endif %}
-        {% endfor %}
+      const words = [];
+      {% for block in section.blocks %}
+        {% if block.settings.word != blank %}
+          words.push({{ block.settings.word | json }});
+        {% endif %}
+      {% endfor %}
 
-        if (!words.length) return;
+      if (!words.length) return;
 
-        const intervalMs = {{ section.settings.word_switch_interval | times: 1000 }};
-        let currentIndex = 0;
-        let intervalId = null;
+      const holdDelay = {{ section.settings.word_switch_interval | times: 1000 }};
+      const typingSpeed = 90;
+      const deletingSpeed = 45;
 
-        const setWord = (index) => {
-          if (!words[index]) return;
+      let currentIndex = 0;
+      let currentTimeout = null;
+      let isStopped = false;
 
-          rotatingWord.classList.add('is-leaving');
-
-          window.setTimeout(() => {
-            rotatingWord.textContent = words[index];
-            rotatingWord.classList.remove('is-leaving');
-            rotatingWord.classList.add('is-entering');
-
-            window.setTimeout(() => {
-              rotatingWord.classList.remove('is-entering');
-            }, 260);
-          }, 140);
-        };
-
-        const startRotation = () => {
-          if (words.length <= 1) return;
-          if (intervalId) return;
-
-          intervalId = window.setInterval(() => {
-            currentIndex = (currentIndex + 1) % words.length;
-            setWord(currentIndex);
-          }, intervalMs);
-        };
-
-        const stopRotation = () => {
-          if (!intervalId) return;
-          window.clearInterval(intervalId);
-          intervalId = null;
-        };
-
-        rotatingWord.textContent = words[0];
-        section.dataset.rotatorInitialized = 'true';
-
-        document.addEventListener('visibilitychange', () => {
-          if (document.hidden) {
-            stopRotation();
-          } else {
-            rotatingWord.textContent = words[currentIndex];
-            startRotation();
-          }
-        });
-
-        startRotation();
+      const clearCurrentTimeout = () => {
+        if (currentTimeout) {
+          window.clearTimeout(currentTimeout);
+          currentTimeout = null;
+        }
       };
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initRamblierComingSoon);
-      } else {
-        initRamblierComingSoon();
-      }
+      const typeWord = (word, charIndex = 0) => {
+        if (isStopped) return;
 
-      document.addEventListener('shopify:section:load', initRamblierComingSoon);
-    })();
-  </script>
+        rotatingWord.textContent = word.slice(0, charIndex);
+
+        if (charIndex < word.length) {
+          currentTimeout = window.setTimeout(() => {
+            typeWord(word, charIndex + 1);
+          }, typingSpeed);
+        } else {
+          currentTimeout = window.setTimeout(() => {
+            deleteWord(word, word.length);
+          }, holdDelay);
+        }
+      };
+
+      const deleteWord = (word, charIndex) => {
+        if (isStopped) return;
+
+        rotatingWord.textContent = word.slice(0, charIndex);
+
+        if (charIndex > 0) {
+          currentTimeout = window.setTimeout(() => {
+            deleteWord(word, charIndex - 1);
+          }, deletingSpeed);
+        } else {
+          currentIndex = (currentIndex + 1) % words.length;
+          currentTimeout = window.setTimeout(() => {
+            typeWord(words[currentIndex], 1);
+          }, 120);
+        }
+      };
+
+      const startRotation = () => {
+        isStopped = false;
+        clearCurrentTimeout();
+
+        const currentWord = words[currentIndex];
+        rotatingWord.textContent = '';
+        typeWord(currentWord, 1);
+      };
+
+      const stopRotation = () => {
+        isStopped = true;
+        clearCurrentTimeout();
+      };
+
+      section.dataset.rotatorInitialized = 'true';
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopRotation();
+        } else {
+          startRotation();
+        }
+      });
+
+      startRotation();
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initRamblierComingSoon);
+    } else {
+      initRamblierComingSoon();
+    }
+
+    document.addEventListener('shopify:section:load', initRamblierComingSoon);
+  })();
+</script>
 
   <div class="ramblier-coming-soon__bg"></div>
 
