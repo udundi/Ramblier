@@ -35,117 +35,117 @@
   "
 >
   <script>
-  (() => {
-    const initRamblierComingSoon = () => {
-      const section = document.getElementById('{{ section_id }}');
-      if (!section || section.dataset.rotatorInitialized === 'true') return;
+    (() => {
+      const initRamblierComingSoon = () => {
+        const section = document.getElementById('{{ section_id }}');
+        if (!section || section.dataset.rotatorInitialized === 'true') return;
 
-      const rotatingWord = section.querySelector('.js-ramblier-rotating-word');
-      const rotatingWrap = section.querySelector('.ramblier-coming-soon__rotating-wrap');
+        const rotatingWord = section.querySelector('.js-ramblier-rotating-word');
+        const rotatingWrap = section.querySelector('.ramblier-coming-soon__rotating-wrap');
 
-      if (!rotatingWord) return;
+        if (!rotatingWord) return;
 
-      const words = [];
-      {% for block in section.blocks %}
-        {% if block.settings.word != blank %}
-          words.push({{ block.settings.word | json }});
-        {% endif %}
-      {% endfor %}
+        const words = [];
+        {% for block in section.blocks %}
+          {% if block.settings.word != blank %}
+            words.push({{ block.settings.word | json }});
+          {% endif %}
+        {% endfor %}
 
-      if (!words.length) return;
+        if (!words.length) return;
 
-      const holdDelay = {{ section.settings.word_switch_interval | times: 1000 }};
-      const typingSpeed = 90;
-      const deletingSpeed = 45;
+        const holdDelay = {{ section.settings.word_switch_interval | times: 1000 }};
+        const typingSpeed = 90;
+        const deletingSpeed = 45;
 
-      let currentIndex = 0;
-      let currentTimeout = null;
-      let isStopped = false;
+        let currentIndex = 0;
+        let currentTimeout = null;
+        let isStopped = false;
 
-      const clearCurrentTimeout = () => {
-        if (currentTimeout) {
-          window.clearTimeout(currentTimeout);
-          currentTimeout = null;
-        }
+        const clearCurrentTimeout = () => {
+          if (currentTimeout) {
+            window.clearTimeout(currentTimeout);
+            currentTimeout = null;
+          }
+        };
+
+        const syncRotatingWidth = () => {
+          if (!rotatingWrap || !rotatingWord) return;
+          rotatingWrap.style.width = rotatingWord.offsetWidth + 'px';
+        };
+
+        const typeWord = (word, charIndex = 0) => {
+          if (isStopped) return;
+
+          rotatingWord.textContent = word.slice(0, charIndex);
+          syncRotatingWidth();
+
+          if (charIndex < word.length) {
+            currentTimeout = window.setTimeout(() => {
+              typeWord(word, charIndex + 1);
+            }, typingSpeed);
+          } else {
+            currentTimeout = window.setTimeout(() => {
+              deleteWord(word, word.length);
+            }, holdDelay);
+          }
+        };
+
+        const deleteWord = (word, charIndex) => {
+          if (isStopped) return;
+
+          rotatingWord.textContent = word.slice(0, charIndex);
+          syncRotatingWidth();
+
+          if (charIndex > 0) {
+            currentTimeout = window.setTimeout(() => {
+              deleteWord(word, charIndex - 1);
+            }, deletingSpeed);
+          } else {
+            currentIndex = (currentIndex + 1) % words.length;
+            currentTimeout = window.setTimeout(() => {
+              typeWord(words[currentIndex], 1);
+            }, 120);
+          }
+        };
+
+        const startRotation = () => {
+          isStopped = false;
+          clearCurrentTimeout();
+
+          const currentWord = words[currentIndex];
+          rotatingWord.textContent = '';
+          syncRotatingWidth();
+          typeWord(currentWord, 1);
+        };
+
+        const stopRotation = () => {
+          isStopped = true;
+          clearCurrentTimeout();
+        };
+
+        section.dataset.rotatorInitialized = 'true';
+
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            stopRotation();
+          } else {
+            startRotation();
+          }
+        });
+
+        startRotation();
       };
 
-      const syncRotatingWidth = () => {
-        if (!rotatingWrap || !rotatingWord) return;
-        rotatingWrap.style.width = rotatingWord.offsetWidth + 'px';
-      };
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initRamblierComingSoon);
+      } else {
+        initRamblierComingSoon();
+      }
 
-      const typeWord = (word, charIndex = 0) => {
-        if (isStopped) return;
-
-        rotatingWord.textContent = word.slice(0, charIndex);
-        syncRotatingWidth();
-
-        if (charIndex < word.length) {
-          currentTimeout = window.setTimeout(() => {
-            typeWord(word, charIndex + 1);
-          }, typingSpeed);
-        } else {
-          currentTimeout = window.setTimeout(() => {
-            deleteWord(word, word.length);
-          }, holdDelay);
-        }
-      };
-
-      const deleteWord = (word, charIndex) => {
-        if (isStopped) return;
-
-        rotatingWord.textContent = word.slice(0, charIndex);
-        syncRotatingWidth();
-
-        if (charIndex > 0) {
-          currentTimeout = window.setTimeout(() => {
-            deleteWord(word, charIndex - 1);
-          }, deletingSpeed);
-        } else {
-          currentIndex = (currentIndex + 1) % words.length;
-          currentTimeout = window.setTimeout(() => {
-            typeWord(words[currentIndex], 1);
-          }, 120);
-        }
-      };
-
-      const startRotation = () => {
-        isStopped = false;
-        clearCurrentTimeout();
-
-        const currentWord = words[currentIndex];
-        rotatingWord.textContent = '';
-        syncRotatingWidth();
-        typeWord(currentWord, 1);
-      };
-
-      const stopRotation = () => {
-        isStopped = true;
-        clearCurrentTimeout();
-      };
-
-      section.dataset.rotatorInitialized = 'true';
-
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          stopRotation();
-        } else {
-          startRotation();
-        }
-      });
-
-      startRotation();
-    };
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initRamblierComingSoon);
-    } else {
-      initRamblierComingSoon();
-    }
-
-    document.addEventListener('shopify:section:load', initRamblierComingSoon);
-  })();
-</script>
+      document.addEventListener('shopify:section:load', initRamblierComingSoon);
+    })();
+  </script>
 
   <div class="ramblier-coming-soon__bg"></div>
 
@@ -195,11 +195,14 @@
         {% endif %}
 
         <span class="ramblier-coming-soon__rotating-wrap">
+          <span class="js-ramblier-rotating-word ramblier-coming-soon__rotating-word">
             {% if section.blocks.size > 0 and section.blocks.first.settings.word != blank %}
               {{ section.blocks.first.settings.word }}
             {% else %}
               {{ section.settings.fallback_rotating_word }}
             {% endif %}
+          </span>
+
           <span class="ramblier-coming-soon__drawn-underline" aria-hidden="true">
             <svg viewBox="0 0 154 7" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -229,7 +232,9 @@
             {{ section.settings.klaviyo_embed }}
           </div>
         {% else %}
-          <div class="ramblier-coming-soon__placeholder">Paste your Klaviyo embed code in the section settings.</div>
+          <div class="ramblier-coming-soon__placeholder">
+            Paste your Klaviyo embed code in the section settings.
+          </div>
         {% endif %}
       </div>
 
@@ -296,146 +301,146 @@
   </div>
 
   <style>
-            #{{ section_id }} {
-              position: relative;
-              overflow: hidden;
-              min-height: var(--rcs-section-height);
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              background: var(--rcs-bg);
-              color: var(--rcs-text);
-              padding-top: var(--rcs-top-spacing);
-              padding-bottom: var(--rcs-bottom-spacing);
-            }
+    #{{ section_id }} {
+      position: relative;
+      overflow: hidden;
+      min-height: var(--rcs-section-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--rcs-bg);
+      color: var(--rcs-text);
+      padding-top: var(--rcs-top-spacing);
+      padding-bottom: var(--rcs-bottom-spacing);
+    }
 
-            #{{ section_id }} .page-width {
-              width: 100%;
-              max-width: var(--rcs-page-width);
-              margin: 0 auto;
-              padding-left: 24px;
-              padding-right: 24px;
-            }
+    #{{ section_id }} .page-width {
+      width: 100%;
+      max-width: var(--rcs-page-width);
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__bg {
-              position: absolute;
-              inset: 0;
-              background: linear-gradient(180deg, var(--rcs-bg) 0%, var(--rcs-bg-overlay) 100%);
-              z-index: 0;
-            }
+    #{{ section_id }} .ramblier-coming-soon__bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, var(--rcs-bg) 0%, var(--rcs-bg-overlay) 100%);
+      z-index: 0;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__pattern-wrap {
-              position: absolute;
-              inset: 0;
-              z-index: 1;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              pointer-events: none;
-              overflow: hidden;
-            }
+    #{{ section_id }} .ramblier-coming-soon__pattern-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      overflow: hidden;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__pattern-image {
-              width: var(--rcs-pattern-width);
-              max-width: none;
-              height: auto;
-              display: block;
-              opacity: var(--rcs-pattern-opacity);
-              object-fit: contain;
-              object-position: center;
-              filter: grayscale(1) brightness(0.8);
-              mix-blend-mode: screen;
-            }
+    #{{ section_id }} .ramblier-coming-soon__pattern-image {
+      width: var(--rcs-pattern-width);
+      max-width: none;
+      height: auto;
+      display: block;
+      opacity: var(--rcs-pattern-opacity);
+      object-fit: contain;
+      object-position: center;
+      filter: grayscale(1) brightness(0.8);
+      mix-blend-mode: screen;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__inner {
-              position: relative;
-              z-index: 2;
-              width: 100%;
-            }
+    #{{ section_id }} .ramblier-coming-soon__inner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__content {
-              width: 100%;
-              max-width: var(--rcs-content-width);
-              margin: 0 auto;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              text-align: center;
-            }
+    #{{ section_id }} .ramblier-coming-soon__content {
+      width: 100%;
+      max-width: var(--rcs-content-width);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__logo-wrap {
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              margin-bottom: 26px;
-            }
+    #{{ section_id }} .ramblier-coming-soon__logo-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 26px;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__logo-image {
-              width: min(100%, var(--rcs-logo-width));
-              height: auto;
-              display: block;
-            }
+    #{{ section_id }} .ramblier-coming-soon__logo-image {
+      width: min(100%, var(--rcs-logo-width));
+      height: auto;
+      display: block;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__logo-text {
-              margin-bottom: 26px;
-              color: var(--rcs-text);
-              font-size: 64px;
-              line-height: 0.95;
-              font-weight: 700;
-              letter-spacing: 0.01em;
-              text-transform: uppercase;
-            }
+    #{{ section_id }} .ramblier-coming-soon__logo-text {
+      margin-bottom: 26px;
+      color: var(--rcs-text);
+      font-size: 64px;
+      line-height: 0.95;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__eyebrow {
-              margin: 0 0 18px;
-              color: var(--rcs-text);
-              font-size: var(--rcs-eyebrow-size);
-              line-height: 1;
-              letter-spacing: 0.18em;
-              text-transform: uppercase;
-              opacity: 0.95;
-            }
+    #{{ section_id }} .ramblier-coming-soon__eyebrow {
+      margin: 0 0 18px;
+      color: var(--rcs-text);
+      font-size: var(--rcs-eyebrow-size);
+      line-height: 1;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.95;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__heading {
-              margin: 0;
-              color: var(--rcs-text);
-              font-size: var(--rcs-heading-size);
-              line-height: 1;
-              letter-spacing: 0;
-              display: flex;
-              align-items: center;
-              flex-wrap: wrap;
-              justify-content: center;
-              gap: 0.2em 0.26em;
-              font-family: "Noto Serif";
-            }
+    #{{ section_id }} .ramblier-coming-soon__heading {
+      margin: 0;
+      color: var(--rcs-text);
+      font-size: var(--rcs-heading-size);
+      line-height: 1;
+      letter-spacing: 0;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.2em 0.26em;
+      font-family: "Noto Serif";
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__rotating-wrap {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: fit-content;
-  max-width: 100%;
-  overflow: visible;
-  padding: 0 0.08em;
-}
+    #{{ section_id }} .ramblier-coming-soon__rotating-wrap {
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: fit-content;
+      max-width: 100%;
+      overflow: visible;
+      padding: 0 0.08em;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__rotating-word {
-  display: inline-block;
-  width: auto;
-  min-width: 0;
-  font-size: var(--rcs-rotating-word-size);
-  line-height: 0.9;
-  font-style: italic;
-  font-weight: 500;
-  text-transform: none;
-  white-space: nowrap;
-  vertical-align: baseline;
-}
+    #{{ section_id }} .ramblier-coming-soon__rotating-word {
+      display: inline-block;
+      width: auto;
+      min-width: 0;
+      font-size: var(--rcs-rotating-word-size);
+      line-height: 0.9;
+      font-style: italic;
+      font-weight: 500;
+      text-transform: none;
+      white-space: nowrap;
+      vertical-align: baseline;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__rotating-word::after {
+    #{{ section_id }} .ramblier-coming-soon__rotating-word::after {
       content: '';
       display: inline-block;
       width: 1px;
@@ -455,265 +460,266 @@
       }
     }
 
-            #{{ section_id }} .ramblier-coming-soon__drawn-underline {
-  display: block;
-  width: 100%;
-  line-height: 0;
-  margin-top: 2px;
-}
+    #{{ section_id }} .ramblier-coming-soon__drawn-underline {
+      display: block;
+      width: 100%;
+      line-height: 0;
+      margin-top: 2px;
+    }
 
-#{{ section_id }} .ramblier-coming-soon__drawn-underline svg {
-  width: 100%;
-  height: auto;
-  display: block;
-  color: var(--rcs-line);
-}
+    #{{ section_id }} .ramblier-coming-soon__drawn-underline svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      color: var(--rcs-line);
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__subheading {
-              margin-top: 16px;
-              color: var(--rcs-text);
-              font-size: var(--rcs-subheading-size);
-              line-height: 1.35;
-              opacity: 0.95;
-              max-width: 760px;
-            }
+    #{{ section_id }} .ramblier-coming-soon__subheading {
+      margin-top: 16px;
+      color: var(--rcs-text);
+      font-size: var(--rcs-subheading-size);
+      line-height: 1.35;
+      opacity: 0.95;
+      max-width: 760px;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__subheading p {
-              margin: 0;
-            }
+    #{{ section_id }} .ramblier-coming-soon__subheading p {
+      margin: 0;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__form-wrap {
-              width: 100%;
-              margin-top: 34px;
-            }
+    #{{ section_id }} .ramblier-coming-soon__form-wrap {
+      width: 100%;
+      margin-top: 34px;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__placeholder {
-              width: 100%;
-              padding: 18px 20px;
-              border: 1px dashed rgba(255, 255, 255, 0.35);
-              border-radius: var(--rcs-border-radius);
-              color: var(--rcs-muted);
-              font-size: 15px;
-              line-height: 1.5;
-              text-align: center;
-            }
+    #{{ section_id }} .ramblier-coming-soon__placeholder {
+      width: 100%;
+      padding: 18px 20px;
+      border: 1px dashed rgba(255, 255, 255, 0.35);
+      border-radius: var(--rcs-border-radius);
+      color: var(--rcs-muted);
+      font-size: 15px;
+      line-height: 1.5;
+      text-align: center;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__klaviyo {
-              width: 100%;
-            }
+    #{{ section_id }} .ramblier-coming-soon__klaviyo {
+      width: 100%;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__klaviyo > div,
-            #{{ section_id }} .ramblier-coming-soon__klaviyo > div > div,
-            #{{ section_id }} .ramblier-coming-soon__klaviyo form {
-              width: 100% !important;
-              max-width: 100% !important;
-            }
+    #{{ section_id }} .ramblier-coming-soon__klaviyo > div,
+    #{{ section_id }} .ramblier-coming-soon__klaviyo > div > div,
+    #{{ section_id }} .ramblier-coming-soon__klaviyo form {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__klaviyo [data-testid="form-row"],
-            #{{ section_id }} .ramblier-coming-soon__klaviyo .needsclick.kl-private-reset-css-Xuajs1,
-            #{{ section_id }} .ramblier-coming-soon__klaviyo .klaviyo-form {
-              width: 100% !important;
-            }
+    #{{ section_id }} .ramblier-coming-soon__klaviyo [data-testid="form-row"],
+    #{{ section_id }} .ramblier-coming-soon__klaviyo .needsclick.kl-private-reset-css-Xuajs1,
+    #{{ section_id }} .ramblier-coming-soon__klaviyo .klaviyo-form {
+      width: 100% !important;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__klaviyo form,
-            #{{ section_id }} .ramblier-coming-soon__klaviyo .go3176171171,
-            #{{ section_id }} .ramblier-coming-soon__klaviyo .go3176171171 form {
-              background: transparent !important;
-              box-shadow: none !important;
-              border: 0 !important;
-              padding: 0 !important;
-              margin: 0 !important;
-            }
+    #{{ section_id }} .ramblier-coming-soon__klaviyo form,
+    #{{ section_id }} .ramblier-coming-soon__klaviyo .go3176171171,
+    #{{ section_id }} .ramblier-coming-soon__klaviyo .go3176171171 form {
+      background: transparent !important;
+      box-shadow: none !important;
+      border: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="email"],
-            #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="text"],
-            #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="search"] {
-              width: 100% !important;
-              min-height: 42px !important;
-              background: transparent !important;
-              color: var(--rcs-text) !important;
-              border: 0 !important;
-              border-bottom: 1px solid var(--rcs-line) !important;
-              border-radius: 0 !important;
-              box-shadow: none !important;
-              outline: none !important;
-              padding: 0 120px 12px 0 !important;
-              margin: 0 !important;
-              font-size: var(--rcs-form-input-size) !important;
-              line-height: 1.2 !important;
-              text-align: left !important;
-              appearance: none !important;
-              -webkit-appearance: none !important;
-            }
+    #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="email"],
+    #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="text"],
+    #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="search"] {
+      width: 100% !important;
+      min-height: 42px !important;
+      background: transparent !important;
+      color: var(--rcs-text) !important;
+      border: 0 !important;
+      border-bottom: 1px solid var(--rcs-line) !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      outline: none !important;
+      padding: 0 120px 12px 0 !important;
+      margin: 0 !important;
+      font-size: var(--rcs-form-input-size) !important;
+      line-height: 1.2 !important;
+      text-align: left !important;
+      appearance: none !important;
+      -webkit-appearance: none !important;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="email"]::placeholder,
-            #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="text"]::placeholder,
-            #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="search"]::placeholder {
-              color: var(--rcs-muted) !important;
-              opacity: 1 !important;
-            }
+    #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="email"]::placeholder,
+    #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="text"]::placeholder,
+    #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="search"]::placeholder {
+      color: var(--rcs-muted) !important;
+      opacity: 1 !important;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__klaviyo button,
-            #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="submit"] {
-              background: transparent !important;
-              border: 0 !important;
-              box-shadow: none !important;
-              color: var(--rcs-text) !important;
-              text-transform: uppercase !important;
-              letter-spacing: 0.12em !important;
-              font-size: var(--rcs-form-button-size) !important;
-              line-height: 1 !important;
-              font-weight: 600 !important;
-              padding: 0 !important;
-              margin: 0 !important;
-              min-height: auto !important;
-              cursor: pointer !important;
-              transition: opacity 0.2s ease, transform 0.2s ease !important;
-            }
+    #{{ section_id }} .ramblier-coming-soon__klaviyo button,
+    #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="submit"] {
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      color: var(--rcs-text) !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.12em !important;
+      font-size: var(--rcs-form-button-size) !important;
+      line-height: 1 !important;
+      font-weight: 600 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      min-height: auto !important;
+      cursor: pointer !important;
+      transition: opacity 0.2s ease, transform 0.2s ease !important;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__klaviyo button:hover,
-            #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="submit"]:hover {
-              opacity: 0.75 !important;
-              transform: translateY(-1px) !important;
-            }
+    #{{ section_id }} .ramblier-coming-soon__klaviyo button:hover,
+    #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="submit"]:hover {
+      opacity: 0.75 !important;
+      transform: translateY(-1px) !important;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__klaviyo p,
-            #{{ section_id }} .ramblier-coming-soon__klaviyo span,
-            #{{ section_id }} .ramblier-coming-soon__klaviyo label,
-            #{{ section_id }} .ramblier-coming-soon__klaviyo div {
-              color: inherit;
-            }
+    #{{ section_id }} .ramblier-coming-soon__klaviyo p,
+    #{{ section_id }} .ramblier-coming-soon__klaviyo span,
+    #{{ section_id }} .ramblier-coming-soon__klaviyo label,
+    #{{ section_id }} .ramblier-coming-soon__klaviyo div {
+      color: inherit;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__klaviyo [role="status"],
-            #{{ section_id }} .ramblier-coming-soon__klaviyo .success_message,
-            #{{ section_id }} .ramblier-coming-soon__klaviyo .error_message {
-              margin-top: 16px !important;
-              font-size: 14px !important;
-              line-height: 1.5 !important;
-              text-align: center !important;
-            }
+    #{{ section_id }} .ramblier-coming-soon__klaviyo [role="status"],
+    #{{ section_id }} .ramblier-coming-soon__klaviyo .success_message,
+    #{{ section_id }} .ramblier-coming-soon__klaviyo .error_message {
+      margin-top: 16px !important;
+      font-size: 14px !important;
+      line-height: 1.5 !important;
+      text-align: center !important;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__socials {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              gap: 14px;
-              flex-wrap: wrap;
-              margin-top: 34px;
-            }
+    #{{ section_id }} .ramblier-coming-soon__socials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__social-link {
-              display: inline-flex;
-              align-items: center;
-              justify-content: center;
-              color: var(--rcs-text);
-              text-decoration: none;
-              transition: opacity 0.2s ease, transform 0.2s ease;
-            }
+    #{{ section_id }} .ramblier-coming-soon__social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--rcs-text);
+      text-decoration: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__social-link:hover {
-              opacity: 0.75;
-              transform: translateY(-1px);
-            }
+    #{{ section_id }} .ramblier-coming-soon__social-link:hover {
+      opacity: 0.75;
+      transform: translateY(-1px);
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__social-shape {
-              width: var(--rcs-social-size);
-              height: calc(var(--rcs-social-size) * 1.08);
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              border: 1px solid var(--rcs-line);
-              clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
-            }
+    #{{ section_id }} .ramblier-coming-soon__social-shape {
+      width: var(--rcs-social-size);
+      height: calc(var(--rcs-social-size) * 1.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--rcs-line);
+      clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
+    }
 
-            #{{ section_id }} .ramblier-coming-soon__social-shape svg {
-              width: var(--rcs-social-icon-size);
-              height: var(--rcs-social-icon-size);
-              display: block;
-              color: currentColor;
-              flex: 0 0 auto;
-            }
+    #{{ section_id }} .ramblier-coming-soon__social-shape svg {
+      width: var(--rcs-social-icon-size);
+      height: var(--rcs-social-icon-size);
+      display: block;
+      color: currentColor;
+      flex: 0 0 auto;
+    }
 
-            @media screen and (max-width: 989px) {
-              #{{ section_id }} {
-                min-height: auto;
-              }
+    @media screen and (max-width: 989px) {
+      #{{ section_id }} {
+        min-height: auto;
+      }
 
-              #{{ section_id }} .ramblier-coming-soon__pattern-image {
-                width: 180%;
-              }
+      #{{ section_id }} .ramblier-coming-soon__pattern-image {
+        width: 180%;
+      }
 
-              #{{ section_id }} .ramblier-coming-soon__heading {
-                font-size: var(--rcs-heading-mobile-size);
-                line-height: 1.02;
-              }
+      #{{ section_id }} .ramblier-coming-soon__heading {
+        font-size: var(--rcs-heading-mobile-size);
+        line-height: 1.02;
+      }
 
-              #{{ section_id }} .ramblier-coming-soon__rotating-word {
-                font-size: var(--rcs-rotating-word-mobile-size);
-              }
+      #{{ section_id }} .ramblier-coming-soon__rotating-word {
+        font-size: var(--rcs-rotating-word-mobile-size);
+      }
 
-              #{{ section_id }} .ramblier-coming-soon__logo-text {
-                font-size: 48px;
-              }
-            }
+      #{{ section_id }} .ramblier-coming-soon__logo-text {
+        font-size: 48px;
+      }
+    }
 
-            @media screen and (max-width: 749px) {
-              #{{ section_id }} .page-width {
-                padding-left: 20px;
-                padding-right: 20px;
-              }
+    @media screen and (max-width: 749px) {
+      #{{ section_id }} .page-width {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
 
-              #{{ section_id }} .ramblier-coming-soon__logo-wrap {
-                margin-bottom: 22px;
-              }
+      #{{ section_id }} .ramblier-coming-soon__logo-wrap {
+        margin-bottom: 22px;
+      }
 
-              #{{ section_id }} .ramblier-coming-soon__eyebrow {
-                margin-bottom: 14px;
-                letter-spacing: 0.16em;
-              }
+      #{{ section_id }} .ramblier-coming-soon__eyebrow {
+        margin-bottom: 14px;
+        letter-spacing: 0.16em;
+      }
 
-              #{{ section_id }} .ramblier-coming-soon__subheading {
-                font-size: var(--rcs-subheading-mobile-size);
-              }
+      #{{ section_id }} .ramblier-coming-soon__subheading {
+        font-size: var(--rcs-subheading-mobile-size);
+      }
 
-              #{{ section_id }} .ramblier-coming-soon__pattern-image {
-                width: 220%;
-              }
+      #{{ section_id }} .ramblier-coming-soon__pattern-image {
+        width: 220%;
+      }
 
-              #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="email"],
-              #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="text"],
-              #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="search"] {
-                padding-right: 94px !important;
-                min-height: 38px !important;
-              }
+      #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="email"],
+      #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="text"],
+      #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="search"] {
+        padding-right: 94px !important;
+        min-height: 38px !important;
+      }
 
-              #{{ section_id }} .ramblier-coming-soon__socials {
-                margin-top: 28px;
-                gap: 12px;
-              }
-            }
+      #{{ section_id }} .ramblier-coming-soon__socials {
+        margin-top: 28px;
+        gap: 12px;
+      }
+    }
 
-            @media screen and (max-width: 480px) {
-              #{{ section_id }} .ramblier-coming-soon__pattern-image {
-                width: 260%;
-              }
+    @media screen and (max-width: 480px) {
+      #{{ section_id }} .ramblier-coming-soon__pattern-image {
+        width: 260%;
+      }
 
-              #{{ section_id }} .ramblier-coming-soon__logo-text {
-                font-size: 42px;
-              }
+      #{{ section_id }} .ramblier-coming-soon__logo-text {
+        font-size: 42px;
+      }
 
-              #{{ section_id }} .ramblier-coming-soon__heading {
-                font-size: 34px;
-              }
+      #{{ section_id }} .ramblier-coming-soon__heading {
+        font-size: 34px;
+      }
 
-              #{{ section_id }} .ramblier-coming-soon__rotating-word {
-                min-width: 3ch;
-              }
+      #{{ section_id }} .ramblier-coming-soon__rotating-word {
+        font-size: var(--rcs-rotating-word-mobile-size);
+        min-width: 0;
+      }
 
-              #{{ section_id }} .ramblier-coming-soon__subheading {
-                font-size: 20px;
-              }
-            }
+      #{{ section_id }} .ramblier-coming-soon__subheading {
+        font-size: 20px;
+      }
+    }
   </style>
 </section>
 
