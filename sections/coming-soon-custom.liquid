@@ -16,8 +16,9 @@
     --rcs-section-height: {{ section.settings.section_height }}vh;
     --rcs-content-width: {{ section.settings.content_max_width }}px;
     --rcs-logo-width: {{ section.settings.logo_width }}px;
-    --rcs-pattern-width: {{ section.settings.pattern_width }}%;
-    --rcs-pattern-opacity: {{ section.settings.pattern_opacity | divided_by: 100.0 }};
+    --rcs-bg-image-scale: {{ section.settings.bg_image_scale | divided_by: 100.0 }};
+    --rcs-bg-image-opacity: {{ section.settings.bg_image_opacity | divided_by: 100.0 }};
+    --rcs-bg-image-blur: {{ section.settings.bg_image_blur }}px;
     --rcs-top-spacing: {{ section.settings.top_spacing }}px;
     --rcs-bottom-spacing: {{ section.settings.bottom_spacing }}px;
     --rcs-eyebrow-size: {{ section.settings.eyebrow_size }}px;
@@ -149,13 +150,13 @@
 
   <div class="ramblier-coming-soon__bg"></div>
 
-  {% if section.settings.pattern_image != blank %}
-    <div class="ramblier-coming-soon__pattern-wrap" aria-hidden="true">
+  {% if section.settings.background_image != blank %}
+    <div class="ramblier-coming-soon__bg-image-wrap" aria-hidden="true">
       {{
-        section.settings.pattern_image
+        section.settings.background_image
         | image_url: width: 2800
         | image_tag:
-          class: 'ramblier-coming-soon__pattern-image',
+          class: 'ramblier-coming-soon__bg-image',
           loading: 'lazy',
           widths: '900, 1200, 1600, 2000, 2400, 2800',
           sizes: '100vw'
@@ -192,7 +193,8 @@
       <h1 class="ramblier-coming-soon__heading">
         <span class="ramblier-coming-soon__heading-static">
           Shop exclusive merch
-          </span>
+        </span>
+
         {% if section.settings.heading_prefix != blank %}
           <span class="ramblier-coming-soon__heading-static">
             {{ section.settings.heading_prefix }}
@@ -336,27 +338,23 @@
       z-index: 0;
     }
 
-    #{{ section_id }} .ramblier-coming-soon__pattern-wrap {
+    #{{ section_id }} .ramblier-coming-soon__bg-image-wrap {
       position: absolute;
-      inset: 0;
+      inset: -6%;
       z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
       overflow: hidden;
+      pointer-events: none;
     }
 
-    #{{ section_id }} .ramblier-coming-soon__pattern-image {
-      width: var(--rcs-pattern-width);
-      max-width: none;
-      height: auto;
+    #{{ section_id }} .ramblier-coming-soon__bg-image {
+      width: 100%;
+      height: 100%;
       display: block;
-      opacity: var(--rcs-pattern-opacity);
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
-      filter: grayscale(1) brightness(0.8);
-      mix-blend-mode: screen;
+      transform: scale(var(--rcs-bg-image-scale));
+      opacity: var(--rcs-bg-image-opacity);
+      filter: blur(var(--rcs-bg-image-blur));
     }
 
     #{{ section_id }} .ramblier-coming-soon__inner {
@@ -422,16 +420,16 @@
       font-family: "Noto Serif";
     }
 
-#{{ section_id }} .ramblier-coming-soon__heading-static,
-#{{ section_id }} .ramblier-coming-soon__heading-dynamic,
-#{{ section_id }} .ramblier-coming-soon__heading-suffix {
-  display: inline-flex;
-  align-items: center;
-}
+    #{{ section_id }} .ramblier-coming-soon__heading-static,
+    #{{ section_id }} .ramblier-coming-soon__heading-dynamic,
+    #{{ section_id }} .ramblier-coming-soon__heading-suffix {
+      display: inline-flex;
+      align-items: center;
+    }
 
-#{{ section_id }} .ramblier-coming-soon__heading-dynamic {
-  flex: 0 0 auto;
-}
+    #{{ section_id }} .ramblier-coming-soon__heading-dynamic {
+      flex: 0 0 auto;
+    }
 
     #{{ section_id }} .ramblier-coming-soon__rotating-wrap {
       position: relative;
@@ -645,7 +643,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--rcs-line);
+      border: 1.5px solid var(--rcs-line);
+      box-sizing: border-box;
+      color: var(--rcs-text);
+      background: transparent;
       clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
     }
 
@@ -660,10 +661,6 @@
     @media screen and (max-width: 989px) {
       #{{ section_id }} {
         min-height: auto;
-      }
-
-      #{{ section_id }} .ramblier-coming-soon__pattern-image {
-        width: 180%;
       }
 
       #{{ section_id }} .ramblier-coming-soon__heading {
@@ -699,10 +696,6 @@
         font-size: var(--rcs-subheading-mobile-size);
       }
 
-      #{{ section_id }} .ramblier-coming-soon__pattern-image {
-        width: 220%;
-      }
-
       #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="email"],
       #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="text"],
       #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="search"] {
@@ -717,10 +710,6 @@
     }
 
     @media screen and (max-width: 480px) {
-      #{{ section_id }} .ramblier-coming-soon__pattern-image {
-        width: 260%;
-      }
-
       #{{ section_id }} .ramblier-coming-soon__logo-text {
         font-size: 42px;
       }
@@ -758,8 +747,8 @@
     },
     {
       "type": "image_picker",
-      "id": "pattern_image",
-      "label": "Pattern image"
+      "id": "background_image",
+      "label": "Background image"
     },
     {
       "type": "text",
@@ -771,7 +760,7 @@
       "type": "text",
       "id": "heading_prefix",
       "label": "Heading prefix",
-      "default": "Exclusive merch for"
+      "default": "for"
     },
     {
       "type": "text",
@@ -893,23 +882,33 @@
     },
     {
       "type": "range",
-      "id": "pattern_width",
+      "id": "bg_image_scale",
       "min": 100,
-      "max": 220,
-      "step": 10,
+      "max": 140,
+      "step": 1,
       "unit": "%",
-      "label": "Pattern width",
-      "default": 150
+      "label": "Background image scale",
+      "default": 108
     },
     {
       "type": "range",
-      "id": "pattern_opacity",
+      "id": "bg_image_opacity",
       "min": 5,
       "max": 100,
       "step": 1,
       "unit": "%",
-      "label": "Pattern opacity",
-      "default": 20
+      "label": "Background image opacity",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "bg_image_blur",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Background image blur",
+      "default": 14
     },
     {
       "type": "range",
