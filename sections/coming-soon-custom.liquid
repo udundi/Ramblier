@@ -195,13 +195,11 @@
         {% endif %}
 
         <span class="ramblier-coming-soon__rotating-wrap">
-          <span class="js-ramblier-rotating-word ramblier-coming-soon__rotating-word">
             {% if section.blocks.size > 0 and section.blocks.first.settings.word != blank %}
               {{ section.blocks.first.settings.word }}
             {% else %}
               {{ section.settings.fallback_rotating_word }}
             {% endif %}
-          </span>
           <span class="ramblier-coming-soon__drawn-underline" aria-hidden="true">
             <svg viewBox="0 0 154 7" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
