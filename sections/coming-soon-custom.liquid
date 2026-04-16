@@ -191,32 +191,38 @@
 
       <h1 class="ramblier-coming-soon__heading">
         {% if section.settings.heading_prefix != blank %}
-          <span>{{ section.settings.heading_prefix }}</span>
+          <span class="ramblier-coming-soon__heading-static">
+            {{ section.settings.heading_prefix }}
+          </span>
         {% endif %}
 
-        <span class="ramblier-coming-soon__rotating-wrap">
-          <span class="js-ramblier-rotating-word ramblier-coming-soon__rotating-word">
-            {% if section.blocks.size > 0 and section.blocks.first.settings.word != blank %}
-              {{ section.blocks.first.settings.word }}
-            {% else %}
-              {{ section.settings.fallback_rotating_word }}
-            {% endif %}
-          </span>
+        <span class="ramblier-coming-soon__heading-dynamic">
+          <span class="ramblier-coming-soon__rotating-wrap">
+            <span class="js-ramblier-rotating-word ramblier-coming-soon__rotating-word">
+              {% if section.blocks.size > 0 and section.blocks.first.settings.word != blank %}
+                {{ section.blocks.first.settings.word }}
+              {% else %}
+                {{ section.settings.fallback_rotating_word }}
+              {% endif %}
+            </span>
 
-          <span class="ramblier-coming-soon__drawn-underline" aria-hidden="true">
-            <svg viewBox="0 0 154 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M1.40234 0.980347C1.7228 4.34032 24.9089 2.12223 26.4746 2.12223C58.1135 2.12223 89.7524 2.12223 121.391 2.12223C131.572 2.12223 141.752 2.12223 151.933 2.12223C154.127 2.12223 153.06 2.66978 151.643 3.20067C142.457 6.6403 131.236 3.26411 121.633 3.26411C102.55 3.26411 83.5991 4.40599 64.5187 4.40599C60.0335 4.40599 55.5482 4.40599 51.0629 4.40599C47.9483 4.40599 44.093 8.1182 44.093 2.12223"
-                stroke="currentColor"
-                stroke-width="1.27735"
-                stroke-linecap="round"
-              />
-            </svg>
+            <span class="ramblier-coming-soon__drawn-underline" aria-hidden="true">
+              <svg viewBox="0 0 154 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M1.40234 0.980347C1.7228 4.34032 24.9089 2.12223 26.4746 2.12223C58.1135 2.12223 89.7524 2.12223 121.391 2.12223C131.572 2.12223 141.752 2.12223 151.933 2.12223C154.127 2.12223 153.06 2.66978 151.643 3.20067C142.457 6.6403 131.236 3.26411 121.633 3.26411C102.55 3.26411 83.5991 4.40599 64.5187 4.40599C60.0335 4.40599 55.5482 4.40599 51.0629 4.40599C47.9483 4.40599 44.093 8.1182 44.093 2.12223"
+                  stroke="currentColor"
+                  stroke-width="1.27735"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
           </span>
         </span>
 
         {% if section.settings.heading_suffix != blank %}
-          <span>{{ section.settings.heading_suffix }}</span>
+          <span class="ramblier-coming-soon__heading-suffix">
+            {{ section.settings.heading_suffix }}
+          </span>
         {% endif %}
       </h1>
 
@@ -232,9 +238,7 @@
             {{ section.settings.klaviyo_embed }}
           </div>
         {% else %}
-          <div class="ramblier-coming-soon__placeholder">
-            Paste your Klaviyo embed code in the section settings.
-          </div>
+          <div class="ramblier-coming-soon__placeholder">Paste your Klaviyo embed code in the section settings.</div>
         {% endif %}
       </div>
 
