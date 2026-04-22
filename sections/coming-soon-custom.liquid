@@ -457,17 +457,19 @@
 
   <style>
     #{{ section_id }} {
-      position: relative;
-      overflow: hidden;
-      min-height: var(--rcs-section-height);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--rcs-bg);
-      color: var(--rcs-text);
-      padding-top: var(--rcs-top-spacing);
-      padding-bottom: var(--rcs-bottom-spacing);
-    }
+  position: relative;
+  overflow: hidden;
+  min-height: var(--rcs-section-height);
+  min-height: calc(var(--rcs-section-height) * 1svh);
+  min-height: calc(var(--rcs-section-height) * 1dvh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--rcs-bg);
+  color: var(--rcs-text);
+  padding-top: var(--rcs-top-spacing);
+  padding-bottom: var(--rcs-bottom-spacing);
+}
 
     #{{ section_id }} .page-width {
       width: 100%;
@@ -794,10 +796,6 @@
     }
 
     @media screen and (max-width: 989px) {
-      #{{ section_id }} {
-        min-height: auto;
-      }
-
       #{{ section_id }} .ramblier-coming-soon__heading {
         font-size: var(--rcs-heading-mobile-size);
         line-height: 1.02;
