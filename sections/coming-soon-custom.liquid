@@ -1,6 +1,5 @@
 {% liquid
   assign section_id = 'ramblier-coming-soon-' | append: section.id
-  assign rotating_words_count = section.blocks.size
 %}
 
 <section
@@ -37,14 +36,14 @@
 >
   <script>
     (() => {
-      const initRamblierComingSoon = () => {
+      const initRamblierComingSoon = (event) => {
         const section = document.getElementById('{{ section_id }}');
-        if (!section || section.dataset.rotatorInitialized === 'true') return;
+        if (!section || section.dataset.ramblierInitialized === 'true') return;
+
+        section.dataset.ramblierInitialized = 'true';
 
         const rotatingWord = section.querySelector('.js-ramblier-rotating-word');
         const rotatingWrap = section.querySelector('.ramblier-coming-soon__rotating-wrap');
-
-        if (!rotatingWord) return;
 
         const words = [];
         {% for block in section.blocks %}
@@ -53,89 +52,233 @@
           {% endif %}
         {% endfor %}
 
-        if (!words.length) return;
+        if (rotatingWord && words.length) {
+          const holdDelay = {{ section.settings.word_switch_interval | times: 1000 }};
+          const typingSpeed = 90;
+          const deletingSpeed = 45;
 
-        const holdDelay = {{ section.settings.word_switch_interval | times: 1000 }};
-        const typingSpeed = 90;
-        const deletingSpeed = 45;
+          let currentIndex = 0;
+          let currentTimeout = null;
+          let isStopped = false;
 
-        let currentIndex = 0;
-        let currentTimeout = null;
-        let isStopped = false;
+          const clearCurrentTimeout = () => {
+            if (currentTimeout) {
+              window.clearTimeout(currentTimeout);
+              currentTimeout = null;
+            }
+          };
 
-        const clearCurrentTimeout = () => {
-          if (currentTimeout) {
-            window.clearTimeout(currentTimeout);
-            currentTimeout = null;
+          const syncRotatingWidth = () => {
+            if (!rotatingWrap || !rotatingWord) return;
+            rotatingWrap.style.width = rotatingWord.offsetWidth + 'px';
+          };
+
+          const typeWord = (word, charIndex = 0) => {
+            if (isStopped) return;
+
+            rotatingWord.textContent = word.slice(0, charIndex);
+            syncRotatingWidth();
+
+            if (charIndex < word.length) {
+              currentTimeout = window.setTimeout(() => {
+                typeWord(word, charIndex + 1);
+              }, typingSpeed);
+            } else {
+              currentTimeout = window.setTimeout(() => {
+                deleteWord(word, word.length);
+              }, holdDelay);
+            }
+          };
+
+          const deleteWord = (word, charIndex) => {
+            if (isStopped) return;
+
+            rotatingWord.textContent = word.slice(0, charIndex);
+            syncRotatingWidth();
+
+            if (charIndex > 0) {
+              currentTimeout = window.setTimeout(() => {
+                deleteWord(word, charIndex - 1);
+              }, deletingSpeed);
+            } else {
+              currentIndex = (currentIndex + 1) % words.length;
+              currentTimeout = window.setTimeout(() => {
+                typeWord(words[currentIndex], 1);
+              }, 120);
+            }
+          };
+
+          const startRotation = () => {
+            isStopped = false;
+            clearCurrentTimeout();
+
+            const currentWord = words[currentIndex];
+            rotatingWord.textContent = '';
+            syncRotatingWidth();
+            typeWord(currentWord, 1);
+          };
+
+          const stopRotation = () => {
+            isStopped = true;
+            clearCurrentTimeout();
+          };
+
+          document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+              stopRotation();
+            } else {
+              startRotation();
+            }
+          });
+
+          startRotation();
+        }
+
+        const form = section.querySelector('.ramblier-coming-soon__form');
+        const emailInput = section.querySelector('.ramblier-coming-soon__input');
+        const submitButton = section.querySelector('.ramblier-coming-soon__submit');
+        const messageEl = section.querySelector('.ramblier-coming-soon__form-message');
+
+        const companyId = {{ section.settings.klaviyo_public_api_key | json }};
+        const listId = {{ section.settings.klaviyo_list_id | json }};
+        const signupSource = {{ section.settings.waitlist_source | json }};
+        const signupPage = window.location.pathname;
+
+        const setMessage = (message, type = '') => {
+          if (!messageEl) return;
+          messageEl.textContent = message || '';
+          messageEl.classList.remove('is-error', 'is-success');
+          if (type) {
+            messageEl.classList.add(type);
           }
         };
 
-        const syncRotatingWidth = () => {
-          if (!rotatingWrap || !rotatingWord) return;
-          rotatingWrap.style.width = rotatingWord.offsetWidth + 'px';
+        const isValidEmail = (email) => {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         };
 
-        const typeWord = (word, charIndex = 0) => {
-          if (isStopped) return;
+        const createOrUpdateProfile = async (email) => {
+          const response = await fetch(
+            `https://a.klaviyo.com/client/profiles/?company_id=${encodeURIComponent(companyId)}`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'revision': '2026-04-15'
+              },
+              body: JSON.stringify({
+                data: {
+                  type: 'profile',
+                  attributes: {
+                    email: email,
+                    properties: {
+                      signup_source: signupSource,
+                      signup_page: signupPage,
+                      signup_type: 'waitlist'
+                    }
+                  }
+                }
+              })
+            }
+          );
 
-          rotatingWord.textContent = word.slice(0, charIndex);
-          syncRotatingWidth();
-
-          if (charIndex < word.length) {
-            currentTimeout = window.setTimeout(() => {
-              typeWord(word, charIndex + 1);
-            }, typingSpeed);
-          } else {
-            currentTimeout = window.setTimeout(() => {
-              deleteWord(word, word.length);
-            }, holdDelay);
+          if (!response.ok && response.status !== 202) {
+            throw new Error('Profile update failed');
           }
         };
 
-        const deleteWord = (word, charIndex) => {
-          if (isStopped) return;
+        const subscribeProfile = async (email) => {
+          const payload = {
+            data: {
+              type: 'subscription',
+              attributes: {
+                profile: {
+                  data: {
+                    type: 'profile',
+                    attributes: {
+                      email: email,
+                      subscriptions: {
+                        email: {
+                          marketing: {
+                            consent: 'SUBSCRIBED'
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          };
 
-          rotatingWord.textContent = word.slice(0, charIndex);
-          syncRotatingWidth();
+          if (listId) {
+            payload.data.relationships = {
+              list: {
+                data: {
+                  type: 'list',
+                  id: listId
+                }
+              }
+            };
+          }
 
-          if (charIndex > 0) {
-            currentTimeout = window.setTimeout(() => {
-              deleteWord(word, charIndex - 1);
-            }, deletingSpeed);
-          } else {
-            currentIndex = (currentIndex + 1) % words.length;
-            currentTimeout = window.setTimeout(() => {
-              typeWord(words[currentIndex], 1);
-            }, 120);
+          const response = await fetch(
+            `https://a.klaviyo.com/client/subscriptions/?company_id=${encodeURIComponent(companyId)}`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'revision': '2026-04-15'
+              },
+              body: JSON.stringify(payload)
+            }
+          );
+
+          if (!response.ok && response.status !== 202) {
+            throw new Error('Subscription failed');
           }
         };
 
-        const startRotation = () => {
-          isStopped = false;
-          clearCurrentTimeout();
+        if (form && emailInput && submitButton && messageEl) {
+          form.addEventListener('submit', async (event) => {
+            event.preventDefault();
 
-          const currentWord = words[currentIndex];
-          rotatingWord.textContent = '';
-          syncRotatingWidth();
-          typeWord(currentWord, 1);
-        };
+            const email = (emailInput.value || '').trim();
 
-        const stopRotation = () => {
-          isStopped = true;
-          clearCurrentTimeout();
-        };
+            setMessage('');
 
-        section.dataset.rotatorInitialized = 'true';
+            if (!companyId) {
+              setMessage('Add your Klaviyo public API key in the section settings.', 'is-error');
+              return;
+            }
 
-        document.addEventListener('visibilitychange', () => {
-          if (document.hidden) {
-            stopRotation();
-          } else {
-            startRotation();
-          }
-        });
+            if (!listId) {
+              setMessage('Add your Klaviyo list ID in the section settings.', 'is-error');
+              return;
+            }
 
-        startRotation();
+            if (!email || !isValidEmail(email)) {
+              setMessage({{ section.settings.invalid_email_message | json }}, 'is-error');
+              return;
+            }
+
+            form.classList.add('is-submitting');
+            submitButton.setAttribute('aria-busy', 'true');
+
+            try {
+              await createOrUpdateProfile(email);
+              await subscribeProfile(email);
+              form.reset();
+              setMessage({{ section.settings.success_message | json }}, 'is-success');
+            } catch (error) {
+              console.error('Ramblier waitlist submission error:', error);
+              setMessage({{ section.settings.error_message | json }}, 'is-error');
+            } finally {
+              form.classList.remove('is-submitting');
+              submitButton.removeAttribute('aria-busy');
+            }
+          });
+        }
       };
 
       if (document.readyState === 'loading') {
@@ -191,7 +334,9 @@
       {% endif %}
 
       <h1 class="ramblier-coming-soon__heading">
-        <span class="ramblier-coming-soon__heading-static"> Shop exclusive merch </span>
+        <span class="ramblier-coming-soon__heading-static">
+          Shop exclusive merch
+        </span>
 
         {% if section.settings.heading_prefix != blank %}
           <span class="ramblier-coming-soon__heading-static">
@@ -236,13 +381,32 @@
       {% endif %}
 
       <div class="ramblier-coming-soon__form-wrap">
-        {% if section.settings.klaviyo_embed != blank %}
-          <div class="ramblier-coming-soon__klaviyo">
-            {{ section.settings.klaviyo_embed }}
+        <form class="ramblier-coming-soon__form" novalidate>
+          <div class="ramblier-coming-soon__form-row">
+            <input
+              type="email"
+              name="email"
+              class="ramblier-coming-soon__input"
+              placeholder="{{ section.settings.email_placeholder }}"
+              autocomplete="email"
+              required
+            >
+            <button
+              type="submit"
+              class="ramblier-coming-soon__submit"
+            >
+              {{ section.settings.button_label }}
+            </button>
           </div>
-        {% else %}
-          <div class="ramblier-coming-soon__placeholder">Paste your Klaviyo embed code in the section settings.</div>
-        {% endif %}
+
+          {% if section.settings.form_note != blank %}
+            <div class="ramblier-coming-soon__form-note">
+              {{ section.settings.form_note }}
+            </div>
+          {% endif %}
+
+          <div class="ramblier-coming-soon__form-message" aria-live="polite"></div>
+        </form>
       </div>
 
       {% assign has_socials = false %}
@@ -255,6 +419,22 @@
 
       {% if has_socials %}
         <div class="ramblier-coming-soon__socials">
+          {% if section.settings.pinterest_url != blank %}
+            <a
+              href="{{ section.settings.pinterest_url }}"
+              class="ramblier-coming-soon__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Pinterest"
+            >
+              <span class="ramblier-coming-soon__social-shape">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M12.01 2C6.49 2 3 5.61 3 10.27c0 2.7 1.01 5.1 3.18 6 .35.14.67.01.77-.38.07-.28.24-.97.31-1.25.1-.38.06-.51-.21-.83-.58-.68-.96-1.55-.96-2.79 0-3.6 2.69-6.82 7.01-6.82 3.82 0 5.92 2.33 5.92 5.45 0 4.1-1.82 7.55-4.52 7.55-1.49 0-2.6-1.23-2.25-2.74.43-1.79 1.26-3.72 1.26-5.01 0-1.16-.62-2.12-1.91-2.12-1.52 0-2.74 1.57-2.74 3.67 0 1.34.45 2.24.45 2.24l-1.81 7.66c-.54 2.28-.08 5.07-.04 5.35.03.16.22.2.31.08.13-.17 1.8-2.23 2.36-4.29.16-.58.89-3.49.89-3.49.44.83 1.74 1.57 3.12 1.57 4.11 0 6.9-3.75 6.9-8.76C21 5.53 17.2 2 12.01 2Z" fill="currentColor"/>
+                </svg>
+              </span>
+            </a>
+          {% endif %}
+
           {% if section.settings.instagram_url != blank %}
             <a
               href="{{ section.settings.instagram_url }}"
@@ -292,423 +472,413 @@
   </div>
 
   <style>
-        #{{ section_id }} {
-          position: relative;
-          overflow: hidden;
-          min-height: var(--rcs-section-height);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: var(--rcs-bg);
-          color: var(--rcs-text);
-          padding-top: var(--rcs-top-spacing);
-          padding-bottom: var(--rcs-bottom-spacing);
-        }
+    #{{ section_id }} {
+      position: relative;
+      overflow: hidden;
+      min-height: var(--rcs-section-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--rcs-bg);
+      color: var(--rcs-text);
+      padding-top: var(--rcs-top-spacing);
+      padding-bottom: var(--rcs-bottom-spacing);
+    }
 
-        #{{ section_id }} .page-width {
-          width: 100%;
-          max-width: var(--rcs-page-width);
-          margin: 0 auto;
-          padding-left: 24px;
-          padding-right: 24px;
-        }
+    #{{ section_id }} .page-width {
+      width: 100%;
+      max-width: var(--rcs-page-width);
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__bg {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(180deg, var(--rcs-bg) 0%, var(--rcs-bg-overlay) 100%);
-          z-index: 0;
-        }
+    #{{ section_id }} .ramblier-coming-soon__bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, var(--rcs-bg) 0%, var(--rcs-bg-overlay) 100%);
+      z-index: 0;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__bg-image-wrap {
-          position: absolute;
-          inset: -6%;
-          z-index: 1;
-          overflow: hidden;
-          pointer-events: none;
-        }
+    #{{ section_id }} .ramblier-coming-soon__bg-image-wrap {
+      position: absolute;
+      inset: -6%;
+      z-index: 1;
+      overflow: hidden;
+      pointer-events: none;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__bg-image {
-          width: 100%;
-          height: 100%;
-          display: block;
-          object-fit: cover;
-          object-position: center;
-          transform: scale(var(--rcs-bg-image-scale));
-          opacity: var(--rcs-bg-image-opacity);
-          filter: blur(var(--rcs-bg-image-blur));
-        }
+    #{{ section_id }} .ramblier-coming-soon__bg-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(var(--rcs-bg-image-scale));
+      opacity: var(--rcs-bg-image-opacity);
+      filter: blur(var(--rcs-bg-image-blur));
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__inner {
-          position: relative;
-          z-index: 2;
-          width: 100%;
-        }
+    #{{ section_id }} .ramblier-coming-soon__inner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__content {
-          width: 100%;
-          max-width: var(--rcs-content-width);
-          margin: 0 auto;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-        }
+    #{{ section_id }} .ramblier-coming-soon__content {
+      width: 100%;
+      max-width: var(--rcs-content-width);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__logo-wrap {
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          margin-bottom: 26px;
-        }
+    #{{ section_id }} .ramblier-coming-soon__logo-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 26px;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__logo-image {
-          width: min(100%, var(--rcs-logo-width));
-          height: auto;
-          display: block;
-        }
+    #{{ section_id }} .ramblier-coming-soon__logo-image {
+      width: min(100%, var(--rcs-logo-width));
+      height: auto;
+      display: block;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__logo-text {
-          margin-bottom: 26px;
-          color: var(--rcs-text);
-          font-size: 64px;
-          line-height: 0.95;
-          font-weight: 700;
-          letter-spacing: 0.01em;
-          text-transform: uppercase;
-        }
+    #{{ section_id }} .ramblier-coming-soon__logo-text {
+      margin-bottom: 26px;
+      color: var(--rcs-text);
+      font-size: 64px;
+      line-height: 0.95;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__eyebrow {
-          margin: 0 0 18px;
-          color: var(--rcs-text);
-          font-size: var(--rcs-eyebrow-size);
-          line-height: 1;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          opacity: 0.95;
-        }
+    #{{ section_id }} .ramblier-coming-soon__eyebrow {
+      margin: 0 0 18px;
+      color: var(--rcs-text);
+      font-size: var(--rcs-eyebrow-size);
+      line-height: 1;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.95;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__heading {
-          margin: 0;
-          color: var(--rcs-text);
-          font-size: var(--rcs-heading-size);
-          line-height: 1;
-          letter-spacing: 0;
-          display: flex;
-          align-items: center;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 0.2em 0.26em;
-          font-family: "Noto Serif";
-        }
+    #{{ section_id }} .ramblier-coming-soon__heading {
+      margin: 0;
+      color: var(--rcs-text);
+      font-size: var(--rcs-heading-size);
+      line-height: 1;
+      letter-spacing: 0;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.2em 0.26em;
+      font-family: "Noto Serif";
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__heading-static,
-        #{{ section_id }} .ramblier-coming-soon__heading-dynamic,
-        #{{ section_id }} .ramblier-coming-soon__heading-suffix {
-          display: inline-flex;
-          align-items: center;
-        }
+    #{{ section_id }} .ramblier-coming-soon__heading-static,
+    #{{ section_id }} .ramblier-coming-soon__heading-dynamic,
+    #{{ section_id }} .ramblier-coming-soon__heading-suffix {
+      display: inline-flex;
+      align-items: center;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__heading-dynamic {
-          flex: 0 0 auto;
-        }
+    #{{ section_id }} .ramblier-coming-soon__heading-dynamic {
+      flex: 0 0 auto;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__rotating-wrap {
-          position: relative;
-          display: inline-flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: flex-start;
-          width: fit-content;
-          max-width: 100%;
-          overflow: visible;
-          padding: 0 0.08em;
-        }
+    #{{ section_id }} .ramblier-coming-soon__rotating-wrap {
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: fit-content;
+      max-width: 100%;
+      overflow: visible;
+      padding: 0 0.08em;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__rotating-word {
-          display: inline-block;
-          width: auto;
-          min-width: 0;
-          font-size: var(--rcs-rotating-word-size);
-          line-height: 0.9;
-          font-style: italic;
-          font-weight: 500;
-          text-transform: none;
-          white-space: nowrap;
-          vertical-align: baseline;
-          font-family: Dear Jocelyn, cursive;
-        }
+    #{{ section_id }} .ramblier-coming-soon__rotating-word {
+      display: inline-block;
+      width: auto;
+      min-width: 0;
+      font-size: var(--rcs-rotating-word-size);
+      line-height: 0.9;
+      font-style: italic;
+      font-weight: 500;
+      text-transform: none;
+      white-space: nowrap;
+      vertical-align: baseline;
+      font-family: Dear Jocelyn, cursive;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__rotating-word::after {
-          content: '';
-          display: inline-block;
-          width: 1px;
-          height: 0.9em;
-          margin-left: 0.08em;
-          background: currentColor;
-          vertical-align: -0.08em;
-          animation: ramblierComingSoonBlink 0.9s steps(1) infinite;
-        }
+    #{{ section_id }} .ramblier-coming-soon__rotating-word::after {
+      content: '';
+      display: inline-block;
+      width: 1px;
+      height: 0.9em;
+      margin-left: 0.08em;
+      background: currentColor;
+      vertical-align: -0.08em;
+      animation: ramblierComingSoonBlink 0.9s steps(1) infinite;
+    }
 
-        @keyframes ramblierComingSoonBlink {
-          0%, 50% {
-            opacity: 1;
-          }
-          50.01%, 100% {
-            opacity: 0;
-          }
-        }
+    @keyframes ramblierComingSoonBlink {
+      0%, 50% {
+        opacity: 1;
+      }
+      50.01%, 100% {
+        opacity: 0;
+      }
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__drawn-underline {
-          display: block;
-          width: 100%;
-          line-height: 0;
-          margin-top: 2px;
-        }
+    #{{ section_id }} .ramblier-coming-soon__drawn-underline {
+      display: block;
+      width: 100%;
+      line-height: 0;
+      margin-top: 2px;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__drawn-underline svg {
-          width: 100%;
-          height: auto;
-          display: block;
-          color: var(--rcs-line);
-        }
+    #{{ section_id }} .ramblier-coming-soon__drawn-underline svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      color: var(--rcs-line);
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__subheading {
-          margin-top: 16px;
-          color: var(--rcs-text);
-          font-size: var(--rcs-subheading-size);
-          line-height: 1.35;
-          opacity: 0.95;
-          max-width: 760px;
-        }
+    #{{ section_id }} .ramblier-coming-soon__subheading {
+      margin-top: 16px;
+      color: var(--rcs-text);
+      font-size: var(--rcs-subheading-size);
+      line-height: 1.35;
+      opacity: 0.95;
+      max-width: 760px;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__subheading p {
-          margin: 0;
-        }
+    #{{ section_id }} .ramblier-coming-soon__subheading p {
+      margin: 0;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__form-wrap {
-          width: 100%;
-          margin-top: 34px;
-        }
+    #{{ section_id }} .ramblier-coming-soon__form-wrap {
+      width: 100%;
+      margin-top: 34px;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__placeholder {
-          width: 100%;
-          padding: 18px 20px;
-          border: 1px dashed rgba(255, 255, 255, 0.35);
-          border-radius: var(--rcs-border-radius);
-          color: var(--rcs-muted);
-          font-size: 15px;
-          line-height: 1.5;
-          text-align: center;
-        }
+    #{{ section_id }} .ramblier-coming-soon__form {
+      width: 100%;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__klaviyo {
-          width: 100%;
-        }
+    #{{ section_id }} .ramblier-coming-soon__form-row {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--rcs-line);
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__klaviyo > div,
-        #{{ section_id }} .ramblier-coming-soon__klaviyo > div > div,
-        #{{ section_id }} .ramblier-coming-soon__klaviyo form {
-          width: 100% !important;
-          max-width: 100% !important;
-        }
+    #{{ section_id }} .ramblier-coming-soon__input {
+      width: 100%;
+      min-height: 42px;
+      background: transparent;
+      color: var(--rcs-text);
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      outline: none;
+      padding: 0 120px 12px 0;
+      margin: 0;
+      font-size: var(--rcs-form-input-size);
+      line-height: 1.2;
+      text-align: left;
+      appearance: none;
+      -webkit-appearance: none;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__klaviyo [data-testid="form-row"],
-        #{{ section_id }} .ramblier-coming-soon__klaviyo .needsclick.kl-private-reset-css-Xuajs1,
-        #{{ section_id }} .ramblier-coming-soon__klaviyo .klaviyo-form {
-          width: 100% !important;
-        }
+    #{{ section_id }} .ramblier-coming-soon__input::placeholder {
+      color: var(--rcs-muted);
+      opacity: 1;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__klaviyo form,
-        #{{ section_id }} .ramblier-coming-soon__klaviyo .go3176171171,
-        #{{ section_id }} .ramblier-coming-soon__klaviyo .go3176171171 form {
-          background: transparent !important;
-          box-shadow: none !important;
-          border: 0 !important;
-          padding: 0 !important;
-          margin: 0 !important;
-        }
+    #{{ section_id }} .ramblier-coming-soon__submit {
+      position: absolute;
+      right: 0;
+      bottom: 12px;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      color: var(--rcs-text);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: var(--rcs-form-button-size);
+      line-height: 1;
+      font-weight: 600;
+      padding: 0;
+      margin: 0;
+      min-height: auto;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="email"],
-        #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="text"],
-        #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="search"] {
-          width: 100% !important;
-          min-height: 42px !important;
-          background: transparent !important;
-          color: var(--rcs-text) !important;
-          border: 0 !important;
-          border-bottom: 1px solid var(--rcs-line) !important;
-          border-radius: 0 !important;
-          box-shadow: none !important;
-          outline: none !important;
-          padding: 0 120px 12px 0 !important;
-          margin: 0 !important;
-          font-size: var(--rcs-form-input-size) !important;
-          line-height: 1.2 !important;
-          text-align: left !important;
-          appearance: none !important;
-          -webkit-appearance: none !important;
-        }
+    #{{ section_id }} .ramblier-coming-soon__submit:hover {
+      opacity: 0.75;
+      transform: translateY(-1px);
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="email"]::placeholder,
-        #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="text"]::placeholder,
-        #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="search"]::placeholder {
-          color: var(--rcs-muted) !important;
-          opacity: 1 !important;
-        }
+    #{{ section_id }} .ramblier-coming-soon__form.is-submitting .ramblier-coming-soon__submit {
+      opacity: 0.5;
+      pointer-events: none;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__klaviyo button,
-        #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="submit"] {
-          background: transparent !important;
-          border: 0 !important;
-          box-shadow: none !important;
-          color: var(--rcs-text) !important;
-          text-transform: uppercase !important;
-          letter-spacing: 0.12em !important;
-          font-size: var(--rcs-form-button-size) !important;
-          line-height: 1 !important;
-          font-weight: 600 !important;
-          padding: 0 !important;
-          margin: 0 !important;
-          min-height: auto !important;
-          cursor: pointer !important;
-          transition: opacity 0.2s ease, transform 0.2s ease !important;
-        }
+    #{{ section_id }} .ramblier-coming-soon__form-note {
+      margin-top: 12px;
+      color: var(--rcs-muted);
+      font-size: 13px;
+      line-height: 1.5;
+      text-align: center;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__klaviyo button:hover,
-        #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="submit"]:hover {
-          opacity: 0.75 !important;
-          transform: translateY(-1px) !important;
-        }
+    #{{ section_id }} .ramblier-coming-soon__form-note p {
+      margin: 0;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__klaviyo p,
-        #{{ section_id }} .ramblier-coming-soon__klaviyo span,
-        #{{ section_id }} .ramblier-coming-soon__klaviyo label,
-        #{{ section_id }} .ramblier-coming-soon__klaviyo div {
-          color: inherit;
-        }
+    #{{ section_id }} .ramblier-coming-soon__form-message {
+      min-height: 1.5em;
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 1.5;
+      text-align: center;
+      color: var(--rcs-text);
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__klaviyo [role="status"],
-        #{{ section_id }} .ramblier-coming-soon__klaviyo .success_message,
-        #{{ section_id }} .ramblier-coming-soon__klaviyo .error_message {
-          margin-top: 16px !important;
-          font-size: 14px !important;
-          line-height: 1.5 !important;
-          text-align: center !important;
-        }
+    #{{ section_id }} .ramblier-coming-soon__form-message.is-error {
+      color: #ffb3b3;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__socials {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 24px;
-          flex-wrap: wrap;
-          margin-top: 34px;
-        }
+    #{{ section_id }} .ramblier-coming-soon__form-message.is-success {
+      color: var(--rcs-text);
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__social-link {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          color: var(--rcs-text);
-          text-decoration: none;
-          transition: opacity 0.2s ease, transform 0.2s ease;
-        }
+    #{{ section_id }} .ramblier-coming-soon__socials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__social-link:hover {
-          opacity: 0.75;
-          transform: translateY(-1px);
-        }
+    #{{ section_id }} .ramblier-coming-soon__social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--rcs-text);
+      text-decoration: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__social-shape {
-          width: var(--rcs-social-size);
-          height: calc(var(--rcs-social-size));
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 2px solid var(--rcs-line);
-          box-sizing: border-box;
-          color: var(--rcs-text);
-          background: transparent;
-        }
+    #{{ section_id }} .ramblier-coming-soon__social-link:hover {
+      opacity: 0.75;
+      transform: translateY(-1px);
+    }
 
-        #{{ section_id }} .ramblier-coming-soon__social-shape svg {
-          width: var(--rcs-social-icon-size);
-          height: var(--rcs-social-icon-size);
-          display: block;
-          color: currentColor;
-          flex: 0 0 auto;
-        }
+    #{{ section_id }} .ramblier-coming-soon__social-shape {
+      width: var(--rcs-social-size);
+      height: var(--rcs-social-size);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--rcs-line);
+      box-sizing: border-box;
+      color: var(--rcs-text);
+      background: transparent;
+    }
 
-        @media screen and (max-width: 989px) {
-          #{{ section_id }} {
-            min-height: auto;
-          }
+    #{{ section_id }} .ramblier-coming-soon__social-shape svg {
+      width: var(--rcs-social-icon-size);
+      height: var(--rcs-social-icon-size);
+      display: block;
+      color: currentColor;
+      flex: 0 0 auto;
+    }
 
-          #{{ section_id }} .ramblier-coming-soon__heading {
-            font-size: var(--rcs-heading-mobile-size);
-            line-height: 1.02;
-          }
+    @media screen and (max-width: 989px) {
+      #{{ section_id }} {
+        min-height: auto;
+      }
 
-          #{{ section_id }} .ramblier-coming-soon__rotating-word {
-            font-size: var(--rcs-rotating-word-mobile-size);
-          }
+      #{{ section_id }} .ramblier-coming-soon__heading {
+        font-size: var(--rcs-heading-mobile-size);
+        line-height: 1.02;
+      }
 
-          #{{ section_id }} .ramblier-coming-soon__logo-text {
-            font-size: 48px;
-          }
-        }
+      #{{ section_id }} .ramblier-coming-soon__rotating-word {
+        font-size: var(--rcs-rotating-word-mobile-size);
+      }
 
-        @media screen and (max-width: 749px) {
-          #{{ section_id }} .page-width {
-            padding-left: 20px;
-            padding-right: 20px;
-          }
+      #{{ section_id }} .ramblier-coming-soon__logo-text {
+        font-size: 48px;
+      }
+    }
 
-          #{{ section_id }} .ramblier-coming-soon__logo-wrap {
-            margin-bottom: 22px;
-          }
+    @media screen and (max-width: 749px) {
+      #{{ section_id }} .page-width {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
 
-          #{{ section_id }} .ramblier-coming-soon__eyebrow {
-            margin-bottom: 14px;
-            letter-spacing: 0.16em;
-          }
+      #{{ section_id }} .ramblier-coming-soon__logo-wrap {
+        margin-bottom: 22px;
+      }
 
-          #{{ section_id }} .ramblier-coming-soon__subheading {
-            font-size: var(--rcs-subheading-mobile-size);
-          }
+      #{{ section_id }} .ramblier-coming-soon__eyebrow {
+        margin-bottom: 14px;
+        letter-spacing: 0.16em;
+      }
 
-          #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="email"],
-          #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="text"],
-          #{{ section_id }} .ramblier-coming-soon__klaviyo input[type="search"] {
-            padding-right: 94px !important;
-            min-height: 38px !important;
-          }
+      #{{ section_id }} .ramblier-coming-soon__subheading {
+        font-size: var(--rcs-subheading-mobile-size);
+      }
 
-          #{{ section_id }} .ramblier-coming-soon__socials {
-            margin-top: 28px;
-            gap: 12px;
-          }
-        }
+      #{{ section_id }} .ramblier-coming-soon__input {
+        padding-right: 94px;
+        min-height: 38px;
+      }
 
-        @media screen and (max-width: 480px) {
-          #{{ section_id }} .ramblier-coming-soon__logo-text {
-            font-size: 42px;
-          }
+      #{{ section_id }} .ramblier-coming-soon__submit {
+        bottom: 10px;
+      }
 
-          #{{ section_id }} .ramblier-coming-soon__heading {
-            font-size: 34px;
-          }
+      #{{ section_id }} .ramblier-coming-soon__socials {
+        margin-top: 28px;
+        gap: 12px;
+      }
+    }
 
-          #{{ section_id }} .ramblier-coming-soon__rotating-word {
-            font-size: var(--rcs-rotating-word-mobile-size);
-            min-width: 0;
-          }
+    @media screen and (max-width: 480px) {
+      #{{ section_id }} .ramblier-coming-soon__logo-text {
+        font-size: 42px;
+      }
 
-          #{{ section_id }} .ramblier-coming-soon__subheading {
-            font-size: 20px;
-          }
-        }
+      #{{ section_id }} .ramblier-coming-soon__heading {
+        font-size: 34px;
+      }
+
+      #{{ section_id }} .ramblier-coming-soon__rotating-word {
+        font-size: var(--rcs-rotating-word-mobile-size);
+        min-width: 0;
+      }
+
+      #{{ section_id }} .ramblier-coming-soon__subheading {
+        font-size: 20px;
+      }
+    }
   </style>
 </section>
 
@@ -753,7 +923,8 @@
     {
       "type": "text",
       "id": "heading_suffix",
-      "label": "Heading suffix"
+      "label": "Heading suffix",
+      "default": "only"
     },
     {
       "type": "range",
@@ -772,10 +943,58 @@
       "default": "<p>Join the list for launch updates, early access, and first dibs on standout merch drops.</p>"
     },
     {
-      "type": "textarea",
-      "id": "klaviyo_embed",
-      "label": "Klaviyo embed code",
-      "default": "<div class='klaviyo-form-XXXXXXX'></div>"
+      "type": "text",
+      "id": "klaviyo_public_api_key",
+      "label": "Klaviyo public API key",
+      "default": "ABC123"
+    },
+    {
+      "type": "text",
+      "id": "klaviyo_list_id",
+      "label": "Klaviyo list ID",
+      "default": "LISTID12345"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Join"
+    },
+    {
+      "type": "text",
+      "id": "waitlist_source",
+      "label": "Signup source",
+      "default": "ramblier-coming-soon"
+    },
+    {
+      "type": "richtext",
+      "id": "form_note",
+      "label": "Form note",
+      "default": "<p>By signing up, you agree to receive launch updates and marketing emails.</p>"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "You're on the list."
+    },
+    {
+      "type": "text",
+      "id": "error_message",
+      "label": "Error message",
+      "default": "Something went wrong. Please try again."
+    },
+    {
+      "type": "text",
+      "id": "invalid_email_message",
+      "label": "Invalid email message",
+      "default": "Please enter a valid email address."
     },
     {
       "type": "url",
