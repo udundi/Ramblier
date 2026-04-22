@@ -459,9 +459,6 @@
     #{{ section_id }} {
   position: relative;
   overflow: hidden;
-  min-height: var(--rcs-section-height);
-  min-height: calc(var(--rcs-section-height) * 1svh);
-  min-height: calc(var(--rcs-section-height) * 1dvh);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -469,6 +466,9 @@
   color: var(--rcs-text);
   padding-top: var(--rcs-top-spacing);
   padding-bottom: var(--rcs-bottom-spacing);
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
 }
 
     #{{ section_id }} .page-width {
