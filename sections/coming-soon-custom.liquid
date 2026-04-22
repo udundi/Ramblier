@@ -138,6 +138,8 @@
         const emailInput = section.querySelector('.ramblier-coming-soon__input');
         const submitButton = section.querySelector('.ramblier-coming-soon__submit');
         const messageEl = section.querySelector('.ramblier-coming-soon__form-message');
+        const formWrap = section.querySelector('.ramblier-coming-soon__form-wrap');
+const successState = section.querySelector('.ramblier-coming-soon__success-state');
 
         const companyId = {{ section.settings.klaviyo_public_api_key | json }};
         const listId = {{ section.settings.klaviyo_list_id | json }};
@@ -152,6 +154,11 @@
             messageEl.classList.add(type);
           }
         };
+
+        const showSuccessState = () => {
+  if (!formWrap) return;
+  formWrap.classList.add('is-success');
+};
 
         const isValidEmail = (email) => {
           return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -267,9 +274,10 @@
 
             try {
               await createOrUpdateProfile(email);
-              await subscribeProfile(email);
-              form.reset();
-              setMessage({{ section.settings.success_message | json }}, 'is-success');
+await subscribeProfile(email);
+form.reset();
+setMessage('');
+showSuccessState();
             } catch (error) {
               console.error('Ramblier waitlist submission error:', error);
               setMessage({{ section.settings.error_message | json }}, 'is-error');
@@ -334,9 +342,7 @@
       {% endif %}
 
       <h1 class="ramblier-coming-soon__heading">
-        <span class="ramblier-coming-soon__heading-static">
-          Shop exclusive merch
-        </span>
+        <span class="ramblier-coming-soon__heading-static"> Shop exclusive merch </span>
 
         {% if section.settings.heading_prefix != blank %}
           <span class="ramblier-coming-soon__heading-static">
@@ -407,6 +413,18 @@
 
           <div class="ramblier-coming-soon__form-message" aria-live="polite"></div>
         </form>
+
+        <div class="ramblier-coming-soon__success-state" aria-live="polite">
+          <div class="ramblier-coming-soon__success-title">
+            {{ section.settings.success_message }}
+          </div>
+
+          {% if section.settings.success_subtext != blank %}
+            <div class="ramblier-coming-soon__success-subtext">
+              {{ section.settings.success_subtext }}
+            </div>
+          {% endif %}
+        </div>
       </div>
 
       {% assign has_socials = false %}
@@ -456,419 +474,453 @@
   </div>
 
   <style>
-    #{{ section_id }} {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--rcs-bg);
-  color: var(--rcs-text);
-  padding-top: var(--rcs-top-spacing);
-  padding-bottom: var(--rcs-bottom-spacing);
-  min-height: 100vh;
-  min-height: 100svh;
-  min-height: 100dvh;
-}
-
-    #{{ section_id }} .page-width {
-      width: 100%;
-      max-width: var(--rcs-page-width);
-      margin: 0 auto;
-      padding-left: 24px;
-      padding-right: 24px;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__bg {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, var(--rcs-bg) 0%, var(--rcs-bg-overlay) 100%);
-      z-index: 0;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__bg-image-wrap {
-      position: absolute;
-      inset: -6%;
-      z-index: 1;
+        #{{ section_id }} {
+      position: relative;
       overflow: hidden;
-      pointer-events: none;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__bg-image {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      object-position: center;
-      transform: scale(var(--rcs-bg-image-scale));
-      opacity: var(--rcs-bg-image-opacity);
-      filter: blur(var(--rcs-bg-image-blur));
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__inner {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__content {
-      width: 100%;
-      max-width: var(--rcs-content-width);
-      margin: 0 auto;
       display: flex;
-      flex-direction: column;
       align-items: center;
+      justify-content: center;
+      background: var(--rcs-bg);
+      color: var(--rcs-text);
+      padding-top: var(--rcs-top-spacing);
+      padding-bottom: var(--rcs-bottom-spacing);
+      min-height: 100vh;
+      min-height: 100svh;
+      min-height: 100dvh;
+    }
+
+        #{{ section_id }} .page-width {
+          width: 100%;
+          max-width: var(--rcs-page-width);
+          margin: 0 auto;
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__bg {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, var(--rcs-bg) 0%, var(--rcs-bg-overlay) 100%);
+          z-index: 0;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__bg-image-wrap {
+          position: absolute;
+          inset: -6%;
+          z-index: 1;
+          overflow: hidden;
+          pointer-events: none;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__bg-image {
+          width: 100%;
+          height: 100%;
+          display: block;
+          object-fit: cover;
+          object-position: center;
+          transform: scale(var(--rcs-bg-image-scale));
+          opacity: var(--rcs-bg-image-opacity);
+          filter: blur(var(--rcs-bg-image-blur));
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__inner {
+          position: relative;
+          z-index: 2;
+          width: 100%;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__content {
+          width: 100%;
+          max-width: var(--rcs-content-width);
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__logo-wrap {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-bottom: 26px;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__logo-image {
+          width: min(100%, var(--rcs-logo-width));
+          height: auto;
+          display: block;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__logo-text {
+          margin-bottom: 26px;
+          color: var(--rcs-text);
+          font-size: 64px;
+          line-height: 0.95;
+          font-weight: 700;
+          letter-spacing: 0.01em;
+          text-transform: uppercase;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__eyebrow {
+          margin: 0 0 18px;
+          color: var(--rcs-text);
+          font-size: var(--rcs-eyebrow-size);
+          line-height: 1;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          opacity: 0.95;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__heading {
+          margin: 0;
+          color: var(--rcs-text);
+          font-size: var(--rcs-heading-size);
+          line-height: 1;
+          letter-spacing: 0;
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 0.2em 0.26em;
+          font-family: "Noto Serif";
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__heading-static,
+        #{{ section_id }} .ramblier-coming-soon__heading-dynamic,
+        #{{ section_id }} .ramblier-coming-soon__heading-suffix {
+          display: inline-flex;
+          align-items: center;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__heading-dynamic {
+          flex: 0 0 auto;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__rotating-wrap {
+          position: relative;
+          display: inline-flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          width: fit-content;
+          max-width: 100%;
+          overflow: visible;
+          padding: 0 0.08em;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__rotating-word {
+          display: inline-block;
+          width: auto;
+          min-width: 0;
+          font-size: var(--rcs-rotating-word-size);
+          line-height: 0.9;
+          font-style: italic;
+          font-weight: 500;
+          text-transform: none;
+          white-space: nowrap;
+          vertical-align: baseline;
+          font-family: Dear Jocelyn, cursive;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__rotating-word::after {
+          content: '';
+          display: inline-block;
+          width: 1px;
+          height: 0.9em;
+          margin-left: 0.08em;
+          background: currentColor;
+          vertical-align: -0.08em;
+          animation: ramblierComingSoonBlink 0.9s steps(1) infinite;
+        }
+
+        @keyframes ramblierComingSoonBlink {
+          0%, 50% {
+            opacity: 1;
+          }
+          50.01%, 100% {
+            opacity: 0;
+          }
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__drawn-underline {
+          display: block;
+          width: 100%;
+          line-height: 0;
+          margin-top: 2px;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__drawn-underline svg {
+          width: 100%;
+          height: auto;
+          display: block;
+          color: var(--rcs-line);
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__subheading {
+          margin-top: 16px;
+          color: var(--rcs-text);
+          font-size: var(--rcs-subheading-size);
+          line-height: 1.35;
+          opacity: 0.95;
+          max-width: 760px;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__subheading p {
+          margin: 0;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__form-wrap {
+          width: 90%;
+          margin-top: 34px;
+          max-width: 460px;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__form {
+          width: 100%;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__form-row {
+          position: relative;
+          width: 100%;
+          display: flex;
+          align-items: flex-end;
+          border-bottom: 1px solid var(--rcs-line);
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__input {
+          width: 100%;
+          min-height: 42px;
+          background: transparent;
+          color: var(--rcs-text);
+          border: 0;
+          border-radius: 0;
+          box-shadow: none;
+          outline: none;
+          padding: 0 120px 0px 0;
+          margin: 0;
+          font-size: var(--rcs-form-input-size);
+          line-height: 1.2;
+          text-align: left;
+          appearance: none;
+          -webkit-appearance: none;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__input::placeholder {
+          color: var(--rcs-muted);
+          opacity: 1;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__submit {
+          position: absolute;
+          right: 0;
+          bottom: 12px;
+          background: transparent;
+          border: 0;
+          box-shadow: none;
+          color: var(--rcs-text);
+          text-transform: uppercase;
+          letter-spacing: 0.12em;
+          font-size: var(--rcs-form-button-size);
+          line-height: 1;
+          font-weight: 600;
+          padding: 0;
+          margin: 0;
+          min-height: auto;
+          cursor: pointer;
+          transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__submit:hover {
+          opacity: 0.75;
+          transform: translateY(-1px);
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__success-state {
+      display: none;
+      width: 100%;
       text-align: center;
+      padding: 22px 0 0;
     }
 
-    #{{ section_id }} .ramblier-coming-soon__logo-wrap {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      margin-bottom: 26px;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__logo-image {
-      width: min(100%, var(--rcs-logo-width));
-      height: auto;
-      display: block;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__logo-text {
-      margin-bottom: 26px;
+    #{{ section_id }} .ramblier-coming-soon__success-title {
       color: var(--rcs-text);
-      font-size: 64px;
-      line-height: 0.95;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      text-transform: uppercase;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__eyebrow {
-      margin: 0 0 18px;
-      color: var(--rcs-text);
-      font-size: var(--rcs-eyebrow-size);
-      line-height: 1;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      opacity: 0.95;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__heading {
-      margin: 0;
-      color: var(--rcs-text);
-      font-size: var(--rcs-heading-size);
-      line-height: 1;
-      letter-spacing: 0;
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.2em 0.26em;
-      font-family: "Noto Serif";
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__heading-static,
-    #{{ section_id }} .ramblier-coming-soon__heading-dynamic,
-    #{{ section_id }} .ramblier-coming-soon__heading-suffix {
-      display: inline-flex;
-      align-items: center;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__heading-dynamic {
-      flex: 0 0 auto;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__rotating-wrap {
-      position: relative;
-      display: inline-flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      width: fit-content;
-      max-width: 100%;
-      overflow: visible;
-      padding: 0 0.08em;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__rotating-word {
-      display: inline-block;
-      width: auto;
-      min-width: 0;
-      font-size: var(--rcs-rotating-word-size);
-      line-height: 0.9;
-      font-style: italic;
-      font-weight: 500;
-      text-transform: none;
-      white-space: nowrap;
-      vertical-align: baseline;
-      font-family: Dear Jocelyn, cursive;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__rotating-word::after {
-      content: '';
-      display: inline-block;
-      width: 1px;
-      height: 0.9em;
-      margin-left: 0.08em;
-      background: currentColor;
-      vertical-align: -0.08em;
-      animation: ramblierComingSoonBlink 0.9s steps(1) infinite;
-    }
-
-    @keyframes ramblierComingSoonBlink {
-      0%, 50% {
-        opacity: 1;
-      }
-      50.01%, 100% {
-        opacity: 0;
-      }
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__drawn-underline {
-      display: block;
-      width: 100%;
-      line-height: 0;
-      margin-top: 2px;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__drawn-underline svg {
-      width: 100%;
-      height: auto;
-      display: block;
-      color: var(--rcs-line);
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__subheading {
-      margin-top: 16px;
-      color: var(--rcs-text);
-      font-size: var(--rcs-subheading-size);
-      line-height: 1.35;
-      opacity: 0.95;
-      max-width: 760px;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__subheading p {
-      margin: 0;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__form-wrap {
-      width: 90%;
-      margin-top: 34px;
-      max-width: 460px;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__form {
-      width: 100%;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__form-row {
-      position: relative;
-      width: 100%;
-      display: flex;
-      align-items: flex-end;
-      border-bottom: 1px solid var(--rcs-line);
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__input {
-      width: 100%;
-      min-height: 42px;
-      background: transparent;
-      color: var(--rcs-text);
-      border: 0;
-      border-radius: 0;
-      box-shadow: none;
-      outline: none;
-      padding: 0 120px 0px 0;
-      margin: 0;
-      font-size: var(--rcs-form-input-size);
-      line-height: 1.2;
-      text-align: left;
-      appearance: none;
-      -webkit-appearance: none;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__input::placeholder {
-      color: var(--rcs-muted);
-      opacity: 1;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__submit {
-      position: absolute;
-      right: 0;
-      bottom: 12px;
-      background: transparent;
-      border: 0;
-      box-shadow: none;
-      color: var(--rcs-text);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: var(--rcs-form-button-size);
-      line-height: 1;
+      font-size: clamp(22px, 2.2vw, 30px);
+      line-height: 1.15;
       font-weight: 600;
-      padding: 0;
-      margin: 0;
-      min-height: auto;
-      cursor: pointer;
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      letter-spacing: 0;
     }
 
-    #{{ section_id }} .ramblier-coming-soon__submit:hover {
-      opacity: 0.75;
-      transform: translateY(-1px);
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__form.is-submitting .ramblier-coming-soon__submit {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__form-note {
-      margin-top: 12px;
+    #{{ section_id }} .ramblier-coming-soon__success-subtext {
+      margin-top: 10px;
       color: var(--rcs-muted);
-      font-size: 13px;
+      font-size: 15px;
       line-height: 1.5;
-      text-align: center;
     }
 
-    #{{ section_id }} .ramblier-coming-soon__form-note p {
+    #{{ section_id }} .ramblier-coming-soon__success-subtext p {
       margin: 0;
     }
 
-    #{{ section_id }} .ramblier-coming-soon__form-message {
-      min-height: 1.5em;
-      margin-top: 16px;
-      font-size: 14px;
-      line-height: 1.5;
-      text-align: center;
-      color: var(--rcs-text);
+    #{{ section_id }} .ramblier-coming-soon__form-wrap.is-success .ramblier-coming-soon__form {
+      display: none;
     }
 
-    #{{ section_id }} .ramblier-coming-soon__form-message.is-error {
-        color: #a40000;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__form-message.is-success {
-      color: var(--rcs-text);
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__socials {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-      margin-top: 34px;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__social-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--rcs-text);
-      text-decoration: none;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__social-link:hover {
-      opacity: 0.75;
-      transform: translateY(-1px);
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__social-shape {
-      width: var(--rcs-social-size);
-      height: var(--rcs-social-size);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid var(--rcs-line);
-      box-sizing: border-box;
-      color: var(--rcs-text);
-      background: transparent;
-    }
-
-    #{{ section_id }} .ramblier-coming-soon__social-shape svg {
-      width: var(--rcs-social-icon-size);
-      height: var(--rcs-social-icon-size);
+    #{{ section_id }} .ramblier-coming-soon__form-wrap.is-success .ramblier-coming-soon__success-state {
       display: block;
-      color: currentColor;
-      flex: 0 0 auto;
     }
 
-    @media screen and (max-width: 989px) {
-      #{{ section_id }} .ramblier-coming-soon__heading {
-        font-size: var(--rcs-heading-mobile-size);
-        line-height: 1.02;
-      }
+        #{{ section_id }} .ramblier-coming-soon__form.is-submitting .ramblier-coming-soon__submit {
+          opacity: 0.5;
+          pointer-events: none;
+        }
 
-      #{{ section_id }} .ramblier-coming-soon__rotating-word {
-        font-size: var(--rcs-rotating-word-mobile-size);
-      }
+        #{{ section_id }} .ramblier-coming-soon__form-note {
+          margin-top: 12px;
+          color: var(--rcs-muted);
+          font-size: 13px;
+          line-height: 1.5;
+          text-align: center;
+        }
 
-      #{{ section_id }} .ramblier-coming-soon__logo-text {
-        font-size: 48px;
+        #{{ section_id }} .ramblier-coming-soon__form-note p {
+          margin: 0;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__form-message {
+          min-height: 1.5em;
+          margin-top: 16px;
+          font-size: 14px;
+          line-height: 1.5;
+          text-align: center;
+          color: var(--rcs-text);
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__form-message.is-error {
+            color: #a40000;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__form-message.is-success {
+          color: var(--rcs-text);
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__socials {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+          flex-wrap: wrap;
+          margin-top: 34px;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__social-link {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--rcs-text);
+          text-decoration: none;
+          transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__social-link:hover {
+          opacity: 0.75;
+          transform: translateY(-1px);
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__social-shape {
+          width: var(--rcs-social-size);
+          height: var(--rcs-social-size);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 2px solid var(--rcs-line);
+          box-sizing: border-box;
+          color: var(--rcs-text);
+          background: transparent;
+        }
+
+        #{{ section_id }} .ramblier-coming-soon__social-shape svg {
+          width: var(--rcs-social-icon-size);
+          height: var(--rcs-social-icon-size);
+          display: block;
+          color: currentColor;
+          flex: 0 0 auto;
+        }
+
+        @media screen and (max-width: 989px) {
+          #{{ section_id }} .ramblier-coming-soon__heading {
+            font-size: var(--rcs-heading-mobile-size);
+            line-height: 1.02;
+          }
+
+          #{{ section_id }} .ramblier-coming-soon__rotating-word {
+            font-size: var(--rcs-rotating-word-mobile-size);
+          }
+
+          #{{ section_id }} .ramblier-coming-soon__logo-text {
+            font-size: 48px;
+          }
+        }
+
+        @media screen and (max-width: 749px) {
+      .ramblier-coming-soon__bg-image {
+        filter: blur(5px)!important;
+        opacity: 0.5!important;
       }
     }
 
-    @media screen and (max-width: 749px) {
-  .ramblier-coming-soon__bg-image {
-    filter: blur(5px)!important;
-    opacity: 0.5!important;
-  }
-}
+        @media screen and (max-width: 749px) {
+          #{{ section_id }} .page-width {
+            padding-left: 20px;
+            padding-right: 20px;
+          }
 
-    @media screen and (max-width: 749px) {
-      #{{ section_id }} .page-width {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
+          #{{ section_id }} .ramblier-coming-soon__logo-wrap {
+            margin-bottom: 22px;
+          }
 
-      #{{ section_id }} .ramblier-coming-soon__logo-wrap {
-        margin-bottom: 22px;
-      }
+          #{{ section_id }} .ramblier-coming-soon__eyebrow {
+            margin-bottom: 14px;
+            letter-spacing: 0.16em;
+          }
 
-      #{{ section_id }} .ramblier-coming-soon__eyebrow {
-        margin-bottom: 14px;
-        letter-spacing: 0.16em;
-      }
+          #{{ section_id }} .ramblier-coming-soon__subheading {
+            font-size: var(--rcs-subheading-mobile-size);
+          }
 
-      #{{ section_id }} .ramblier-coming-soon__subheading {
-        font-size: var(--rcs-subheading-mobile-size);
-      }
+          #{{ section_id }} .ramblier-coming-soon__input {
+            padding-right: 94px;
+            min-height: 38px;
+          }
 
-      #{{ section_id }} .ramblier-coming-soon__input {
-        padding-right: 94px;
-        min-height: 38px;
-      }
+          #{{ section_id }} .ramblier-coming-soon__submit {
+            bottom: 10px;
+          }
 
-      #{{ section_id }} .ramblier-coming-soon__submit {
-        bottom: 10px;
-      }
+          #{{ section_id }} .ramblier-coming-soon__socials {
+            margin-top: 28px;
+            gap: 12px;
+          }
+        }
 
-      #{{ section_id }} .ramblier-coming-soon__socials {
-        margin-top: 28px;
-        gap: 12px;
-      }
-    }
+        @media screen and (max-width: 480px) {
+          #{{ section_id }} .ramblier-coming-soon__logo-text {
+            font-size: 42px;
+          }
 
-    @media screen and (max-width: 480px) {
-      #{{ section_id }} .ramblier-coming-soon__logo-text {
-        font-size: 42px;
-      }
+          #{{ section_id }} .ramblier-coming-soon__heading {
+            font-size: 34px;
+          }
 
-      #{{ section_id }} .ramblier-coming-soon__heading {
-        font-size: 34px;
-      }
+          #{{ section_id }} .ramblier-coming-soon__rotating-word {
+            font-size: var(--rcs-rotating-word-mobile-size);
+            min-width: 0;
+          }
 
-      #{{ section_id }} .ramblier-coming-soon__rotating-word {
-        font-size: var(--rcs-rotating-word-mobile-size);
-        min-width: 0;
-      }
-
-      #{{ section_id }} .ramblier-coming-soon__subheading {
-        font-size: 20px;
-      }
-    }
+          #{{ section_id }} .ramblier-coming-soon__subheading {
+            font-size: 20px;
+          }
+        }
   </style>
 </section>
 
@@ -973,6 +1025,12 @@
       "id": "success_message",
       "label": "Success message",
       "default": "You're on the list."
+    },
+    {
+      "type": "richtext",
+      "id": "success_subtext",
+      "label": "Success subtext",
+      "default": "<p>Thanks for joining the waitlist. We’ll be in touch soon.</p>"
     },
     {
       "type": "text",
